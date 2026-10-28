@@ -419,6 +419,7 @@ export function createApp({
           const snapshot = {
             symptoms: input.symptoms,
             onset: input.onset,
+            ...(input.intake ? {intake: input.intake} : {}),
             profile: profileRow
               ? V.parse(V.profileSchema, JSON.parse(profileRow.data))
               : defaultProfile(),

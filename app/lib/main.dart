@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
@@ -8,12 +9,14 @@ import 'hospitals.dart';
 import 'presence.dart';
 import 'wearable.dart';
 import 'friends.dart';
+import 'visit_pdf.dart';
+import 'package:printing/printing.dart';
 
 const ink = Color(0xFF193B32);
 const green = Color(0xFF28654F);
-const cream = Color(0xFFF5F7F1);
-const pale = Color(0xFFEAF1E5);
-const lime = Color(0xFFD8ECB0);
+const cream = Color(0xFFFFF8F4);
+const pale = Color(0xFFF1ECFF);
+const lime = Color(0xFFFFDEBD);
 typedef Json = Map<String, dynamic>;
 void main() => runApp(const CareBridgeApp());
 
@@ -25,6 +28,12 @@ class CareBridgeApp extends StatelessWidget {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          shape: const StadiumBorder(),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        ),
+      ),
       colorScheme: ColorScheme.fromSeed(seedColor: green),
       scaffoldBackgroundColor: cream,
       textTheme: const TextTheme(
@@ -848,6 +857,11 @@ class VisitCards extends StatefulWidget {
 
 class _VisitCardsState extends ScreenState<VisitCards> {
   final symptoms = TextEditingController(), onset = TextEditingController();
+  final patientName = TextEditingController(),
+      bodySite = TextEditingController(),
+      temperature = TextEditingController(),
+      measuredAt = TextEditingController();
+  int? painScore;
   List<dynamic> cards = [], journals = [];
   final selected = <String>{};
   bool consent = false, reviewed = false;
@@ -864,6 +878,9 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   void dispose() {
     symptoms.dispose();
     onset.dispose();
+    for (final c in [patientName, bodySite, temperature, measuredAt]) {
+      c.dispose();
+    }
     for (final c in edits.values) {
       c.dispose();
     }
@@ -916,7 +933,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   String summary() {
     final c = current!, s = c['snapshot'];
     final tr = c['translation'];
-    return 'CareBridge · ${c['mode'] == 'ai' ? (c['confirmedAt'] == null ? 'AI draft · unreviewed' : 'User-reviewed translation') : 'Original · not translated'}\n${c['createdAt']}\n\nSymptoms: ${s['symptoms']}\nOnset: ${s['onset']}\nAllergies: ${knowledge(s['profile']['allergies'])}\nMedication: ${knowledge(s['profile']['medications'])}\n${(s['journals'] as List).map((j) => '${j['date']} · ${j['condition']} · ${j['sleep']}h\n${j['note']}').join('\n')}\n${tr == null ? '' : '\n한국어\n증상: ${tr['symptomsKo']}\n시작: ${tr['onsetKo']}\n알레르기: ${tr['allergiesKo']}\n복용약: ${tr['medicationsKo']}\n${(tr['journalKo'] as List).map((j) => j['textKo']).join('\n')}'}';
+    return 'MORI · ${c['mode'] == 'ai' ? (c['confirmedAt'] == null ? 'AI draft · unreviewed' : 'User-reviewed translation') : 'Original · not translated'}\n${c['createdAt']}\n\nSymptoms: ${s['symptoms']}\nOnset: ${s['onset']}\nAllergies: ${knowledge(s['profile']['allergies'])}\nMedication: ${knowledge(s['profile']['medications'])}\n${intakeMetrics(c)}\n${(s['journals'] as List).map((j) => '${j['date']} · ${j['condition']} · ${j['sleep']}h\n${j['note']}').join('\n')}\n${tr == null ? '' : '\n한국어\n증상: ${tr['symptomsKo']}\n시작: ${tr['onsetKo']}\n알레르기: ${tr['allergiesKo']}\n복용약: ${tr['medicationsKo']}\n${(tr['journalKo'] as List).map((j) => j['textKo']).join('\n')}'}';
   }
 
   @override
@@ -937,6 +954,61 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             lines: 3,
           ),
           field(t('When did it start?', '언제부터 시작됐나요?'), onset),
+          heading(t('Structured visit preparation', '한눈에 보는 초진 준비')),
+          field(
+            t('Name (optional, for this document)', '성명 (선택 · 이 문서용)'),
+            patientName,
+          ),
+          field(t('Body site (optional)', '불편한 부위 (선택)'), bodySite),
+          Text(
+            t(
+              'Pain intensity (self-report): 0 no pain, 10 worst imaginable',
+              '통증 정도 (본인 보고): 0 통증 없음, 10 상상할 수 있는 가장 심한 통증',
+            ),
+          ),
+          Wrap(
+            spacing: 4,
+            children: [
+              ChoiceChip(
+                label: Text(t('Not recorded', '미기록')),
+                selected: painScore == null,
+                onSelected: busy
+                    ? null
+                    : (_) => setState(() => painScore = null),
+              ),
+              for (var n = 0; n <= 10; n++)
+                ChoiceChip(
+                  label: Text('$n'),
+                  selected: painScore == n,
+                  onSelected: busy
+                      ? null
+                      : (_) => setState(() => painScore = n),
+                ),
+            ],
+          ),
+          TextField(
+            controller: temperature,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              labelText: t(
+                'Measured temperature °C (optional)',
+                '직접 측정한 체온 °C (선택)',
+              ),
+              hintText: '37.2',
+            ),
+          ),
+          field(
+            t('When / how was it measured? (optional)', '측정 시점 · 방법 (선택)'),
+            measuredAt,
+          ),
+          Text(
+            t(
+              'Values are patient-reported, not verified vital signs or a diagnosis. Unfilled stays “not recorded”.',
+              '수치는 환자가 입력한 값이며 의료진이 확인한 활력징후나 진단이 아닙니다. 빈 항목은 미기록으로 남아요.',
+            ),
+            style: const TextStyle(fontSize: 12),
+          ),
+
           Text(
             t('Select check-ins to include (up to 7)', '포함할 일상 기록 선택 (최대 7개)'),
           ),
@@ -974,12 +1046,34 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             busy || !consent
                 ? null
                 : () => run(() async {
+                    final temp = temperature.text.trim().isEmpty
+                        ? null
+                        : double.tryParse(temperature.text.trim());
+                    if (temperature.text.trim().isNotEmpty &&
+                        (temp == null ||
+                            !temp.isFinite ||
+                            temp < 30 ||
+                            temp > 45)) {
+                      throw Exception(
+                        t(
+                          'Check temperature in °C (30–45).',
+                          '체온을 °C로 확인해 주세요 (입력 범위 30–45).',
+                        ),
+                      );
+                    }
                     final c = await widget.api.request(
                       '/api/cards',
                       method: 'POST',
                       body: {
                         'symptoms': symptoms.text,
                         'onset': onset.text,
+                        'intake': {
+                          'patientName': patientName.text.trim(),
+                          'bodySite': bodySite.text.trim(),
+                          'painScore': painScore,
+                          'temperatureC': temp,
+                          'measuredAt': measuredAt.text.trim(),
+                        },
                         'journalIds': selected.toList(),
                         'consent': consent,
                       },
@@ -1119,6 +1213,58 @@ class _VisitCardsState extends ScreenState<VisitCards> {
                   if (mounted) open(Map<String, dynamic>.from(c));
                 }),
         ),
+        panel([
+          heading(t('Visit preparation chart', '진료 준비 차트')),
+          Text(intakeMetrics(current!)),
+          Text(
+            t(
+              'Patient-reported preparation sheet, not an official medical record. Uses saved information.',
+              '환자 작성 준비표이며 의료기관 공식 진료기록은 아닙니다. 저장한 내용을 사용합니다.',
+            ),
+            style: const TextStyle(fontSize: 12),
+          ),
+          button(
+            t('Open chart · Export PDF', '차트 보기 · PDF 내보내기'),
+            busy
+                ? null
+                : () => run(() async {
+                    final card = Map<String, dynamic>.from(current!);
+                    final bytes = await buildVisitPdf(card);
+                    if (!context.mounted) return;
+                    await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Scaffold(
+                          appBar: AppBar(
+                            title: Text(
+                              t('Patient-reported visit sheet', '환자 작성 진료 준비표'),
+                            ),
+                            actions: [
+                              IconButton(
+                                tooltip: t('Save / share PDF', 'PDF 저장 · 공유'),
+                                icon: const Icon(Icons.ios_share),
+                                onPressed: () => Printing.sharePdf(
+                                  bytes: bytes,
+                                  filename: 'MORI_visit_preparation.pdf',
+                                ),
+                              ),
+                            ],
+                          ),
+                          body: kIsWeb
+                              ? ClinicalVisitView(card: card)
+                              : PdfPreview(
+                                  build: (_) => bytes,
+                                  canChangeOrientation: false,
+                                  canChangePageFormat: false,
+                                  allowPrinting: true,
+                                  allowSharing: true,
+                                  pdfFileName: 'MORI_visit_preparation.pdf',
+                                ),
+                        ),
+                      ),
+                    );
+                  }),
+          ),
+        ]),
         button(
           t('Show large card', '큰 글씨로 보여주기'),
           () => Navigator.of(context).push(

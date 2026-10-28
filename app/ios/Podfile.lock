@@ -7,6 +7,8 @@ PODS:
     - FlutterMacOS
   - health (13.3.2):
     - Flutter
+  - printing (1.0.0):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_secure_storage_darwin (from `.symlinks/plugins/flutter_secure_storage_darwin/darwin`)
   - health (from `.symlinks/plugins/health/ios`)
+  - printing (from `.symlinks/plugins/printing/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
@@ -26,6 +29,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_secure_storage_darwin/darwin"
   health:
     :path: ".symlinks/plugins/health/ios"
+  printing:
+    :path: ".symlinks/plugins/printing/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -34,6 +39,7 @@ SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_secure_storage_darwin: 46e401699982ee74142909676535e0f6a7321e58
   health: 72947bca89ee7906256d6f650db061ca4b2f92c7
+  printing: 54ff03f28fe9ba3aa93358afb80a8595a071dd07
   url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
 PODFILE CHECKSUM: 53a6aebc29ccee84c41f92f409fc20cd4ca011f1

@@ -23,6 +23,7 @@ export const symptomSchema = z.object({
   onset: text(200).min(1),
   journalIds: z.array(z.string().uuid()).max(7),
   consent: z.literal(true),
+  intake: z.object({patientName:text(120),bodySite:text(120),painScore:z.number().int().min(0).max(10).nullable(),temperatureC:z.number().min(30).max(45).nullable(),measuredAt:text(120)}).optional(),
 });
 export const postSchema = z.object({
   title: text(120).min(3),

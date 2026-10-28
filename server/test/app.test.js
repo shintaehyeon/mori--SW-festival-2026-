@@ -630,3 +630,11 @@ test('friend codes are one-use and revocable; cheers enforce 20 graphemes; block
  await request('/api/social/invites','DELETE',{},a.token);
  assert.equal((await request('/api/social/accept','POST',{code:next.code},c.token)).status,400);
 });
+
+test('structured visit measurements validate ranges and preserve original snapshot',async(t)=>{
+ const {request,register}=await fixture(t);const a=await register('VisitChart');
+ const payload={symptoms:'Test symptom',onset:'Today',journalIds:[],consent:true,intake:{patientName:'Test only',bodySite:'Throat',painScore:0,temperatureC:37.2,measuredAt:'09:00 KST'}};
+ const c=await request('/api/cards','POST',payload,a.token);assert.equal(c.status,201);assert.equal(c.data.snapshot.intake.painScore,0);assert.equal(c.data.snapshot.intake.temperatureC,37.2);
+ assert.equal((await request('/api/cards','POST',{...payload,intake:{...payload.intake,painScore:11}},a.token)).status,400);
+ assert.equal((await request('/api/cards','POST',{...payload,intake:{...payload.intake,temperatureC:90}},a.token)).status,400);
+});

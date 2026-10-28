@@ -339,7 +339,7 @@ class _MoriHomeState extends State<MoriHome>
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF1E5),
+        color: const Color(0xFFF2EAFE),
         borderRadius: BorderRadius.circular(28),
       ),
       child: Column(
@@ -375,7 +375,7 @@ class _MoriHomeState extends State<MoriHome>
           Text(
             t(
               'A little version of you. Let’s check in together.',
-              '나의 작은 분신, 오늘도 함께 안부를 나눠요.',
+              '포근포근 나의 작은 친구, 오늘도 안녕!',
             ),
           ),
           Semantics(
@@ -400,7 +400,7 @@ class _MoriHomeState extends State<MoriHome>
           ),
           Text(
             todayEntries.isEmpty
-                ? t('Tell me how you feel today 🌿', '오늘 네 이야기를 들려줄래? 🌿')
+                ? t('Tell me how you feel today 🌿', '똑똑, 오늘의 너는 어때? 🌷')
                 : condition == 'low'
                 ? t(
                     'A hard day is welcome here, too.',
@@ -504,6 +504,34 @@ class MoriPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.5
       ..strokeCap = StrokeCap.round;
+    // Soft pastel backdrop and tiny sparkles; decoration never encodes a health score.
+    canvas.drawCircle(
+      center,
+      r * 1.35,
+      Paint()..color = const Color(0xFFFFF6EA),
+    );
+    for (final sign in [-1, 1]) {
+      final point = center + Offset(sign * r * 1.5, -r * .65);
+      final sparkle = Paint()
+        ..color = const Color(0xFFD6A1C9)
+        ..strokeWidth = 3
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(
+        point - const Offset(0, 6),
+        point + const Offset(0, 6),
+        sparkle,
+      );
+      canvas.drawLine(
+        point - const Offset(6, 0),
+        point + const Offset(6, 0),
+        sparkle,
+      );
+      canvas.drawCircle(
+        center + Offset(sign * r * 1.27, r * .7),
+        3,
+        Paint()..color = const Color(0xFFEFBBA0),
+      );
+    }
     canvas.drawOval(
       Rect.fromCenter(
         center: Offset(center.dx, size.height * .91),
