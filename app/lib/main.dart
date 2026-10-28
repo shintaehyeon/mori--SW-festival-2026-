@@ -6,6 +6,7 @@ import 'emergency.dart';
 import 'mori.dart';
 import 'hospitals.dart';
 import 'presence.dart';
+import 'wearable.dart';
 
 const ink = Color(0xFF193B32);
 const green = Color(0xFF28654F);
@@ -164,6 +165,13 @@ class _WorkspaceState extends State<Workspace> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: t('Watch & permissions', '워치 연동 · 권한'),
+            icon: const Icon(Icons.watch_outlined),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => WearablePage(ko: ko))),
+          ),
           IconButton(
             tooltip: t('Emergency / My info', '긴급 연락 / 내 정보'),
             icon: const Icon(Icons.sos, color: Colors.red),

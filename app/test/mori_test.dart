@@ -2,6 +2,13 @@ import 'package:carebridge/mori.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('intake notes preserve user entry and do not infer absence', () {
+    expect(intakeNote('', <String>{}, ''), '');
+    final note = intakeNote('두통', {'vitamin_c', 'alcohol'}, '500mg 오전 9시');
+    expect(note, contains('Vitamin C'));
+    expect(note, contains('Alcohol'));
+    expect(note, contains('500mg 오전 9시'));
+  });
   test(
     'growth counts unique dates regardless of condition and levels each 3 days',
     () {

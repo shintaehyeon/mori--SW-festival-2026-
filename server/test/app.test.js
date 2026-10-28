@@ -576,3 +576,14 @@ test('presence groups by organization type/name and registered area without expo
  assert.equal((await beat(a.token)).data.organizationCount,1);
  assert.equal((await setup(a.token,{enabled:true,organizationType:'school',organization:'',region:''})).status,400);
 });
+
+test('daily intake selections persist in records and card snapshots without unsupported values',async(t)=>{
+ const {request,register}=await fixture(t);const a=await register('IntakeUser');
+ const note='섭취 기록 / Intake: 비타민 C / Vitamin C 500mg';
+ const saved=await request('/api/journals','POST',{...journal,note,intakes:['vitamin_c','alcohol']},a.token);
+ assert.equal(saved.status,201);assert.deepEqual(saved.data.intakes,['vitamin_c','alcohol']);
+ const card=await request('/api/cards','POST',{symptoms:'Test symptoms',onset:'Today',journalIds:[saved.data.id],consent:true},a.token);
+ assert.deepEqual(card.data.snapshot.journals[0].intakes,['vitamin_c','alcohol']);assert.equal(card.data.snapshot.journals[0].note,note);
+ assert.equal((await request('/api/journals','POST',{...journal,intakes:['unapproved']},a.token)).status,400);
+ assert.equal((await request('/api/journals','POST',{...journal,intakes:['alcohol','alcohol']},a.token)).status,400);
+});

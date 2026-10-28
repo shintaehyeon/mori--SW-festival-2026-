@@ -16,6 +16,7 @@ export const journalSchema = z.object({
   condition: z.enum(["good", "okay", "low"]),
   sleep: z.number().min(0).max(24),
   note: text(1000),
+  intakes: z.array(z.enum(["alcohol","vitamin_c","medication","supplement"])).max(4).refine(v => new Set(v).size === v.length,"Duplicate intake selection.").optional(),
 });
 export const symptomSchema = z.object({
   symptoms: text(2000).min(2),

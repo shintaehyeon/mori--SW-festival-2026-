@@ -2,6 +2,20 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'api.dart';
 
+const intakeLabels = <String, String>{
+  'alcohol': '🍺 술 / Alcohol',
+  'vitamin_c': '🍊 비타민 C / Vitamin C',
+  'medication': '💊 약 / Medication',
+  'supplement': '🌿 영양제 / Supplement',
+};
+String intakeNote(String note, Set<String> selected, String detail) => [
+  if (note.trim().isNotEmpty) note.trim(),
+  if (selected.isNotEmpty)
+    '섭취 기록 / Intake: ${selected.map((key) => intakeLabels[key]!).join(', ')}',
+  if (selected.isNotEmpty && detail.trim().isNotEmpty)
+    '상세 / Details: ${detail.trim()}',
+].join('\n');
+
 int growthDays(List<dynamic> entries) =>
     entries.map((e) => e['date']).toSet().length;
 int growthLevel(int days) => 1 + days ~/ 3;
@@ -176,6 +190,8 @@ class _MoriHomeState extends State<MoriHome>
 
   Future<void> checkIn() async {
     var condition = 'okay';
+    final selected = <String>{};
+    final detail = TextEditingController();
     final note = TextEditingController(),
         sleep = TextEditingController(text: '7');
     var invalid = false;
@@ -215,9 +231,51 @@ class _MoriHomeState extends State<MoriHome>
                         : null,
                   ),
                 ),
+                const SizedBox(height: 16),
+                Text(t('What did you have today?', '오늘 무엇을 먹거나 마셨나요?')),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  children: [
+                    for (final entry in intakeLabels.entries)
+                      FilterChip(
+                        label: Text(entry.value),
+                        selected: selected.contains(entry.key),
+                        onSelected: (on) => change(() {
+                          if (on) {
+                            selected.add(entry.key);
+                          } else {
+                            selected.remove(entry.key);
+                          }
+                        }),
+                      ),
+                  ],
+                ),
+                Text(
+                  t(
+                    'Tap what applies. Unchecked means not recorded, not “none”.',
+                    '해당하는 항목을 눌러요. 미선택은 ‘없음’이 아니라 ‘기록 안 함’입니다.',
+                  ),
+                  style: const TextStyle(fontSize: 12),
+                ),
+                if (selected.isNotEmpty)
+                  TextField(
+                    controller: detail,
+                    maxLength: 200,
+                    decoration: InputDecoration(
+                      labelText: t(
+                        'Optional: name, amount, time',
+                        '선택: 이름 · 양 · 시간',
+                      ),
+                      hintText: t(
+                        'e.g. Vitamin C 500 mg at 9 AM',
+                        '예: 비타민 C 500mg 오전 9시',
+                      ),
+                    ),
+                  ),
                 TextField(
                   controller: note,
-                  maxLength: 1000,
+                  maxLength: 600,
                   maxLines: 3,
                   decoration: InputDecoration(
                     labelText: t('Your body & your day', '몸 상태와 오늘의 이야기'),
@@ -245,7 +303,8 @@ class _MoriHomeState extends State<MoriHome>
                   'date': localDay(),
                   'condition': condition,
                   'sleep': hours,
-                  'note': note.text.trim(),
+                  'note': intakeNote(note.text, selected, detail.text),
+                  'intakes': selected.toList(),
                 });
               },
               child: Text(t('Tell Mori', '모리에게 알려주기')),
@@ -271,6 +330,9 @@ class _MoriHomeState extends State<MoriHome>
     if (loading) return const Center(child: CircularProgressIndicator());
     final days = growthDays(entries), level = growthLevel(growthDays(entries));
     final todayEntries = entries.where((e) => e['date'] == localDay()).toList();
+    final todayIntakes = todayEntries
+        .expand((e) => (e['intakes'] as List? ?? <dynamic>[]))
+        .toSet();
     final condition = todayEntries.isEmpty
         ? 'unknown'
         : todayEntries.first['condition'] as String;
@@ -374,6 +436,19 @@ class _MoriHomeState extends State<MoriHome>
             style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 16),
+          if (todayIntakes.isNotEmpty) ...[
+            Text(
+              t('Recorded today', '오늘 남긴 섭취 기록'),
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            Wrap(
+              spacing: 6,
+              children: [
+                for (final key in todayIntakes)
+                  Chip(label: Text(intakeLabels[key] ?? key.toString())),
+              ],
+            ),
+          ],
           FilledButton.icon(
             onPressed: busy ? null : checkIn,
             icon: const Icon(Icons.favorite_outline),
