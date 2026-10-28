@@ -9,6 +9,7 @@ import {
 import { promisify } from "node:util";
 import { readFileSync, statSync } from "node:fs";
 import { resolve, sep, extname } from "node:path";
+import { socialRoutes } from "./social.js";
 import { openDb } from "./db.js";
 import * as V from "./validation.js";
 import { translateSnapshot, aiConfigured } from "./ai.js";
@@ -269,6 +270,12 @@ export function createApp({
         return send(200, {...hospitalData, hospitals:hospitals.slice(0,100),total:hospitals.length});
       }
       const u = user(req);
+      if (p.startsWith("/api/social")) {
+        const online = uid => [...presence.values()].some(v => v.uid === uid && presenceClock()-v.seen < 90000 && db.prepare("SELECT 1 FROM sessions WHERE token_hash=? AND expires_at>?").get(v.tokenHash,Date.now()));
+        await socialRoutes({p,method,u,db,send,body:()=>body(req),fail,rate,online});
+        return;
+      }
+
       if (p === "/api/presence/settings") {
         const row = db.prepare("SELECT data FROM profiles WHERE user_id=?").get(u.id);
         const current = row ? JSON.parse(row.data) : defaultProfile();
@@ -289,7 +296,7 @@ export function createApp({
           if (method === "DELETE") presence.delete(key);
           else {
             const row = db.prepare("SELECT data FROM profiles WHERE user_id=?").get(u.id);
-            const optedIn = communitySettings(u.id).enabled;
+            const optedIn = communitySettings(u.id).enabled || db.prepare("SELECT visibility FROM social_profiles WHERE user_id=?").get(u.id)?.visibility === "public";
             if (optedIn) presence.set(key,{uid:u.id,tokenHash,seen:presenceClock()});
             else presence.delete(key);
           }

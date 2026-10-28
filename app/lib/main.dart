@@ -7,6 +7,7 @@ import 'mori.dart';
 import 'hospitals.dart';
 import 'presence.dart';
 import 'wearable.dart';
+import 'friends.dart';
 
 const ink = Color(0xFF193B32);
 const green = Color(0xFF28654F);
@@ -145,15 +146,17 @@ class _WorkspaceState extends State<Workspace> {
         backgroundColor: cream,
         title: Row(
           children: [
-            Container(
-              padding: const EdgeInsets.all(7),
-              decoration: BoxDecoration(
-                color: green,
-                borderRadius: BorderRadius.circular(10),
+            if (MediaQuery.sizeOf(context).width > 500)
+              Container(
+                padding: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  color: green,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Icon(Icons.add, color: lime),
               ),
-              child: const Icon(Icons.add, color: lime),
-            ),
-            const SizedBox(width: 10),
+            if (MediaQuery.sizeOf(context).width > 500)
+              const SizedBox(width: 10),
             const Text(
               'MORI',
               style: TextStyle(
@@ -165,6 +168,16 @@ class _WorkspaceState extends State<Workspace> {
           ],
         ),
         actions: [
+          if (user != null)
+            IconButton(
+              tooltip: t('Mori friends', '모리 친구'),
+              icon: const Icon(Icons.people_alt_outlined),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => FriendsPage(api: api, ko: ko),
+                ),
+              ),
+            ),
           IconButton(
             tooltip: t('Watch & permissions', '워치 연동 · 권한'),
             icon: const Icon(Icons.watch_outlined),
@@ -185,7 +198,11 @@ class _WorkspaceState extends State<Workspace> {
           TextButton.icon(
             onPressed: () => setState(() => ko = !ko),
             icon: const Icon(Icons.language, size: 18),
-            label: Text(ko ? 'English' : '한국어'),
+            label: Text(
+              MediaQuery.sizeOf(context).width < 500
+                  ? (ko ? 'EN' : 'KO')
+                  : (ko ? 'English' : '한국어'),
+            ),
           ),
           if (user != null)
             IconButton(

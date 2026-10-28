@@ -71,3 +71,7 @@ health 13.3.2 플러그인으로 iOS HealthKit/Android Health Connect의 심박�
 - Android 플러그인 최소 API 26 요구를 확인해 minSdk=26으로 조정. Health Connect의 실제 지원·가용성과 앱 설치 최소 버전은 별개.
 - 실제 HealthKit/Health Connect 데이터 조회와 워치 수신은 미검증. 수면은 현재 SLEEP_ASLEEP 유형을 읽으며 단계별 수면 통합·총수면 계산은 아직 없음.
 - Android debug APK 빌드도 성공했습니다. 위 Android 빌드 미완료 표기는 이전 상태이며, 현재는 실제 Android/워치 기기 동작 검증만 남아 있습니다. APK는 app/build/app/outputs/flutter-apk/app-debug.apk에 생성되며 Git에는 포함하지 않습니다.
+
+## 친구 커뮤니티 보조 기능
+social_profiles/friend_requests/friend_invites/friendships/friend_blocks/friend_messages 테이블과 /api/social API를 추가했다. 기본 비공개, 공개 닉네임·아바타·접속 표시, 별도로 공유한 컨디션만 수락 친구에게 제공한다. 초대 코드 해시·만료·단일 사용 및 앱 내 수락/거절, 친구만 송신, 20 grapheme 제한과 rate limit, 차단/연결 해제를 서버에서 처리한다. 개인 건강기록/주소/워치 데이터는 이 API에서 반환하지 않는다. 상세 범위: FRIENDS_PRIVACY.md. 30초 폴링이며 푸시 알림·실시간 채팅은 아니다.
+친구 기능 검증: 서버 17개·Flutter 10개 테스트 통과. 초대 전 송신 거절, 외부인의 수락 시도 거절, 비공개 상태·접속 숨김, 20 grapheme 한글/가족 이모지, 차단·코드 취소, UI 응원 전송을 확인했다. 새 친구 화면의 실기기·푸시 알림은 미검증/미구현이며 실제 이용자 연결 효과 검증과 구분한다.

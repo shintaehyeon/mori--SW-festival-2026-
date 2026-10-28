@@ -587,3 +587,46 @@ test('daily intake selections persist in records and card snapshots without unsu
  assert.equal((await request('/api/journals','POST',{...journal,intakes:['unapproved']},a.token)).status,400);
  assert.equal((await request('/api/journals','POST',{...journal,intakes:['alcohol','alcohol']},a.token)).status,400);
 });
+
+test('friends require accepted invitations; public discovery never exposes health records; privacy hides shared status',async(t)=>{
+ const {request,register}=await fixture(t);const a=await register('FriendAlice'),b=await register('FriendBobby'),c=await register('StrangerC');
+ const settings={visibility:'public',shareStatus:true,condition:'low',note:'오늘 힘들어요'};
+ assert.equal((await request('/api/social/settings','GET',undefined,a.token)).data.visibility,'private');
+ await request('/api/social/settings','PUT',settings,a.token);
+ await request('/api/presence','POST',{clientId:'friend-client'},a.token);
+ let list=(await request('/api/social/online','GET',undefined,b.token)).data;
+ assert.equal(list.length,1);assert.equal(list[0].status,null);assert.equal(list[0].online,true);assert.equal(list[0].email,undefined);
+ assert.equal((await request('/api/social/messages','POST',{recipient:a.user.id,body:'힘내!'},b.token)).status,403);
+ await request('/api/social/requests','POST',{recipient:a.user.id},b.token);
+ const pending=(await request('/api/social/requests','GET',undefined,a.token)).data;
+ assert.equal(pending.length,1);
+ assert.equal((await request('/api/social/accept','POST',{requestId:pending[0].id},c.token)).status,400);
+ await request('/api/social/accept','POST',{requestId:pending[0].id},a.token);
+ list=(await request('/api/social/friends','GET',undefined,b.token)).data;
+ assert.equal(list[0].status.condition,'low');assert.equal(list[0].status.note,'오늘 힘들어요');
+ await request('/api/social/settings','PUT',{...settings,visibility:'private'},a.token);
+ list=(await request('/api/social/friends','GET',undefined,b.token)).data;assert.equal(list[0].online,null);assert.equal(list[0].status,null);
+ assert.equal((await request('/api/social/online','GET',undefined,b.token)).data.length,0);
+});
+
+test('friend codes are one-use and revocable; cheers enforce 20 graphemes; blocking cuts access',async(t)=>{
+ const {request,register}=await fixture(t);const a=await register('CodeAlice'),b=await register('CodeBobby'),c=await register('CodeOther');
+ const invite=(await request('/api/social/invites','POST',{},a.token)).data;
+ assert.equal((await request('/api/social/accept','POST',{code:invite.code},a.token)).status,400);
+ assert.equal((await request('/api/social/accept','POST',{code:invite.code},b.token)).status,200);
+ assert.equal((await request('/api/social/accept','POST',{code:invite.code},c.token)).status,400);
+ let sent=await request('/api/social/messages','POST',{recipient:b.user.id,body:'가'.repeat(20)},a.token);assert.equal(sent.status,201);
+ assert.equal((await request('/api/social/messages','POST',{recipient:b.user.id,body:'가'.repeat(21)},a.token)).status,400);
+ assert.equal((await request('/api/social/messages','POST',{recipient:b.user.id,body:'👨‍👩‍👧‍👦'.repeat(20)},a.token)).status,201);
+ assert.equal((await request('/api/social/messages','POST',{recipient:b.user.id,body:'\n'},a.token)).status,400);
+ assert.equal((await request('/api/social/messages','GET',undefined,b.token)).data.length,2);
+ assert.equal((await request('/api/social/messages','GET',undefined,c.token)).data.length,0);
+ await request(`/api/social/friends/${a.user.id}/block`,'DELETE',{},b.token);
+ assert.equal((await request('/api/social/friends','GET',undefined,a.token)).data.length,0);
+ assert.equal((await request('/api/social/messages','GET',undefined,a.token)).data.length,0);
+ assert.equal((await request('/api/social/messages','POST',{recipient:b.user.id,body:'안녕'},a.token)).status,403);
+ const next=(await request('/api/social/invites','POST',{},a.token)).data;
+ assert.equal((await request('/api/social/accept','POST',{code:next.code},b.token)).status,400);
+ await request('/api/social/invites','DELETE',{},a.token);
+ assert.equal((await request('/api/social/accept','POST',{code:next.code},c.token)).status,400);
+});
