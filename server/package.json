@@ -1,0 +1,14 @@
+{
+  "name": "@puchipa/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env src/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "ai": "^7.0.154",
+    "zod": "^4.6.7"
+  }
+}
