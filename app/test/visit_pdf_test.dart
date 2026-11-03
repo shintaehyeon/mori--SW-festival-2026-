@@ -4,6 +4,25 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test('overview preserves unknown and uses translation only after review', () {
+    final card = <String, dynamic>{
+      'confirmedAt': null,
+      'translation': {'symptomsKo': '번역'},
+      'snapshot': {
+        'symptoms': 'original',
+        'onset': 'unknown',
+        'profile': {
+          'allergies': {'status': 'unknown'},
+          'medications': {'status': 'none'},
+        },
+      },
+    };
+    expect(visitOverview(card).values.first, 'original');
+    expect(visitOverview(card).values, contains('모름 / Unknown'));
+    card['confirmedAt'] = '2026-11-04';
+    expect(visitOverview(card).values.first, '번역');
+    expect(visitExcerpt('가' * 400, 340), contains('see appendix'));
+  });
   test(
     'visit PDF retains missing-vs-zero quantities and exports Korean fixture',
     () async {
@@ -86,6 +105,7 @@ void main() {
       };
       final bytes = await buildVisitPdf(card);
       expect(bytes.length, greaterThan(10000));
+      await File('/tmp/mori-long-overview.pdf').writeAsBytes(bytes);
     },
   );
 }

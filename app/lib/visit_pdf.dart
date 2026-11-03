@@ -13,6 +13,36 @@ String intakeMetrics(Map<String, dynamic> card) {
   return '통증 / Pain: ${i['painScore'] == null ? '미기록 / Not recorded' : '${i['painScore']}/10 (본인 보고)'}\n체온 / Temperature: ${i['temperatureC'] == null ? '미기록 / Not recorded' : '${i['temperatureC']} °C (본인 측정)'}\n측정 시점 / Measured: ${(i['measuredAt'] ?? '').toString().trim().isEmpty ? '미기록 / Not recorded' : i['measuredAt']}';
 }
 
+/// A visible excerpt only. The appendix retains the complete snapshot.
+String visitExcerpt(dynamic value, int limit) {
+  final text = (value ?? '').toString().replaceAll(RegExp(r'\s+'), ' ').trim();
+  if (text.isEmpty) return '미기록 / Not recorded';
+  final chars = text.runes.toList();
+  if (chars.length <= limit) return text;
+  return '${String.fromCharCodes(chars.take(limit))}… [발췌 / see appendix]';
+}
+
+Map<String, String> visitOverview(Map<String, dynamic> card) {
+  final s = card['snapshot'];
+  // Unreviewed translation remains in the appendix, never replaces the original.
+  final tr = card['confirmedAt'] != null ? card['translation'] : null;
+  return {
+    '방문 이유·변화 / Concern & changes': visitExcerpt(
+      tr?['symptomsKo'] ?? s['symptoms'],
+      340,
+    ),
+    '시작 시점 / Onset': visitExcerpt(tr?['onsetKo'] ?? s['onset'], 100),
+    '알레르기 / Allergies': visitExcerpt(
+      tr?['allergiesKo'] ?? reportedKnowledge(s['profile']['allergies']),
+      150,
+    ),
+    '복용약 / Medications': visitExcerpt(
+      tr?['medicationsKo'] ?? reportedKnowledge(s['profile']['medications']),
+      150,
+    ),
+  };
+}
+
 Iterable<String> reportChunks(String value) sync* {
   final chars = value.runes.toList();
   if (chars.isEmpty) {
@@ -71,6 +101,57 @@ Future<Uint8List> buildVisitPdf(
       ),
   ];
   doc.addPage(
+    pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      margin: const pw.EdgeInsets.all(32),
+      theme: pw.ThemeData.withFont(base: font, bold: font),
+      build: (context) => pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+        children: [
+          pw.Text(
+            'MORI | 병원에 보여줄 한 장',
+            style: pw.TextStyle(fontSize: 21, fontWeight: pw.FontWeight.bold),
+          ),
+          text(
+            'VISIT OVERVIEW${card['sample'] == true ? ' | 가상 예시 / TEST SAMPLE' : ''}',
+            size: 10,
+          ),
+          pw.SizedBox(height: 8),
+          text('환자 작성 자료 · 의료기관 공식 기록 아님 / Patient reported', size: 9),
+          text(
+            '$status${translation != null && !reviewed ? ' | 첫 장은 원문 / Original shown here' : ''}',
+            size: 9,
+          ),
+          text(
+            '성명 / Name: ${visitExcerpt(intake['patientName'], 55)}',
+            size: 10,
+          ),
+          text(
+            '불편 부위 / Site: ${visitExcerpt(intake['bodySite'], 55)}',
+            size: 10,
+          ),
+          for (final entry in visitOverview(card).entries)
+            ...section(entry.key, entry.value),
+          ...section(
+            '직접 입력한 수치 / Patient-entered measurements',
+            '통증 / Pain: ${intake['painScore'] ?? '미기록'} / 10    체온 / Temperature: ${intake['temperatureC'] ?? '미기록'} °C\n측정 시점·방법 / Measurement: ${visitExcerpt(intake['measuredAt'], 80)}',
+          ),
+          pw.Spacer(),
+          text(
+            '첫 장은 빠른 확인용입니다. 발췌된 항목, 원문, 번역 및 선택한 일상 기록 전체는 다음 장부터 확인하세요.\nOverview only. Read the appendix for full original, translation and selected records.',
+            size: 8,
+          ),
+          pw.SizedBox(height: 8),
+          text(
+            '저장 / Saved: ${card['createdAt']} | 내보냄 / Exported: $stamp',
+            size: 7,
+          ),
+          text('1 | 진단·응급도 판정 없음 / No diagnosis or urgency score', size: 8),
+        ],
+      ),
+    ),
+  );
+  doc.addPage(
     pw.MultiPage(
       pageFormat: PdfPageFormat.a4,
       margin: const pw.EdgeInsets.all(32),
@@ -91,7 +172,7 @@ Future<Uint8List> buildVisitPdf(
       ),
       build: (context) => [
         pw.Text(
-          '${card['sample'] == true ? '가상 예시 / TEST SAMPLE - ' : ''}진료 준비표 / VISIT PREPARATION',
+          '${card['sample'] == true ? '가상 예시 / TEST SAMPLE - ' : ''}상세 기록 / FULL VISIT DETAILS',
           style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
         ),
         pw.SizedBox(height: 5),
@@ -272,6 +353,10 @@ class ClinicalVisitView extends StatelessWidget {
                     style: TextStyle(color: Colors.black87),
                   ),
                   const SizedBox(height: 16),
+                  Text('$language · 첫 장 요약 / Overview'),
+                  for (final entry in visitOverview(card).entries)
+                    section(entry.key, entry.value),
+                  const Text('전체 원문·번역·기록은 아래에서 확인하세요. / Full details below.'),
                   Table(
                     border: TableBorder.all(color: Colors.black26),
                     columnWidths: const {
