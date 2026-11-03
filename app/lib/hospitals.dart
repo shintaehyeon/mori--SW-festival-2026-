@@ -1,6 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
+import 'body_categories.dart';
+import 'facility_categories.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+LatLng? hospitalPoint(Map h) {
+  final lat = double.tryParse('${h['latitude']}');
+  final lon = double.tryParse('${h['longitude']}');
+  if (lat == null ||
+      lon == null ||
+      !lat.isFinite ||
+      !lon.isFinite ||
+      lat.abs() > 90 ||
+      lon.abs() > 180 ||
+      (lat == 0 && lon == 0)) {
+    return null;
+  }
+  return LatLng(lat, lon);
+}
+
+double hospitalDistance(LatLng origin, Map h) {
+  final point = hospitalPoint(h);
+  return point == null
+      ? double.infinity
+      : const Distance().as(LengthUnit.Meter, origin, point);
+}
+
+List<Map<String, dynamic>> nearbyHospitals(List hospitals, LatLng? origin) {
+  final result = hospitals
+      .map((h) => Map<String, dynamic>.from(h as Map))
+      .toList();
+  if (origin != null) {
+    result.sort((a, b) {
+      final distance = hospitalDistance(
+        origin,
+        a,
+      ).compareTo(hospitalDistance(origin, b));
+      return distance == 0
+          ? '${a['name']}'.compareTo('${b['name']}')
+          : distance;
+    });
+  }
+  return result;
+}
 
 class Hospitals extends StatefulWidget {
   final Api api;
@@ -15,6 +60,235 @@ class _HospitalsState extends State<Hospitals> {
   Map<String, dynamic>? data;
   String? error;
   bool busy = false;
+  String guideLanguage = 'en';
+  BodyCategory? bodyCategory;
+  String facilityCategory = 'medical';
+  final resultsKey = GlobalKey();
+  LatLng? location;
+  double? accuracy;
+  DateTime? locatedAt;
+  bool locating = false, showMap = false;
+  int locationRequest = 0;
+  String? locationMessage;
+  String? selectedHospital;
+
+  List<Map<String, dynamic>> get sorted => nearbyHospitals(
+    (data?['hospitals'] as List? ?? [])
+        .where(
+          (h) =>
+              facilityMatches(h as Map, facilityCategory) &&
+              matchesBodyCategory(h, bodyCategory),
+        )
+        .toList(),
+    location,
+  );
+  String distanceLabel(Map h) {
+    if (location == null) return '';
+    final meters = hospitalDistance(location!, h);
+    if (!meters.isFinite) return t('Distance unavailable', '거리 정보 없음');
+    return meters < 1000
+        ? '${meters.round()} m'
+        : '${(meters / 1000).toStringAsFixed(1)} km';
+  }
+
+  String departmentSummary(Map h) {
+    if (isPharmacy(h)) {
+      return t(
+        'Pharmacy type: unverified in the source data',
+        '공식 원본에 양약국·한약국 구분 항목이 없습니다.',
+      );
+    }
+    final departments = (h['departments'] as List)
+        .where(
+          (d) =>
+              bodyCategory == null ||
+              bodyCategory!.departments.contains(d['name']),
+        )
+        .toList();
+    if (departments.isEmpty) {
+      return t('Department data unavailable', '진료과 정보 없음');
+    }
+    return '${t('Registered care', '신고 진료과')}: ${departments.take(3).map((d) => '${bilingualSpecialty(d['name'])} (${d['specialists']} ${t('specialists', '전문의')})').join(' / ')}';
+  }
+
+  String specialistSummary(Map h) {
+    if (isPharmacy(h)) return '';
+    final specialists = (h['departments'] as List)
+        .where((d) => (d['specialists'] as num? ?? 0) > 0)
+        .toList();
+    if (specialists.isEmpty) {
+      return t(
+        'Specialists: none reported in this snapshot',
+        '전문의: 이 자료에 신고된 전문의 없음',
+      );
+    }
+    return '${t('Reported specialists', '신고 전문의')}: ${specialists.take(3).map((d) => '${bilingualSpecialty(d['name'])} ${d['specialists']}').join(' / ')}${specialists.length > 3 ? t(' · expand for more', ' · 펼쳐서 더 보기') : ''}';
+  }
+
+  Future<void> locate() async {
+    final request = ++locationRequest;
+    setState(() {
+      locating = true;
+      locationMessage = null;
+      location = null;
+    });
+    try {
+      if (!await Geolocator.isLocationServiceEnabled()) {
+        throw StateError('service');
+      }
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        throw StateError('permission');
+      }
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.medium,
+          timeLimit: Duration(seconds: 20),
+        ),
+      );
+      if (!mounted || request != locationRequest) return;
+      setState(() {
+        location = LatLng(position.latitude, position.longitude);
+        accuracy = position.accuracy;
+        locatedAt = DateTime.now();
+        locationMessage = t(
+          'Sorted by straight-line distance. Pohang institutions only.',
+          '직선거리 가까운 순입니다. 현재 데이터는 포항 의료기관만 포함합니다.',
+        );
+      });
+    } catch (_) {
+      if (mounted && request == locationRequest) {
+        setState(() {
+          locationMessage = t(
+            'Location unavailable. Check permission and location services, or continue searching without it.',
+            '위치를 가져오지 못했어요. 위치 권한과 위치 서비스를 확인하거나 위치 없이 검색하세요.',
+          );
+        });
+      }
+    } finally {
+      if (mounted && request == locationRequest) {
+        setState(() => locating = false);
+      }
+    }
+  }
+
+  Widget hospitalMap() {
+    final points = sorted
+        .where((h) => hospitalPoint(h) != null)
+        .take(50)
+        .toList();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(
+          height: 300,
+          child: FlutterMap(
+            key: ValueKey(
+              '${location?.latitude}:${location?.longitude}:${query.text}:${bodyCategory?.id}:$facilityCategory',
+            ),
+            options: MapOptions(
+              initialCenter:
+                  location ??
+                  (points.isEmpty
+                      ? const LatLng(36.019, 129.343)
+                      : hospitalPoint(points.first)!),
+              initialZoom: location == null ? 11 : 13,
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.puchipa.carebridge',
+              ),
+              MarkerLayer(
+                markers: [
+                  if (location != null)
+                    Marker(
+                      point: location!,
+                      width: 40,
+                      height: 40,
+                      child: const Tooltip(
+                        message: 'My location / 내 위치',
+                        child: Icon(
+                          Icons.my_location,
+                          color: Colors.blue,
+                          size: 28,
+                        ),
+                      ),
+                    ),
+                  for (final h in points)
+                    Marker(
+                      point: hospitalPoint(h)!,
+                      width: 44,
+                      height: 44,
+                      child: IconButton(
+                        tooltip: '${h['name']} · ${distanceLabel(h)}',
+                        onPressed: () =>
+                            setState(() => selectedHospital = h['id']),
+                        icon: Icon(
+                          Icons.local_hospital,
+                          color: selectedHospital == h['id']
+                              ? Colors.orange
+                              : Colors.red,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              RichAttributionWidget(
+                attributions: [
+                  TextSourceAttribution(
+                    'OpenStreetMap contributors',
+                    onTap: () => open(
+                      Uri.parse('https://www.openstreetmap.org/copyright'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Text(
+          t(
+            'Map: up to 50 matching institutions. Zoom out if hospitals are outside the view.',
+            '지도에는 검색 결과 중 최대 50곳을 표시합니다. 병원이 안 보이면 지도를 축소하세요.',
+          ),
+        ),
+        if (selectedHospital != null) ...[
+          for (final h in points.where((h) => h['id'] == selectedHospital))
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${h['name']} · ${distanceLabel(h)}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(h['address']),
+                    TextButton(
+                      onPressed: () => open(
+                        Uri.https('www.google.com', '/maps/dir/', {
+                          'api': '1',
+                          'destination':
+                              '${hospitalPoint(h)!.latitude},${hospitalPoint(h)!.longitude}',
+                        }),
+                      ),
+                      child: Text(t('Directions in Maps', '지도 앱에서 길찾기')),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ],
+    );
+  }
+
   String t(String en, String ko) => widget.ko ? ko : en;
   @override
   void initState() {
@@ -24,6 +298,7 @@ class _HospitalsState extends State<Hospitals> {
 
   @override
   void dispose() {
+    locationRequest++;
     query.dispose();
     super.dispose();
   }
@@ -32,7 +307,7 @@ class _HospitalsState extends State<Hospitals> {
     setState(() => busy = true);
     try {
       final r = await widget.api.request(
-        '/api/hospitals?q=${Uri.encodeComponent(query.text.trim())}',
+        '/api/hospitals?limit=all&kind=${facilityCategory.endsWith('Pharmacy') ? 'pharmacy' : 'hospital'}&q=${Uri.encodeComponent(query.text.trim())}',
       );
       if (mounted) {
         setState(() {
@@ -145,15 +420,202 @@ class _HospitalsState extends State<Hospitals> {
         ),
       ),
       const SizedBox(height: 12),
+      Wrap(
+        spacing: 8,
+        runSpacing: 6,
+        children: [
+          for (final category in [
+            ['medical', t('Medical / dental', '일반 병원·의원')],
+            ['traditional', t('Korean medicine', '한의원·한방병원')],
+            ['westernPharmacy', t('Western pharmacy', '양약국')],
+            ['herbalPharmacy', t('Herbal pharmacy', '한약국')],
+            ['unknownPharmacy', t('Pharmacy · unverified', '약국·유형 미확인')],
+          ])
+            ChoiceChip(
+              label: Text(category[1]),
+              selected: facilityCategory == category[0],
+              onSelected: busy
+                  ? null
+                  : (_) {
+                      setState(() {
+                        facilityCategory = category[0];
+                        bodyCategory = null;
+                        selectedHospital = null;
+                        data = null;
+                        query.clear();
+                      });
+                      load();
+                    },
+            ),
+        ],
+      ),
+      const SizedBox(height: 12),
+      if (facilityCategory == 'traditional')
+        Text(
+          t(
+            'Traditional Korean medicine · shown separately from medical and dental care.',
+            '한국 전통의학 의료기관입니다. 일반 병원·의원과 별도로 표시합니다.',
+          ),
+        ),
+      if (facilityCategory.endsWith('Pharmacy'))
+        Text(
+          t(
+            'The source lists pharmacies without a Western/herbal distinction. Unverified records are kept in the separate unverified category; names are not used to guess.',
+            '원본은 약국을 양약국·한약국으로 구분하지 않습니다. 확인 전에는 유형 미확인 탭에 표시하며 상호로 추정하지 않습니다.',
+          ),
+        ),
+      if (facilityCategory == 'medical')
+        BodyCategoryPicker(
+          selected: bodyCategory?.id,
+          ko: widget.ko,
+          onSelect: (category) async {
+            setState(() {
+              bodyCategory = category;
+              selectedHospital = null;
+              query.clear();
+            });
+            await load();
+            if (!mounted || category == null) return;
+            await WidgetsBinding.instance.endOfFrame;
+            if (mounted && resultsKey.currentContext != null) {
+              await Scrollable.ensureVisible(
+                resultsKey.currentContext!,
+                duration: const Duration(milliseconds: 250),
+                alignment: 0.05,
+              );
+            }
+          },
+        ),
+      if (bodyCategory != null)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(
+            bodyCategory!.departments.map(bilingualSpecialty).join(' / '),
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+        ),
+      const SizedBox(height: 16),
+      Text(
+        t('Find nearby care', '내 주변 병원 찾기'),
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      Text(
+        t(
+          'One-time location, kept on this device. No MORI server or AI sharing.',
+          '위치는 한 번만 읽고 기기 안에서 사용합니다. 서버·AI 전송 없음.',
+        ),
+      ),
+      Wrap(
+        spacing: 8,
+        children: [
+          FilledButton.icon(
+            onPressed: locating ? null : locate,
+            icon: const Icon(Icons.my_location),
+            label: Text(
+              locating
+                  ? t('Finding location…', '위치 확인 중…')
+                  : t('Use / refresh my location', '현재 위치로 가까운 순 보기'),
+            ),
+          ),
+          if (location != null || locating)
+            TextButton(
+              onPressed: () => setState(() {
+                locationRequest++;
+                locating = false;
+                location = null;
+                accuracy = null;
+                locatedAt = null;
+                locationMessage = null;
+                showMap = false;
+              }),
+              child: Text(t('Clear location', '위치 사용 중단')),
+            ),
+        ],
+      ),
+      if (locationMessage != null) Text(locationMessage!),
+      if (location != null)
+        Text(
+          '${t('Location accuracy', '위치 정확도')} ±${accuracy?.round()} m · ${t('Checked', '확인 시각')} ${locatedAt?.toLocal().toString().substring(0, 16)}',
+        ),
+      Text(
+        t(
+          'Straight-line distance · confirm opening hours before visiting.',
+          '직선거리 기준 · 방문 전 진료 여부를 확인하세요.',
+        ),
+      ),
+      Text(
+        t(
+          'Map provider: OpenStreetMap (receives map area and IP).',
+          '지도 제공: OpenStreetMap (열면 표시 지역·IP 전달).',
+        ),
+      ),
+      TextButton.icon(
+        onPressed: () => setState(() => showMap = !showMap),
+        icon: const Icon(Icons.map_outlined),
+        label: Text(
+          showMap ? t('Hide map', '지도 닫기') : t('Show hospital map', '병원 지도 보기'),
+        ),
+      ),
+      if (showMap && data != null) hospitalMap(),
+      const SizedBox(height: 12),
+      if (facilityCategory == 'medical') ...[
+        Text(
+          t('Choose a department to explore', '찾아볼 진료과 선택'),
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Text(
+          t(
+            'Department names are a navigation aid, not a diagnosis or an assessment of urgency. Ask the clinic if you are unsure.',
+            '진료과 이름을 이해하고 검색하는 안내입니다. 진단·응급도 판정이 아니며, 확실하지 않으면 의료기관에 문의하세요.',
+          ),
+        ),
+        DropdownButton<String>(
+          value: guideLanguage,
+          items: const [
+            DropdownMenuItem(value: 'en', child: Text('English')),
+            DropdownMenuItem(value: 'ko', child: Text('한국어')),
+            DropdownMenuItem(value: 'ja', child: Text('日本語')),
+            DropdownMenuItem(value: 'zh', child: Text('中文')),
+            DropdownMenuItem(value: 'ru', child: Text('Русский')),
+          ],
+          onChanged: (v) {
+            if (v != null) setState(() => guideLanguage = v);
+          },
+        ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 6,
+          children: [
+            for (final department in departmentGuide)
+              ActionChip(
+                label: Text(
+                  '${department[guideLanguage]} · ${department['ko']}',
+                ),
+                onPressed: busy
+                    ? null
+                    : () {
+                        bodyCategory = null;
+                        query.text = department['ko']!;
+                        load();
+                      },
+              ),
+          ],
+        ),
+        Text(
+          t(
+            'Only this department guide supports five languages; other screens remain Korean / English.',
+            '5개 언어는 이 진료과 안내에 적용됩니다. 나머지 화면은 한국어·영어입니다.',
+          ),
+          style: const TextStyle(fontSize: 12),
+        ),
+        const SizedBox(height: 12),
+      ],
       TextField(
         controller: query,
         onSubmitted: (_) => load(),
         decoration: InputDecoration(
-          labelText: t(
-            'Hospital / department / area (Korean)',
-            '병원명 · 진료과 · 동네 검색',
-          ),
-          hintText: '내과 / 이비인후과 / 흥해',
+          labelText: t('Hospital / department / area', '병원명 · 진료과 · 동네 검색'),
+          hintText: 'dentist / 内科 / 피부과 / 흥해',
           suffixIcon: IconButton(
             onPressed: busy ? null : load,
             icon: const Icon(Icons.search),
@@ -164,28 +626,63 @@ class _HospitalsState extends State<Hospitals> {
       if (error != null)
         Text(error!, style: const TextStyle(color: Colors.red)),
       if (data != null) ...[
-        Text(
-          '${data!['total']} ${t('results · showing up to 100', '곳 · 최대 100곳 표시')}',
+        Container(
+          key: resultsKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (bodyCategory != null)
+                Text(
+                  '${widget.ko ? bodyCategory!.ko : bodyCategory!.en} · ${bodyCategory!.departments.map(bilingualSpecialty).join(' / ')}',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              if (bodyCategory != null)
+                TextButton(
+                  onPressed: () {
+                    setState(() => bodyCategory = null);
+                  },
+                  child: Text(t('Show all departments', '전체 진료과 보기')),
+                ),
+              Text(
+                '${sorted.length} ${t('results · nearest first when location is set', '곳 · 위치 설정 시 가까운 순')}',
+              ),
+            ],
+          ),
         ),
-        for (final h in data!['hospitals'])
+        if (sorted.isEmpty)
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              facilityCategory.endsWith('Pharmacy') &&
+                      facilityCategory != 'unknownPharmacy'
+                  ? t(
+                      'No verified classifications available yet. See Pharmacy · unverified for source records.',
+                      '이 유형으로 확인된 자료가 아직 없습니다. 약국·유형 미확인 탭에서 원본 약국 목록을 볼 수 있습니다.',
+                    )
+                  : t('No matching institutions.', '검색 결과가 없습니다.'),
+            ),
+          ),
+        for (final h in sorted)
           Card(
             child: ExpansionTile(
               title: Text(h['name']),
               subtitle: Text(
-                '${h['type']} · ${h['doctors']} ${t('doctors', '의사')}\n${h['address']}',
+                '${location == null ? '' : '${distanceLabel(h)} · '}${facilityLabel(h, widget.ko)}${isPharmacy(h) ? '' : ' · ${h['doctors']} ${t('doctors', '의사')}'}\n${h['address']}\n${departmentSummary(h)}\n${specialistSummary(h)}',
               ),
               childrenPadding: const EdgeInsets.all(16),
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '${t('Registered departments', '신고 진료과목')}: ${(h['departments'] as List).map((d) => '${d['name']} (${d['specialists']})').join(', ')}',
-                ),
-                Text(
-                  t(
-                    'Parentheses: specialist count. A listed department with 0 specialists is not a specialist qualification.',
-                    '괄호는 과목별 전문의 수입니다. 진료과목 표기가 해당 과 전문의 보유를 뜻하지는 않아요.',
+                if (!isPharmacy(h))
+                  Text(
+                    '${t('Registered departments', '신고 진료과목')}: ${(h['departments'] as List).map((d) => '${bilingualSpecialty(d['name'])}: ${d['specialists']} ${t('reported specialists', '신고 전문의')}').join('\n')}',
                   ),
-                ),
+                if (!isPharmacy(h))
+                  Text(
+                    t(
+                      'Parentheses: specialist count. A listed department with 0 specialists is not a specialist qualification.',
+                      '괄호는 과목별 전문의 수입니다. 진료과목 표기가 해당 과 전문의 보유를 뜻하지는 않아요.',
+                    ),
+                  ),
                 if (h['beds'] != null)
                   Text(
                     '${t('General inpatient beds', '일반입원실 병상')}: ${(h['beds']['일반입원실상급병상수'] as int) + (h['beds']['일반입원실일반병상수'] as int)} · ${t('Reported ER beds', '신고 응급실 병상')}: ${h['beds']['응급실병상수']}',
@@ -253,3 +750,63 @@ class _HospitalsState extends State<Hospitals> {
     ],
   );
 }
+
+// Department-name translations only. No symptom-based triage or diagnosis.
+const departmentGuide = [
+  {
+    'ko': '내과',
+    'en': 'Internal medicine',
+    'ja': '内科',
+    'zh': '内科',
+    'ru': 'Терапия',
+  },
+  {
+    'ko': '가정의학과',
+    'en': 'Family medicine',
+    'ja': '家庭医学科',
+    'zh': '家庭医学科',
+    'ru': 'Семейная медицина',
+  },
+  {
+    'ko': '치과',
+    'en': 'Dentistry · teeth',
+    'ja': '歯科',
+    'zh': '牙科',
+    'ru': 'Стоматология',
+  },
+  {
+    'ko': '피부과',
+    'en': 'Dermatology · skin',
+    'ja': '皮膚科',
+    'zh': '皮肤科',
+    'ru': 'Дерматология',
+  },
+  {
+    'ko': '안과',
+    'en': 'Ophthalmology · eyes',
+    'ja': '眼科',
+    'zh': '眼科',
+    'ru': 'Офтальмология',
+  },
+  {
+    'ko': '이비인후과',
+    'en': 'ENT · ears, nose, throat',
+    'ja': '耳鼻咽喉科',
+    'zh': '耳鼻喉科',
+    'ru': 'Отоларингология',
+  },
+  {
+    'ko': '정형외과',
+    'en': 'Orthopedics · bones, joints',
+    'ja': '整形外科',
+    'zh': '骨科',
+    'ru': 'Ортопедия',
+  },
+  {
+    'ko': '산부인과',
+    'en': 'Obstetrics / gynecology',
+    'ja': '産婦人科',
+    'zh': '妇产科',
+    'ru': 'Акушерство и гинекология',
+  },
+];

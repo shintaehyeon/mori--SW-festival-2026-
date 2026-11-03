@@ -26,6 +26,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+<string>현재 위치에서 가까운 병원을 찾고 직선거리를 표시합니다. 위치는 모리 서버에 저장하지 않습니다. Find nearby hospitals and show distances while using the app.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

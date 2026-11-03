@@ -14,6 +14,7 @@ import { openDb } from "./db.js";
 import * as V from "./validation.js";
 import { translateSnapshot, aiConfigured } from "./ai.js";
 const hospitalData = JSON.parse(readFileSync(new URL("../resources/hospitals.json", import.meta.url), "utf8"));
+const pharmacyData = JSON.parse(readFileSync(new URL("../resources/pharmacies.json", import.meta.url), "utf8"));
 const scrypt = promisify(scryptCb);
 const now = () => new Date().toISOString();
 const hash = (value) => createHash("sha256").update(value).digest("hex");
@@ -265,9 +266,21 @@ export function createApp({
         return send(200, { ok: true });
       }
       if (p === "/api/hospitals" && method === "GET") {
-        const q = (new URL(req.url, "http://localhost").searchParams.get("q") || "").slice(0,120).toLowerCase();
-        const hospitals = hospitalData.hospitals.filter(h => !q || [h.name,h.type,h.address,...h.departments.map(d=>d.name)].join(" ").toLowerCase().includes(q));
-        return send(200, {...hospitalData, hospitals:hospitals.slice(0,100),total:hospitals.length});
+        const rawQuery = (new URL(req.url, "http://localhost").searchParams.get("q") || "").slice(0,120).trim().toLowerCase();
+        const aliases = {
+          'dentist':'치과', 'dentistry':'치과', 'dental':'치과', '歯科':'치과', '牙科':'치과', 'стоматология':'치과',
+          'internal medicine':'내과', '内科':'내과', 'терапия':'내과',
+          'family medicine':'가정의학과', '家庭医学科':'가정의학과', 'семейная медицина':'가정의학과',
+          'dermatology':'피부과', 'skin':'피부과', '皮膚科':'피부과', '皮肤科':'피부과', 'дерматология':'피부과',
+          'ophthalmology':'안과', 'eyes':'안과', '眼科':'안과', 'офтальмология':'안과',
+          'ent':'이비인후과', '耳鼻咽喉科':'이비인후과', '耳鼻喉科':'이비인후과', 'отоларингология':'이비인후과',
+          'orthopedics':'정형외과', '整形外科':'정형외과', '骨科':'정형외과', 'ортопедия':'정형외과',
+          'gynecology':'산부인과', 'obstetrics / gynecology':'산부인과', '産婦人科':'산부인과', '妇产科':'산부인과', 'акушерство и гинекология':'산부인과'
+        };
+        const q = aliases[rawQuery] || rawQuery;
+        const directory = new URL(req.url, "http://localhost").searchParams.get("kind") === "pharmacy" ? pharmacyData : hospitalData;
+        const hospitals = directory.hospitals.filter(h => !q || [h.name,h.type,h.address,...h.departments.map(d=>d.name)].join(" ").toLowerCase().includes(q));
+        return send(200, {...directory, hospitals:hospitals.slice(0,new URL(req.url, "http://localhost").searchParams.get("limit") === "all" ? 1000 : 100),total:hospitals.length});
       }
       const u = user(req);
       if (p.startsWith("/api/social")) {

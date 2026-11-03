@@ -10,6 +10,7 @@ import 'presence.dart';
 import 'wearable.dart';
 import 'friends.dart';
 import 'visit_pdf.dart';
+import 'visit_preparation.dart';
 import 'package:printing/printing.dart';
 
 const ink = Color(0xFF193B32);
@@ -59,6 +60,7 @@ class Workspace extends StatefulWidget {
 class _WorkspaceState extends State<Workspace> {
   final api = Api();
   Json? user;
+  bool entry = true;
   bool checking = true, ko = false, busy = false, aiReady = false;
   int tab = 0;
   final scroll = ScrollController();
@@ -87,7 +89,7 @@ class _WorkspaceState extends State<Workspace> {
     } catch (_) {}
     if (mounted) {
       setState(() => checking = false);
-      if (user != null) await setupBasicInfo();
+      // Keep the initial emergency / regular-care choice visible on entry.
     }
   }
 
@@ -221,22 +223,100 @@ class _WorkspaceState extends State<Workspace> {
             ),
         ],
       ),
-      body: checking
+      body: entry
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: entryHalf(
+                    color: const Color(0xFFB3261E),
+                    icon: Icons.emergency,
+                    title: t('EMERGENCY', '긴급'),
+                    subtitle: t('Emergency help · 119', '응급 도움 · 119'),
+                    action: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => EmergencyPage(
+                          api: api,
+                          signedIn: user != null,
+                          ko: ko,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: entryHalf(
+                    color: green,
+                    icon: Icons.local_hospital_outlined,
+                    title: t('REGULAR CARE', '일반 진료'),
+                    subtitle: t(
+                      'Find a clinic · prepare a visit',
+                      '병원 찾기 · 진료 준비',
+                    ),
+                    action: () => setState(() {
+                      entry = false;
+                      tab = 4;
+                    }),
+                  ),
+                ),
+              ],
+            )
+          : checking
           ? const Center(child: CircularProgressIndicator())
           : user == null
-          ? Auth(
-              api: api,
-              ko: ko,
-              onLogin: (u) async {
-                if (mounted) setState(() => user = u);
-                await setupBasicInfo();
-                try {
-                  final h = await api.request('/api/health');
-                  if (mounted) {
-                    setState(() => aiReady = h['aiConfigured'] == true);
-                  }
-                } catch (_) {}
-              },
+          ? SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: panel([
+                      heading(t('How can we help today?', '어떤 도움이 필요한가요?')),
+                      button(
+                        t('Emergency help · 119', '응급 도움 · 119'),
+                        () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => EmergencyPage(
+                              api: api,
+                              signedIn: false,
+                              ko: ko,
+                            ),
+                          ),
+                        ),
+                      ),
+                      button(
+                        t('Plan a non-emergency visit', '일반 진료 준비 · 병원 찾기'),
+                        () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => Scaffold(
+                              appBar: AppBar(
+                                title: Text(t('Find care', '병원 찾기')),
+                              ),
+                              body: SingleChildScrollView(
+                                padding: const EdgeInsets.all(20),
+                                child: Hospitals(api: api, ko: ko),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  Auth(
+                    api: api,
+                    ko: ko,
+                    onLogin: (u) async {
+                      if (mounted) setState(() => user = u);
+                      await setupBasicInfo();
+                      try {
+                        final h = await api.request('/api/health');
+                        if (mounted) {
+                          setState(() => aiReady = h['aiConfigured'] == true);
+                        }
+                      } catch (_) {}
+                    },
+                  ),
+                ],
+              ),
             )
           : Row(
               children: [
@@ -263,11 +343,12 @@ class _WorkspaceState extends State<Workspace> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            PresencePanel(
-                              key: ValueKey(user!['id']),
-                              api: api,
-                              ko: ko,
-                            ),
+                            if (tab != 0)
+                              PresencePanel(
+                                key: ValueKey(user!['id']),
+                                api: api,
+                                ko: ko,
+                              ),
                             if (tab == 0) home(),
                             if (tab == 1)
                               VisitCards(api: api, ko: ko, aiReady: aiReady),
@@ -308,7 +389,26 @@ class _WorkspaceState extends State<Workspace> {
                 ),
               ],
             ),
-      bottomNavigationBar: user != null && !wide
+      bottomNavigationBar: entry
+          ? SafeArea(
+              top: false,
+              child: TextButton.icon(
+                onPressed: showHospitalSource,
+                icon: const Icon(Icons.info_outline, size: 20),
+                label: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Text(
+                    t(
+                      'Hospital data: HIRA · 2026-09-30\nPohang 669 institutions · Source & details',
+                      '병원정보 출처: 건강보험심사평가원 · 2026-09-30\n포항 669곳 · 출처 및 상세 안내',
+                    ),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            )
+          : user != null && !wide
           ? NavigationBar(
               selectedIndex: tab,
               onDestinationSelected: selectTab,
@@ -361,11 +461,175 @@ class _WorkspaceState extends State<Workspace> {
     }
   }
 
+  Future<void> showHospitalSource() => showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      title: Text(t('Hospital data source', '병원정보 출처')),
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              t(
+                'Health Insurance Review & Assessment Service (HIRA)',
+                '제공기관: 건강보험심사평가원 (HIRA)',
+              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            const Text('전국 병의원 및 약국 현황_20260930'),
+            Text(t('Source: Korea Public Data Portal', '원본 제공: 공공데이터포털')),
+            const SizedBox(height: 12),
+            Text(
+              t(
+                'Snapshot: 2026-09-30\nDownloaded: 2026-10-28\nMORI includes 669 medical institutions and 237 pharmacy records in Pohang. Pharmacy subtypes are unverified.',
+                '자료 기준일: 2026-09-30\n다운로드: 2026-10-28\n포항 의료기관 669곳과 약국 237곳을 추출했습니다. 약국의 양약국·한약국 구분은 미확인입니다.',
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              t(
+                'MORI joins institution, department and facility records and adds English labels, body-area filters and straight-line distances.',
+                '모리가 기관·진료과·시설 자료를 결합하고 영문 명칭·신체부위 분류·직선거리를 추가했습니다.',
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              t(
+                'Not live opening hours, appointment availability or emergency acceptance. Language support is unverified. Registered departments and reported specialist counts are different.',
+                '실시간 운영시간·예약·응급환자 수용 정보가 아닙니다. 외국어 지원은 미확인입니다. 신고 진료과와 전문의 수는 구분해 표시합니다.',
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              t(
+                'License: Korea Open Government License Type 1 (attribution). Map imagery: OpenStreetMap contributors; separate from HIRA.',
+                '이용조건: 공공누리 제1유형(출처표시). 지도 배경은 별도 OpenStreetMap 기여자 자료입니다.',
+              ),
+            ),
+            TextButton.icon(
+              icon: const Icon(Icons.open_in_new),
+              label: Text(t('Open original dataset', '공공데이터 원본 보기')),
+              onPressed: () async {
+                final opened = await launchUrl(
+                  Uri.parse('https://www.data.go.kr/data/15051059/fileData.do'),
+                  mode: LaunchMode.externalApplication,
+                );
+                if (!opened && mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        t(
+                          'Unable to open the source website.',
+                          '원본 사이트를 열 수 없습니다.',
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(dialogContext),
+          child: Text(t('Close', '닫기')),
+        ),
+      ],
+    ),
+  );
+
+  Widget entryHalf({
+    required Color color,
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback action,
+  }) => Material(
+    color: color,
+    child: InkWell(
+      onTap: action,
+      child: Semantics(
+        button: true,
+        label: '$title. $subtitle',
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 64, color: Colors.white),
+                const SizedBox(height: 24),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  subtitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
   Widget home() => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
+      panel([
+        heading(t('How can we help today?', '어떤 도움이 필요한가요?')),
+        Text(
+          t(
+            'Choose the help you need. This is not an emergency assessment.',
+            '필요한 도움을 선택하세요. 앱이 응급 여부를 판정하지 않습니다.',
+          ),
+        ),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          style: FilledButton.styleFrom(
+            backgroundColor: const Color(0xFFB3261E),
+          ),
+          icon: const Icon(Icons.emergency),
+          label: Text(t('Emergency help · 119', '응급 도움 · 119')),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) =>
+                  EmergencyPage(api: api, signedIn: user != null, ko: ko),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        button(
+          t('Plan a non-emergency visit', '일반 진료 준비 · 병원 찾기'),
+          () => selectTab(4),
+        ),
+        button(
+          t('Prepare information for the clinician', '의료진에게 보여줄 정보 준비'),
+          () => selectTab(1),
+        ),
+      ]),
       MoriHome(api: api, ko: ko),
-      button(t('Prepare a visit card', '초진 준비 카드 만들기'), () => selectTab(1)),
+      button(
+        t('Prepare what to tell the clinician', '병원에 보여줄 방문 이유 정리'),
+        () => selectTab(1),
+      ),
       const SizedBox(height: 18),
       panel([
         const Icon(Icons.people_outline, color: green, size: 28),
@@ -857,6 +1121,9 @@ class VisitCards extends StatefulWidget {
 
 class _VisitCardsState extends ScreenState<VisitCards> {
   final symptoms = TextEditingController(), onset = TextEditingController();
+  final course = TextEditingController(),
+      triggers = TextEditingController(),
+      questions = TextEditingController();
   final patientName = TextEditingController(),
       bodySite = TextEditingController(),
       temperature = TextEditingController(),
@@ -878,7 +1145,15 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   void dispose() {
     symptoms.dispose();
     onset.dispose();
-    for (final c in [patientName, bodySite, temperature, measuredAt]) {
+    for (final c in [
+      patientName,
+      bodySite,
+      temperature,
+      measuredAt,
+      course,
+      triggers,
+      questions,
+    ]) {
       c.dispose();
     }
     for (final c in edits.values) {
@@ -940,7 +1215,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      heading(t('Your visit card', '나를 설명하는 방문 카드')),
+      heading(t('Prepare what to tell your clinician', '병원에 보여줄 방문 이유 정리')),
       const SizedBox(height: 12),
       ...feedback,
       if (current == null) ...[
@@ -953,7 +1228,37 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             symptoms,
             lines: 3,
           ),
-          field(t('When did it start?', '언제부터 시작됐나요?'), onset),
+          field(
+            t(
+              'When did it start? Unknown is OK.',
+              '언제부터 시작됐나요? 모르면 모름으로 적어주세요.',
+            ),
+            onset,
+          ),
+          field(
+            t('How has it changed? (optional)', '처음과 비교해 어떻게 달라졌나요? (선택)'),
+            course,
+            lines: 2,
+          ),
+          field(
+            t(
+              'What makes it better or worse? (optional)',
+              '언제 심해지거나 나아지나요? (선택)',
+            ),
+            triggers,
+            lines: 2,
+          ),
+          field(
+            t('What would you like to ask? (optional)', '의료진에게 꼭 묻고 싶은 점 (선택)'),
+            questions,
+            lines: 2,
+          ),
+          info(
+            t(
+              'Write in your own language. Blank answers stay unrecorded. Review your saved original before choosing translation.',
+              '편한 언어로 적으세요. 빈 답변은 미기록으로 남습니다. 저장된 원문을 확인한 후 번역을 선택할 수 있어요.',
+            ),
+          ),
           heading(t('Structured visit preparation', '한눈에 보는 초진 준비')),
           field(
             t('Name (optional, for this document)', '성명 (선택 · 이 문서용)'),
@@ -1042,10 +1347,19 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             ),
           ),
           button(
-            t('Save original card', '원문 카드 저장'),
+            t('Save and review my visit summary', '방문 요약 저장하고 확인하기'),
             busy || !consent
                 ? null
                 : () => run(() async {
+                    if (symptoms.text.trim().length < 2 ||
+                        onset.text.trim().isEmpty) {
+                      throw Exception(
+                        t(
+                          'Enter your main concern and onset (or unknown).',
+                          '방문 이유와 시작 시점(또는 모름)을 입력해 주세요.',
+                        ),
+                      );
+                    }
                     final temp = temperature.text.trim().isEmpty
                         ? null
                         : double.tryParse(temperature.text.trim());
@@ -1065,7 +1379,12 @@ class _VisitCardsState extends ScreenState<VisitCards> {
                       '/api/cards',
                       method: 'POST',
                       body: {
-                        'symptoms': symptoms.text,
+                        'symptoms': composeVisitConcern(
+                          symptoms.text,
+                          course.text,
+                          triggers.text,
+                          questions.text,
+                        ),
                         'onset': onset.text,
                         'intake': {
                           'patientName': patientName.text.trim(),
@@ -1743,8 +2062,8 @@ class Guide extends StatelessWidget {
       ]),
       info(
         t(
-          'A verified local provider directory is still being prepared. Opening hours and language support are not generated with AI.',
-          '지역 의료기관 목록은 조사 중입니다. 운영시간·언어 지원을 AI로 생성하지 않습니다.',
+          'The directory uses a dated HIRA snapshot. Confirm opening hours and language support with the clinic.',
+          '심평원 기준일 자료를 제공합니다. 운영시간과 외국어 지원은 의료기관에 직접 확인하세요.',
         ),
       ),
     ],

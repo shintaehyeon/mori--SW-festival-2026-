@@ -65,7 +65,7 @@ void main() {
       );
       await tester.pumpAndSettle();
       final button = tester.widget<FilledButton>(
-        find.widgetWithText(FilledButton, 'Save original card'),
+        find.widgetWithText(FilledButton, 'Save and review my visit summary'),
       );
       expect(button.onPressed, isNull);
       expect(api.calls, isNot(contains('POST /api/cards')));

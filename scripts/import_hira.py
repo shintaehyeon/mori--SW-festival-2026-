@@ -21,3 +21,11 @@ result={'source':'건강보험심사평가원 · 전국 병의원 및 약국 현
 out=root/'server/resources';out.mkdir(exist_ok=True)
 (out/'hospitals.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
 print('Imported',len(hospitals),'Pohang institutions; departments and facility counts joined by HIRA ID.')
+
+# The source does not distinguish pharmacist/herbal-pharmacist establishments.
+pharmacies=[]
+for r in rows(2):
+ if '포항' not in r['시군구코드명']: continue
+ pharmacies.append({'id':hashlib.sha256(r['암호화요양기호'].encode()).hexdigest()[:24],'name':r['요양기관명'],'type':r['종별코드명'],'address':r['주소'],'phone':r['전화번호'],'longitude':r['좌표(X)'] or None,'latitude':r['좌표(Y)'] or None,'departments':[],'beds':None,'pharmacyClassification':'unknown','classificationEvidence':None})
+(out/'pharmacies.json').write_text(json.dumps({**{k:v for k,v in result.items() if k!='hospitals'},'hospitals':sorted(pharmacies,key=lambda h:h['name'])},ensure_ascii=False,indent=2))
+print('Imported',len(pharmacies),'Pohang pharmacies; subtype remains unverified.')

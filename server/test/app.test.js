@@ -638,3 +638,32 @@ test('structured visit measurements validate ranges and preserve original snapsh
  assert.equal((await request('/api/cards','POST',{...payload,intake:{...payload.intake,painScore:11}},a.token)).status,400);
  assert.equal((await request('/api/cards','POST',{...payload,intake:{...payload.intake,temperatureC:90}},a.token)).status,400);
 });
+
+test('multilingual department names return the same institutions as Korean', async t => {
+  const {request} = await fixture(t);
+  for (const [name, korean] of [['dentist','치과'], ['歯科','치과'], ['牙科','치과'], ['стоматология','치과'], ['internal medicine','내과'], ['dermatology','피부과']]) {
+    const translated = await request(`/api/hospitals?q=${encodeURIComponent(name)}`);
+    const original = await request(`/api/hospitals?q=${encodeURIComponent(korean)}`);
+    assert.equal(translated.status, 200);
+    assert.ok(translated.data.total > 0);
+    assert.deepEqual(translated.data.hospitals.map(h => h.id), original.data.hospitals.map(h => h.id));
+    assert.equal(translated.data.total, original.data.total);
+  }
+});
+
+test('directory can return all coordinates for private on-device distance sorting', async t => {
+  const {request} = await fixture(t);
+  const response = await request('/api/hospitals?limit=all');
+  assert.equal(response.status,200);
+  assert.equal(response.data.hospitals.length,response.data.total);
+  assert.ok(response.data.total > 100);
+  assert.ok(response.data.hospitals.some(h => Number.isFinite(Number(h.latitude)) && Number.isFinite(Number(h.longitude))));
+});
+
+test('pharmacy source remains separate and does not invent western or herbal classifications', async t => {
+ const {request} = await fixture(t);
+ const r=await request('/api/hospitals?kind=pharmacy&limit=all');
+ assert.equal(r.status,200);
+ assert.equal(r.data.total,237);
+ assert.ok(r.data.hospitals.every(h=>h.type==='약국' && h.pharmacyClassification==='unknown' && h.classificationEvidence===null));
+});
