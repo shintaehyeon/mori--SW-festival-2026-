@@ -9,6 +9,8 @@ with ZipFile(out,'w',ZIP_DEFLATED) as z:
   if not p.is_file() or any(part in blocked for part in rel.parts): continue
   if p.name in {'.DS_Store','.flutter-plugins-dependencies','local.properties','Generated.xcconfig','flutter_export_environment.sh'}: continue
   if p.name.startswith('.env') and p.name!='.env.example': continue
+  if rel.parts[:2] == ('app','config') and p.name != 'maps.example.json': continue
+  if p.suffix in {'.pem','.key','.p12','.jks','.keystore','.db'} or p.name == 'key.properties': continue
   if p.suffix in {'.sqlite','.log','.pyc','.iml'}: continue
   z.write(p,Path('carebridge')/rel)
 with ZipFile(out) as z:

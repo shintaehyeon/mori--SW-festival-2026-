@@ -60,6 +60,32 @@ class Workspace extends StatefulWidget {
 class _WorkspaceState extends State<Workspace> {
   final api = Api();
   Json? user;
+  Map<String, dynamic>? visitHospital;
+  void openGuestHospitals() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (routeContext) => Scaffold(
+          appBar: AppBar(title: Text(t('Find care', '병원 찾기'))),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Hospitals(
+              api: api,
+              ko: ko,
+              onPrepare: (hospital) {
+                Navigator.of(routeContext).pop();
+                setState(() {
+                  visitHospital = hospital;
+                  entry = false;
+                  tab = 1;
+                });
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   bool entry = true;
   bool checking = true, ko = false, busy = false, aiReady = false;
   int tab = 0;
@@ -253,10 +279,16 @@ class _WorkspaceState extends State<Workspace> {
                       'Find a clinic · prepare a visit',
                       '병원 찾기 · 진료 준비',
                     ),
-                    action: () => setState(() {
-                      entry = false;
-                      tab = 4;
-                    }),
+                    action: () {
+                      if (user == null) {
+                        openGuestHospitals();
+                      } else {
+                        setState(() {
+                          entry = false;
+                          tab = 4;
+                        });
+                      }
+                    },
                   ),
                 ),
               ],
@@ -270,7 +302,25 @@ class _WorkspaceState extends State<Workspace> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: panel([
-                      heading(t('How can we help today?', '어떤 도움이 필요한가요?')),
+                      heading(
+                        visitHospital == null
+                            ? t('How can we help today?', '어떤 도움이 필요한가요?')
+                            : t(
+                                'Save your private visit preparation',
+                                '비공개 진료 준비표 저장',
+                              ),
+                      ),
+                      if (visitHospital != null) ...[
+                        Text(
+                          '${visitHospital!['name']} · ${visitHospital!['address']}',
+                        ),
+                        Text(
+                          t(
+                            'Sign in below to prepare and save your symptoms and translated visit sheet.',
+                            '아래에서 로그인하면 증상을 정리하고 번역·진료 준비표를 저장할 수 있어요.',
+                          ),
+                        ),
+                      ],
                       button(
                         t('Emergency help · 119', '응급 도움 · 119'),
                         () => Navigator.of(context).push(
@@ -285,19 +335,7 @@ class _WorkspaceState extends State<Workspace> {
                       ),
                       button(
                         t('Plan a non-emergency visit', '일반 진료 준비 · 병원 찾기'),
-                        () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => Scaffold(
-                              appBar: AppBar(
-                                title: Text(t('Find care', '병원 찾기')),
-                              ),
-                              body: SingleChildScrollView(
-                                padding: const EdgeInsets.all(20),
-                                child: Hospitals(api: api, ko: ko),
-                              ),
-                            ),
-                          ),
-                        ),
+                        openGuestHospitals,
                       ),
                     ]),
                   ),
@@ -350,13 +388,42 @@ class _WorkspaceState extends State<Workspace> {
                                 ko: ko,
                               ),
                             if (tab == 0) home(),
-                            if (tab == 1)
+                            if (tab == 1) ...[
+                              if (visitHospital != null)
+                                panel([
+                                  heading(
+                                    t('Your planned destination', '방문 예정 병원'),
+                                  ),
+                                  Text('${visitHospital!['name']}'),
+                                  Text('${visitHospital!['address']}'),
+                                  Text(
+                                    t(
+                                      'Visit preparation only · no appointment has been booked.',
+                                      '방문 준비용 선택 · 예약된 상태가 아닙니다.',
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => selectTab(4),
+                                    child: Text(t('Change hospital', '병원 바꾸기')),
+                                  ),
+                                ]),
                               VisitCards(api: api, ko: ko, aiReady: aiReady),
+                            ],
                             if (tab == 2) Health(api: api, ko: ko),
                             if (tab == 3)
                               Community(api: api, ko: ko, user: user!),
                             if (tab == 4) ...[
-                              Hospitals(api: api, ko: ko),
+                              Hospitals(
+                                api: api,
+                                ko: ko,
+                                onPrepare: (hospital) {
+                                  setState(() {
+                                    visitHospital = hospital;
+                                    tab = 1;
+                                  });
+                                  scroll.jumpTo(0);
+                                },
+                              ),
                               const SizedBox(height: 24),
                               Guide(ko: ko),
                             ],
@@ -504,8 +571,8 @@ class _WorkspaceState extends State<Workspace> {
             const SizedBox(height: 12),
             Text(
               t(
-                'License: Korea Open Government License Type 1 (attribution). Map imagery: OpenStreetMap contributors; separate from HIRA.',
-                '이용조건: 공공누리 제1유형(출처표시). 지도 배경은 별도 OpenStreetMap 기여자 자료입니다.',
+                'License: Korea Open Government License Type 1 (attribution). Map: Google Maps; separate from HIRA hospital data.',
+                '이용조건: 공공누리 제1유형(출처표시). 지도는 별도 Google Maps를 사용하며 병원 정보는 심평원 자료입니다.',
               ),
             ),
             TextButton.icon(

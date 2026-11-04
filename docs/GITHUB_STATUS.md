@@ -1,13 +1,10 @@
-# GitHub 버전 관리
-기준일: 2026-10-28 KST
+# GitHub 버전 관리 — 2026-11-05
 
 - 공식 원격: https://github.com/shintaehyeon/mori--SW-festival-2026-.git
-- 소유 계정: shintaehyeon
-- 공개 범위: Public (사용자가 지정한 기존 저장소)
-- 로컬 체크아웃: 프로젝트 outputs/carebridge
-- 기본 브랜치: main
-- 이전에는 원격 저장소만 존재하고 커밋은 없었음. 이번 작업에서 첫 소스 커밋과 원격 연결을 진행.
-- 이후 개발 변경은 이 체크아웃에서 Git 상태/브랜치를 확인하고 커밋으로 관리.
-- server/data의 사용자 DB, .env·인증정보, 의존성/빌드 캐시는 제외.
-- 원본 HIRA ZIP은 로컬에 보존하되 Git에서 제외. 추출한 병원 JSON, 공식 출처, 재생성 스크립트는 포함.
-- 소스 ZIP이 아니라 Git 커밋이 버전 이력의 기준. 제출 시점에는 제출한 커밋을 별도로 기록.
+- branch: main
+- 인수인계 시작 시 실제 원격 main: a4de9042ed0ec16986f979cef4bbc2c483e15a4c
+- 당시 로컬 Google Maps/병원 선택 연결 변경은 미커밋이었으며 README는 옛 CareBridge 상태였다.
+- 이번 인수인계 커밋: 해당 변경과 최신 README, docs/HANDOFF.md, 소스 ZIP의 로컬 지도 설정 제외 보강을 함께 기록한다.
+- 키/DB/인증정보/개인 건강정보와 빌드 캐시는 Git 제외. 예시 설정은 빈 키만 포함.
+- 검증: 서버22, 앱22, analyze 통과. 실제 Google 지도 인증/AI 품질/실기기 공유는 미검증.
+- 최종 푸시 결과와 정확한 이번 커밋 ID는 git log 및 원격 main에서 확인한다. 문서 안 자기 커밋 해시를 미리 만들지 않는다.

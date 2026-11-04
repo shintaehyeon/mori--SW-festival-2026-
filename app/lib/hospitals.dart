@@ -4,7 +4,8 @@ import 'api.dart';
 import 'body_categories.dart';
 import 'facility_categories.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as gm;
+import 'maps/google_hospital_map.dart';
 import 'package:latlong2/latlong.dart';
 
 LatLng? hospitalPoint(Map h) {
@@ -50,7 +51,13 @@ List<Map<String, dynamic>> nearbyHospitals(List hospitals, LatLng? origin) {
 class Hospitals extends StatefulWidget {
   final Api api;
   final bool ko;
-  const Hospitals({super.key, required this.api, required this.ko});
+  final ValueChanged<Map<String, dynamic>>? onPrepare;
+  const Hospitals({
+    super.key,
+    required this.api,
+    required this.ko,
+    this.onPrepare,
+  });
   @override
   State<Hospitals> createState() => _HospitalsState();
 }
@@ -184,71 +191,35 @@ class _HospitalsState extends State<Hospitals> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(
-          height: 300,
-          child: FlutterMap(
-            key: ValueKey(
-              '${location?.latitude}:${location?.longitude}:${query.text}:${bodyCategory?.id}:$facilityCategory',
-            ),
-            options: MapOptions(
-              initialCenter:
-                  location ??
-                  (points.isEmpty
-                      ? const LatLng(36.019, 129.343)
-                      : hospitalPoint(points.first)!),
-              initialZoom: location == null ? 11 : 13,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.puchipa.carebridge',
-              ),
-              MarkerLayer(
-                markers: [
-                  if (location != null)
-                    Marker(
-                      point: location!,
-                      width: 40,
-                      height: 40,
-                      child: const Tooltip(
-                        message: 'My location / 내 위치',
-                        child: Icon(
-                          Icons.my_location,
-                          color: Colors.blue,
-                          size: 28,
-                        ),
-                      ),
-                    ),
-                  for (final h in points)
-                    Marker(
-                      point: hospitalPoint(h)!,
-                      width: 44,
-                      height: 44,
-                      child: IconButton(
-                        tooltip: '${h['name']} · ${distanceLabel(h)}',
-                        onPressed: () =>
-                            setState(() => selectedHospital = h['id']),
-                        icon: Icon(
-                          Icons.local_hospital,
-                          color: selectedHospital == h['id']
-                              ? Colors.orange
-                              : Colors.red,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              RichAttributionWidget(
-                attributions: [
-                  TextSourceAttribution(
-                    'OpenStreetMap contributors',
-                    onTap: () => open(
-                      Uri.parse('https://www.openstreetmap.org/copyright'),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+        GoogleHospitalMap(
+          key: ValueKey(
+            '${location?.latitude}:${location?.longitude}:${query.text}:${bodyCategory?.id}:$facilityCategory',
+          ),
+          hospitals: points,
+          center: gm.LatLng(
+            (location ??
+                    (points.isEmpty
+                        ? const LatLng(36.019, 129.343)
+                        : hospitalPoint(points.first)!))
+                .latitude,
+            (location ??
+                    (points.isEmpty
+                        ? const LatLng(36.019, 129.343)
+                        : hospitalPoint(points.first)!))
+                .longitude,
+          ),
+          location: location == null
+              ? null
+              : gm.LatLng(location!.latitude, location!.longitude),
+          ko: widget.ko,
+          selected: selectedHospital,
+          onSelect: (id) => setState(() => selectedHospital = id),
+          onExternal: () => open(
+            Uri.https('www.google.com', '/maps/search/', {
+              'api': '1',
+              'query':
+                  '포항 ${query.text.trim().isEmpty ? '병원' : query.text.trim()}',
+            }),
           ),
         ),
         Text(
@@ -270,6 +241,14 @@ class _HospitalsState extends State<Hospitals> {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(h['address']),
+                    if (widget.onPrepare != null && !isPharmacy(h))
+                      FilledButton.icon(
+                        onPressed: () => widget.onPrepare!(h),
+                        icon: const Icon(Icons.description_outlined),
+                        label: Text(
+                          t('Prepare for this visit', '이 병원 방문 준비하기'),
+                        ),
+                      ),
                     TextButton(
                       onPressed: () => open(
                         Uri.https('www.google.com', '/maps/dir/', {
@@ -545,8 +524,8 @@ class _HospitalsState extends State<Hospitals> {
       ),
       Text(
         t(
-          'Map provider: OpenStreetMap (receives map area and IP).',
-          '지도 제공: OpenStreetMap (열면 표시 지역·IP 전달).',
+          'Map: Google Maps. Opening shares the displayed area and IP with Google.',
+          '지도: Google Maps · 열면 표시 지역·IP가 Google에 전달됩니다.',
         ),
       ),
       TextButton.icon(
@@ -693,6 +672,12 @@ class _HospitalsState extends State<Hospitals> {
                     '외국어 지원: 미확인. 병상 수는 빈 병상이나 현재 응급환자 수용 여부가 아닙니다.',
                   ),
                 ),
+                if (!isPharmacy(h) && widget.onPrepare != null)
+                  FilledButton.icon(
+                    onPressed: () => widget.onPrepare!(h),
+                    icon: const Icon(Icons.description_outlined),
+                    label: Text(t('Prepare for this visit', '이 병원 방문 준비하기')),
+                  ),
                 Wrap(
                   spacing: 8,
                   children: [
@@ -702,6 +687,18 @@ class _HospitalsState extends State<Hospitals> {
                             open(Uri(scheme: 'tel', path: h['phone'])),
                         icon: const Icon(Icons.call),
                         label: Text(h['phone']),
+                      ),
+                    if (hospitalPoint(h) != null)
+                      TextButton.icon(
+                        onPressed: () => open(
+                          Uri.https('www.google.com', '/maps/dir/', {
+                            'api': '1',
+                            'destination':
+                                '${hospitalPoint(h)!.latitude},${hospitalPoint(h)!.longitude}',
+                          }),
+                        ),
+                        icon: const Icon(Icons.directions),
+                        label: Text(t('Google directions', 'Google 길찾기')),
                       ),
                     TextButton(
                       onPressed: () => open(

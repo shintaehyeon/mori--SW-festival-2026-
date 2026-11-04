@@ -1,9 +1,18 @@
+import java.util.Base64
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+val moriDefines = (project.findProperty("dart-defines") as? String ?: "")
+    .split(",").mapNotNull { encoded ->
+        runCatching { String(Base64.getDecoder().decode(encoded)) }.getOrNull()
+    }
+val moriMapsKey = moriDefines.firstOrNull { it.startsWith("GOOGLE_MAPS_API_KEY=") }
+    ?.substringAfter("=") ?: ""
 
 android {
     namespace = "com.puchipa.carebridge"
@@ -24,6 +33,7 @@ android {
         applicationId = "com.puchipa.carebridge"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = moriMapsKey
         minSdk = 26
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
