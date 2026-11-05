@@ -30,7 +30,7 @@ export const postSchema = z.object({
   body: text(3000).min(10),
   place: text(120).min(1),
   visitDate: date,
-  language: z.enum(["English", "Korean", "Other"]),
+  language: z.enum(["English", "Korean", "Chinese", "Japanese", "Vietnamese", "French", "Other"]),
   method: z.enum(["direct", "translation", "friend"]),
   consent: z.literal(true),
 });

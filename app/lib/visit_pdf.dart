@@ -64,6 +64,12 @@ Future<Uint8List> buildVisitPdf(
   final font = pw.Font.ttf(
     fontData ?? await rootBundle.load('assets/fonts/NanumGothic-Regular.ttf'),
   );
+  final latin = pw.Font.ttf(
+    await rootBundle.load('assets/fonts/NotoSans-Regular.ttf'),
+  );
+  final cjk = pw.Font.ttf(
+    await rootBundle.load('assets/fonts/NotoSansCJK-Regular.ttf'),
+  );
   final doc = pw.Document(
     title: 'MORI - Patient-reported visit preparation',
     author: 'MORI',
@@ -104,7 +110,11 @@ Future<Uint8List> buildVisitPdf(
     pw.Page(
       pageFormat: PdfPageFormat.a4,
       margin: const pw.EdgeInsets.all(32),
-      theme: pw.ThemeData.withFont(base: font, bold: font),
+      theme: pw.ThemeData.withFont(
+        base: latin,
+        bold: latin,
+        fontFallback: [font, cjk],
+      ),
       build: (context) => pw.Column(
         crossAxisAlignment: pw.CrossAxisAlignment.stretch,
         children: [
@@ -156,7 +166,11 @@ Future<Uint8List> buildVisitPdf(
       pageFormat: PdfPageFormat.a4,
       margin: const pw.EdgeInsets.all(32),
       maxPages: 50,
-      theme: pw.ThemeData.withFont(base: font, bold: font),
+      theme: pw.ThemeData.withFont(
+        base: latin,
+        bold: latin,
+        fontFallback: [font, cjk],
+      ),
       footer: (context) => pw.Padding(
         padding: const pw.EdgeInsets.only(top: 8),
         child: pw.Row(

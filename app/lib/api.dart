@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -59,10 +60,15 @@ class Api {
     try {
       data = jsonDecode(text);
     } catch (_) {
-      throw Exception('Service returned an unreadable response.');
+      throw Exception(tr('Service returned an unreadable response.'));
     }
     if (req.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Request failed (${req.statusCode}).');
+      final error = data['error']?.toString() ?? '';
+      throw Exception(
+        MoriLanguage.catalog.containsKey(error)
+            ? tr(error)
+            : '${tr('Could not complete the request. Check your connection and entered information.')} (${req.statusCode})',
+      );
     }
     return data;
   }

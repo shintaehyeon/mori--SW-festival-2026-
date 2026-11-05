@@ -1,3 +1,6 @@
+import 'localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'hospital_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -19,35 +22,54 @@ const cream = Color(0xFFFFF8F4);
 const pale = Color(0xFFF1ECFF);
 const lime = Color(0xFFFFDEBD);
 typedef Json = Map<String, dynamic>;
-void main() => runApp(const CareBridgeApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MoriLanguage.initialize();
+  runApp(const CareBridgeApp());
+}
 
 class CareBridgeApp extends StatelessWidget {
   const CareBridgeApp({super.key});
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    title: 'MORI · Puchipa',
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      useMaterial3: true,
-      filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          shape: const StadiumBorder(),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+  Widget build(BuildContext context) => ValueListenableBuilder<String>(
+    valueListenable: MoriLanguage.current,
+    builder: (context, language, _) => MaterialApp(
+      locale: Locale(language),
+      supportedLocales: MoriLanguage.names.keys
+          .map((code) => Locale(code))
+          .toList(),
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      title: 'MORI · Puchipa',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: 'MoriSans',
+        fontFamilyFallback: const ['MoriCJK'],
+        navigationBarTheme: const NavigationBarThemeData(
+          labelTextStyle: WidgetStatePropertyAll(
+            TextStyle(fontSize: 12, height: 1.15),
+          ),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+          ),
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: green),
+        scaffoldBackgroundColor: cream,
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: ink, height: 1.5),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          contentPadding: const EdgeInsets.all(15),
         ),
       ),
-      colorScheme: ColorScheme.fromSeed(seedColor: green),
-      scaffoldBackgroundColor: cream,
-      textTheme: const TextTheme(
-        bodyMedium: TextStyle(color: ink, height: 1.5),
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        contentPadding: const EdgeInsets.all(15),
-      ),
+      home: const Workspace(),
     ),
-    home: const Workspace(),
   );
 }
 
@@ -87,10 +109,11 @@ class _WorkspaceState extends State<Workspace> {
   }
 
   bool entry = true;
-  bool checking = true, ko = false, busy = false, aiReady = false;
+  bool checking = true, busy = false, aiReady = false;
+  bool get ko => MoriLanguage.current.value == 'ko';
   int tab = 0;
   final scroll = ScrollController();
-  String t(String en, String kr) => ko ? kr : en;
+  String t(String en, String kr) => tr(en, kr);
   @override
   void initState() {
     super.initState();
@@ -164,12 +187,12 @@ class _WorkspaceState extends State<Workspace> {
   @override
   Widget build(BuildContext context) {
     final labels = [
-      t('Home', '홈'),
-      t('Visit card', '방문 카드'),
-      t('My health', '내 건강'),
-      t('Community', '커뮤니티'),
-      t('Hospitals', '병원 찾기'),
-    ];
+      'Nav home',
+      'Nav visit',
+      'Nav health',
+      'Nav community',
+      'Nav hospitals',
+    ].map(tr).toList();
     final icons = [
       Icons.grid_view_rounded,
       Icons.description_outlined,
@@ -232,14 +255,10 @@ class _WorkspaceState extends State<Workspace> {
               ),
             ),
           ),
-          TextButton.icon(
-            onPressed: () => setState(() => ko = !ko),
-            icon: const Icon(Icons.language, size: 18),
-            label: Text(
-              MediaQuery.sizeOf(context).width < 500
-                  ? (ko ? 'EN' : 'KO')
-                  : (ko ? 'English' : '한국어'),
-            ),
+          LanguagePicker(
+            onChanged: () {
+              if (mounted) setState(() {});
+            },
           ),
           if (user != null)
             IconButton(
@@ -394,7 +413,7 @@ class _WorkspaceState extends State<Workspace> {
                                   heading(
                                     t('Your planned destination', '방문 예정 병원'),
                                   ),
-                                  Text('${visitHospital!['name']}'),
+                                  HospitalName('${visitHospital!['name']}'),
                                   Text('${visitHospital!['address']}'),
                                   Text(
                                     t(
@@ -557,7 +576,7 @@ class _WorkspaceState extends State<Workspace> {
             const SizedBox(height: 12),
             Text(
               t(
-                'MORI joins institution, department and facility records and adds English labels, body-area filters and straight-line distances.',
+                'MORI joins institution, department and facility records and adds multilingual labels, body-area filters and straight-line distances.',
                 '모리가 기관·진료과·시설 자료를 결합하고 영문 명칭·신체부위 분류·직선거리를 추가했습니다.',
               ),
             ),
@@ -824,7 +843,7 @@ class _AuthState extends State<Auth> {
       nickname = TextEditingController();
   bool registering = false, busy = false;
   String error = '';
-  String t(String a, String b) => widget.ko ? b : a;
+  String t(String a, String b) => tr(a, b);
   @override
   void dispose() {
     email.dispose();
@@ -882,7 +901,7 @@ class _AuthState extends State<Auth> {
             panel([
               heading(
                 registering
-                    ? t('Join CareBridge', 'CareBridge 가입')
+                    ? t('Join MORI', 'CareBridge 가입')
                     : t('Welcome back', '다시 만나 반가워요'),
               ),
               if (registering)
@@ -979,7 +998,7 @@ class _HealthState extends ScreenState<Health> {
   List<dynamic> journals = [];
   String condition = 'okay';
   bool loaded = false;
-  String t(String a, String b) => widget.ko ? b : a;
+  String t(String a, String b) => tr(a, b);
   @override
   void initState() {
     super.initState();
@@ -1138,7 +1157,7 @@ class _HealthState extends ScreenState<Health> {
         ...journals.map(
           (j) => panel([
             Text(
-              '${j['date']} · ${j['condition']} · ${j['sleep']}h',
+              '${j['date']} · ${MoriLanguage.conditionLabel(j['condition'])} · ${j['sleep']}h',
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
             Text(j['note']),
@@ -1201,7 +1220,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   bool consent = false, reviewed = false;
   Json? current;
   final edits = <String, TextEditingController>{};
-  String t(String a, String b) => widget.ko ? b : a;
+  String t(String a, String b) => tr(a, b);
   @override
   void initState() {
     super.initState();
@@ -1275,7 +1294,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   String summary() {
     final c = current!, s = c['snapshot'];
     final tr = c['translation'];
-    return 'MORI · ${c['mode'] == 'ai' ? (c['confirmedAt'] == null ? 'AI draft · unreviewed' : 'User-reviewed translation') : 'Original · not translated'}\n${c['createdAt']}\n\nSymptoms: ${s['symptoms']}\nOnset: ${s['onset']}\nAllergies: ${knowledge(s['profile']['allergies'])}\nMedication: ${knowledge(s['profile']['medications'])}\n${intakeMetrics(c)}\n${(s['journals'] as List).map((j) => '${j['date']} · ${j['condition']} · ${j['sleep']}h\n${j['note']}').join('\n')}\n${tr == null ? '' : '\n한국어\n증상: ${tr['symptomsKo']}\n시작: ${tr['onsetKo']}\n알레르기: ${tr['allergiesKo']}\n복용약: ${tr['medicationsKo']}\n${(tr['journalKo'] as List).map((j) => j['textKo']).join('\n')}'}';
+    return 'MORI · ${c['mode'] == 'ai' ? (c['confirmedAt'] == null ? 'AI draft · unreviewed' : 'User-reviewed translation') : 'Original · not translated'}\n${c['createdAt']}\n\nSymptoms: ${s['symptoms']}\nOnset: ${s['onset']}\nAllergies: ${knowledge(s['profile']['allergies'])}\nMedication: ${knowledge(s['profile']['medications'])}\n${intakeMetrics(c)}\n${(s['journals'] as List).map((j) => '${j['date']} · ${MoriLanguage.conditionLabel(j['condition'])} · ${j['sleep']}h\n${j['note']}').join('\n')}\n${tr == null ? '' : '\n한국어\n증상: ${tr['symptomsKo']}\n시작: ${tr['onsetKo']}\n알레르기: ${tr['allergiesKo']}\n복용약: ${tr['medicationsKo']}\n${(tr['journalKo'] as List).map((j) => j['textKo']).join('\n')}'}';
   }
 
   @override
@@ -1387,7 +1406,9 @@ class _VisitCardsState extends ScreenState<VisitCards> {
           ...journals.map(
             (j) => CheckboxListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text('${j['date']} · ${j['condition']}'),
+              title: Text(
+                '${j['date']} · ${MoriLanguage.conditionLabel(j['condition'])}',
+              ),
               subtitle: Text(j['note']),
               value: selected.contains(j['id']),
               onChanged: busy
@@ -1734,7 +1755,7 @@ class _CommunityState extends ScreenState<Community> {
   bool writing = false, consent = false;
   String? editId;
   String filter = '', language = 'English', method = 'translation';
-  String t(String a, String b) => widget.ko ? b : a;
+  String t(String a, String b) => tr(a, b);
   @override
   void initState() {
     super.initState();
@@ -1800,11 +1821,18 @@ class _CommunityState extends ScreenState<Community> {
             decoration: InputDecoration(
               labelText: t('Language used', '사용한 언어'),
             ),
-            items: [
-              'English',
-              'Korean',
-              'Other',
-            ].map((v) => DropdownMenuItem(value: v, child: Text(v))).toList(),
+            items:
+                [
+                      'English',
+                      'Korean',
+                      'Chinese',
+                      'Japanese',
+                      'Vietnamese',
+                      'French',
+                      'Other',
+                    ]
+                    .map((v) => DropdownMenuItem(value: v, child: Text(tr(v))))
+                    .toList(),
             onChanged: (v) => setState(() => language = v!),
           ),
           const SizedBox(height: 12),
@@ -1889,7 +1917,7 @@ class _CommunityState extends ScreenState<Community> {
           heading(current!['title']),
           Text('${current!['author']} · ${current!['place']}'),
           Text(
-            '${current!['visitDate']} · ${current!['language']} · ${current!['method']}',
+            '${current!['visitDate']} · ${tr(current!['language'])} · ${tr(const {'direct': 'Direct conversation', 'translation': 'Translation app', 'friend': 'With a friend'}[current!['method']] ?? current!['method'])}',
           ),
           Text(current!['body']),
           info(
@@ -1990,14 +2018,26 @@ class _CommunityState extends ScreenState<Community> {
           field(t('Search experiences', '이용 경험 검색'), query),
           DropdownButtonFormField<String>(
             initialValue: filter,
-            items: ['', 'English', 'Korean', 'Other']
-                .map(
-                  (v) => DropdownMenuItem(
-                    value: v,
-                    child: Text(v.isEmpty ? t('All languages', '전체 언어') : v),
-                  ),
-                )
-                .toList(),
+            items:
+                [
+                      '',
+                      'English',
+                      'Korean',
+                      'Chinese',
+                      'Japanese',
+                      'Vietnamese',
+                      'French',
+                      'Other',
+                    ]
+                    .map(
+                      (v) => DropdownMenuItem(
+                        value: v,
+                        child: Text(
+                          v.isEmpty ? t('All languages', '전체 언어') : tr(v),
+                        ),
+                      ),
+                    )
+                    .toList(),
             onChanged: (v) => setState(() => filter = v!),
           ),
           button(t('Search', '검색'), busy ? null : load, secondary: true),
@@ -2012,7 +2052,7 @@ class _CommunityState extends ScreenState<Community> {
         ...posts.map(
           (p) => panel([
             Text(
-              '${p['language']} · ${p['visitDate']}',
+              '${tr(p['language'])} · ${p['visitDate']}',
               style: const TextStyle(color: green, fontSize: 12),
             ),
             heading(p['title']),
@@ -2037,7 +2077,7 @@ class _CommunityState extends ScreenState<Community> {
             .map(
               (v) => SimpleDialogOption(
                 onPressed: () => Navigator.pop(c, v),
-                child: Text(v),
+                child: Text(tr(v)),
               ),
             )
             .toList(),
@@ -2066,7 +2106,7 @@ class _CommunityState extends ScreenState<Community> {
 class Guide extends StatelessWidget {
   final bool ko;
   const Guide({super.key, required this.ko});
-  String t(String a, String b) => ko ? b : a;
+  String t(String a, String b) => tr(a, b);
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,

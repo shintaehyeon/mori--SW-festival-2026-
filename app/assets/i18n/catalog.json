@@ -1,0 +1,4074 @@
+{
+  "Find care": {
+    "en": "Find care",
+    "ko": "병원 찾기",
+    "zh": "查找医疗机构",
+    "ja": "医療機関を探す",
+    "vi": "Tìm cơ sở y tế",
+    "fr": "Trouver un établissement"
+  },
+  "Home": {
+    "en": "Home",
+    "ko": "홈",
+    "zh": "首页",
+    "ja": "ホーム",
+    "vi": "Trang chủ",
+    "fr": "Accueil"
+  },
+  "Visit card": {
+    "en": "Visit card",
+    "ko": "방문 카드",
+    "zh": "就诊准备表",
+    "ja": "受診準備表",
+    "vi": "Phiếu chuẩn bị khám",
+    "fr": "Fiche de consultation"
+  },
+  "My health": {
+    "en": "My health",
+    "ko": "내 건강정보",
+    "zh": "我的健康",
+    "ja": "健康記録",
+    "vi": "Sức khỏe của tôi",
+    "fr": "Ma santé"
+  },
+  "Community": {
+    "en": "Community",
+    "ko": "커뮤니티",
+    "zh": "社区",
+    "ja": "コミュニティ",
+    "vi": "Cộng đồng",
+    "fr": "Communauté"
+  },
+  "Hospitals": {
+    "en": "Hospitals",
+    "ko": "병원 찾기",
+    "zh": "查找医院",
+    "ja": "病院を探す",
+    "vi": "Tìm bệnh viện",
+    "fr": "Établissements"
+  },
+  "Mori friends": {
+    "en": "Mori friends",
+    "ko": "모리 친구",
+    "zh": "Mori 好友",
+    "ja": "Moriの友だち",
+    "vi": "Bạn bè Mori",
+    "fr": "Amis Mori"
+  },
+  "Watch & permissions": {
+    "en": "Watch & permissions",
+    "ko": "워치 연동 · 권한",
+    "zh": "手表与权限",
+    "ja": "ウォッチと権限",
+    "vi": "Đồng hồ và quyền truy cập",
+    "fr": "Montre et autorisations"
+  },
+  "Emergency / My info": {
+    "en": "Emergency / My info",
+    "ko": "긴급 연락 / 내 정보",
+    "zh": "紧急求助／我的信息",
+    "ja": "緊急連絡・個人情報",
+    "vi": "Khẩn cấp / Thông tin của tôi",
+    "fr": "Urgence / Mes informations"
+  },
+  "Sign out": {
+    "en": "Sign out",
+    "ko": "로그아웃",
+    "zh": "退出登录",
+    "ja": "ログアウト",
+    "vi": "Đăng xuất",
+    "fr": "Déconnexion"
+  },
+  "EMERGENCY": {
+    "en": "EMERGENCY",
+    "ko": "긴급",
+    "zh": "紧急求助",
+    "ja": "緊急時",
+    "vi": "KHẨN CẤP",
+    "fr": "URGENCE"
+  },
+  "Emergency help · 119": {
+    "en": "Emergency help · 119",
+    "ko": "응급 도움 · 119",
+    "zh": "紧急求助 · 119",
+    "ja": "緊急連絡 · 119",
+    "vi": "Hỗ trợ khẩn cấp · 119",
+    "fr": "Aide urgente · 119"
+  },
+  "REGULAR CARE": {
+    "en": "REGULAR CARE",
+    "ko": "일반 진료",
+    "zh": "普通就诊",
+    "ja": "通常の受診",
+    "vi": "KHÁM THÔNG THƯỜNG",
+    "fr": "CONSULTATION"
+  },
+  "Find a clinic · prepare a visit": {
+    "en": "Find a clinic · prepare a visit",
+    "ko": "병원 찾기 · 진료 준비",
+    "zh": "查找诊所 · 准备就诊",
+    "ja": "病院探し・受診の準備",
+    "vi": "Tìm phòng khám · Chuẩn bị khám",
+    "fr": "Trouver un cabinet · Préparer la visite"
+  },
+  "How can we help today?": {
+    "en": "How can we help today?",
+    "ko": "어떤 도움이 필요한가요?",
+    "zh": "今天需要什么帮助？",
+    "ja": "今日はどんなお手伝いが必要ですか？",
+    "vi": "Hôm nay bạn cần giúp gì?",
+    "fr": "De quelle aide avez-vous besoin ?"
+  },
+  "Save your private visit preparation": {
+    "en": "Save your private visit preparation",
+    "ko": "비공개 진료 준비표 저장",
+    "zh": "保存私人就诊准备表",
+    "ja": "非公開の受診準備表を保存",
+    "vi": "Lưu phiếu chuẩn bị khám riêng tư",
+    "fr": "Enregistrer votre fiche privée"
+  },
+  "Sign in below to prepare and save your symptoms and translated visit sheet.": {
+    "en": "Sign in below to prepare and save your symptoms and translated visit sheet.",
+    "ko": "아래에서 로그인하면 증상을 정리하고 번역·진료 준비표를 저장할 수 있어요.",
+    "zh": "请登录以整理和保存症状及翻译后的就诊准备表。",
+    "ja": "ログインして症状と翻訳した受診準備表を保存できます。",
+    "vi": "Đăng nhập để chuẩn bị và lưu triệu chứng cùng phiếu khám đã dịch.",
+    "fr": "Connectez-vous pour préparer et enregistrer vos symptômes et votre fiche traduite."
+  },
+  "Plan a non-emergency visit": {
+    "en": "Plan a non-emergency visit",
+    "ko": "일반 진료 준비 · 병원 찾기",
+    "zh": "准备非急诊就诊",
+    "ja": "緊急ではない受診の準備",
+    "vi": "Chuẩn bị khám không khẩn cấp",
+    "fr": "Préparer une consultation non urgente"
+  },
+  "Your planned destination": {
+    "en": "Your planned destination",
+    "ko": "방문 예정 병원",
+    "zh": "计划前往的医院",
+    "ja": "受診予定の医療機関",
+    "vi": "Cơ sở bạn dự định đến",
+    "fr": "Établissement prévu"
+  },
+  "Visit preparation only · no appointment has been booked.": {
+    "en": "Visit preparation only · no appointment has been booked.",
+    "ko": "방문 준비용 선택 · 예약된 상태가 아닙니다.",
+    "zh": "仅供就诊准备 · 尚未预约",
+    "ja": "受診準備のみ・予約はされていません",
+    "vi": "Chỉ chuẩn bị khám · Chưa đặt lịch hẹn",
+    "fr": "Préparation uniquement · Aucun rendez-vous pris"
+  },
+  "Change hospital": {
+    "en": "Change hospital",
+    "ko": "병원 바꾸기",
+    "zh": "更换医院",
+    "ja": "病院を変更",
+    "vi": "Đổi bệnh viện",
+    "fr": "Changer d’établissement"
+  },
+  "Private records stay private.": {
+    "en": "Private records stay private.",
+    "ko": "개인 건강기록은 비공개입니다.",
+    "zh": "个人记录保持私密。",
+    "ja": "個人の記録は非公開です。",
+    "vi": "Hồ sơ cá nhân được giữ riêng tư.",
+    "fr": "Vos dossiers personnels restent privés."
+  },
+  "Delete my account and data": {
+    "en": "Delete my account and data",
+    "ko": "계정 및 내 데이터 삭제",
+    "zh": "删除账号和数据",
+    "ja": "アカウントとデータを削除",
+    "vi": "Xóa tài khoản và dữ liệu",
+    "fr": "Supprimer mon compte et mes données"
+  },
+  "Hospital data: HIRA · 2026-09-30\nPohang 669 institutions · Source & details": {
+    "en": "Hospital data: HIRA · 2026-09-30\nPohang 669 institutions · Source & details",
+    "ko": "병원정보 출처: 건강보험심사평가원 · 2026-09-30\n포항 669곳 · 출처 및 상세 안내",
+    "zh": "医院数据：HIRA · 2026-09-30\n浦项669家机构 · 来源与详情",
+    "ja": "病院データ：HIRA · 2026-09-30\n浦項669施設・出典と詳細",
+    "vi": "Dữ liệu HIRA · 2026-09-30\n669 cơ sở tại Pohang · Nguồn và chi tiết",
+    "fr": "Données HIRA · 2026-09-30\n669 établissements à Pohang · Sources"
+  },
+  "Permanently delete your account?": {
+    "en": "Permanently delete your account?",
+    "ko": "계정을 영구 삭제할까요?",
+    "zh": "永久删除账号？",
+    "ja": "アカウントを完全に削除しますか？",
+    "vi": "Xóa vĩnh viễn tài khoản?",
+    "fr": "Supprimer définitivement le compte ?"
+  },
+  "Your records, cards, posts and comments will be deleted. This cannot be undone.": {
+    "en": "Your records, cards, posts and comments will be deleted. This cannot be undone.",
+    "ko": "건강기록·카드·게시글·댓글이 삭제되며 되돌릴 수 없습니다.",
+    "zh": "记录、准备表、帖子和评论均将删除，无法撤销。",
+    "ja": "記録・準備表・投稿・コメントが削除されます。元に戻せません。",
+    "vi": "Hồ sơ, phiếu khám, bài viết và bình luận sẽ bị xóa. Không thể hoàn tác.",
+    "fr": "Vos dossiers, fiches, publications et commentaires seront supprimés. Action irréversible."
+  },
+  "Cancel": {
+    "en": "Cancel",
+    "ko": "취소",
+    "zh": "取消",
+    "ja": "キャンセル",
+    "vi": "Hủy",
+    "fr": "Annuler"
+  },
+  "Delete": {
+    "en": "Delete",
+    "ko": "삭제",
+    "zh": "删除",
+    "ja": "削除",
+    "vi": "Xóa",
+    "fr": "Supprimer"
+  },
+  "Hospital data source": {
+    "en": "Hospital data source",
+    "ko": "병원정보 출처",
+    "zh": "医院数据来源",
+    "ja": "病院データの出典",
+    "vi": "Nguồn dữ liệu bệnh viện",
+    "fr": "Source des données hospitalières"
+  },
+  "Health Insurance Review & Assessment Service (HIRA)": {
+    "en": "Health Insurance Review & Assessment Service (HIRA)",
+    "ko": "제공기관: 건강보험심사평가원 (HIRA)",
+    "zh": "韩国健康保险审查评价院（HIRA）",
+    "ja": "韓国健康保険審査評価院（HIRA）",
+    "vi": "Cơ quan đánh giá bảo hiểm y tế Hàn Quốc (HIRA)",
+    "fr": "Service coréen d’évaluation de l’assurance maladie (HIRA)"
+  },
+  "Source: Korea Public Data Portal": {
+    "en": "Source: Korea Public Data Portal",
+    "ko": "원본 제공: 공공데이터포털",
+    "zh": "来源：韩国公共数据门户",
+    "ja": "出典：韓国公共データポータル",
+    "vi": "Nguồn: Cổng dữ liệu công Hàn Quốc",
+    "fr": "Source : portail coréen des données publiques"
+  },
+  "Snapshot: 2026-09-30\nDownloaded: 2026-10-28\nMORI includes 669 medical institutions and 237 pharmacy records in Pohang. Pharmacy subtypes are unverified.": {
+    "en": "Snapshot: 2026-09-30\nDownloaded: 2026-10-28\nMORI includes 669 medical institutions and 237 pharmacy records in Pohang. Pharmacy subtypes are unverified.",
+    "ko": "자료 기준일: 2026-09-30\n다운로드: 2026-10-28\n포항 의료기관 669곳과 약국 237곳을 추출했습니다. 약국의 양약국·한약국 구분은 미확인입니다.",
+    "zh": "数据截至2026-09-30，下载于2026-10-28。MORI收录浦项669家医疗机构和237家药店。药店细分类别未经确认。",
+    "ja": "基準日：2026-09-30、取得日：2026-10-28。浦項の医療機関669件と薬局237件を収録。薬局の種別は未確認です。",
+    "vi": "Dữ liệu ngày 2026-09-30, tải ngày 2026-10-28. Có 669 cơ sở y tế và 237 nhà thuốc tại Pohang. Chưa xác minh loại nhà thuốc.",
+    "fr": "Données au 2026-09-30, téléchargées le 2026-10-28 : 669 établissements et 237 pharmacies à Pohang. Sous-types des pharmacies non vérifiés."
+  },
+  "Not live opening hours, appointment availability or emergency acceptance. Language support is unverified. Registered departments and reported specialist counts are different.": {
+    "en": "Not live opening hours, appointment availability or emergency acceptance. Language support is unverified. Registered departments and reported specialist counts are different.",
+    "ko": "실시간 운영시간·예약·응급환자 수용 정보가 아닙니다. 외국어 지원은 미확인입니다. 신고 진료과와 전문의 수는 구분해 표시합니다.",
+    "zh": "不提供实时营业时间、预约空位或急诊接收情况。外语服务未经确认。登记科室与专科医生人数是不同信息。",
+    "ja": "診療時間・予約枠・救急受入れのリアルタイム情報ではありません。言語対応は未確認です。登録診療科と専門医数は別の情報です。",
+    "vi": "Không phải thông tin trực tiếp về giờ mở cửa, lịch hẹn hay tiếp nhận cấp cứu. Chưa xác minh hỗ trợ ngôn ngữ. Khoa đăng ký và số bác sĩ chuyên khoa là hai thông tin khác nhau.",
+    "fr": "Horaires, rendez-vous et accueil des urgences non actualisés en direct. Langues disponibles non vérifiées. Les services déclarés et le nombre de spécialistes sont distincts."
+  },
+  "License: Korea Open Government License Type 1 (attribution). Map: Google Maps; separate from HIRA hospital data.": {
+    "en": "License: Korea Open Government License Type 1 (attribution). Map: Google Maps; separate from HIRA hospital data.",
+    "ko": "이용조건: 공공누리 제1유형(출처표시). 지도는 별도 Google Maps를 사용하며 병원 정보는 심평원 자료입니다.",
+    "zh": "许可：韩国公共著作物第1类（注明出处）。地图为Google Maps，与HIRA数据分别提供。",
+    "ja": "ライセンス：韓国公共著作物第1類（出典表示）。地図はGoogle Mapsで、HIRAデータとは別です。",
+    "vi": "Giấy phép dữ liệu công Hàn Quốc loại 1 (ghi nguồn). Bản đồ Google Maps tách biệt với dữ liệu HIRA.",
+    "fr": "Licence publique coréenne type 1 (attribution). Carte Google Maps, distincte des données HIRA."
+  },
+  "Open original dataset": {
+    "en": "Open original dataset",
+    "ko": "공공데이터 원본 보기",
+    "zh": "打开原始数据",
+    "ja": "元データを開く",
+    "vi": "Mở dữ liệu gốc",
+    "fr": "Ouvrir les données sources"
+  },
+  "Unable to open the source website.": {
+    "en": "Unable to open the source website.",
+    "ko": "원본 사이트를 열 수 없습니다.",
+    "zh": "无法打开来源网站。",
+    "ja": "出典サイトを開けません。",
+    "vi": "Không thể mở trang nguồn.",
+    "fr": "Impossible d’ouvrir le site source."
+  },
+  "Close": {
+    "en": "Close",
+    "ko": "닫기",
+    "zh": "关闭",
+    "ja": "閉じる",
+    "vi": "Đóng",
+    "fr": "Fermer"
+  },
+  "Choose the help you need. This is not an emergency assessment.": {
+    "en": "Choose the help you need. This is not an emergency assessment.",
+    "ko": "필요한 도움을 선택하세요. 앱이 응급 여부를 판정하지 않습니다.",
+    "zh": "请选择需要的帮助。应用不判断是否属于急症。",
+    "ja": "必要な支援を選んでください。緊急度の判定ではありません。",
+    "vi": "Chọn hỗ trợ bạn cần. Ứng dụng không đánh giá mức độ khẩn cấp.",
+    "fr": "Choisissez l’aide souhaitée. Ceci n’est pas une évaluation d’urgence."
+  },
+  "Prepare information for the clinician": {
+    "en": "Prepare information for the clinician",
+    "ko": "의료진에게 보여줄 정보 준비",
+    "zh": "准备给医务人员的信息",
+    "ja": "医療者に伝える情報を準備",
+    "vi": "Chuẩn bị thông tin cho nhân viên y tế",
+    "fr": "Préparer les informations pour le soignant"
+  },
+  "Prepare what to tell the clinician": {
+    "en": "Prepare what to tell the clinician",
+    "ko": "병원에 보여줄 방문 이유 정리",
+    "zh": "整理就诊时要说明的内容",
+    "ja": "受診時に伝えることを整理",
+    "vi": "Chuẩn bị nội dung trao đổi khi khám",
+    "fr": "Préparer ce que vous direz au soignant"
+  },
+  "Prepare what to tell your clinician": {
+    "en": "Prepare what to tell your clinician",
+    "ko": "병원에 보여줄 방문 이유 정리",
+    "zh": "整理就诊时要说明的内容",
+    "ja": "受診時に伝えることを整理",
+    "vi": "Chuẩn bị nội dung trao đổi khi khám",
+    "fr": "Préparer ce que vous direz au soignant"
+  },
+  "From someone like you": {
+    "en": "From someone like you",
+    "ko": "먼저 다녀온 친구에게",
+    "zh": "听听他人的经历",
+    "ja": "先に受診した人の経験",
+    "vi": "Từ người có trải nghiệm tương tự",
+    "fr": "Les expériences d’autres personnes"
+  },
+  "Find experiences about reception, language and what to bring.": {
+    "en": "Find experiences about reception, language and what to bring.",
+    "ko": "접수·언어·준비물에 대한 이용 경험을 확인하세요.",
+    "zh": "了解挂号、沟通及携带物品的经验。",
+    "ja": "受付・言語・持ち物についての経験を確認しましょう。",
+    "vi": "Xem kinh nghiệm đăng ký, ngôn ngữ và đồ cần mang.",
+    "fr": "Découvrez les conseils sur l’accueil, la langue et les documents à apporter."
+  },
+  "Explore experiences": {
+    "en": "Explore experiences",
+    "ko": "이용 경험 보기",
+    "zh": "查看经验",
+    "ja": "体験談を見る",
+    "vi": "Xem trải nghiệm",
+    "fr": "Voir les expériences"
+  },
+  "Your essentials, together": {
+    "en": "Your essentials, together",
+    "ko": "나에게 필요한 건강정보",
+    "zh": "整理重要健康信息",
+    "ja": "大切な健康情報をまとめて",
+    "vi": "Thông tin sức khỏe thiết yếu",
+    "fr": "Vos informations essentielles"
+  },
+  "Keep allergies, medication and daily check-ins ready for your next visit.": {
+    "en": "Keep allergies, medication and daily check-ins ready for your next visit.",
+    "ko": "알레르기·복용약과 일상 기록을 정리해두세요.",
+    "zh": "整理过敏、用药和日常记录，为下次就诊做准备。",
+    "ja": "アレルギー・服薬・日々の記録を次の受診に備えて整理しましょう。",
+    "vi": "Chuẩn bị thông tin dị ứng, thuốc và ghi chép hằng ngày cho lần khám tới.",
+    "fr": "Gardez allergies, traitements et suivis quotidiens à portée de main pour votre prochaine visite."
+  },
+  "AI translation is not connected yet. Original-language cards and record storage are available.": {
+    "en": "AI translation is not connected yet. Original-language cards and record storage are available.",
+    "ko": "AI 번역은 아직 연결되지 않았습니다. 원문 카드와 기록 저장은 가능합니다.",
+    "zh": "AI翻译尚未连接。仍可使用原文准备表并保存记录。",
+    "ja": "AI翻訳は未接続です。原文の準備表と記録の保存は利用できます。",
+    "vi": "Chưa kết nối dịch AI. Vẫn có thể dùng phiếu ngôn ngữ gốc và lưu hồ sơ.",
+    "fr": "La traduction IA n’est pas connectée. Les fiches originales et l’enregistrement restent disponibles."
+  },
+  "MORI supports communication and access preparation. It does not diagnose or recommend medication.": {
+    "en": "MORI supports communication and access preparation. It does not diagnose or recommend medication.",
+    "ko": "모리는 의료 이용 준비와 의사소통을 돕습니다. 진단이나 약 추천은 제공하지 않습니다.",
+    "zh": "MORI帮助沟通和准备就诊，不提供诊断或药物推荐。",
+    "ja": "MORIは受診準備と意思疎通を支援します。診断や薬の推奨は行いません。",
+    "vi": "MORI hỗ trợ giao tiếp và chuẩn bị khám, không chẩn đoán hay khuyên dùng thuốc.",
+    "fr": "MORI aide à préparer les soins et à communiquer, sans diagnostic ni recommandation de médicaments."
+  },
+  "A familiar hand\nin an unfamiliar place.": {
+    "en": "A familiar hand\nin an unfamiliar place.",
+    "ko": "낯선 곳에서도\n든든한 의료 길잡이.",
+    "zh": "身在异乡，也有贴心帮助。",
+    "ja": "慣れない場所でも、身近な支えに。",
+    "vi": "Sự giúp đỡ thân quen ở nơi xa lạ.",
+    "fr": "Un soutien familier en terre inconnue."
+  },
+  "Welcome back": {
+    "en": "Welcome back",
+    "ko": "다시 만나 반가워요",
+    "zh": "欢迎回来",
+    "ja": "おかえりなさい",
+    "vi": "Chào mừng trở lại",
+    "fr": "Bon retour"
+  },
+  "Nickname (public)": {
+    "en": "Nickname (public)",
+    "ko": "별명 (게시물에 공개)",
+    "zh": "昵称（公开）",
+    "ja": "ニックネーム（公開）",
+    "vi": "Biệt danh (công khai)",
+    "fr": "Pseudonyme (public)"
+  },
+  "Email": {
+    "en": "Email",
+    "ko": "이메일",
+    "zh": "邮箱",
+    "ja": "メールアドレス",
+    "vi": "Email",
+    "fr": "Adresse e-mail"
+  },
+  "Password": {
+    "en": "Password",
+    "ko": "비밀번호",
+    "zh": "密码",
+    "ja": "パスワード",
+    "vi": "Mật khẩu",
+    "fr": "Mot de passe"
+  },
+  "Use 10+ characters. Prototype: email verification and password recovery are not available. Use fictional test data.": {
+    "en": "Use 10+ characters. Prototype: email verification and password recovery are not available. Use fictional test data.",
+    "ko": "10자 이상. 시제품은 이메일 인증·비밀번호 찾기를 지원하지 않습니다. 가상 정보로 시험하세요.",
+    "zh": "至少10个字符。原型尚不支持邮箱验证和密码找回，请使用虚构测试数据。",
+    "ja": "10文字以上。試作版はメール認証・パスワード再設定に未対応です。架空のテスト情報を使用してください。",
+    "vi": "Từ 10 ký tự. Bản thử nghiệm chưa có xác minh email hoặc khôi phục mật khẩu. Hãy dùng dữ liệu giả lập.",
+    "fr": "10 caractères minimum. Prototype sans vérification d’e-mail ni récupération de mot de passe. Utilisez des données fictives."
+  },
+  "Please wait…": {
+    "en": "Please wait…",
+    "ko": "처리 중…",
+    "zh": "请稍候…",
+    "ja": "お待ちください…",
+    "vi": "Vui lòng đợi…",
+    "fr": "Veuillez patienter…"
+  },
+  "Create account": {
+    "en": "Create account",
+    "ko": "계정 만들기",
+    "zh": "创建账号",
+    "ja": "アカウント作成",
+    "vi": "Tạo tài khoản",
+    "fr": "Créer un compte"
+  },
+  "Sign in": {
+    "en": "Sign in",
+    "ko": "로그인",
+    "zh": "登录",
+    "ja": "ログイン",
+    "vi": "Đăng nhập",
+    "fr": "Connexion"
+  },
+  "Already registered? Sign in": {
+    "en": "Already registered? Sign in",
+    "ko": "이미 가입했나요? 로그인",
+    "zh": "已有账号？登录",
+    "ja": "登録済みの方はログイン",
+    "vi": "Đã có tài khoản? Đăng nhập",
+    "fr": "Déjà inscrit ? Se connecter"
+  },
+  "Create an account": {
+    "en": "Create an account",
+    "ko": "새 계정 만들기",
+    "zh": "创建账号",
+    "ja": "アカウントを作成",
+    "vi": "Tạo tài khoản",
+    "fr": "Créer un compte"
+  },
+  "Private health records stay separate from public community posts.": {
+    "en": "Private health records stay separate from public community posts.",
+    "ko": "개인 건강기록은 공개 커뮤니티와 분리됩니다.",
+    "zh": "私人健康记录与公开社区帖子分开保存。",
+    "ja": "非公開の健康記録と公開の投稿は分けて扱います。",
+    "vi": "Hồ sơ sức khỏe riêng tư tách biệt với bài viết công khai.",
+    "fr": "Les données de santé privées restent séparées des publications publiques."
+  },
+  "Not sure": {
+    "en": "Not sure",
+    "ko": "모름",
+    "zh": "不确定",
+    "ja": "わからない",
+    "vi": "Không rõ",
+    "fr": "Je ne sais pas"
+  },
+  "None": {
+    "en": "None",
+    "ko": "없음",
+    "zh": "无",
+    "ja": "なし",
+    "vi": "Không có",
+    "fr": "Aucun"
+  },
+  "Add details": {
+    "en": "Add details",
+    "ko": "있음",
+    "zh": "填写详情",
+    "ja": "詳細を追加",
+    "vi": "Thêm chi tiết",
+    "fr": "Ajouter des détails"
+  },
+  "Details / names and doses": {
+    "en": "Details / names and doses",
+    "ko": "상세 / 약명·용량",
+    "zh": "详情／名称及剂量",
+    "ja": "詳細・名称と用量",
+    "vi": "Chi tiết / tên và liều dùng",
+    "fr": "Détails / noms et doses"
+  },
+  "Load records": {
+    "en": "Load records",
+    "ko": "기록 불러오기",
+    "zh": "加载记录",
+    "ja": "記録を読み込む",
+    "vi": "Tải hồ sơ",
+    "fr": "Charger les dossiers"
+  },
+  "PRIVATE · Visible only to you": {
+    "en": "PRIVATE · Visible only to you",
+    "ko": "비공개 · 본인만 볼 수 있어요",
+    "zh": "私密 · 仅本人可见",
+    "ja": "非公開・自分だけが閲覧",
+    "vi": "RIÊNG TƯ · Chỉ bạn xem được",
+    "fr": "PRIVÉ · Visible uniquement par vous"
+  },
+  "Allergies": {
+    "en": "Allergies",
+    "ko": "알레르기",
+    "zh": "过敏",
+    "ja": "アレルギー",
+    "vi": "Dị ứng",
+    "fr": "Allergies"
+  },
+  "Current medication": {
+    "en": "Current medication",
+    "ko": "현재 복용약",
+    "zh": "当前用药",
+    "ja": "現在の服薬",
+    "vi": "Thuốc đang dùng",
+    "fr": "Traitements actuels"
+  },
+  "Save profile": {
+    "en": "Save profile",
+    "ko": "건강정보 저장",
+    "zh": "保存健康信息",
+    "ja": "健康情報を保存",
+    "vi": "Lưu hồ sơ",
+    "fr": "Enregistrer le profil"
+  },
+  "Profile saved.": {
+    "en": "Profile saved.",
+    "ko": "저장했습니다.",
+    "zh": "健康信息已保存。",
+    "ja": "健康情報を保存しました。",
+    "vi": "Đã lưu hồ sơ.",
+    "fr": "Profil enregistré."
+  },
+  "Daily check-in": {
+    "en": "Daily check-in",
+    "ko": "일상 기록",
+    "zh": "每日记录",
+    "ja": "毎日の記録",
+    "vi": "Ghi chép hằng ngày",
+    "fr": "Suivi quotidien"
+  },
+  "Date (YYYY-MM-DD)": {
+    "en": "Date (YYYY-MM-DD)",
+    "ko": "날짜 (YYYY-MM-DD)",
+    "zh": "日期（YYYY-MM-DD）",
+    "ja": "日付（YYYY-MM-DD）",
+    "vi": "Ngày (YYYY-MM-DD)",
+    "fr": "Date (YYYY-MM-DD)"
+  },
+  "Good": {
+    "en": "Good",
+    "ko": "좋아요",
+    "zh": "良好",
+    "ja": "良い",
+    "vi": "Tốt",
+    "fr": "Bien"
+  },
+  "Okay": {
+    "en": "Okay",
+    "ko": "보통이에요",
+    "zh": "一般",
+    "ja": "まあまあ",
+    "vi": "Bình thường",
+    "fr": "Moyen"
+  },
+  "Low": {
+    "en": "Low",
+    "ko": "힘들어요",
+    "zh": "不佳",
+    "ja": "つらい",
+    "vi": "Không khỏe",
+    "fr": "Difficile"
+  },
+  "Sleep hours (0–24)": {
+    "en": "Sleep hours (0–24)",
+    "ko": "수면 시간 (0~24)",
+    "zh": "睡眠小时数（0–24）",
+    "ja": "睡眠時間（0～24）",
+    "vi": "Số giờ ngủ (0–24)",
+    "fr": "Sommeil en heures (0–24)"
+  },
+  "Notes": {
+    "en": "Notes",
+    "ko": "메모",
+    "zh": "备注",
+    "ja": "メモ",
+    "vi": "Ghi chú",
+    "fr": "Notes"
+  },
+  "Save check-in": {
+    "en": "Save check-in",
+    "ko": "일상 기록 저장",
+    "zh": "保存每日记录",
+    "ja": "記録を保存",
+    "vi": "Lưu ghi chép",
+    "fr": "Enregistrer le suivi"
+  },
+  "Enter sleep hours.": {
+    "en": "Enter sleep hours.",
+    "ko": "수면 시간을 입력하세요.",
+    "zh": "请输入睡眠时长。",
+    "ja": "睡眠時間を入力してください。",
+    "vi": "Nhập số giờ ngủ.",
+    "fr": "Indiquez la durée de sommeil."
+  },
+  "Check-in saved.": {
+    "en": "Check-in saved.",
+    "ko": "기록을 저장했습니다.",
+    "zh": "每日记录已保存。",
+    "ja": "記録を保存しました。",
+    "vi": "Đã lưu ghi chép.",
+    "fr": "Suivi enregistré."
+  },
+  "Recent check-ins": {
+    "en": "Recent check-ins",
+    "ko": "최근 기록",
+    "zh": "近期记录",
+    "ja": "最近の記録",
+    "vi": "Ghi chép gần đây",
+    "fr": "Suivis récents"
+  },
+  "No records yet.": {
+    "en": "No records yet.",
+    "ko": "아직 기록이 없습니다.",
+    "zh": "暂无记录。",
+    "ja": "記録はまだありません。",
+    "vi": "Chưa có ghi chép.",
+    "fr": "Aucun suivi pour le moment."
+  },
+  "Existing cards keep their saved snapshot. Delete the card separately to remove it.": {
+    "en": "Existing cards keep their saved snapshot. Delete the card separately to remove it.",
+    "ko": "기존 카드의 사본은 유지됩니다. 해당 카드도 별도로 삭제하세요.",
+    "zh": "已有准备表保留创建时的内容，需单独删除准备表。",
+    "ja": "既存の準備表は保存時の内容を保持します。消すには準備表も別途削除してください。",
+    "vi": "Phiếu đã tạo giữ dữ liệu lúc lưu. Muốn xóa, cần xóa riêng phiếu đó.",
+    "fr": "Les fiches existantes conservent leur copie des données. Supprimez-les séparément si nécessaire."
+  },
+  "Delete check-in": {
+    "en": "Delete check-in",
+    "ko": "기록 삭제",
+    "zh": "删除记录",
+    "ja": "記録を削除",
+    "vi": "Xóa ghi chép",
+    "fr": "Supprimer le suivi"
+  },
+  "None (user reported)": {
+    "en": "None (user reported)",
+    "ko": "없음 (사용자 입력)",
+    "zh": "无（本人填写）",
+    "ja": "なし（本人申告）",
+    "vi": "Không có (tự khai)",
+    "fr": "Aucun (déclaré par la personne)"
+  },
+  "Unknown": {
+    "en": "Unknown",
+    "ko": "모름",
+    "zh": "不清楚",
+    "ja": "不明",
+    "vi": "Không rõ",
+    "fr": "Inconnu"
+  },
+  "PRIVATE · Not posted to the community": {
+    "en": "PRIVATE · Not posted to the community",
+    "ko": "비공개 · 커뮤니티에 게시되지 않습니다",
+    "zh": "私密 · 不发布到社区",
+    "ja": "非公開・コミュニティには投稿されません",
+    "vi": "RIÊNG TƯ · Không đăng lên cộng đồng",
+    "fr": "PRIVÉ · Non publié dans la communauté"
+  },
+  "What would you like to tell the clinician?": {
+    "en": "What would you like to tell the clinician?",
+    "ko": "의료진에게 전할 증상",
+    "zh": "想向医务人员说明什么？",
+    "ja": "医療者に伝えたい症状は？",
+    "vi": "Bạn muốn nói gì với nhân viên y tế?",
+    "fr": "Que souhaitez-vous dire au soignant ?"
+  },
+  "When did it start? Unknown is OK.": {
+    "en": "When did it start? Unknown is OK.",
+    "ko": "언제부터 시작됐나요? 모르면 모름으로 적어주세요.",
+    "zh": "何时开始？不清楚也可以。",
+    "ja": "いつからですか？不明でも大丈夫です。",
+    "vi": "Bắt đầu khi nào? Có thể ghi không rõ.",
+    "fr": "Depuis quand ? Vous pouvez indiquer « inconnu »."
+  },
+  "How has it changed? (optional)": {
+    "en": "How has it changed? (optional)",
+    "ko": "처음과 비교해 어떻게 달라졌나요? (선택)",
+    "zh": "症状如何变化？（选填）",
+    "ja": "どのように変化しましたか？（任意）",
+    "vi": "Triệu chứng thay đổi thế nào? (tùy chọn)",
+    "fr": "Comment cela a-t-il évolué ? (facultatif)"
+  },
+  "What makes it better or worse? (optional)": {
+    "en": "What makes it better or worse? (optional)",
+    "ko": "언제 심해지거나 나아지나요? (선택)",
+    "zh": "什么情况下加重或缓解？（选填）",
+    "ja": "悪化・軽減する状況は？（任意）",
+    "vi": "Điều gì làm nặng hơn hoặc đỡ hơn? (tùy chọn)",
+    "fr": "Qu’est-ce qui aggrave ou soulage ? (facultatif)"
+  },
+  "What would you like to ask? (optional)": {
+    "en": "What would you like to ask? (optional)",
+    "ko": "의료진에게 꼭 묻고 싶은 점 (선택)",
+    "zh": "想向医务人员提什么问题？（选填）",
+    "ja": "医療者に聞きたいことは？（任意）",
+    "vi": "Bạn muốn hỏi gì? (tùy chọn)",
+    "fr": "Quelles questions souhaitez-vous poser ? (facultatif)"
+  },
+  "Write in your own language. Blank answers stay unrecorded. Review your saved original before choosing translation.": {
+    "en": "Write in your own language. Blank answers stay unrecorded. Review your saved original before choosing translation.",
+    "ko": "편한 언어로 적으세요. 빈 답변은 미기록으로 남습니다. 저장된 원문을 확인한 후 번역을 선택할 수 있어요.",
+    "zh": "用自己的语言填写。空白项保留为未记录。选择翻译前请检查已保存的原文。",
+    "ja": "自分の言語で入力してください。空欄は未記録のままです。翻訳前に保存した原文を確認してください。",
+    "vi": "Viết bằng ngôn ngữ của bạn. Mục trống vẫn là chưa ghi nhận. Kiểm tra bản gốc đã lưu trước khi dịch.",
+    "fr": "Écrivez dans votre langue. Les champs vides restent non renseignés. Vérifiez l’original enregistré avant de traduire."
+  },
+  "Structured visit preparation": {
+    "en": "Structured visit preparation",
+    "ko": "한눈에 보는 초진 준비",
+    "zh": "结构化就诊准备",
+    "ja": "受診準備の基本情報",
+    "vi": "Thông tin chuẩn bị khám",
+    "fr": "Préparation structurée de la consultation"
+  },
+  "Name (optional, for this document)": {
+    "en": "Name (optional, for this document)",
+    "ko": "성명 (선택 · 이 문서용)",
+    "zh": "姓名（选填，仅用于此文件）",
+    "ja": "氏名（任意・この文書用）",
+    "vi": "Họ tên (tùy chọn, dùng trong phiếu)",
+    "fr": "Nom (facultatif, pour cette fiche)"
+  },
+  "Body site (optional)": {
+    "en": "Body site (optional)",
+    "ko": "불편한 부위 (선택)",
+    "zh": "不适部位（选填）",
+    "ja": "気になる部位（任意）",
+    "vi": "Vị trí khó chịu (tùy chọn)",
+    "fr": "Zone du corps (facultatif)"
+  },
+  "Pain intensity (self-report): 0 no pain, 10 worst imaginable": {
+    "en": "Pain intensity (self-report): 0 no pain, 10 worst imaginable",
+    "ko": "통증 정도 (본인 보고): 0 통증 없음, 10 상상할 수 있는 가장 심한 통증",
+    "zh": "疼痛程度（自述）：0无痛，10为能想象的最剧烈疼痛",
+    "ja": "痛み（自己申告）：0は痛みなし、10は想像できる最大の痛み",
+    "vi": "Mức đau (tự đánh giá): 0 không đau, 10 đau nhất có thể tưởng tượng",
+    "fr": "Douleur déclarée : 0 aucune, 10 la pire imaginable"
+  },
+  "Not recorded": {
+    "en": "Not recorded",
+    "ko": "미기록",
+    "zh": "未记录",
+    "ja": "未記録",
+    "vi": "Chưa ghi nhận",
+    "fr": "Non renseigné"
+  },
+  "Measured temperature °C (optional)": {
+    "en": "Measured temperature °C (optional)",
+    "ko": "직접 측정한 체온 °C (선택)",
+    "zh": "实测体温°C（选填）",
+    "ja": "測定した体温°C（任意）",
+    "vi": "Nhiệt độ đã đo °C (tùy chọn)",
+    "fr": "Température mesurée en °C (facultatif)"
+  },
+  "When / how was it measured? (optional)": {
+    "en": "When / how was it measured? (optional)",
+    "ko": "측정 시점 · 방법 (선택)",
+    "zh": "何时／如何测量？（选填）",
+    "ja": "測定日時・方法（任意）",
+    "vi": "Đo khi nào / bằng cách nào? (tùy chọn)",
+    "fr": "Quand et comment ? (facultatif)"
+  },
+  "Values are patient-reported, not verified vital signs or a diagnosis. Unfilled stays “not recorded”.": {
+    "en": "Values are patient-reported, not verified vital signs or a diagnosis. Unfilled stays “not recorded”.",
+    "ko": "수치는 환자가 입력한 값이며 의료진이 확인한 활력징후나 진단이 아닙니다. 빈 항목은 미기록으로 남아요.",
+    "zh": "数值由本人填写，不是经医务人员核实的生命体征或诊断。空白项保留为“未记录”。",
+    "ja": "数値は本人の入力で、医療者が確認したバイタルや診断ではありません。空欄は「未記録」です。",
+    "vi": "Giá trị do người dùng khai, không phải dấu hiệu sinh tồn đã xác minh hay chẩn đoán. Mục trống là “chưa ghi nhận”.",
+    "fr": "Valeurs déclarées par la personne, ni constantes vérifiées ni diagnostic. Les champs vides restent « non renseignés »."
+  },
+  "Select check-ins to include (up to 7)": {
+    "en": "Select check-ins to include (up to 7)",
+    "ko": "포함할 일상 기록 선택 (최대 7개)",
+    "zh": "选择要包含的每日记录（最多7条）",
+    "ja": "含める日々の記録を選択（最大7件）",
+    "vi": "Chọn ghi chép để đính kèm (tối đa 7)",
+    "fr": "Choisir les suivis à inclure (7 maximum)"
+  },
+  "Save my health information as a private card. If I choose AI translation, selected health content is sent to the configured AI provider, without my name or email.": {
+    "en": "Save my health information as a private card. If I choose AI translation, selected health content is sent to the configured AI provider, without my name or email.",
+    "ko": "이 정보를 비공개 카드로 저장하는 데 동의합니다. AI 번역을 선택하면 건강정보가 AI 제공자에게 전송되며 이름·이메일은 제외됩니다.",
+    "zh": "同意将健康信息保存为私人准备表。选择AI翻译时，选定的健康内容将发送给所配置的AI服务商，不包含姓名和邮箱。",
+    "ja": "健康情報を非公開の準備表に保存することに同意します。AI翻訳を選ぶと、選択した健康情報が設定済みのAI提供者に送信されます。氏名・メールは含みません。",
+    "vi": "Tôi đồng ý lưu thông tin sức khỏe trong phiếu riêng tư. Nếu chọn dịch AI, nội dung sức khỏe đã chọn được gửi đến nhà cung cấp AI đã cấu hình, không kèm tên hay email.",
+    "fr": "J’accepte l’enregistrement privé de mes données de santé. Si je choisis la traduction IA, le contenu de santé sélectionné est envoyé au fournisseur configuré, sans mon nom ni mon e-mail."
+  },
+  "Save and review my visit summary": {
+    "en": "Save and review my visit summary",
+    "ko": "방문 요약 저장하고 확인하기",
+    "zh": "保存并查看就诊摘要",
+    "ja": "受診の要約を保存して確認",
+    "vi": "Lưu và kiểm tra tóm tắt khám",
+    "fr": "Enregistrer et vérifier ma fiche"
+  },
+  "Enter your main concern and onset (or unknown).": {
+    "en": "Enter your main concern and onset (or unknown).",
+    "ko": "방문 이유와 시작 시점(또는 모름)을 입력해 주세요.",
+    "zh": "请填写主要不适及开始时间（或不清楚）。",
+    "ja": "主な症状と開始時期（または不明）を入力してください。",
+    "vi": "Nhập lý do khám và thời điểm bắt đầu (hoặc không rõ).",
+    "fr": "Indiquez le motif et la date de début (ou « inconnu »)."
+  },
+  "Check temperature in °C (30–45).": {
+    "en": "Check temperature in °C (30–45).",
+    "ko": "체온을 °C로 확인해 주세요 (입력 범위 30–45).",
+    "zh": "请检查体温，单位°C（30–45）。",
+    "ja": "体温を°Cで確認してください（30～45）。",
+    "vi": "Kiểm tra nhiệt độ °C (30–45).",
+    "fr": "Vérifiez la température en °C (30–45)."
+  },
+  "Saved cards": {
+    "en": "Saved cards",
+    "ko": "저장한 카드",
+    "zh": "已保存的准备表",
+    "ja": "保存した準備表",
+    "vi": "Phiếu đã lưu",
+    "fr": "Fiches enregistrées"
+  },
+  "Original · not translated": {
+    "en": "Original · not translated",
+    "ko": "원문 · 번역 안 됨",
+    "zh": "原文 · 未翻译",
+    "ja": "原文・未翻訳",
+    "vi": "Bản gốc · Chưa dịch",
+    "fr": "Original · Non traduit"
+  },
+  "AI draft · review needed": {
+    "en": "AI draft · review needed",
+    "ko": "AI 초안 · 확인 필요",
+    "zh": "AI草稿 · 待核对",
+    "ja": "AI下書き・要確認",
+    "vi": "Bản nháp AI · Cần kiểm tra",
+    "fr": "Brouillon IA · À vérifier"
+  },
+  "User reviewed": {
+    "en": "User reviewed",
+    "ko": "사용자 확인 완료",
+    "zh": "用户已核对",
+    "ja": "本人が確認済み",
+    "vi": "Người dùng đã kiểm tra",
+    "fr": "Vérifié par l’utilisateur"
+  },
+  "Open card": {
+    "en": "Open card",
+    "ko": "카드 열기",
+    "zh": "打开准备表",
+    "ja": "準備表を開く",
+    "vi": "Mở phiếu",
+    "fr": "Ouvrir la fiche"
+  },
+  "Back to cards": {
+    "en": "Back to cards",
+    "ko": "카드 목록으로",
+    "zh": "返回准备表列表",
+    "ja": "準備表一覧へ",
+    "vi": "Về danh sách phiếu",
+    "fr": "Retour aux fiches"
+  },
+  "ORIGINAL · NOT TRANSLATED": {
+    "en": "ORIGINAL · NOT TRANSLATED",
+    "ko": "원문 · 번역 안 됨",
+    "zh": "原文 · 未翻译",
+    "ja": "原文・未翻訳",
+    "vi": "BẢN GỐC · CHƯA DỊCH",
+    "fr": "ORIGINAL · NON TRADUIT"
+  },
+  "AI DRAFT · REVIEW NEEDED": {
+    "en": "AI DRAFT · REVIEW NEEDED",
+    "ko": "AI 초안 · 확인 필요",
+    "zh": "AI草稿 · 待核对",
+    "ja": "AI下書き・要確認",
+    "vi": "BẢN NHÁP AI · CẦN KIỂM TRA",
+    "fr": "BROUILLON IA · À VÉRIFIER"
+  },
+  "USER REVIEWED": {
+    "en": "USER REVIEWED",
+    "ko": "사용자 확인 완료",
+    "zh": "用户已核对",
+    "ja": "本人が確認済み",
+    "vi": "NGƯỜI DÙNG ĐÃ KIỂM TRA",
+    "fr": "VÉRIFIÉ PAR L’UTILISATEUR"
+  },
+  "Your original information": {
+    "en": "Your original information",
+    "ko": "입력한 원문",
+    "zh": "您输入的原文",
+    "ja": "入力した原文",
+    "vi": "Thông tin gốc của bạn",
+    "fr": "Vos informations originales"
+  },
+  "Started": {
+    "en": "Started",
+    "ko": "시작",
+    "zh": "开始时间",
+    "ja": "開始時期",
+    "vi": "Bắt đầu",
+    "fr": "Début"
+  },
+  "Medication": {
+    "en": "Medication",
+    "ko": "복용약",
+    "zh": "用药",
+    "ja": "服薬",
+    "vi": "Thuốc",
+    "fr": "Traitement"
+  },
+  "Compare and edit the translation": {
+    "en": "Compare and edit the translation",
+    "ko": "번역을 비교하고 수정하세요",
+    "zh": "对照并修改翻译",
+    "ja": "翻訳を比較・修正",
+    "vi": "Đối chiếu và sửa bản dịch",
+    "fr": "Comparer et corriger la traduction"
+  },
+  "Symptoms": {
+    "en": "Symptoms",
+    "ko": "증상",
+    "zh": "症状",
+    "ja": "症状",
+    "vi": "Triệu chứng",
+    "fr": "Symptômes"
+  },
+  "Onset": {
+    "en": "Onset",
+    "ko": "시작 시점",
+    "zh": "开始时间",
+    "ja": "開始時期",
+    "vi": "Thời điểm bắt đầu",
+    "fr": "Début des symptômes"
+  },
+  "Selected check-in": {
+    "en": "Selected check-in",
+    "ko": "선택 기록",
+    "zh": "选定的记录",
+    "ja": "選択した記録",
+    "vi": "Ghi chép đã chọn",
+    "fr": "Suivi sélectionné"
+  },
+  "I compared the translation with my original. This is a personal review, not medical verification.": {
+    "en": "I compared the translation with my original. This is a personal review, not medical verification.",
+    "ko": "원문과 대조해 확인했습니다. 사용자 확인이며 의학적 검증을 의미하지 않습니다.",
+    "zh": "我已将翻译与原文对照。这是个人核对，并非医学核实。",
+    "ja": "翻訳と原文を比較しました。これは本人の確認であり、医学的な検証ではありません。",
+    "vi": "Tôi đã đối chiếu bản dịch với bản gốc. Đây là kiểm tra cá nhân, không phải xác minh y khoa.",
+    "fr": "J’ai comparé la traduction à l’original. Il s’agit d’une vérification personnelle, non médicale."
+  },
+  "Save reviewed translation": {
+    "en": "Save reviewed translation",
+    "ko": "확인한 번역 저장",
+    "zh": "保存核对后的翻译",
+    "ja": "確認した翻訳を保存",
+    "vi": "Lưu bản dịch đã kiểm tra",
+    "fr": "Enregistrer la traduction vérifiée"
+  },
+  "AI is not connected. Your original-language card remains available.": {
+    "en": "AI is not connected. Your original-language card remains available.",
+    "ko": "AI 미연결 상태입니다. 원문 카드는 사용할 수 있습니다.",
+    "zh": "AI未连接。仍可使用原文准备表。",
+    "ja": "AIは未接続です。原文の準備表は利用できます。",
+    "vi": "Chưa kết nối AI. Phiếu ngôn ngữ gốc vẫn dùng được.",
+    "fr": "L’IA n’est pas connectée. Votre fiche originale reste disponible."
+  },
+  "Translate with AI": {
+    "en": "Translate with AI",
+    "ko": "AI로 번역하기",
+    "zh": "使用AI翻译",
+    "ja": "AIで翻訳",
+    "vi": "Dịch bằng AI",
+    "fr": "Traduire avec l’IA"
+  },
+  "Visit preparation chart": {
+    "en": "Visit preparation chart",
+    "ko": "진료 준비 차트",
+    "zh": "就诊准备表",
+    "ja": "受診準備チャート",
+    "vi": "Phiếu chuẩn bị khám",
+    "fr": "Fiche de préparation"
+  },
+  "Patient-reported preparation sheet, not an official medical record. Uses saved information.": {
+    "en": "Patient-reported preparation sheet, not an official medical record. Uses saved information.",
+    "ko": "환자 작성 준비표이며 의료기관 공식 진료기록은 아닙니다. 저장한 내용을 사용합니다.",
+    "zh": "由患者填写的准备表，并非正式病历。使用已保存的信息。",
+    "ja": "患者が記入した準備表で、正式な診療記録ではありません。保存済みの情報を使います。",
+    "vi": "Phiếu do người bệnh khai, không phải bệnh án chính thức. Dùng thông tin đã lưu.",
+    "fr": "Fiche déclarée par le patient, non un dossier médical officiel. Utilise les informations enregistrées."
+  },
+  "Open chart · Export PDF": {
+    "en": "Open chart · Export PDF",
+    "ko": "차트 보기 · PDF 내보내기",
+    "zh": "查看准备表 · 导出PDF",
+    "ja": "チャート表示・PDF出力",
+    "vi": "Xem phiếu · Xuất PDF",
+    "fr": "Voir la fiche · Exporter en PDF"
+  },
+  "Patient-reported visit sheet": {
+    "en": "Patient-reported visit sheet",
+    "ko": "환자 작성 진료 준비표",
+    "zh": "患者填写的就诊准备表",
+    "ja": "患者記入の受診準備表",
+    "vi": "Phiếu khám do người bệnh khai",
+    "fr": "Fiche déclarée par le patient"
+  },
+  "Save / share PDF": {
+    "en": "Save / share PDF",
+    "ko": "PDF 저장 · 공유",
+    "zh": "保存／分享PDF",
+    "ja": "PDFを保存・共有",
+    "vi": "Lưu / chia sẻ PDF",
+    "fr": "Enregistrer / partager le PDF"
+  },
+  "Show large card": {
+    "en": "Show large card",
+    "ko": "큰 글씨로 보여주기",
+    "zh": "大字显示",
+    "ja": "大きな文字で表示",
+    "vi": "Hiện chữ lớn",
+    "fr": "Afficher en grand"
+  },
+  "Copy saved card": {
+    "en": "Copy saved card",
+    "ko": "저장한 카드 복사",
+    "zh": "复制已保存的准备表",
+    "ja": "保存済みの準備表をコピー",
+    "vi": "Sao chép phiếu đã lưu",
+    "fr": "Copier la fiche enregistrée"
+  },
+  "Copied.": {
+    "en": "Copied.",
+    "ko": "복사했습니다.",
+    "zh": "已复制。",
+    "ja": "コピーしました。",
+    "vi": "Đã sao chép.",
+    "fr": "Copié."
+  },
+  "Large view and copy use saved edits. Save changes before sharing.": {
+    "en": "Large view and copy use saved edits. Save changes before sharing.",
+    "ko": "큰 글씨와 복사는 저장한 버전을 사용합니다. 수정 후 먼저 저장하세요.",
+    "zh": "大字显示和复制使用已保存内容。分享前请先保存修改。",
+    "ja": "拡大表示とコピーは保存済みの内容を使います。共有前に変更を保存してください。",
+    "vi": "Hiển thị lớn và sao chép dùng bản đã lưu. Hãy lưu thay đổi trước khi chia sẻ.",
+    "fr": "L’affichage agrandi et la copie utilisent la version enregistrée. Enregistrez vos modifications avant de partager."
+  },
+  "Delete card": {
+    "en": "Delete card",
+    "ko": "카드 삭제",
+    "zh": "删除准备表",
+    "ja": "準備表を削除",
+    "vi": "Xóa phiếu",
+    "fr": "Supprimer la fiche"
+  },
+  "Someone has been there.": {
+    "en": "Someone has been there.",
+    "ko": "먼저 다녀온 친구의 이야기.",
+    "zh": "有人也经历过。",
+    "ja": "同じ経験をした人がいます。",
+    "vi": "Đã có người trải qua như bạn.",
+    "fr": "D’autres sont passés par là."
+  },
+  "Share a visit experience": {
+    "en": "Share a visit experience",
+    "ko": "이용 경험 남기기",
+    "zh": "分享就诊经历",
+    "ja": "受診体験を共有",
+    "vi": "Chia sẻ trải nghiệm khám",
+    "fr": "Partager une expérience de soins"
+  },
+  "Edit experience": {
+    "en": "Edit experience",
+    "ko": "경험 수정",
+    "zh": "编辑经历",
+    "ja": "体験談を編集",
+    "vi": "Sửa trải nghiệm",
+    "fr": "Modifier l’expérience"
+  },
+  "Title": {
+    "en": "Title",
+    "ko": "제목",
+    "zh": "标题",
+    "ja": "タイトル",
+    "vi": "Tiêu đề",
+    "fr": "Titre"
+  },
+  "Clinic, pharmacy or campus service": {
+    "en": "Clinic, pharmacy or campus service",
+    "ko": "병원·약국·교내 기관",
+    "zh": "诊所、药店或校内服务",
+    "ja": "病院・薬局・学内サービス",
+    "vi": "Phòng khám, nhà thuốc hoặc dịch vụ trường",
+    "fr": "Cabinet, pharmacie ou service universitaire"
+  },
+  "Visit date (YYYY-MM-DD)": {
+    "en": "Visit date (YYYY-MM-DD)",
+    "ko": "방문일 (YYYY-MM-DD)",
+    "zh": "就诊日期（YYYY-MM-DD）",
+    "ja": "受診日（YYYY-MM-DD）",
+    "vi": "Ngày khám (YYYY-MM-DD)",
+    "fr": "Date de visite (YYYY-MM-DD)"
+  },
+  "Language used": {
+    "en": "Language used",
+    "ko": "사용한 언어",
+    "zh": "使用的语言",
+    "ja": "使用した言語",
+    "vi": "Ngôn ngữ sử dụng",
+    "fr": "Langue utilisée"
+  },
+  "Communication method": {
+    "en": "Communication method",
+    "ko": "의사소통 방법",
+    "zh": "沟通方式",
+    "ja": "意思疎通の方法",
+    "vi": "Cách giao tiếp",
+    "fr": "Mode de communication"
+  },
+  "Direct conversation": {
+    "en": "Direct conversation",
+    "ko": "직접 대화",
+    "zh": "直接交流",
+    "ja": "直接会話",
+    "vi": "Trao đổi trực tiếp",
+    "fr": "Conversation directe"
+  },
+  "Translation app": {
+    "en": "Translation app",
+    "ko": "번역 앱",
+    "zh": "翻译应用",
+    "ja": "翻訳アプリ",
+    "vi": "Ứng dụng dịch",
+    "fr": "Application de traduction"
+  },
+  "With a friend": {
+    "en": "With a friend",
+    "ko": "친구 도움",
+    "zh": "朋友协助",
+    "ja": "友人と一緒",
+    "vi": "Có bạn hỗ trợ",
+    "fr": "Avec un ami"
+  },
+  "Process, communication and tips": {
+    "en": "Process, communication and tips",
+    "ko": "이용 절차·의사소통·팁",
+    "zh": "流程、沟通及建议",
+    "ja": "手続き・意思疎通・アドバイス",
+    "vi": "Quy trình, giao tiếp và lời khuyên",
+    "fr": "Démarches, communication et conseils"
+  },
+  "This is my experience and I agree to publish it. I removed other people’s private information.": {
+    "en": "This is my experience and I agree to publish it. I removed other people’s private information.",
+    "ko": "직접 겪은 경험 게시에 동의하며 다른 사람의 개인정보를 제외했습니다.",
+    "zh": "这是我的经历，同意公开发布。我已删除他人的隐私信息。",
+    "ja": "自分の体験を公開することに同意します。他人の個人情報は削除しました。",
+    "vi": "Đây là trải nghiệm của tôi và tôi đồng ý công khai. Tôi đã xóa thông tin riêng tư của người khác.",
+    "fr": "C’est mon expérience et j’accepte sa publication. J’ai retiré les informations privées d’autrui."
+  },
+  "Publish": {
+    "en": "Publish",
+    "ko": "게시하기",
+    "zh": "发布",
+    "ja": "公開",
+    "vi": "Đăng",
+    "fr": "Publier"
+  },
+  "Back to community": {
+    "en": "Back to community",
+    "ko": "커뮤니티 목록으로",
+    "zh": "返回社区",
+    "ja": "コミュニティに戻る",
+    "vi": "Về cộng đồng",
+    "fr": "Retour à la communauté"
+  },
+  "One person’s experience on this visit date. Confirm current language support and availability directly.": {
+    "en": "One person’s experience on this visit date. Confirm current language support and availability directly.",
+    "ko": "해당 방문일의 개인 경험입니다. 현재 언어 지원과 운영 상황은 기관에 직접 확인하세요.",
+    "zh": "这是个人在该日期的经历。请直接确认目前的语言服务和接诊情况。",
+    "ja": "その受診日の個人の体験です。現在の言語対応と受診可否は直接確認してください。",
+    "vi": "Đây là trải nghiệm cá nhân tại ngày khám đó. Hãy xác nhận trực tiếp hỗ trợ ngôn ngữ và khả năng tiếp nhận hiện tại.",
+    "fr": "Expérience individuelle à cette date. Confirmez directement les langues proposées et les disponibilités actuelles."
+  },
+  "Edit my experience": {
+    "en": "Edit my experience",
+    "ko": "내 경험 수정",
+    "zh": "编辑我的经历",
+    "ja": "自分の体験談を編集",
+    "vi": "Sửa trải nghiệm của tôi",
+    "fr": "Modifier mon expérience"
+  },
+  "Delete my experience": {
+    "en": "Delete my experience",
+    "ko": "내 경험 삭제",
+    "zh": "删除我的经历",
+    "ja": "自分の体験談を削除",
+    "vi": "Xóa trải nghiệm của tôi",
+    "fr": "Supprimer mon expérience"
+  },
+  "Report this post": {
+    "en": "Report this post",
+    "ko": "게시물 신고",
+    "zh": "举报帖子",
+    "ja": "投稿を報告",
+    "vi": "Báo cáo bài viết",
+    "fr": "Signaler cette publication"
+  },
+  "Questions & conversation": {
+    "en": "Questions & conversation",
+    "ko": "질문과 답변",
+    "zh": "提问与交流",
+    "ja": "質問と会話",
+    "vi": "Hỏi đáp và trao đổi",
+    "fr": "Questions et échanges"
+  },
+  "Delete comment": {
+    "en": "Delete comment",
+    "ko": "댓글 삭제",
+    "zh": "删除评论",
+    "ja": "コメントを削除",
+    "vi": "Xóa bình luận",
+    "fr": "Supprimer le commentaire"
+  },
+  "Ask about reception, language or what to bring": {
+    "en": "Ask about reception, language or what to bring",
+    "ko": "접수·언어·준비물에 관해 질문하기",
+    "zh": "询问挂号、语言或携带物品",
+    "ja": "受付・言語・持ち物について質問",
+    "vi": "Hỏi về đăng ký, ngôn ngữ hoặc đồ cần mang",
+    "fr": "Demander des conseils sur l’accueil, la langue ou les documents"
+  },
+  "Post comment": {
+    "en": "Post comment",
+    "ko": "댓글 등록",
+    "zh": "发表评论",
+    "ja": "コメントを投稿",
+    "vi": "Đăng bình luận",
+    "fr": "Publier le commentaire"
+  },
+  "Search experiences": {
+    "en": "Search experiences",
+    "ko": "이용 경험 검색",
+    "zh": "搜索经历",
+    "ja": "体験談を検索",
+    "vi": "Tìm trải nghiệm",
+    "fr": "Rechercher des expériences"
+  },
+  "All languages": {
+    "en": "All languages",
+    "ko": "전체 언어",
+    "zh": "全部语言",
+    "ja": "すべての言語",
+    "vi": "Mọi ngôn ngữ",
+    "fr": "Toutes les langues"
+  },
+  "Search": {
+    "en": "Search",
+    "ko": "검색",
+    "zh": "搜索",
+    "ja": "検索",
+    "vi": "Tìm kiếm",
+    "fr": "Rechercher"
+  },
+  "No experiences yet. Share your visit to help the next student.": {
+    "en": "No experiences yet. Share your visit to help the next student.",
+    "ko": "아직 이용 경험이 없습니다. 다음 학생을 위해 경험을 나눠주세요.",
+    "zh": "暂无经历。分享您的就诊经历，帮助后来的同学。",
+    "ja": "体験談はまだありません。次の学生のために受診経験を共有しましょう。",
+    "vi": "Chưa có trải nghiệm. Chia sẻ lần khám của bạn để giúp sinh viên khác.",
+    "fr": "Aucune expérience pour le moment. Partagez votre visite pour aider les prochains étudiants."
+  },
+  "Read experience": {
+    "en": "Read experience",
+    "ko": "경험 읽기",
+    "zh": "阅读经历",
+    "ja": "体験談を読む",
+    "vi": "Đọc trải nghiệm",
+    "fr": "Lire l’expérience"
+  },
+  "Report reason": {
+    "en": "Report reason",
+    "ko": "신고 사유",
+    "zh": "举报原因",
+    "ja": "報告理由",
+    "vi": "Lý do báo cáo",
+    "fr": "Motif du signalement"
+  },
+  "Report saved for manual operator review.": {
+    "en": "Report saved for manual operator review.",
+    "ko": "운영자 수동 검토를 위해 신고를 저장했습니다.",
+    "zh": "举报已保存，等待管理员审核。",
+    "ja": "報告を保存しました。運営者が確認します。",
+    "vi": "Đã lưu báo cáo để người quản lý xem xét.",
+    "fr": "Signalement enregistré pour examen par un responsable."
+  },
+  "A little preparation helps.": {
+    "en": "A little preparation helps.",
+    "ko": "방문 전 차근차근 준비해요.",
+    "zh": "提前准备，更安心。",
+    "ja": "少しの準備が役立ちます。",
+    "vi": "Chuẩn bị một chút sẽ hữu ích.",
+    "fr": "Un peu de préparation aide."
+  },
+  "1. Confirm opening hours and language support directly.": {
+    "en": "1. Confirm opening hours and language support directly.",
+    "ko": "1. 운영시간과 언어 지원을 기관에 확인하세요.",
+    "zh": "1. 直接确认营业时间和语言服务。",
+    "ja": "1. 診療時間と言語対応を直接確認しましょう。",
+    "vi": "1. Xác nhận trực tiếp giờ mở cửa và hỗ trợ ngôn ngữ.",
+    "fr": "1. Confirmez directement les horaires et les langues proposées."
+  },
+  "2. Ask what identification and insurance documents to bring.": {
+    "en": "2. Ask what identification and insurance documents to bring.",
+    "ko": "2. 필요한 신분증·보험 서류를 확인하세요.",
+    "zh": "2. 询问需要携带的身份证件和保险材料。",
+    "ja": "2. 必要な身分証と保険書類を確認しましょう。",
+    "vi": "2. Hỏi giấy tờ tùy thân và bảo hiểm cần mang.",
+    "fr": "2. Demandez quelles pièces d’identité et d’assurance apporter."
+  },
+  "3. Prepare symptom onset, allergies and medication.": {
+    "en": "3. Prepare symptom onset, allergies and medication.",
+    "ko": "3. 증상 시작 시점·알레르기·복용약을 준비하세요.",
+    "zh": "3. 整理症状开始时间、过敏和用药信息。",
+    "ja": "3. 症状の開始時期・アレルギー・服薬を整理しましょう。",
+    "vi": "3. Chuẩn bị thời điểm khởi phát, dị ứng và thuốc đang dùng.",
+    "fr": "3. Préparez la date de début des symptômes, les allergies et les traitements."
+  },
+  "4. Compare the translated card with your original before showing it.": {
+    "en": "4. Compare the translated card with your original before showing it.",
+    "ko": "4. 카드를 보여주기 전 원문과 번역을 비교하세요.",
+    "zh": "4. 出示翻译准备表前，请与原文对照。",
+    "ja": "4. 翻訳した準備表は原文と比較してから見せましょう。",
+    "vi": "4. Đối chiếu phiếu dịch với bản gốc trước khi đưa cho nhân viên y tế.",
+    "fr": "4. Comparez la fiche traduite à l’original avant de la montrer."
+  },
+  "Official information about medical services in Korea.": {
+    "en": "Official information about medical services in Korea.",
+    "ko": "한국 의료 이용에 관한 공식 정보",
+    "zh": "韩国医疗服务官方信息。",
+    "ja": "韓国の医療サービスに関する公式情報。",
+    "vi": "Thông tin chính thức về dịch vụ y tế tại Hàn Quốc.",
+    "fr": "Informations officielles sur les soins en Corée."
+  },
+  "Open official website": {
+    "en": "Open official website",
+    "ko": "공식 사이트 열기",
+    "zh": "打开官方网站",
+    "ja": "公式サイトを開く",
+    "vi": "Mở trang chính thức",
+    "fr": "Ouvrir le site officiel"
+  },
+  "Handong University": {
+    "en": "Handong University",
+    "ko": "한동대학교",
+    "zh": "韩东大学",
+    "ja": "韓東大学",
+    "vi": "Đại học Handong",
+    "fr": "Université Handong"
+  },
+  "Find current campus notices and service contact information.": {
+    "en": "Find current campus notices and service contact information.",
+    "ko": "교내 최신 공지와 기관 연락처를 확인하세요.",
+    "zh": "查看最新校内通知和服务联系方式。",
+    "ja": "最新の学内案内と連絡先を確認できます。",
+    "vi": "Xem thông báo mới và thông tin liên hệ của trường.",
+    "fr": "Consultez les annonces et les contacts actuels de l’université."
+  },
+  "Open university website": {
+    "en": "Open university website",
+    "ko": "학교 사이트 열기",
+    "zh": "打开大学网站",
+    "ja": "大学のサイトを開く",
+    "vi": "Mở trang trường đại học",
+    "fr": "Ouvrir le site de l’université"
+  },
+  "The directory uses a dated HIRA snapshot. Confirm opening hours and language support with the clinic.": {
+    "en": "The directory uses a dated HIRA snapshot. Confirm opening hours and language support with the clinic.",
+    "ko": "심평원 기준일 자료를 제공합니다. 운영시간과 외국어 지원은 의료기관에 직접 확인하세요.",
+    "zh": "目录使用特定日期的HIRA数据。请向机构确认营业时间和语言服务。",
+    "ja": "一覧は基準日付きのHIRAデータです。診療時間と言語対応は施設に確認してください。",
+    "vi": "Danh mục dùng dữ liệu HIRA theo ngày. Xác nhận giờ mở cửa và ngôn ngữ với cơ sở.",
+    "fr": "L’annuaire utilise un instantané daté de HIRA. Confirmez les horaires et les langues auprès de l’établissement."
+  },
+  "Check contact phone number (include country code).": {
+    "en": "Check contact phone number (include country code).",
+    "ko": "연락처 전화번호를 확인해 주세요. 해외 번호는 국가번호를 포함해 주세요.",
+    "zh": "请检查电话号码，并包含国家代码。",
+    "ja": "国番号を含めて電話番号を確認してください。",
+    "vi": "Kiểm tra số điện thoại, bao gồm mã quốc gia.",
+    "fr": "Vérifiez le numéro avec l’indicatif du pays."
+  },
+  "Saved privately to your account.": {
+    "en": "Saved privately to your account.",
+    "ko": "내 계정에 비공개로 저장했어요.",
+    "zh": "已私密保存到账号。",
+    "ja": "アカウントに非公開で保存しました。",
+    "vi": "Đã lưu riêng tư vào tài khoản.",
+    "fr": "Enregistré en privé dans votre compte."
+  },
+  "Open on a phone": {
+    "en": "Open on a phone",
+    "ko": "휴대전화에서 이용해 주세요",
+    "zh": "请在手机上打开",
+    "ja": "携帯電話で開く",
+    "vi": "Mở trên điện thoại",
+    "fr": "Ouvrir sur un téléphone"
+  },
+  "Copy": {
+    "en": "Copy",
+    "ko": "복사",
+    "zh": "复制",
+    "ja": "コピー",
+    "vi": "Sao chép",
+    "fr": "Copier"
+  },
+  "Emergency & My information": {
+    "en": "Emergency & My information",
+    "ko": "긴급 연락 · 내 정보",
+    "zh": "紧急求助与个人信息",
+    "ja": "緊急連絡・個人情報",
+    "vi": "Khẩn cấp và thông tin cá nhân",
+    "fr": "Urgence et informations personnelles"
+  },
+  "Emergency calls in Korea": {
+    "en": "Emergency calls in Korea",
+    "ko": "한국 긴급전화",
+    "zh": "韩国紧急电话",
+    "ja": "韓国の緊急電話",
+    "vi": "Số khẩn cấp tại Hàn Quốc",
+    "fr": "Numéros d’urgence en Corée"
+  },
+  "119 · Ambulance / Fire": {
+    "en": "119 · Ambulance / Fire",
+    "ko": "119 · 구급 / 소방",
+    "zh": "119 · 急救／消防",
+    "ja": "119・救急車／消防",
+    "vi": "119 · Cấp cứu / Cứu hỏa",
+    "fr": "119 · Ambulance / Pompiers"
+  },
+  "112 · Police": {
+    "en": "112 · Police",
+    "ko": "112 · 경찰",
+    "zh": "112 · 警察",
+    "ja": "112・警察",
+    "vi": "112 · Cảnh sát",
+    "fr": "112 · Police"
+  },
+  "Opens your phone dialer. Calls are not placed automatically.": {
+    "en": "Opens your phone dialer. Calls are not placed automatically.",
+    "ko": "전화 화면으로 연결돼요. 실제 통화는 휴대전화에서 시작해 주세요.",
+    "zh": "打开手机拨号界面，不会自动拨打。",
+    "ja": "電話の発信画面を開きます。自動発信はしません。",
+    "vi": "Mở trình quay số. Không tự động gọi.",
+    "fr": "Ouvre le composeur téléphonique. Aucun appel automatique."
+  },
+  "Sign in to save your information and family contacts. Emergency calls are available without signing in.": {
+    "en": "Sign in to save your information and family contacts. Emergency calls are available without signing in.",
+    "ko": "기본정보와 가족 연락처는 로그인 후 저장할 수 있어요. 긴급전화는 로그인 없이 이용할 수 있어요.",
+    "zh": "登录后可保存个人信息和家人联系方式。无需登录即可使用紧急拨号。",
+    "ja": "情報や家族の連絡先を保存するにはログインしてください。緊急電話はログイン不要です。",
+    "vi": "Đăng nhập để lưu thông tin và liên hệ gia đình. Gọi khẩn cấp không cần đăng nhập.",
+    "fr": "Connectez-vous pour enregistrer vos informations et contacts familiaux. Les appels d’urgence restent accessibles sans connexion."
+  },
+  "My information in Korea": {
+    "en": "My information in Korea",
+    "ko": "한국에서의 내 정보",
+    "zh": "在韩个人信息",
+    "ja": "韓国での個人情報",
+    "vi": "Thông tin của tôi tại Hàn Quốc",
+    "fr": "Mes informations en Corée"
+  },
+  "Family / trusted contacts (up to 3)": {
+    "en": "Family / trusted contacts (up to 3)",
+    "ko": "가족 · 신뢰하는 연락처 (최대 3명)",
+    "zh": "家人／可信联系人（最多3位）",
+    "ja": "家族・信頼できる連絡先（最大3人）",
+    "vi": "Gia đình / liên hệ tin cậy (tối đa 3)",
+    "fr": "Famille / contacts de confiance (3 maximum)"
+  },
+  "Contact name ${i + 1}": {
+    "en": "Contact name ${i + 1}",
+    "ko": "연락처 이름 ${i + 1}",
+    "zh": "联系人姓名 ${i + 1}",
+    "ja": "連絡先の名前 ${i + 1}",
+    "vi": "Tên liên hệ ${i + 1}",
+    "fr": "Nom du contact ${i + 1}"
+  },
+  "Phone with country code": {
+    "en": "Phone with country code",
+    "ko": "전화번호 (국가번호 포함)",
+    "zh": "含国家代码的电话",
+    "ja": "国番号付き電話番号",
+    "vi": "Số điện thoại kèm mã quốc gia",
+    "fr": "Téléphone avec indicatif du pays"
+  },
+  "Enter a phone number first.": {
+    "en": "Enter a phone number first.",
+    "ko": "전화번호를 먼저 입력해 주세요.",
+    "zh": "请先填写电话号码。",
+    "ja": "先に電話番号を入力してください。",
+    "vi": "Nhập số điện thoại trước.",
+    "fr": "Saisissez d’abord un numéro."
+  },
+  "Prepare SMS": {
+    "en": "Prepare SMS",
+    "ko": "도움 문자 보내기",
+    "zh": "准备短信",
+    "ja": "SMSを作成",
+    "vi": "Soạn SMS",
+    "fr": "Préparer un SMS"
+  },
+  "Call": {
+    "en": "Call",
+    "ko": "전화",
+    "zh": "拨打电话",
+    "ja": "電話",
+    "vi": "Gọi",
+    "fr": "Appeler"
+  },
+  "Save information & contacts": {
+    "en": "Save information & contacts",
+    "ko": "내 정보 · 연락처 저장",
+    "zh": "保存信息和联系人",
+    "ja": "情報と連絡先を保存",
+    "vi": "Lưu thông tin và liên hệ",
+    "fr": "Enregistrer les informations et contacts"
+  },
+  "SMS opens with your message and current form information. Review the recipient and message, then send in your messaging app. Opening it does not mean it was delivered. Location is manually entered; family cannot track you live.": {
+    "en": "SMS opens with your message and current form information. Review the recipient and message, then send in your messaging app. Opening it does not mean it was delivered. Location is manually entered; family cannot track you live.",
+    "ko": "문자 앱에서 수신자와 내용(현재 입력된 정보 포함)을 확인하고 전송해 주세요. 문자 앱을 여는 것만으로 전송·수신이 완료되지 않아요. 위치는 직접 입력하며 실시간 가족 위치 공유는 제공하지 않아요.",
+    "zh": "短信会带入您填写的信息。请在短信应用中核对收件人和内容后自行发送。打开不代表已送达。位置手动填写，家人无法实时追踪。",
+    "ja": "入力内容を含むSMS作成画面を開きます。宛先と内容を確認し、メッセージアプリで送信してください。開くだけでは送信されません。位置は手入力で、家族によるリアルタイム追跡はできません。",
+    "vi": "SMS mở kèm tin nhắn và thông tin trên biểu mẫu. Kiểm tra người nhận, nội dung rồi tự gửi trong ứng dụng nhắn tin. Mở không có nghĩa đã gửi. Vị trí nhập thủ công, gia đình không theo dõi trực tiếp được.",
+    "fr": "Le SMS reprend votre message et le formulaire. Vérifiez destinataire et contenu, puis envoyez depuis la messagerie. L’ouverture ne signifie pas livraison. La position est saisie manuellement, sans suivi en direct par la famille."
+  },
+  "Last saved": {
+    "en": "Last saved",
+    "ko": "마지막 저장",
+    "zh": "最后保存",
+    "ja": "最終保存",
+    "vi": "Lưu lần cuối",
+    "fr": "Dernier enregistrement"
+  },
+  "Distance unavailable": {
+    "en": "Distance unavailable",
+    "ko": "거리 정보 없음",
+    "zh": "无法获取距离",
+    "ja": "距離不明",
+    "vi": "Chưa có khoảng cách",
+    "fr": "Distance indisponible"
+  },
+  "Pharmacy type: unverified in the source data": {
+    "en": "Pharmacy type: unverified in the source data",
+    "ko": "공식 원본에 양약국·한약국 구분 항목이 없습니다.",
+    "zh": "药店类型：原始数据未确认",
+    "ja": "薬局の種別：元データでは未確認",
+    "vi": "Loại nhà thuốc: chưa xác minh trong nguồn",
+    "fr": "Type de pharmacie non vérifié dans la source"
+  },
+  "Department data unavailable": {
+    "en": "Department data unavailable",
+    "ko": "진료과 정보 없음",
+    "zh": "暂无科室数据",
+    "ja": "診療科データなし",
+    "vi": "Chưa có dữ liệu chuyên khoa",
+    "fr": "Données de services indisponibles"
+  },
+  "Registered care": {
+    "en": "Registered care",
+    "ko": "신고 진료과",
+    "zh": "登记诊疗科目",
+    "ja": "登録診療科",
+    "vi": "Chuyên khoa đăng ký",
+    "fr": "Services déclarés"
+  },
+  "specialists": {
+    "en": "specialists",
+    "ko": "전문의",
+    "zh": "专科医生",
+    "ja": "専門医",
+    "vi": "bác sĩ chuyên khoa",
+    "fr": "spécialistes"
+  },
+  "Specialists: none reported in this snapshot": {
+    "en": "Specialists: none reported in this snapshot",
+    "ko": "전문의: 이 자료에 신고된 전문의 없음",
+    "zh": "该数据中未登记专科医生",
+    "ja": "このデータでは専門医の報告なし",
+    "vi": "Dữ liệu này chưa ghi nhận bác sĩ chuyên khoa",
+    "fr": "Aucun spécialiste déclaré dans ces données"
+  },
+  "Reported specialists": {
+    "en": "Reported specialists",
+    "ko": "신고 전문의",
+    "zh": "登记专科医生",
+    "ja": "報告された専門医",
+    "vi": "Bác sĩ chuyên khoa được báo cáo",
+    "fr": "Spécialistes déclarés"
+  },
+  " · expand for more": {
+    "en": " · expand for more",
+    "ko": " · 펼쳐서 더 보기",
+    "zh": " · 展开查看更多",
+    "ja": "・展開して詳細表示",
+    "vi": " · Mở rộng để xem thêm",
+    "fr": " · Développer pour en savoir plus"
+  },
+  "Sorted by straight-line distance. Pohang institutions only.": {
+    "en": "Sorted by straight-line distance. Pohang institutions only.",
+    "ko": "직선거리 가까운 순입니다. 현재 데이터는 포항 의료기관만 포함합니다.",
+    "zh": "按直线距离排序，仅限浦项机构。",
+    "ja": "直線距離順です。浦項の施設のみ。",
+    "vi": "Sắp xếp theo khoảng cách đường thẳng. Chỉ cơ sở tại Pohang.",
+    "fr": "Tri par distance à vol d’oiseau. Établissements de Pohang uniquement."
+  },
+  "Location unavailable. Check permission and location services, or continue searching without it.": {
+    "en": "Location unavailable. Check permission and location services, or continue searching without it.",
+    "ko": "위치를 가져오지 못했어요. 위치 권한과 위치 서비스를 확인하거나 위치 없이 검색하세요.",
+    "zh": "无法获取位置。请检查权限和定位服务，或继续不使用位置搜索。",
+    "ja": "位置を取得できません。権限と位置情報サービスを確認するか、位置なしで検索を続けてください。",
+    "vi": "Không lấy được vị trí. Kiểm tra quyền và dịch vụ vị trí, hoặc tìm kiếm không dùng vị trí.",
+    "fr": "Position indisponible. Vérifiez les autorisations et le service de localisation, ou poursuivez sans localisation."
+  },
+  "Map: up to 50 matching institutions. Zoom out if hospitals are outside the view.": {
+    "en": "Map: up to 50 matching institutions. Zoom out if hospitals are outside the view.",
+    "ko": "지도에는 검색 결과 중 최대 50곳을 표시합니다. 병원이 안 보이면 지도를 축소하세요.",
+    "zh": "地图最多显示50家匹配机构。若未见医院，请缩小地图。",
+    "ja": "地図は最大50施設を表示します。見えない場合は縮小してください。",
+    "vi": "Bản đồ hiển thị tối đa 50 cơ sở phù hợp. Thu nhỏ nếu không thấy bệnh viện.",
+    "fr": "Carte : 50 établissements maximum. Dézoomez si certains sont hors champ."
+  },
+  "Prepare for this visit": {
+    "en": "Prepare for this visit",
+    "ko": "이 병원 방문 준비하기",
+    "zh": "准备到此就诊",
+    "ja": "この施設の受診準備",
+    "vi": "Chuẩn bị khám tại đây",
+    "fr": "Préparer cette visite"
+  },
+  "Directions in Maps": {
+    "en": "Directions in Maps",
+    "ko": "지도 앱에서 길찾기",
+    "zh": "地图路线",
+    "ja": "地図で経路表示",
+    "vi": "Chỉ đường trên bản đồ",
+    "fr": "Itinéraire sur la carte"
+  },
+  "Unable to open on this device.": {
+    "en": "Unable to open on this device.",
+    "ko": "이 기기에서 열 수 없어요.",
+    "zh": "此设备无法打开。",
+    "ja": "この端末では開けません。",
+    "vi": "Không thể mở trên thiết bị này.",
+    "fr": "Impossible d’ouvrir sur cet appareil."
+  },
+  "Mori community experiences": {
+    "en": "Mori community experiences",
+    "ko": "모리 이용자 방문 경험",
+    "zh": "Mori社区就诊经历",
+    "ja": "Moriの受診体験談",
+    "vi": "Trải nghiệm cộng đồng Mori",
+    "fr": "Expériences de la communauté Mori"
+  },
+  "Self-reported experiences, not verified visits or nationality. Match uses the exact institution name. Write an experience in Community using this name.": {
+    "en": "Self-reported experiences, not verified visits or nationality. Match uses the exact institution name. Write an experience in Community using this name.",
+    "ko": "자가 작성 경험이며 방문·국적을 인증하지 않았습니다. 병원명이 정확히 일치하는 글만 표시합니다. 커뮤니티에서 이 병원명으로 경험을 남길 수 있어요.",
+    "zh": "经历由用户自行填写，未核实就诊或国籍。按机构全名匹配，请在社区使用此名称填写经历。",
+    "ja": "本人投稿の体験談で、受診・国籍は未確認です。施設名の完全一致で検索します。投稿にはこの名前を使ってください。",
+    "vi": "Trải nghiệm tự khai, chưa xác minh lần khám hay quốc tịch. Khớp theo tên cơ sở chính xác. Dùng tên này khi viết trong cộng đồng.",
+    "fr": "Expériences autodéclarées, visites et nationalités non vérifiées. Correspondance sur le nom exact de l’établissement. Utilisez ce nom pour publier."
+  },
+  "No experiences yet. We do not generate sample reviews.": {
+    "en": "No experiences yet. We do not generate sample reviews.",
+    "ko": "아직 등록된 경험이 없어요. 가상 후기는 표시하지 않습니다.",
+    "zh": "暂无经历。我们不会生成虚构评价。",
+    "ja": "体験談はまだありません。架空の口コミは作成しません。",
+    "vi": "Chưa có trải nghiệm. Chúng tôi không tạo đánh giá giả.",
+    "fr": "Aucune expérience. Nous ne générons pas d’avis fictifs."
+  },
+  "Find care in Pohang": {
+    "en": "Find care in Pohang",
+    "ko": "포항 의료기관 찾기",
+    "zh": "查找浦项医疗机构",
+    "ja": "浦項の医療機関を探す",
+    "vi": "Tìm cơ sở y tế tại Pohang",
+    "fr": "Trouver des soins à Pohang"
+  },
+  "Official HIRA snapshot · 2026-09-30. Not live availability. Confirm by phone before visiting.": {
+    "en": "Official HIRA snapshot · 2026-09-30. Not live availability. Confirm by phone before visiting.",
+    "ko": "심평원 공식자료 · 2026-09-30 기준. 실시간 진료 가능 정보가 아니에요. 방문 전 전화로 확인하세요.",
+    "zh": "HIRA官方数据截至2026-09-30，非实时接诊信息。前往前请电话确认。",
+    "ja": "HIRA公式データ・2026-09-30時点。リアルタイムの受入状況ではありません。来院前に電話で確認してください。",
+    "vi": "Dữ liệu HIRA chính thức ngày 2026-09-30, không phải tình trạng tiếp nhận trực tiếp. Gọi xác nhận trước khi đến.",
+    "fr": "Données officielles HIRA au 2026-09-30, sans disponibilité en direct. Appelez avant de vous déplacer."
+  },
+  "Medical / dental": {
+    "en": "Medical / dental",
+    "ko": "일반 병원·의원",
+    "zh": "西医／牙科",
+    "ja": "医科・歯科",
+    "vi": "Y khoa / Nha khoa",
+    "fr": "Médecine / Dentaire"
+  },
+  "Korean medicine": {
+    "en": "Korean medicine",
+    "ko": "한의원·한방병원",
+    "zh": "韩医",
+    "ja": "韓方医療",
+    "vi": "Y học cổ truyền Hàn Quốc",
+    "fr": "Médecine traditionnelle coréenne"
+  },
+  "Western pharmacy": {
+    "en": "Western pharmacy",
+    "ko": "양약국",
+    "zh": "西药药店",
+    "ja": "西洋薬の薬局",
+    "vi": "Nhà thuốc tây",
+    "fr": "Pharmacie de médicaments occidentaux"
+  },
+  "Herbal pharmacy": {
+    "en": "Herbal pharmacy",
+    "ko": "한약국",
+    "zh": "韩药药店",
+    "ja": "韓方薬局",
+    "vi": "Nhà thuốc cổ truyền Hàn Quốc",
+    "fr": "Pharmacie de médecine coréenne"
+  },
+  "Pharmacy · unverified": {
+    "en": "Pharmacy · unverified",
+    "ko": "약국·유형 미확인",
+    "zh": "药店 · 类型未确认",
+    "ja": "薬局・種別未確認",
+    "vi": "Nhà thuốc · Chưa rõ loại",
+    "fr": "Pharmacie · Type non vérifié"
+  },
+  "Traditional Korean medicine · shown separately from medical and dental care.": {
+    "en": "Traditional Korean medicine · shown separately from medical and dental care.",
+    "ko": "한국 전통의학 의료기관입니다. 일반 병원·의원과 별도로 표시합니다.",
+    "zh": "韩传统医学 · 与西医、牙科分开显示。",
+    "ja": "韓国の伝統医学・医科や歯科とは別に表示します。",
+    "vi": "Y học cổ truyền Hàn Quốc · Hiển thị riêng với y khoa và nha khoa.",
+    "fr": "Médecine traditionnelle coréenne, présentée séparément des soins médicaux et dentaires."
+  },
+  "The source lists pharmacies without a Western/herbal distinction. Unverified records are kept in the separate unverified category; names are not used to guess.": {
+    "en": "The source lists pharmacies without a Western/herbal distinction. Unverified records are kept in the separate unverified category; names are not used to guess.",
+    "ko": "원본은 약국을 양약국·한약국으로 구분하지 않습니다. 확인 전에는 유형 미확인 탭에 표시하며 상호로 추정하지 않습니다.",
+    "zh": "来源未区分西药和韩药药店。未确认记录单独列出，不根据名称猜测。",
+    "ja": "元データは西洋薬・韓方薬を区別していません。未確認の薬局は別分類とし、名前から推測しません。",
+    "vi": "Nguồn không phân biệt nhà thuốc tây và cổ truyền. Các mục chưa xác minh được tách riêng, không đoán qua tên.",
+    "fr": "La source ne distingue pas les pharmacies occidentales et traditionnelles. Les types non vérifiés restent séparés, sans déduction à partir du nom."
+  },
+  "Find nearby care": {
+    "en": "Find nearby care",
+    "ko": "내 주변 병원 찾기",
+    "zh": "查找附近医疗机构",
+    "ja": "近くの医療機関",
+    "vi": "Tìm cơ sở gần đây",
+    "fr": "Trouver des soins à proximité"
+  },
+  "One-time location, kept on this device. No MORI server or AI sharing.": {
+    "en": "One-time location, kept on this device. No MORI server or AI sharing.",
+    "ko": "위치는 한 번만 읽고 기기 안에서 사용합니다. 서버·AI 전송 없음.",
+    "zh": "单次获取位置，仅保留在设备上，不发送到MORI服务器或AI。",
+    "ja": "位置は一度取得して端末内のみで保持します。MORIサーバーやAIには送りません。",
+    "vi": "Lấy vị trí một lần, giữ trên thiết bị. Không gửi tới máy chủ MORI hay AI.",
+    "fr": "Position ponctuelle conservée sur l’appareil, sans envoi au serveur MORI ni à l’IA."
+  },
+  "Finding location…": {
+    "en": "Finding location…",
+    "ko": "위치 확인 중…",
+    "zh": "正在获取位置…",
+    "ja": "位置を取得中…",
+    "vi": "Đang tìm vị trí…",
+    "fr": "Recherche de la position…"
+  },
+  "Use / refresh my location": {
+    "en": "Use / refresh my location",
+    "ko": "현재 위치로 가까운 순 보기",
+    "zh": "使用／更新我的位置",
+    "ja": "位置を取得・更新",
+    "vi": "Dùng / cập nhật vị trí",
+    "fr": "Utiliser / actualiser ma position"
+  },
+  "Clear location": {
+    "en": "Clear location",
+    "ko": "위치 사용 중단",
+    "zh": "清除位置",
+    "ja": "位置をクリア",
+    "vi": "Xóa vị trí",
+    "fr": "Effacer la position"
+  },
+  "Location accuracy": {
+    "en": "Location accuracy",
+    "ko": "위치 정확도",
+    "zh": "定位精度",
+    "ja": "位置の精度",
+    "vi": "Độ chính xác vị trí",
+    "fr": "Précision de la position"
+  },
+  "Checked": {
+    "en": "Checked",
+    "ko": "확인 시각",
+    "zh": "确认时间",
+    "ja": "確認時刻",
+    "vi": "Đã kiểm tra",
+    "fr": "Vérifié"
+  },
+  "Straight-line distance · confirm opening hours before visiting.": {
+    "en": "Straight-line distance · confirm opening hours before visiting.",
+    "ko": "직선거리 기준 · 방문 전 진료 여부를 확인하세요.",
+    "zh": "直线距离 · 前往前请确认营业时间。",
+    "ja": "直線距離・来院前に診療時間を確認してください。",
+    "vi": "Khoảng cách đường thẳng · Xác nhận giờ trước khi đến.",
+    "fr": "Distance à vol d’oiseau · Confirmez les horaires avant de venir."
+  },
+  "Map: Google Maps. Opening shares the displayed area and IP with Google.": {
+    "en": "Map: Google Maps. Opening shares the displayed area and IP with Google.",
+    "ko": "지도: Google Maps · 열면 표시 지역·IP가 Google에 전달됩니다.",
+    "zh": "地图：Google Maps。打开会向Google提供显示区域和IP地址。",
+    "ja": "地図：Google Maps。開くと表示地域とIPアドレスがGoogleに送られます。",
+    "vi": "Bản đồ Google Maps. Khi mở, vùng hiển thị và IP được chia sẻ với Google.",
+    "fr": "Carte Google Maps. L’ouverture partage la zone affichée et votre IP avec Google."
+  },
+  "Hide map": {
+    "en": "Hide map",
+    "ko": "지도 닫기",
+    "zh": "隐藏地图",
+    "ja": "地図を隠す",
+    "vi": "Ẩn bản đồ",
+    "fr": "Masquer la carte"
+  },
+  "Show hospital map": {
+    "en": "Show hospital map",
+    "ko": "병원 지도 보기",
+    "zh": "显示医院地图",
+    "ja": "病院地図を表示",
+    "vi": "Hiện bản đồ bệnh viện",
+    "fr": "Afficher la carte des établissements"
+  },
+  "Choose a department to explore": {
+    "en": "Choose a department to explore",
+    "ko": "찾아볼 진료과 선택",
+    "zh": "选择要查看的科室",
+    "ja": "診療科を選んで探す",
+    "vi": "Chọn chuyên khoa để tìm",
+    "fr": "Choisir un service à explorer"
+  },
+  "Department names are a navigation aid, not a diagnosis or an assessment of urgency. Ask the clinic if you are unsure.": {
+    "en": "Department names are a navigation aid, not a diagnosis or an assessment of urgency. Ask the clinic if you are unsure.",
+    "ko": "진료과 이름을 이해하고 검색하는 안내입니다. 진단·응급도 판정이 아니며, 확실하지 않으면 의료기관에 문의하세요.",
+    "zh": "科室名称仅辅助查找，不是诊断或紧急程度评估。如不确定，请咨询机构。",
+    "ja": "診療科名は検索の手助けであり、診断や緊急度判定ではありません。迷ったら施設に相談してください。",
+    "vi": "Tên chuyên khoa chỉ hỗ trợ tìm kiếm, không chẩn đoán hay đánh giá khẩn cấp. Hỏi cơ sở nếu chưa rõ.",
+    "fr": "Les noms de services aident à s’orienter, sans diagnostic ni évaluation d’urgence. Demandez à l’établissement en cas de doute."
+  },
+  "Only this department guide supports five languages; other screens remain Korean / English.": {
+    "en": "Only this department guide supports five languages; other screens remain Korean / English.",
+    "ko": "5개 언어는 이 진료과 안내에 적용됩니다. 나머지 화면은 한국어·영어입니다.",
+    "zh": "可通过顶部语言菜单切换应用语言。",
+    "ja": "上部の言語メニューで表示言語を変更できます。",
+    "vi": "Đổi ngôn ngữ ứng dụng bằng menu phía trên.",
+    "fr": "Changez la langue de l’application dans le menu supérieur."
+  },
+  "Hospital / department / area": {
+    "en": "Hospital / department / area",
+    "ko": "병원명 · 진료과 · 동네 검색",
+    "zh": "医院／科室／地区",
+    "ja": "病院・診療科・地域",
+    "vi": "Bệnh viện / chuyên khoa / khu vực",
+    "fr": "Établissement / service / quartier"
+  },
+  "Show all departments": {
+    "en": "Show all departments",
+    "ko": "전체 진료과 보기",
+    "zh": "显示全部科室",
+    "ja": "すべての診療科",
+    "vi": "Hiện tất cả chuyên khoa",
+    "fr": "Afficher tous les services"
+  },
+  "results · nearest first when location is set": {
+    "en": "results · nearest first when location is set",
+    "ko": "곳 · 위치 설정 시 가까운 순",
+    "zh": "个结果 · 定位后按距离排序",
+    "ja": "件・位置設定時は近い順",
+    "vi": "kết quả · Gần nhất trước khi có vị trí",
+    "fr": "résultats · Les plus proches d’abord si la position est définie"
+  },
+  "No verified classifications available yet. See Pharmacy · unverified for source records.": {
+    "en": "No verified classifications available yet. See Pharmacy · unverified for source records.",
+    "ko": "이 유형으로 확인된 자료가 아직 없습니다. 약국·유형 미확인 탭에서 원본 약국 목록을 볼 수 있습니다.",
+    "zh": "暂无已确认的此类药店。请查看“药店·类型未确认”。",
+    "ja": "確認済みの分類はまだありません。「薬局・種別未確認」をご覧ください。",
+    "vi": "Chưa có phân loại đã xác minh. Xem “Nhà thuốc · Chưa rõ loại”.",
+    "fr": "Aucune classification vérifiée. Consultez « Pharmacie · Type non vérifié »."
+  },
+  "No matching institutions.": {
+    "en": "No matching institutions.",
+    "ko": "검색 결과가 없습니다.",
+    "zh": "没有匹配的机构。",
+    "ja": "該当する施設はありません。",
+    "vi": "Không có cơ sở phù hợp.",
+    "fr": "Aucun établissement correspondant."
+  },
+  "doctors": {
+    "en": "doctors",
+    "ko": "의사",
+    "zh": "医生",
+    "ja": "医師",
+    "vi": "bác sĩ",
+    "fr": "médecins"
+  },
+  "Registered departments": {
+    "en": "Registered departments",
+    "ko": "신고 진료과목",
+    "zh": "登记科室",
+    "ja": "登録診療科",
+    "vi": "Chuyên khoa đăng ký",
+    "fr": "Services déclarés"
+  },
+  "reported specialists": {
+    "en": "reported specialists",
+    "ko": "신고 전문의",
+    "zh": "登记专科医生",
+    "ja": "報告された専門医",
+    "vi": "bác sĩ chuyên khoa được báo cáo",
+    "fr": "spécialistes déclarés"
+  },
+  "Parentheses: specialist count. A listed department with 0 specialists is not a specialist qualification.": {
+    "en": "Parentheses: specialist count. A listed department with 0 specialists is not a specialist qualification.",
+    "ko": "괄호는 과목별 전문의 수입니다. 진료과목 표기가 해당 과 전문의 보유를 뜻하지는 않아요.",
+    "zh": "括号内为专科医生人数。科室登记为0名专科医生不代表具有该科专科资质。",
+    "ja": "括弧内は専門医数です。専門医0人の診療科表示は専門医資格を意味しません。",
+    "vi": "Số trong ngoặc là bác sĩ chuyên khoa. Khoa được liệt kê với 0 bác sĩ chuyên khoa không có nghĩa là có chứng chỉ chuyên khoa đó.",
+    "fr": "Les parenthèses indiquent le nombre de spécialistes. Un service déclaré avec 0 spécialiste ne signifie pas une qualification spécialisée."
+  },
+  "General inpatient beds": {
+    "en": "General inpatient beds",
+    "ko": "일반입원실 병상",
+    "zh": "普通住院床位",
+    "ja": "一般入院病床",
+    "vi": "Giường nội trú thông thường",
+    "fr": "Lits d’hospitalisation générale"
+  },
+  "Reported ER beds": {
+    "en": "Reported ER beds",
+    "ko": "신고 응급실 병상",
+    "zh": "登记急诊床位",
+    "ja": "報告された救急病床",
+    "vi": "Giường cấp cứu được báo cáo",
+    "fr": "Lits d’urgence déclarés"
+  },
+  "Language support: unverified. Bed counts do not indicate available beds or emergency acceptance.": {
+    "en": "Language support: unverified. Bed counts do not indicate available beds or emergency acceptance.",
+    "ko": "외국어 지원: 미확인. 병상 수는 빈 병상이나 현재 응급환자 수용 여부가 아닙니다.",
+    "zh": "语言服务未经确认。床位数不代表空床或当前急诊接收情况。",
+    "ja": "言語対応は未確認です。病床数は空床や現在の救急受入れを示しません。",
+    "vi": "Hỗ trợ ngôn ngữ chưa xác minh. Số giường không phản ánh giường trống hay khả năng tiếp nhận cấp cứu hiện tại.",
+    "fr": "Langues disponibles non vérifiées. Le nombre de lits n’indique ni les lits libres ni l’accueil actuel des urgences."
+  },
+  "Google directions": {
+    "en": "Google directions",
+    "ko": "Google 길찾기",
+    "zh": "Google路线",
+    "ja": "Googleで経路",
+    "vi": "Chỉ đường Google",
+    "fr": "Itinéraire Google"
+  },
+  "Google Maps / reviews": {
+    "en": "Google Maps / reviews",
+    "ko": "구글지도 · 후기",
+    "zh": "Google地图／评价",
+    "ja": "Googleマップ・口コミ",
+    "vi": "Google Maps / đánh giá",
+    "fr": "Google Maps / avis"
+  },
+  "Naver Map": {
+    "en": "Naver Map",
+    "ko": "네이버지도",
+    "zh": "Naver地图",
+    "ja": "Naverマップ",
+    "vi": "Bản đồ Naver",
+    "fr": "Carte Naver"
+  },
+  "Kakao Map": {
+    "en": "Kakao Map",
+    "ko": "카카오지도",
+    "zh": "Kakao地图",
+    "ja": "Kakaoマップ",
+    "vi": "Bản đồ Kakao",
+    "fr": "Carte Kakao"
+  },
+  "Mori visit experiences": {
+    "en": "Mori visit experiences",
+    "ko": "모리 방문 경험 보기",
+    "zh": "Mori就诊经历",
+    "ja": "Moriの受診体験",
+    "vi": "Trải nghiệm khám trên Mori",
+    "fr": "Expériences de soins Mori"
+  },
+  "External map reviews open on the provider’s site. We have not imported reviews or verified reviewer nationality.": {
+    "en": "External map reviews open on the provider’s site. We have not imported reviews or verified reviewer nationality.",
+    "ko": "외부 지도에서 후기를 확인합니다. 후기 원문을 수집하지 않았으며 작성자 국적은 확인할 수 없어요.",
+    "zh": "外部评价将在地图服务商网站打开。我们未导入评价，也未核实评价者国籍。",
+    "ja": "外部口コミは地図提供者のサイトで開きます。口コミの取り込みや投稿者の国籍確認は行っていません。",
+    "vi": "Đánh giá ngoài mở trên trang nhà cung cấp bản đồ. Chúng tôi chưa nhập đánh giá hay xác minh quốc tịch người viết.",
+    "fr": "Les avis externes s’ouvrent sur le site du fournisseur. Nous n’importons pas les avis et ne vérifions pas la nationalité des auteurs."
+  },
+  "My friend profile": {
+    "en": "My friend profile",
+    "ko": "친구에게 보이는 내 모리",
+    "zh": "我的好友资料",
+    "ja": "友だち向けプロフィール",
+    "vi": "Hồ sơ bạn bè của tôi",
+    "fr": "Mon profil d’amitié"
+  },
+  "Mori nickname": {
+    "en": "Mori nickname",
+    "ko": "모리 닉네임",
+    "zh": "Mori昵称",
+    "ja": "Moriのニックネーム",
+    "vi": "Biệt danh Mori",
+    "fr": "Pseudonyme Mori"
+  },
+  "Public": {
+    "en": "Public",
+    "ko": "공개",
+    "zh": "公开",
+    "ja": "公開",
+    "vi": "Công khai",
+    "fr": "Public"
+  },
+  "Private": {
+    "en": "Private",
+    "ko": "비공개",
+    "zh": "私密",
+    "ja": "非公開",
+    "vi": "Riêng tư",
+    "fr": "Privé"
+  },
+  "Public: signed-in people see your nickname and recent connection, and may invite you. Private: no discovery or online/status sharing.": {
+    "en": "Public: signed-in people see your nickname and recent connection, and may invite you. Private: no discovery or online/status sharing.",
+    "ko": "공개: 로그인한 이용자가 닉네임·최근 접속을 보고 초대할 수 있어요. 비공개: 발견 목록과 친구의 접속·상태 표시를 숨겨요.",
+    "zh": "公开：已登录用户可查看昵称、近期在线状态并邀请您。私密：不出现在发现列表，不分享在线或健康状态。",
+    "ja": "公開：ログインした人がニックネーム・最近の接続を見て招待できます。非公開：検索表示や接続・状態の共有はしません。",
+    "vi": "Công khai: người đăng nhập thấy biệt danh, kết nối gần đây và có thể mời bạn. Riêng tư: không xuất hiện trong tìm kiếm, không chia sẻ kết nối hay trạng thái.",
+    "fr": "Public : les personnes connectées voient votre pseudonyme et votre connexion récente et peuvent vous inviter. Privé : aucune découverte ni partage de connexion ou d’état."
+  },
+  "Separately share my entered condition with accepted friends": {
+    "en": "Separately share my entered condition with accepted friends",
+    "ko": "수락한 친구에게 입력한 컨디션을 별도로 공유",
+    "zh": "另行选择向已接受的好友分享自填状态",
+    "ja": "承認した友だちに入力した体調を別途共有",
+    "vi": "Chia sẻ riêng tình trạng tự nhập với bạn đã chấp nhận",
+    "fr": "Partager séparément mon état déclaré avec mes amis acceptés"
+  },
+  "This may reveal health information. No journals, medications, watch data or location are shared.": {
+    "en": "This may reveal health information. No journals, medications, watch data or location are shared.",
+    "ko": "건강 상태가 알려질 수 있어요. 건강일지·약·워치 기록·위치는 공유하지 않아요.",
+    "zh": "这可能透露健康信息。不分享日记、用药、手表数据或位置。",
+    "ja": "健康情報が伝わる場合があります。日誌・服薬・ウォッチデータ・位置は共有しません。",
+    "vi": "Điều này có thể tiết lộ thông tin sức khỏe. Không chia sẻ nhật ký, thuốc, dữ liệu đồng hồ hay vị trí.",
+    "fr": "Cela peut révéler des informations de santé. Aucun journal, traitement, donnée de montre ou localisation n’est partagé."
+  },
+  "A short status to share": {
+    "en": "A short status to share",
+    "ko": "친구에게 보여줄 상태 한마디",
+    "zh": "分享简短状态",
+    "ja": "共有する短い近況",
+    "vi": "Trạng thái ngắn để chia sẻ",
+    "fr": "Un court statut à partager"
+  },
+  "Save": {
+    "en": "Save",
+    "ko": "등록 · 저장",
+    "zh": "保存",
+    "ja": "保存",
+    "vi": "Lưu",
+    "fr": "Enregistrer"
+  },
+  "Not shared yet": {
+    "en": "Not shared yet",
+    "ko": "아직 모름",
+    "zh": "尚未分享",
+    "ja": "まだ共有していません",
+    "vi": "Chưa chia sẻ",
+    "fr": "Pas encore partagé"
+  },
+  "Feeling good": {
+    "en": "Feeling good",
+    "ko": "좋아요",
+    "zh": "感觉不错",
+    "ja": "調子が良い",
+    "vi": "Cảm thấy tốt",
+    "fr": "Je me sens bien"
+  },
+  "Having a hard day": {
+    "en": "Having a hard day",
+    "ko": "힘들어요",
+    "zh": "今天有点难熬",
+    "ja": "今日はつらい",
+    "vi": "Hôm nay khá khó khăn",
+    "fr": "Journée difficile"
+  },
+  "My invitation": {
+    "en": "My invitation",
+    "ko": "내 친구 초대장",
+    "zh": "我的邀请",
+    "ja": "自分の招待",
+    "vi": "Lời mời của tôi",
+    "fr": "Mon invitation"
+  },
+  "Share this code with one trusted friend. It expires in 7 days and can be accepted once. Making a new code cancels the previous code.": {
+    "en": "Share this code with one trusted friend. It expires in 7 days and can be accepted once. Making a new code cancels the previous code.",
+    "ko": "믿는 친구 1명에게 이 코드를 전달하세요. 7일간 유효하며 한 번만 수락할 수 있어요. 새 코드를 만들면 이전 코드는 취소됩니다.",
+    "zh": "请将此码分享给一位可信朋友。7天后失效，仅能接受一次。生成新码会取消旧码。",
+    "ja": "信頼できる友人1人に共有してください。有効期限7日、1回のみ使用可能です。新しいコードを作ると古いものは無効になります。",
+    "vi": "Chia sẻ mã với một người bạn tin cậy. Mã hết hạn sau 7 ngày, dùng một lần. Tạo mã mới sẽ hủy mã cũ.",
+    "fr": "Partagez ce code avec un ami de confiance. Valable 7 jours et une seule fois. Un nouveau code annule le précédent."
+  },
+  "Copy code": {
+    "en": "Copy code",
+    "ko": "코드 복사",
+    "zh": "复制邀请码",
+    "ja": "コードをコピー",
+    "vi": "Sao chép mã",
+    "fr": "Copier le code"
+  },
+  "Accept invitation": {
+    "en": "Accept invitation",
+    "ko": "초대 코드로 친구 연결",
+    "zh": "接受邀请",
+    "ja": "招待を受ける",
+    "vi": "Chấp nhận lời mời",
+    "fr": "Accepter l’invitation"
+  },
+  "Invitation code": {
+    "en": "Invitation code",
+    "ko": "초대 코드",
+    "zh": "邀请码",
+    "ja": "招待コード",
+    "vi": "Mã mời",
+    "fr": "Code d’invitation"
+  },
+  "Accept & bind": {
+    "en": "Accept & bind",
+    "ko": "수락 · 친구 연결",
+    "zh": "接受并添加好友",
+    "ja": "承認してつながる",
+    "vi": "Chấp nhận và kết nối",
+    "fr": "Accepter et se lier"
+  },
+  "A little encouragement": {
+    "en": "A little encouragement",
+    "ko": "짧은 응원",
+    "zh": "送上一点鼓励",
+    "ja": "ひとこと応援",
+    "vi": "Một lời động viên",
+    "fr": "Un petit encouragement"
+  },
+  "Up to 20 characters": {
+    "en": "Up to 20 characters",
+    "ko": "20자 이내 한마디",
+    "zh": "最多20个字符",
+    "ja": "20文字以内",
+    "vi": "Tối đa 20 ký tự",
+    "fr": "20 caractères maximum"
+  },
+  "Send": {
+    "en": "Send",
+    "ko": "보내기",
+    "zh": "发送",
+    "ja": "送信",
+    "vi": "Gửi",
+    "fr": "Envoyer"
+  },
+  "Block this person?": {
+    "en": "Block this person?",
+    "ko": "이 친구를 차단할까요?",
+    "zh": "屏蔽此人？",
+    "ja": "この人をブロックしますか？",
+    "vi": "Chặn người này?",
+    "fr": "Bloquer cette personne ?"
+  },
+  "Disconnect this friend?": {
+    "en": "Disconnect this friend?",
+    "ko": "친구 연결을 끊을까요?",
+    "zh": "解除好友关系？",
+    "ja": "友だちとのつながりを解除しますか？",
+    "vi": "Ngắt kết nối bạn này?",
+    "fr": "Retirer cet ami ?"
+  },
+  "Your connection and stored messages between you will be removed.": {
+    "en": "Your connection and stored messages between you will be removed.",
+    "ko": "친구 연결과 두 사람 사이에 저장된 메시지가 삭제됩니다.",
+    "zh": "好友关系及双方保存的消息将被删除。",
+    "ja": "つながりと保存された双方のメッセージが削除されます。",
+    "vi": "Kết nối và tin nhắn đã lưu giữa hai người sẽ bị xóa.",
+    "fr": "Votre lien et les messages enregistrés entre vous seront supprimés."
+  },
+  "Confirm": {
+    "en": "Confirm",
+    "ko": "확인",
+    "zh": "确认",
+    "ja": "確認",
+    "vi": "Xác nhận",
+    "fr": "Confirmer"
+  },
+  "Recently online": {
+    "en": "Recently online",
+    "ko": "최근 접속 중",
+    "zh": "近期在线",
+    "ja": "最近接続あり",
+    "vi": "Gần đây trực tuyến",
+    "fr": "Connexion récente"
+  },
+  "Connection not recently confirmed": {
+    "en": "Connection not recently confirmed",
+    "ko": "최근 접속 확인 안 됨",
+    "zh": "近期未确认在线",
+    "ja": "最近の接続は未確認",
+    "vi": "Chưa xác nhận kết nối gần đây",
+    "fr": "Connexion récente non confirmée"
+  },
+  "Status updated": {
+    "en": "Status updated",
+    "ko": "상태 작성",
+    "zh": "状态更新时间",
+    "ja": "状態の更新",
+    "vi": "Trạng thái đã cập nhật",
+    "fr": "Statut mis à jour"
+  },
+  "Condition is not shared.": {
+    "en": "Condition is not shared.",
+    "ko": "친구가 컨디션을 공유하지 않았어요.",
+    "zh": "未分享身体状态。",
+    "ja": "体調は共有されていません。",
+    "vi": "Chưa chia sẻ tình trạng.",
+    "fr": "État non partagé."
+  },
+  "Send 20-char cheer": {
+    "en": "Send 20-char cheer",
+    "ko": "20자 응원 보내기",
+    "zh": "发送20字内鼓励",
+    "ja": "20文字で応援",
+    "vi": "Gửi động viên 20 ký tự",
+    "fr": "Envoyer un mot de 20 caractères"
+  },
+  "Disconnect": {
+    "en": "Disconnect",
+    "ko": "연결 해제",
+    "zh": "解除好友",
+    "ja": "つながりを解除",
+    "vi": "Ngắt kết nối",
+    "fr": "Retirer le lien"
+  },
+  "Block": {
+    "en": "Block",
+    "ko": "차단",
+    "zh": "屏蔽",
+    "ja": "ブロック",
+    "vi": "Chặn",
+    "fr": "Bloquer"
+  },
+  "Invite friend": {
+    "en": "Invite friend",
+    "ko": "친구 초대장 보내기",
+    "zh": "邀请好友",
+    "ja": "友だちを招待",
+    "vi": "Mời bạn",
+    "fr": "Inviter un ami"
+  },
+  "A small connection. A kind word.": {
+    "en": "A small connection. A kind word.",
+    "ko": "모리로 이어지고, 한마디로 응원해요.",
+    "zh": "小小连接，一句暖心话。",
+    "ja": "小さなつながり、やさしいひとこと。",
+    "vi": "Một kết nối nhỏ, một lời ấm áp.",
+    "fr": "Un petit lien, un mot bienveillant."
+  },
+  "Recent connection = within 90 seconds; refreshed every 30 seconds. Conditions are entered and shared by the person, not diagnosed.": {
+    "en": "Recent connection = within 90 seconds; refreshed every 30 seconds. Conditions are entered and shared by the person, not diagnosed.",
+    "ko": "최근 접속은 90초 내 연결 기준이며 30초마다 갱신돼요. 컨디션은 본인이 입력·공유한 상태이며 진단이 아닙니다.",
+    "zh": "近期在线指90秒内，每30秒更新。身体状态由本人填写和分享，并非诊断。",
+    "ja": "最近の接続は90秒以内、30秒ごとに更新します。体調は本人の入力・共有で、診断ではありません。",
+    "vi": "Kết nối gần đây là trong 90 giây, cập nhật mỗi 30 giây. Tình trạng do người dùng tự nhập và chia sẻ, không phải chẩn đoán.",
+    "fr": "Connexion récente : dans les 90 secondes, actualisée toutes les 30 secondes. L’état est déclaré et partagé par la personne, sans diagnostic."
+  },
+  "Nickname / privacy / condition": {
+    "en": "Nickname / privacy / condition",
+    "ko": "닉네임 · 공개설정 · 내 상태",
+    "zh": "昵称／隐私／状态",
+    "ja": "ニックネーム・公開範囲・体調",
+    "vi": "Biệt danh / riêng tư / tình trạng",
+    "fr": "Pseudonyme / confidentialité / état"
+  },
+  "Create invitation": {
+    "en": "Create invitation",
+    "ko": "초대 코드 만들기",
+    "zh": "创建邀请",
+    "ja": "招待を作成",
+    "vi": "Tạo lời mời",
+    "fr": "Créer une invitation"
+  },
+  "Accept code": {
+    "en": "Accept code",
+    "ko": "초대 코드 수락",
+    "zh": "输入邀请码",
+    "ja": "コードを受け取る",
+    "vi": "Nhập mã mời",
+    "fr": "Saisir un code"
+  },
+  "Revoke my code": {
+    "en": "Revoke my code",
+    "ko": "내 초대 코드 취소",
+    "zh": "撤销邀请码",
+    "ja": "コードを無効化",
+    "vi": "Hủy mã của tôi",
+    "fr": "Révoquer mon code"
+  },
+  "Invitations received": {
+    "en": "Invitations received",
+    "ko": "받은 초대장",
+    "zh": "收到的邀请",
+    "ja": "届いた招待",
+    "vi": "Lời mời đã nhận",
+    "fr": "Invitations reçues"
+  },
+  "No invitations yet.": {
+    "en": "No invitations yet.",
+    "ko": "아직 받은 초대장이 없어요.",
+    "zh": "暂无邀请。",
+    "ja": "招待はまだありません。",
+    "vi": "Chưa có lời mời.",
+    "fr": "Aucune invitation."
+  },
+  "Wants to connect as a friend": {
+    "en": "Wants to connect as a friend",
+    "ko": "친구로 연결하고 싶어 해요",
+    "zh": "希望添加您为好友",
+    "ja": "友だちとしてつながりたいそうです",
+    "vi": "Muốn kết bạn với bạn",
+    "fr": "Souhaite devenir votre ami"
+  },
+  "Accept": {
+    "en": "Accept",
+    "ko": "수락",
+    "zh": "接受",
+    "ja": "承認",
+    "vi": "Chấp nhận",
+    "fr": "Accepter"
+  },
+  "Decline": {
+    "en": "Decline",
+    "ko": "거절",
+    "zh": "拒绝",
+    "ja": "辞退",
+    "vi": "Từ chối",
+    "fr": "Refuser"
+  },
+  "My friends": {
+    "en": "My friends",
+    "ko": "내 친구",
+    "zh": "我的好友",
+    "ja": "友だち",
+    "vi": "Bạn bè của tôi",
+    "fr": "Mes amis"
+  },
+  "Connect after exchanging an invitation.": {
+    "en": "Connect after exchanging an invitation.",
+    "ko": "초대장을 주고받고 수락하면 친구가 연결돼요.",
+    "zh": "交换邀请后即可成为好友。",
+    "ja": "招待を交換してつながりましょう。",
+    "vi": "Kết nối sau khi trao đổi lời mời.",
+    "fr": "Échangez une invitation pour vous lier."
+  },
+  "Public · recently online": {
+    "en": "Public · recently online",
+    "ko": "공개 · 최근 접속한 모리",
+    "zh": "公开 · 近期在线",
+    "ja": "公開・最近接続あり",
+    "vi": "Công khai · Gần đây trực tuyến",
+    "fr": "Public · Connexion récente"
+  },
+  "No public connections to display.": {
+    "en": "No public connections to display.",
+    "ko": "표시할 공개 접속자가 없어요.",
+    "zh": "暂无公开在线用户。",
+    "ja": "表示できる公開の接続はありません。",
+    "vi": "Không có kết nối công khai để hiển thị.",
+    "fr": "Aucune connexion publique à afficher."
+  },
+  "Short messages": {
+    "en": "Short messages",
+    "ko": "주고받은 한마디",
+    "zh": "短消息",
+    "ja": "ひとことメッセージ",
+    "vi": "Tin nhắn ngắn",
+    "fr": "Messages courts"
+  },
+  "No messages yet.": {
+    "en": "No messages yet.",
+    "ko": "아직 주고받은 메시지가 없어요.",
+    "zh": "暂无消息。",
+    "ja": "メッセージはまだありません。",
+    "vi": "Chưa có tin nhắn.",
+    "fr": "Aucun message."
+  },
+  "My little avatar": {
+    "en": "My little avatar",
+    "ko": "나의 작은 분신 만들기",
+    "zh": "我的小分身",
+    "ja": "自分の小さなアバター",
+    "vi": "Nhân vật nhỏ của tôi",
+    "fr": "Mon petit avatar"
+  },
+  "My Mori nickname": {
+    "en": "My Mori nickname",
+    "ko": "내 모리 아바타 닉네임",
+    "zh": "我的Mori昵称",
+    "ja": "自分のMoriの名前",
+    "vi": "Biệt danh Mori của tôi",
+    "fr": "Le nom de mon Mori"
+  },
+  "Sprout": {
+    "en": "Sprout",
+    "ko": "새싹",
+    "zh": "嫩芽",
+    "ja": "芽",
+    "vi": "Mầm cây",
+    "fr": "Pousse"
+  },
+  "Cat": {
+    "en": "Cat",
+    "ko": "고양이",
+    "zh": "猫咪",
+    "ja": "ねこ",
+    "vi": "Mèo",
+    "fr": "Chat"
+  },
+  "Bunny": {
+    "en": "Bunny",
+    "ko": "토끼",
+    "zh": "兔子",
+    "ja": "うさぎ",
+    "vi": "Thỏ",
+    "fr": "Lapin"
+  },
+  "Mint": {
+    "en": "Mint",
+    "ko": "민트",
+    "zh": "薄荷绿",
+    "ja": "ミント",
+    "vi": "Xanh bạc hà",
+    "fr": "Menthe"
+  },
+  "Peach": {
+    "en": "Peach",
+    "ko": "복숭아",
+    "zh": "蜜桃色",
+    "ja": "ピーチ",
+    "vi": "Màu đào",
+    "fr": "Pêche"
+  },
+  "Lavender": {
+    "en": "Lavender",
+    "ko": "라벤더",
+    "zh": "薰衣草色",
+    "ja": "ラベンダー",
+    "vi": "Tím oải hương",
+    "fr": "Lavande"
+  },
+  "Save avatar": {
+    "en": "Save avatar",
+    "ko": "아바타 저장",
+    "zh": "保存分身",
+    "ja": "アバターを保存",
+    "vi": "Lưu nhân vật",
+    "fr": "Enregistrer l’avatar"
+  },
+  "How are you today?": {
+    "en": "How are you today?",
+    "ko": "오늘의 나는 어때?",
+    "zh": "今天感觉怎么样？",
+    "ja": "今日の調子はどう？",
+    "vi": "Hôm nay bạn thế nào?",
+    "fr": "Comment allez-vous aujourd’hui ?"
+  },
+  "Sleep hours": {
+    "en": "Sleep hours",
+    "ko": "수면 시간",
+    "zh": "睡眠小时数",
+    "ja": "睡眠時間",
+    "vi": "Số giờ ngủ",
+    "fr": "Heures de sommeil"
+  },
+  "Enter 0–24 hours": {
+    "en": "Enter 0–24 hours",
+    "ko": "0–24시간을 입력해 주세요",
+    "zh": "请输入0–24小时",
+    "ja": "0～24時間で入力",
+    "vi": "Nhập 0–24 giờ",
+    "fr": "Indiquez 0 à 24 heures"
+  },
+  "What did you have today?": {
+    "en": "What did you have today?",
+    "ko": "오늘 무엇을 먹거나 마셨나요?",
+    "zh": "今天摄入了什么？",
+    "ja": "今日は何を摂りましたか？",
+    "vi": "Hôm nay bạn đã dùng gì?",
+    "fr": "Qu’avez-vous consommé aujourd’hui ?"
+  },
+  "Tap what applies. Unchecked means not recorded, not “none”.": {
+    "en": "Tap what applies. Unchecked means not recorded, not “none”.",
+    "ko": "해당하는 항목을 눌러요. 미선택은 ‘없음’이 아니라 ‘기록 안 함’입니다.",
+    "zh": "点击适用项。未选中表示未记录，不代表“没有”。",
+    "ja": "当てはまるものを選んでください。未選択は未記録であり「なし」ではありません。",
+    "vi": "Chọn mục phù hợp. Không chọn là chưa ghi nhận, không phải “không có”.",
+    "fr": "Choisissez ce qui s’applique. Non coché signifie non renseigné, pas « aucun »."
+  },
+  "Optional: name, amount, time": {
+    "en": "Optional: name, amount, time",
+    "ko": "선택: 이름 · 양 · 시간",
+    "zh": "选填：名称、数量、时间",
+    "ja": "任意：名称・量・時刻",
+    "vi": "Tùy chọn: tên, lượng, thời gian",
+    "fr": "Facultatif : nom, quantité, heure"
+  },
+  "Your body & your day": {
+    "en": "Your body & your day",
+    "ko": "몸 상태와 오늘의 이야기",
+    "zh": "身体与今日感受",
+    "ja": "今日のからだと気持ち",
+    "vi": "Cơ thể và ngày của bạn",
+    "fr": "Votre corps et votre journée"
+  },
+  "Later": {
+    "en": "Later",
+    "ko": "다음에",
+    "zh": "稍后",
+    "ja": "あとで",
+    "vi": "Để sau",
+    "fr": "Plus tard"
+  },
+  "Tell Mori": {
+    "en": "Tell Mori",
+    "ko": "모리에게 알려주기",
+    "zh": "告诉Mori",
+    "ja": "Moriに伝える",
+    "vi": "Kể với Mori",
+    "fr": "Dire à Mori"
+  },
+  "MORI · YOUR LITTLE EVERYDAY FRIEND": {
+    "en": "MORI · YOUR LITTLE EVERYDAY FRIEND",
+    "ko": "MORI · 매일 돌보는 작은 친구",
+    "zh": "MORI · 每天陪伴的小伙伴",
+    "ja": "MORI・毎日をともにする小さな友だち",
+    "vi": "MORI · NGƯỜI BẠN NHỎ MỖI NGÀY",
+    "fr": "MORI · VOTRE PETIT COMPAGNON DU QUOTIDIEN"
+  },
+  "Customize avatar": {
+    "en": "Customize avatar",
+    "ko": "아바타 설정",
+    "zh": "设置分身",
+    "ja": "アバター設定",
+    "vi": "Tùy chỉnh nhân vật",
+    "fr": "Personnaliser l’avatar"
+  },
+  "A little version of you. Let’s check in together.": {
+    "en": "A little version of you. Let’s check in together.",
+    "ko": "포근포근 나의 작은 친구, 오늘도 안녕!",
+    "zh": "小小的你，一起记录今天吧。",
+    "ja": "あなたの小さな分身。今日の調子を教えてね。",
+    "vi": "Một phiên bản nhỏ của bạn. Cùng ghi lại hôm nay nhé.",
+    "fr": "Votre petit double. Faisons le point ensemble."
+  },
+  "Your self-reported condition: $condition": {
+    "en": "Your self-reported condition: $condition",
+    "ko": "직접 기록한 오늘의 컨디션: $condition",
+    "zh": "您自填的状态：$condition",
+    "ja": "自己申告の体調：$condition",
+    "vi": "Tình trạng tự khai: $condition",
+    "fr": "Votre état déclaré : $condition"
+  },
+  "Tell me how you feel today 🌿": {
+    "en": "Tell me how you feel today 🌿",
+    "ko": "똑똑, 오늘의 너는 어때? 🌷",
+    "zh": "告诉我今天的感受吧 🌿",
+    "ja": "今日の気分を教えてね 🌿",
+    "vi": "Kể mình nghe hôm nay bạn thế nào 🌿",
+    "fr": "Dites-moi comment vous allez 🌿"
+  },
+  "A hard day is welcome here, too.": {
+    "en": "A hard day is welcome here, too.",
+    "ko": "힘든 날의 너도 소중해. 천천히 쉬어가자.",
+    "zh": "难熬的日子，也可以来这里。",
+    "ja": "つらい日も、ここに来ていいんだよ。",
+    "vi": "Ngày khó khăn cũng được chào đón ở đây.",
+    "fr": "Les journées difficiles ont aussi leur place ici."
+  },
+  "Thank you for checking in with me!": {
+    "en": "Thank you for checking in with me!",
+    "ko": "오늘도 내 이야기를 들려줘서 고마워!",
+    "zh": "谢谢你来记录今天！",
+    "ja": "今日も教えてくれてありがとう！",
+    "vi": "Cảm ơn bạn đã ghé chia sẻ!",
+    "fr": "Merci d’avoir partagé votre journée !"
+  },
+  "Growing together": {
+    "en": "Growing together",
+    "ko": "함께 자라는 중",
+    "zh": "一起成长",
+    "ja": "一緒に成長中",
+    "vi": "Cùng lớn lên",
+    "fr": "Grandir ensemble"
+  },
+  "days recorded": {
+    "en": "days recorded",
+    "ko": "일의 안부",
+    "zh": "天已记录",
+    "ja": "日分の記録",
+    "vi": "ngày đã ghi",
+    "fr": "jours enregistrés"
+  },
+  "One growth day per date. A level every 3 days, whatever your mood.": {
+    "en": "One growth day per date. A level every 3 days, whatever your mood.",
+    "ko": "날짜당 한 번, 안부 3일마다 한 단계 자라요. 아픈 날에도 똑같이 성장해요.",
+    "zh": "每天最多累计一次成长，每记录3天升一级，无论心情如何。",
+    "ja": "1日につき1回成長。体調に関係なく、記録3日ごとにレベルアップします。",
+    "vi": "Mỗi ngày tính một lần trưởng thành. Tăng cấp sau 3 ngày ghi chép, bất kể tâm trạng.",
+    "fr": "Une journée de croissance par date, un niveau tous les 3 jours enregistrés, quel que soit votre état."
+  },
+  "Recorded today": {
+    "en": "Recorded today",
+    "ko": "오늘 남긴 섭취 기록",
+    "zh": "今天已记录",
+    "ja": "今日は記録済み",
+    "vi": "Đã ghi hôm nay",
+    "fr": "Enregistré aujourd’hui"
+  },
+  "Care for myself today": {
+    "en": "Care for myself today",
+    "ko": "오늘의 나 돌보기",
+    "zh": "记录今天的我",
+    "ja": "今日の自分をいたわる",
+    "vi": "Chăm sóc bản thân hôm nay",
+    "fr": "Prendre soin de moi aujourd’hui"
+  },
+  "Add to today’s story": {
+    "en": "Add to today’s story",
+    "ko": "오늘 이야기 더 남기기",
+    "zh": "补充今天的记录",
+    "ja": "今日の記録に追加",
+    "vi": "Bổ sung chuyện hôm nay",
+    "fr": "Compléter la journée"
+  },
+  "The expression reflects your entries, not a diagnosis. Missing a day never hurts your friend.": {
+    "en": "The expression reflects your entries, not a diagnosis. Missing a day never hurts your friend.",
+    "ko": "표정은 직접 입력한 컨디션을 반영하며 진단이 아니에요. 하루를 건너뛰어도 친구가 아프거나 사라지지 않아요.",
+    "zh": "表情反映您填写的状态，并非诊断。漏记一天不会伤害小伙伴。",
+    "ja": "表情は入力した体調の反映で、診断ではありません。記録を休んでも友だちは傷つきません。",
+    "vi": "Biểu cảm dựa trên dữ liệu bạn nhập, không phải chẩn đoán. Bỏ một ngày không làm bạn nhỏ bị tổn hại.",
+    "fr": "L’expression reflète vos saisies, sans diagnostic. Manquer une journée ne fait jamais de mal à votre compagnon."
+  },
+  "Retry": {
+    "en": "Retry",
+    "ko": "다시 불러오기",
+    "zh": "重试",
+    "ja": "再試行",
+    "vi": "Thử lại",
+    "fr": "Réessayer"
+  },
+  "Connection unavailable": {
+    "en": "Connection unavailable",
+    "ko": "연결을 확인할 수 없어요",
+    "zh": "连接不可用",
+    "ja": "接続できません",
+    "vi": "Không thể kết nối",
+    "fr": "Connexion indisponible"
+  },
+  "Connection unavailable · count unknown": {
+    "en": "Connection unavailable · count unknown",
+    "ko": "연결 끊김 · 접속 수 확인 불가",
+    "zh": "无法连接 · 人数未知",
+    "ja": "接続不可・人数不明",
+    "vi": "Không kết nối được · Chưa rõ số người",
+    "fr": "Connexion indisponible · Nombre inconnu"
+  },
+  "Unable to save": {
+    "en": "Unable to save",
+    "ko": "설정을 저장하지 못했어요",
+    "zh": "无法保存",
+    "ja": "保存できません",
+    "vi": "Không thể lưu",
+    "fr": "Enregistrement impossible"
+  },
+  "My organization & region": {
+    "en": "My organization & region",
+    "ko": "내 소속 · 지역 등록",
+    "zh": "我的学校／单位与地区",
+    "ja": "所属と地域",
+    "vi": "Tổ chức và khu vực của tôi",
+    "fr": "Mon organisation et ma région"
+  },
+  "School": {
+    "en": "School",
+    "ko": "학교",
+    "zh": "学校",
+    "ja": "学校",
+    "vi": "Trường học",
+    "fr": "Établissement scolaire"
+  },
+  "Work": {
+    "en": "Work",
+    "ko": "직장",
+    "zh": "工作单位",
+    "ja": "職場",
+    "vi": "Nơi làm việc",
+    "fr": "Lieu de travail"
+  },
+  "Other": {
+    "en": "Other",
+    "ko": "기타",
+    "zh": "其他",
+    "ja": "その他",
+    "vi": "Khác",
+    "fr": "Autre"
+  },
+  "School / company name": {
+    "en": "School / company name",
+    "ko": "학교 · 회사 이름",
+    "zh": "学校／公司名称",
+    "ja": "学校・会社名",
+    "vi": "Tên trường / công ty",
+    "fr": "Nom de l’école / entreprise"
+  },
+  "Use the full official name": {
+    "en": "Use the full official name",
+    "ko": "예: 한동대학교, 포항공과대학교",
+    "zh": "请填写完整官方名称",
+    "ja": "正式名称を入力",
+    "vi": "Dùng tên chính thức đầy đủ",
+    "fr": "Utilisez le nom officiel complet"
+  },
+  "Area (city / district)": {
+    "en": "Area (city / district)",
+    "ko": "활동 지역 (시 · 구)",
+    "zh": "地区（市／区）",
+    "ja": "地域（市・区）",
+    "vi": "Khu vực (thành phố / quận)",
+    "fr": "Zone (ville / arrondissement)"
+  },
+  "e.g. 포항시 북구": {
+    "en": "e.g. 포항시 북구",
+    "ko": "예: 포항시 북구",
+    "zh": "例：포항시 북구",
+    "ja": "例：포항시 북구",
+    "vi": "Ví dụ: 포항시 북구",
+    "fr": "Ex. : 포항시 북구"
+  },
+  "Use the same organization and area spelling to join the same group. No automatic location tracking.": {
+    "en": "Use the same organization and area spelling to join the same group. No automatic location tracking.",
+    "ko": "같은 소속·지역 이름으로 등록해야 같은 그룹으로 집계돼요. 위치를 자동 추적하지 않습니다.",
+    "zh": "名称与地区拼写一致才会归入同组。不自动追踪位置。",
+    "ja": "所属・地域名を同じ表記にすると同じグループになります。自動位置追跡はありません。",
+    "vi": "Dùng cùng cách viết tổ chức và khu vực để vào cùng nhóm. Không tự động theo dõi vị trí.",
+    "fr": "Utilisez la même orthographe d’organisation et de zone pour rejoindre le même groupe. Aucun suivi automatique de position."
+  },
+  "Include my connection in counts": {
+    "en": "Include my connection in counts",
+    "ko": "내 접속을 그룹 집계에 포함",
+    "zh": "将我的在线状态计入人数",
+    "ja": "接続人数に自分を含める",
+    "vi": "Tính kết nối của tôi vào tổng số",
+    "fr": "Inclure ma connexion dans le total"
+  },
+  "Enter an organization or area.": {
+    "en": "Enter an organization or area.",
+    "ko": "소속 또는 지역을 입력해 주세요.",
+    "zh": "请输入所属单位或地区。",
+    "ja": "所属または地域を入力してください。",
+    "vi": "Nhập tổ chức hoặc khu vực.",
+    "fr": "Indiquez une organisation ou une zone."
+  },
+  "Community · checking connections": {
+    "en": "Community · checking connections",
+    "ko": "커뮤니티 · 접속 확인 중",
+    "zh": "社区 · 正在查看在线人数",
+    "ja": "コミュニティ・接続を確認中",
+    "vi": "Cộng đồng · Đang kiểm tra kết nối",
+    "fr": "Communauté · Vérification des connexions"
+  },
+  "Community · recently online": {
+    "en": "Community · recently online",
+    "ko": "커뮤니티 · 최근 접속",
+    "zh": "社区 · 近期在线",
+    "ja": "コミュニティ・最近接続あり",
+    "vi": "Cộng đồng · Gần đây trực tuyến",
+    "fr": "Communauté · Connexions récentes"
+  },
+  "people": {
+    "en": "people",
+    "ko": "명",
+    "zh": "人",
+    "ja": "人",
+    "vi": "người",
+    "fr": "personnes"
+  },
+  "Refresh": {
+    "en": "Refresh",
+    "ko": "새로고침",
+    "zh": "刷新",
+    "ja": "更新",
+    "vi": "Làm mới",
+    "fr": "Actualiser"
+  },
+  "Self-declared · active within 90 seconds · one per account. No enrollment or employment verification.": {
+    "en": "Self-declared · active within 90 seconds · one per account. No enrollment or employment verification.",
+    "ko": "직접 등록한 소속 · 최근 90초 내 연결 · 계정당 1명. 재학·재직 인증은 아닙니다.",
+    "zh": "自行登记 · 90秒内活跃 · 每账号计1人。不代表已验证学籍或在职。",
+    "ja": "自己申告・90秒以内の接続・1アカウント1人。在学・在職の確認ではありません。",
+    "vi": "Tự khai · Hoạt động trong 90 giây · Một người mỗi tài khoản. Không xác minh tình trạng sinh viên hay việc làm.",
+    "fr": "Autodéclaré · Actif dans les 90 secondes · Un par compte. Aucune vérification de scolarité ou d’emploi."
+  },
+  "online": {
+    "en": "online",
+    "ko": "명 접속",
+    "zh": "在线",
+    "ja": "接続中",
+    "vi": "trực tuyến",
+    "fr": "en ligne"
+  },
+  "Register school / workplace / area": {
+    "en": "Register school / workplace / area",
+    "ko": "내 학교 · 직장 · 지역 등록",
+    "zh": "登记学校／单位／地区",
+    "ja": "学校・職場・地域を登録",
+    "vi": "Đăng ký trường / nơi làm việc / khu vực",
+    "fr": "Renseigner école / travail / zone"
+  },
+  "Include me in my groups": {
+    "en": "Include me in my groups",
+    "ko": "내 그룹 접속 수에 포함",
+    "zh": "将我计入所属组在线人数",
+    "ja": "グループの人数に自分を含める",
+    "vi": "Tính tôi vào nhóm của mình",
+    "fr": "M’inclure dans mes groupes"
+  },
+  "Only aggregate counts are shared; no health information or member list.": {
+    "en": "Only aggregate counts are shared; no health information or member list.",
+    "ko": "총계만 공유하며 닉네임·건강정보·접속자 명단은 공개하지 않아요.",
+    "zh": "只分享汇总人数，不分享健康信息或成员名单。",
+    "ja": "集計人数のみ共有し、健康情報や名簿は公開しません。",
+    "vi": "Chỉ chia sẻ tổng số, không chia sẻ thông tin sức khỏe hay danh sách thành viên.",
+    "fr": "Seuls les totaux sont partagés, sans données de santé ni liste de membres."
+  },
+  "You are included.": {
+    "en": "You are included.",
+    "ko": "나도 포함된 숫자예요.",
+    "zh": "您已计入。",
+    "ja": "集計に含まれています。",
+    "vi": "Bạn đã được tính vào.",
+    "fr": "Vous êtes inclus."
+  },
+  "Permission flow was not completed. Check OS settings.": {
+    "en": "Permission flow was not completed. Check OS settings.",
+    "ko": "권한 요청을 완료하지 못했어요. OS 설정을 확인하세요.",
+    "zh": "权限流程未完成，请检查系统设置。",
+    "ja": "権限設定が完了していません。OS設定を確認してください。",
+    "vi": "Chưa hoàn tất cấp quyền. Kiểm tra cài đặt hệ điều hành.",
+    "fr": "Autorisations non finalisées. Vérifiez les réglages du système."
+  },
+  "No readable records. Permission, missing data, or sync delay may be the cause.": {
+    "en": "No readable records. Permission, missing data, or sync delay may be the cause.",
+    "ko": "읽을 수 있는 기록이 없어요. 권한·기록 유무·동기화 지연을 확인하세요.",
+    "zh": "没有可读取记录，可能是权限、数据缺失或同步延迟。",
+    "ja": "読み取れる記録がありません。権限・データ不足・同期遅延の可能性があります。",
+    "vi": "Không có dữ liệu đọc được. Có thể do quyền, thiếu dữ liệu hoặc chậm đồng bộ.",
+    "fr": "Aucun enregistrement lisible : autorisations, données absentes ou retard de synchronisation possibles."
+  },
+  "Records loaded. This is not a live watch connection.": {
+    "en": "Records loaded. This is not a live watch connection.",
+    "ko": "기록을 읽었어요. 실시간 워치 연결은 아닙니다.",
+    "zh": "记录已加载，并非手表实时连接。",
+    "ja": "記録を読み込みました。ウォッチとのリアルタイム接続ではありません。",
+    "vi": "Đã tải dữ liệu. Đây không phải kết nối đồng hồ trực tiếp.",
+    "fr": "Données chargées. Ce n’est pas une connexion en direct à la montre."
+  },
+  "Unable to read. Check Health/Health Connect availability, permissions and sync.": {
+    "en": "Unable to read. Check Health/Health Connect availability, permissions and sync.",
+    "ko": "읽지 못했어요. 건강 앱/Health Connect 설치·권한·동기화를 확인하세요.",
+    "zh": "无法读取，请检查Health／Health Connect、权限和同步。",
+    "ja": "読み取れません。ヘルスケア／Health Connectの利用状況・権限・同期を確認してください。",
+    "vi": "Không đọc được. Kiểm tra Health / Health Connect, quyền và đồng bộ.",
+    "fr": "Lecture impossible. Vérifiez Santé / Health Connect, les autorisations et la synchronisation."
+  },
+  "Reading stopped. Revoke remaining OS permission in Health / Health Connect settings.": {
+    "en": "Reading stopped. Revoke remaining OS permission in Health / Health Connect settings.",
+    "ko": "읽기를 중단했어요. OS 권한도 해제하려면 건강 앱/Health Connect 설정에서 모리를 끄세요.",
+    "zh": "已停止读取。请在Health／Health Connect设置中撤销剩余系统权限。",
+    "ja": "読み取りを停止しました。残るOS権限はヘルスケア／Health Connect設定で取り消してください。",
+    "vi": "Đã dừng đọc. Thu hồi quyền còn lại trong cài đặt Health / Health Connect.",
+    "fr": "Lecture arrêtée. Révoquez les autorisations restantes dans Santé / Health Connect."
+  },
+  "Watch data & permissions": {
+    "en": "Watch data & permissions",
+    "ko": "워치 데이터 · 동의 · 권한",
+    "zh": "手表数据与权限",
+    "ja": "ウォッチデータと権限",
+    "vi": "Dữ liệu đồng hồ và quyền",
+    "fr": "Données de montre et autorisations"
+  },
+  "Read phone-synced health records": {
+    "en": "Read phone-synced health records",
+    "ko": "휴대전화에 동기화된 건강 기록 읽기",
+    "zh": "读取已同步至手机的健康记录",
+    "ja": "スマホに同期した健康記録を読む",
+    "vi": "Đọc dữ liệu sức khỏe đã đồng bộ vào điện thoại",
+    "fr": "Lire les données de santé synchronisées sur le téléphone"
+  },
+  "Apple Watch → Apple Health → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori": {
+    "en": "Apple Watch → Apple Health → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori",
+    "ko": "Apple Watch → iPhone 건강 앱 → 모리\nGalaxy Watch → Samsung Health → Health Connect → 모리",
+    "zh": "Apple Watch → Apple健康 → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori",
+    "ja": "Apple Watch → Appleヘルスケア → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori",
+    "vi": "Apple Watch → Apple Health → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori",
+    "fr": "Apple Watch → Apple Santé → Mori\nGalaxy Watch → Samsung Health → Health Connect → Mori"
+  },
+  "Web preview cannot access HealthKit or Health Connect. Use the native iOS/Android app.": {
+    "en": "Web preview cannot access HealthKit or Health Connect. Use the native iOS/Android app.",
+    "ko": "웹 미리보기에서는 건강 데이터를 읽을 수 없어요. iOS/Android 앱에서 이용하세요.",
+    "zh": "网页版无法访问HealthKit或Health Connect，请使用iOS／Android原生应用。",
+    "ja": "Web版ではHealthKit・Health Connectを利用できません。iOS／Androidアプリを使ってください。",
+    "vi": "Bản web không truy cập HealthKit hay Health Connect. Hãy dùng ứng dụng iOS/Android.",
+    "fr": "La version web ne peut accéder à HealthKit ou Health Connect. Utilisez l’application iOS/Android."
+  },
+  "Optional: consent to the described collection and use": {
+    "en": "Optional: consent to the described collection and use",
+    "ko": "[선택] 위 목적·항목·보유기간의 수집·이용에 동의",
+    "zh": "可选：同意所说明的数据收集和使用",
+    "ja": "任意：説明された収集・利用に同意",
+    "vi": "Tùy chọn: đồng ý thu thập và sử dụng như mô tả",
+    "fr": "Facultatif : consentir à la collecte et à l’utilisation décrites"
+  },
+  "Separate optional consent: processing sensitive health information": {
+    "en": "Separate optional consent: processing sensitive health information",
+    "ko": "[별도 선택] 심박수·수면 등 민감한 건강정보 처리에 동의",
+    "zh": "单独可选同意：处理敏感健康信息",
+    "ja": "別途任意の同意：機微な健康情報の処理",
+    "vi": "Đồng ý riêng, tùy chọn: xử lý thông tin sức khỏe nhạy cảm",
+    "fr": "Consentement facultatif distinct : traitement des données de santé sensibles"
+  },
+  "Choose data to read. No write, location, contacts, Bluetooth scan, accessibility control or background permission is requested.": {
+    "en": "Choose data to read. No write, location, contacts, Bluetooth scan, accessibility control or background permission is requested.",
+    "ko": "읽을 항목을 선택해 주세요. 쓰기·위치·연락처·블루투스 검색·접근성 제어·백그라운드 권한은 요청하지 않아요.",
+    "zh": "选择读取的数据。不请求写入、位置、联系人、蓝牙扫描、辅助控制或后台权限。",
+    "ja": "読み取るデータを選択します。書き込み・位置・連絡先・Bluetooth検索・アクセシビリティ制御・バックグラウンド権限は求めません。",
+    "vi": "Chọn dữ liệu để đọc. Không yêu cầu ghi, vị trí, danh bạ, quét Bluetooth, điều khiển trợ năng hay quyền chạy nền.",
+    "fr": "Choisissez les données à lire. Aucun accès en écriture, position, contacts, scan Bluetooth, contrôle d’accessibilité ou arrière-plan n’est demandé."
+  },
+  "Heart rate": {
+    "en": "Heart rate",
+    "ko": "심박수",
+    "zh": "心率",
+    "ja": "心拍数",
+    "vi": "Nhịp tim",
+    "fr": "Fréquence cardiaque"
+  },
+  "Sleep intervals": {
+    "en": "Sleep intervals",
+    "ko": "수면 구간",
+    "zh": "睡眠时段",
+    "ja": "睡眠時間帯",
+    "vi": "Khoảng thời gian ngủ",
+    "fr": "Périodes de sommeil"
+  },
+  "Reading…": {
+    "en": "Reading…",
+    "ko": "읽는 중…",
+    "zh": "正在读取…",
+    "ja": "読み取り中…",
+    "vi": "Đang đọc…",
+    "fr": "Lecture…"
+  },
+  "Request OS permission & read last 24h": {
+    "en": "Request OS permission & read last 24h",
+    "ko": "OS 권한 요청 · 최근 24시간 읽기",
+    "zh": "申请系统权限并读取最近24小时",
+    "ja": "OS権限を要求して直近24時間を読む",
+    "vi": "Xin quyền hệ thống và đọc 24 giờ qua",
+    "fr": "Demander l’autorisation et lire les dernières 24 h"
+  },
+  "Stop reading & clear view data": {
+    "en": "Stop reading & clear view data",
+    "ko": "읽기 중단 · 화면 데이터 지우기",
+    "zh": "停止读取并清除显示数据",
+    "ja": "読み取り停止・表示データ消去",
+    "vi": "Dừng đọc và xóa dữ liệu hiển thị",
+    "fr": "Arrêter la lecture et effacer les données affichées"
+  },
+  "iPhone: Health app → sharing/privacy → apps → Mori. Android: Settings → Health Connect → app permissions → Mori. Menu names vary by OS. Android also needs Samsung Health → Health Connect sync enabled.": {
+    "en": "iPhone: Health app → sharing/privacy → apps → Mori. Android: Settings → Health Connect → app permissions → Mori. Menu names vary by OS. Android also needs Samsung Health → Health Connect sync enabled.",
+    "ko": "iPhone: 건강 앱 → 공유/개인정보 → 앱 → 모리. Android: 설정 → Health Connect → 앱 권한 → 모리. OS별 메뉴명은 다를 수 있어요. 갤럭시는 Samsung Health의 Health Connect 동기화도 켜야 합니다.",
+    "zh": "iPhone：健康→共享／隐私→应用→Mori。Android：设置→Health Connect→应用权限→Mori。菜单随系统版本而异。Android还需开启Samsung Health→Health Connect同步。",
+    "ja": "iPhone：ヘルスケア→共有／プライバシー→アプリ→Mori。Android：設定→Health Connect→アプリ権限→Mori。OSで名称が異なります。AndroidはSamsung HealthからHealth Connectへの同期も必要です。",
+    "vi": "iPhone: Health → chia sẻ/quyền riêng tư → ứng dụng → Mori. Android: Cài đặt → Health Connect → quyền ứng dụng → Mori. Tên menu tùy hệ điều hành. Android cần bật đồng bộ Samsung Health → Health Connect.",
+    "fr": "iPhone : Santé → partage/confidentialité → apps → Mori. Android : Réglages → Health Connect → autorisations → Mori. Les menus varient selon le système. Activez aussi la synchronisation Samsung Health → Health Connect sur Android."
+  },
+  "Last read": {
+    "en": "Last read",
+    "ko": "마지막 조회",
+    "zh": "最后读取",
+    "ja": "最終読み取り",
+    "vi": "Đọc lần cuối",
+    "fr": "Dernière lecture"
+  },
+  "records (up to 500 retained in this view)": {
+    "en": "records (up to 500 retained in this view)",
+    "ko": "개 기록 (화면 내 최대 500개)",
+    "zh": "条记录（此界面最多保留500条）",
+    "ja": "件（この画面で最大500件保持）",
+    "vi": "bản ghi (giữ tối đa 500 trong màn hình này)",
+    "fr": "enregistrements (500 maximum dans cette vue)"
+  },
+  "Source": {
+    "en": "Source",
+    "ko": "출처",
+    "zh": "来源",
+    "ja": "出典",
+    "vi": "Nguồn",
+    "fr": "Source"
+  },
+  "No sample records are fabricated. Empty or denied access never becomes “normal”. Permission is requested again after reopening this prototype screen.": {
+    "en": "No sample records are fabricated. Empty or denied access never becomes “normal”. Permission is requested again after reopening this prototype screen.",
+    "ko": "가상 생체기록은 만들지 않습니다. 자료 없음이나 권한 거부를 ‘정상’으로 표시하지 않아요. 이 시제품은 화면을 다시 열 때 동의를 다시 받습니다.",
+    "zh": "不生成虚构数据。无数据或拒绝权限不代表“正常”。重新打开此原型界面时会再次请求权限。",
+    "ja": "架空の記録は作りません。データなし・拒否を「正常」とは扱いません。この試作画面を開き直すと再度権限を確認します。",
+    "vi": "Không tạo dữ liệu giả. Thiếu dữ liệu hay bị từ chối không được coi là “bình thường”. Mở lại màn hình thử nghiệm sẽ xin quyền lại.",
+    "fr": "Aucune donnée fictive n’est fabriquée. Absence ou refus d’accès ne signifie jamais « normal ». Ce prototype redemande l’autorisation à la réouverture."
+  },
+  "e.g. Vitamin C 500 mg at 9 AM": {
+    "en": "e.g. Vitamin C 500 mg at 9 AM",
+    "ko": "예: 비타민 C 500mg 오전 9시",
+    "zh": "例：上午9点维生素C 500 mg",
+    "ja": "例：午前9時にビタミンC 500 mg",
+    "vi": "Ví dụ: vitamin C 500 mg lúc 9 giờ",
+    "fr": "Ex. : vitamine C 500 mg à 9 h"
+  },
+  "Language changed for this session; could not save preference.": {
+    "en": "Language changed for this session; could not save preference.",
+    "ko": "이번 실행의 언어는 바뀌었지만 설정을 저장하지 못했어요.",
+    "zh": "本次语言已切换，但无法保存偏好。",
+    "ja": "言語を変更しましたが、設定を保存できませんでした。",
+    "vi": "Đã đổi ngôn ngữ cho phiên này nhưng chưa lưu được tùy chọn.",
+    "fr": "Langue modifiée pour cette session, mais préférence non enregistrée."
+  },
+  "Romanized reading (approx.)": {
+    "en": "Romanized reading (approx.)",
+    "ko": "한국어 이름 읽기 (로마자·참고용)",
+    "zh": "韩语读音参考（罗马字）",
+    "ja": "韓国語の読み方（ローマ字・目安）",
+    "vi": "Cách đọc tiếng Hàn (La-tinh, gần đúng)",
+    "fr": "Lecture coréenne (romanisation approximative)"
+  },
+  "Full name": {
+    "en": "Full name",
+    "ko": "이름",
+    "zh": "姓名",
+    "ja": "氏名",
+    "vi": "Họ và tên",
+    "fr": "Nom complet"
+  },
+  "Nationality": {
+    "en": "Nationality",
+    "ko": "국적",
+    "zh": "国籍",
+    "ja": "国籍",
+    "vi": "Quốc tịch",
+    "fr": "Nationalité"
+  },
+  "School or company in Korea": {
+    "en": "School or company in Korea",
+    "ko": "한국 학교·회사",
+    "zh": "在韩国的学校或公司",
+    "ja": "韓国の学校・会社",
+    "vi": "Trường hoặc công ty tại Hàn Quốc",
+    "fr": "École ou entreprise en Corée"
+  },
+  "Home address in Korea": {
+    "en": "Home address in Korea",
+    "ko": "한국 거주 주소",
+    "zh": "在韩国的住址",
+    "ja": "韓国の住所",
+    "vi": "Địa chỉ tại Hàn Quốc",
+    "fr": "Adresse en Corée"
+  },
+  "Current location (manual)": {
+    "en": "Current location (manual)",
+    "ko": "현재 위치 (직접 입력)",
+    "zh": "当前位置（手动输入）",
+    "ja": "現在地（手入力）",
+    "vi": "Vị trí hiện tại (nhập thủ công)",
+    "fr": "Position actuelle (saisie manuelle)"
+  },
+  "What I am doing": {
+    "en": "What I am doing",
+    "ko": "현재 활동",
+    "zh": "当前活动",
+    "ja": "現在の活動",
+    "vi": "Tôi đang làm gì",
+    "fr": "Mon activité actuelle"
+  },
+  "Where / how I feel unwell": {
+    "en": "Where / how I feel unwell",
+    "ko": "아픈 부위·증상",
+    "zh": "不适部位和症状",
+    "ja": "不調の部位・症状",
+    "vi": "Vị trí và triệu chứng khó chịu",
+    "fr": "Zone et nature de mon malaise"
+  },
+  "Saved help message": {
+    "en": "Saved help message",
+    "ko": "미리 작성한 도움 메시지",
+    "zh": "预设求助信息",
+    "ja": "事前に書く救援メッセージ",
+    "vi": "Tin nhắn nhờ giúp đã soạn",
+    "fr": "Message d’aide préparé"
+  },
+  "I need help. Please call me as soon as possible.": {
+    "en": "I need help. Please call me as soon as possible.",
+    "ko": "도움이 필요해요. 바로 전화해 주세요.",
+    "zh": "我需要帮助，请尽快给我打电话。",
+    "ja": "助けが必要です。できるだけ早く電話してください。",
+    "vi": "Tôi cần giúp đỡ. Hãy gọi cho tôi sớm nhất có thể.",
+    "fr": "J’ai besoin d’aide. Appelez-moi dès que possible."
+  },
+  "Alcohol": {
+    "en": "Alcohol",
+    "ko": "술",
+    "zh": "酒精",
+    "ja": "お酒",
+    "vi": "Rượu bia",
+    "fr": "Alcool"
+  },
+  "Vitamin C": {
+    "en": "Vitamin C",
+    "ko": "비타민 C",
+    "zh": "维生素C",
+    "ja": "ビタミンC",
+    "vi": "Vitamin C",
+    "fr": "Vitamine C"
+  },
+  "Supplement": {
+    "en": "Supplement",
+    "ko": "영양제",
+    "zh": "营养补充剂",
+    "ja": "サプリメント",
+    "vi": "Thực phẩm bổ sung",
+    "fr": "Complément alimentaire"
+  },
+  "You did great today!": {
+    "en": "You did great today!",
+    "ko": "오늘 고생했어!",
+    "zh": "今天辛苦了！",
+    "ja": "今日もおつかれさま！",
+    "vi": "Hôm nay giỏi lắm!",
+    "fr": "Bravo pour ce jour !"
+  },
+  "Here for you!": {
+    "en": "Here for you!",
+    "ko": "늘 응원해!",
+    "zh": "我支持你！",
+    "ja": "いつも応援してるよ！",
+    "vi": "Luôn bên bạn!",
+    "fr": "Je suis là !"
+  },
+  "Take your time.": {
+    "en": "Take your time.",
+    "ko": "천천히 해도 돼.",
+    "zh": "慢慢来。",
+    "ja": "無理しないでね。",
+    "vi": "Cứ từ từ nhé.",
+    "fr": "Prenez votre temps."
+  },
+  "Open Google Maps for now. The in-app map connection is being prepared.": {
+    "en": "Open Google Maps for now. The in-app map connection is being prepared.",
+    "ko": "Google 지도는 외부 앱에서 이용할 수 있어요. 앱 안 지도는 연결 준비 중입니다.",
+    "zh": "暂时请使用外部Google地图。应用内地图正在准备连接。",
+    "ja": "現在は外部のGoogleマップをご利用ください。アプリ内地図は接続準備中です。",
+    "vi": "Tạm dùng Google Maps bên ngoài. Bản đồ trong ứng dụng đang được chuẩn bị.",
+    "fr": "Utilisez Google Maps pour le moment. La carte intégrée est en préparation."
+  },
+  "Open Google Maps": {
+    "en": "Open Google Maps",
+    "ko": "Google 지도 열기",
+    "zh": "打开Google地图",
+    "ja": "Googleマップを開く",
+    "vi": "Mở Google Maps",
+    "fr": "Ouvrir Google Maps"
+  },
+  "My location": {
+    "en": "My location",
+    "ko": "내 위치",
+    "zh": "我的位置",
+    "ja": "現在地",
+    "vi": "Vị trí của tôi",
+    "fr": "Ma position"
+  },
+  "Explore care by body area": {
+    "en": "Explore care by body area",
+    "ko": "어느 부위를 찾고 있나요?",
+    "zh": "按身体部位查找",
+    "ja": "部位から診療科を探す",
+    "vi": "Tìm theo bộ phận cơ thể",
+    "fr": "Explorer par zone du corps"
+  },
+  "Explore departments by picture. Not a diagnosis or urgency assessment.": {
+    "en": "Explore departments by picture. Not a diagnosis or urgency assessment.",
+    "ko": "그림으로 관련 진료과를 탐색해요. 진단·응급도 판정이 아닙니다.",
+    "zh": "通过图示查找科室，不是诊断或紧急程度评估。",
+    "ja": "絵から診療科を探せます。診断や緊急度判定ではありません。",
+    "vi": "Tìm chuyên khoa qua hình. Không phải chẩn đoán hay đánh giá khẩn cấp.",
+    "fr": "Explorez les services par image, sans diagnostic ni évaluation d’urgence."
+  },
+  "Clear filter · all hospitals": {
+    "en": "Clear filter · all hospitals",
+    "ko": "선택 해제 · 전체 병원",
+    "zh": "清除筛选 · 全部医院",
+    "ja": "絞り込み解除・全施設",
+    "vi": "Bỏ bộ lọc · Tất cả cơ sở",
+    "fr": "Effacer le filtre · Tous les établissements"
+  },
+  "Head & nerves": {
+    "en": "Head & nerves",
+    "ko": "머리·신경",
+    "zh": "头部与神经",
+    "ja": "頭・神経",
+    "vi": "Đầu và thần kinh",
+    "fr": "Tête et nerfs"
+  },
+  "Eyes": {
+    "en": "Eyes",
+    "ko": "눈",
+    "zh": "眼睛",
+    "ja": "目",
+    "vi": "Mắt",
+    "fr": "Yeux"
+  },
+  "Ear · nose · throat": {
+    "en": "Ear · nose · throat",
+    "ko": "귀·코·목",
+    "zh": "耳鼻喉",
+    "ja": "耳・鼻・のど",
+    "vi": "Tai · mũi · họng",
+    "fr": "Oreilles · nez · gorge"
+  },
+  "Teeth": {
+    "en": "Teeth",
+    "ko": "치아",
+    "zh": "牙齿",
+    "ja": "歯",
+    "vi": "Răng",
+    "fr": "Dents"
+  },
+  "Internal organs": {
+    "en": "Internal organs",
+    "ko": "장기·내과",
+    "zh": "内脏",
+    "ja": "内臓",
+    "vi": "Nội tạng",
+    "fr": "Organes internes"
+  },
+  "Bones & joints": {
+    "en": "Bones & joints",
+    "ko": "뼈·관절",
+    "zh": "骨骼与关节",
+    "ja": "骨・関節",
+    "vi": "Xương và khớp",
+    "fr": "Os et articulations"
+  },
+  "Skin": {
+    "en": "Skin",
+    "ko": "피부",
+    "zh": "皮肤",
+    "ja": "皮膚",
+    "vi": "Da",
+    "fr": "Peau"
+  },
+  "Pelvic health": {
+    "en": "Pelvic health",
+    "ko": "골반·비뇨·여성",
+    "zh": "盆腔健康",
+    "ja": "骨盤まわり",
+    "vi": "Vùng chậu",
+    "fr": "Région pelvienne"
+  },
+  "General care": {
+    "en": "General care",
+    "ko": "전신·어느 과일까?",
+    "zh": "全身／一般诊疗",
+    "ja": "全身・一般診療",
+    "vi": "Khám tổng quát",
+    "fr": "Soins généraux"
+  },
+  "Internal medicine": {
+    "en": "Internal medicine",
+    "ko": "내과",
+    "zh": "内科",
+    "ja": "内科",
+    "vi": "Nội khoa",
+    "fr": "Médecine interne"
+  },
+  "Family medicine": {
+    "en": "Family medicine",
+    "ko": "가정의학과",
+    "zh": "家庭医学科",
+    "ja": "家庭医学科",
+    "vi": "Y học gia đình",
+    "fr": "Médecine de famille"
+  },
+  "General surgery": {
+    "en": "General surgery",
+    "ko": "외과",
+    "zh": "外科",
+    "ja": "外科",
+    "vi": "Ngoại tổng quát",
+    "fr": "Chirurgie générale"
+  },
+  "Neurology": {
+    "en": "Neurology",
+    "ko": "신경과",
+    "zh": "神经内科",
+    "ja": "神経内科",
+    "vi": "Thần kinh",
+    "fr": "Neurologie"
+  },
+  "Neurosurgery": {
+    "en": "Neurosurgery",
+    "ko": "신경외과",
+    "zh": "神经外科",
+    "ja": "脳神経外科",
+    "vi": "Ngoại thần kinh",
+    "fr": "Neurochirurgie"
+  },
+  "Psychiatry": {
+    "en": "Psychiatry",
+    "ko": "정신건강의학과",
+    "zh": "精神科",
+    "ja": "精神科",
+    "vi": "Tâm thần",
+    "fr": "Psychiatrie"
+  },
+  "Orthopedics": {
+    "en": "Orthopedics",
+    "ko": "정형외과",
+    "zh": "骨科",
+    "ja": "整形外科",
+    "vi": "Chấn thương chỉnh hình",
+    "fr": "Orthopédie"
+  },
+  "Rehabilitation medicine": {
+    "en": "Rehabilitation medicine",
+    "ko": "재활의학과",
+    "zh": "康复医学科",
+    "ja": "リハビリテーション科",
+    "vi": "Phục hồi chức năng",
+    "fr": "Médecine de réadaptation"
+  },
+  "Anesthesiology & pain medicine": {
+    "en": "Anesthesiology & pain medicine",
+    "ko": "마취통증의학과",
+    "zh": "麻醉疼痛科",
+    "ja": "麻酔・疼痛科",
+    "vi": "Gây mê và điều trị đau",
+    "fr": "Anesthésie et douleur"
+  },
+  "Cardiovascular & thoracic surgery": {
+    "en": "Cardiovascular & thoracic surgery",
+    "ko": "심장혈관흉부외과",
+    "zh": "心胸外科",
+    "ja": "心臓血管・胸部外科",
+    "vi": "Ngoại tim mạch và lồng ngực",
+    "fr": "Chirurgie cardiovasculaire et thoracique"
+  },
+  "Ophthalmology": {
+    "en": "Ophthalmology",
+    "ko": "안과",
+    "zh": "眼科",
+    "ja": "眼科",
+    "vi": "Mắt",
+    "fr": "Ophtalmologie"
+  },
+  "ENT (ear, nose & throat)": {
+    "en": "ENT (ear, nose & throat)",
+    "ko": "이비인후과",
+    "zh": "耳鼻喉科",
+    "ja": "耳鼻咽喉科",
+    "vi": "Tai mũi họng",
+    "fr": "ORL (oreilles, nez, gorge)"
+  },
+  "Dermatology": {
+    "en": "Dermatology",
+    "ko": "피부과",
+    "zh": "皮肤科",
+    "ja": "皮膚科",
+    "vi": "Da liễu",
+    "fr": "Dermatologie"
+  },
+  "Urology": {
+    "en": "Urology",
+    "ko": "비뇨의학과",
+    "zh": "泌尿科",
+    "ja": "泌尿器科",
+    "vi": "Tiết niệu",
+    "fr": "Urologie"
+  },
+  "Obstetrics & gynecology": {
+    "en": "Obstetrics & gynecology",
+    "ko": "산부인과",
+    "zh": "妇产科",
+    "ja": "産婦人科",
+    "vi": "Sản phụ khoa",
+    "fr": "Gynécologie-obstétrique"
+  },
+  "Pediatrics": {
+    "en": "Pediatrics",
+    "ko": "소아청소년과",
+    "zh": "儿科",
+    "ja": "小児科",
+    "vi": "Nhi khoa",
+    "fr": "Pédiatrie"
+  },
+  "Plastic surgery": {
+    "en": "Plastic surgery",
+    "ko": "성형외과",
+    "zh": "整形外科",
+    "ja": "形成外科",
+    "vi": "Phẫu thuật tạo hình",
+    "fr": "Chirurgie plastique"
+  },
+  "Emergency medicine": {
+    "en": "Emergency medicine",
+    "ko": "응급의학과",
+    "zh": "急诊医学科",
+    "ja": "救急科",
+    "vi": "Cấp cứu",
+    "fr": "Médecine d’urgence"
+  },
+  "Radiology": {
+    "en": "Radiology",
+    "ko": "영상의학과",
+    "zh": "影像医学科",
+    "ja": "放射線科",
+    "vi": "Chẩn đoán hình ảnh",
+    "fr": "Radiologie"
+  },
+  "Laboratory medicine": {
+    "en": "Laboratory medicine",
+    "ko": "진단검사의학과",
+    "zh": "检验医学科",
+    "ja": "臨床検査科",
+    "vi": "Xét nghiệm y học",
+    "fr": "Biologie médicale"
+  },
+  "Pathology": {
+    "en": "Pathology",
+    "ko": "병리과",
+    "zh": "病理科",
+    "ja": "病理科",
+    "vi": "Giải phẫu bệnh",
+    "fr": "Anatomopathologie"
+  },
+  "Radiation oncology": {
+    "en": "Radiation oncology",
+    "ko": "방사선종양학과",
+    "zh": "放射肿瘤科",
+    "ja": "放射線治療科",
+    "vi": "Xạ trị ung bướu",
+    "fr": "Radiothérapie oncologique"
+  },
+  "Nuclear medicine": {
+    "en": "Nuclear medicine",
+    "ko": "핵의학과",
+    "zh": "核医学科",
+    "ja": "核医学科",
+    "vi": "Y học hạt nhân",
+    "fr": "Médecine nucléaire"
+  },
+  "Preventive medicine": {
+    "en": "Preventive medicine",
+    "ko": "예방의학과",
+    "zh": "预防医学科",
+    "ja": "予防医学科",
+    "vi": "Y học dự phòng",
+    "fr": "Médecine préventive"
+  },
+  "Occupational & environmental medicine": {
+    "en": "Occupational & environmental medicine",
+    "ko": "직업환경의학과",
+    "zh": "职业环境医学科",
+    "ja": "職業・環境医学科",
+    "vi": "Y học nghề nghiệp và môi trường",
+    "fr": "Médecine du travail et de l’environnement"
+  },
+  "Tuberculosis medicine": {
+    "en": "Tuberculosis medicine",
+    "ko": "결핵과",
+    "zh": "结核科",
+    "ja": "結核科",
+    "vi": "Chuyên khoa lao",
+    "fr": "Médecine de la tuberculose"
+  },
+  "Dentistry": {
+    "en": "Dentistry",
+    "ko": "치과",
+    "zh": "牙科",
+    "ja": "歯科",
+    "vi": "Nha khoa",
+    "fr": "Dentisterie"
+  },
+  "Oral medicine": {
+    "en": "Oral medicine",
+    "ko": "구강내과",
+    "zh": "口腔内科",
+    "ja": "口腔内科",
+    "vi": "Nội khoa răng miệng",
+    "fr": "Médecine buccale"
+  },
+  "Oral pathology": {
+    "en": "Oral pathology",
+    "ko": "구강병리과",
+    "zh": "口腔病理科",
+    "ja": "口腔病理科",
+    "vi": "Bệnh học răng miệng",
+    "fr": "Pathologie buccale"
+  },
+  "Oral & maxillofacial surgery": {
+    "en": "Oral & maxillofacial surgery",
+    "ko": "구강악안면외과",
+    "zh": "口腔颌面外科",
+    "ja": "口腔顎顔面外科",
+    "vi": "Phẫu thuật hàm mặt",
+    "fr": "Chirurgie buccale et maxillo-faciale"
+  },
+  "Pediatric dentistry": {
+    "en": "Pediatric dentistry",
+    "ko": "소아치과",
+    "zh": "儿童牙科",
+    "ja": "小児歯科",
+    "vi": "Nha khoa trẻ em",
+    "fr": "Dentisterie pédiatrique"
+  },
+  "Preventive dentistry": {
+    "en": "Preventive dentistry",
+    "ko": "예방치과",
+    "zh": "预防牙科",
+    "ja": "予防歯科",
+    "vi": "Nha khoa dự phòng",
+    "fr": "Dentisterie préventive"
+  },
+  "Oral & maxillofacial radiology": {
+    "en": "Oral & maxillofacial radiology",
+    "ko": "영상치의학과",
+    "zh": "口腔颌面影像科",
+    "ja": "歯科放射線科",
+    "vi": "Chẩn đoán hình ảnh hàm mặt",
+    "fr": "Radiologie buccale et maxillo-faciale"
+  },
+  "Orthodontics": {
+    "en": "Orthodontics",
+    "ko": "치과교정과",
+    "zh": "牙齿矫正科",
+    "ja": "歯科矯正科",
+    "vi": "Chỉnh nha",
+    "fr": "Orthodontie"
+  },
+  "Conservative dentistry": {
+    "en": "Conservative dentistry",
+    "ko": "치과보존과",
+    "zh": "牙体牙髓科",
+    "ja": "歯科保存科",
+    "vi": "Nha khoa bảo tồn",
+    "fr": "Dentisterie conservatrice"
+  },
+  "Prosthodontics": {
+    "en": "Prosthodontics",
+    "ko": "치과보철과",
+    "zh": "口腔修复科",
+    "ja": "歯科補綴科",
+    "vi": "Phục hình răng",
+    "fr": "Prothèse dentaire"
+  },
+  "Periodontics": {
+    "en": "Periodontics",
+    "ko": "치주과",
+    "zh": "牙周科",
+    "ja": "歯周科",
+    "vi": "Nha chu",
+    "fr": "Parodontologie"
+  },
+  "Advanced general dentistry": {
+    "en": "Advanced general dentistry",
+    "ko": "통합치의학과",
+    "zh": "综合牙科",
+    "ja": "総合歯科",
+    "vi": "Nha khoa tổng hợp",
+    "fr": "Dentisterie générale avancée"
+  },
+  "Korean medicine: internal medicine": {
+    "en": "Korean medicine: internal medicine",
+    "ko": "한방내과",
+    "zh": "韩医：内科",
+    "ja": "韓方：内科",
+    "vi": "Y học cổ truyền Hàn Quốc: nội khoa",
+    "fr": "Médecine coréenne : médecine interne"
+  },
+  "Korean medicine: gynecology": {
+    "en": "Korean medicine: gynecology",
+    "ko": "한방부인과",
+    "zh": "韩医：妇科",
+    "ja": "韓方：婦人科",
+    "vi": "Y học cổ truyền Hàn Quốc: phụ khoa",
+    "fr": "Médecine coréenne : gynécologie"
+  },
+  "Korean medicine: pediatrics": {
+    "en": "Korean medicine: pediatrics",
+    "ko": "한방소아과",
+    "zh": "韩医：儿科",
+    "ja": "韓方：小児科",
+    "vi": "Y học cổ truyền Hàn Quốc: nhi khoa",
+    "fr": "Médecine coréenne : pédiatrie"
+  },
+  "Korean medicine: neuropsychiatry": {
+    "en": "Korean medicine: neuropsychiatry",
+    "ko": "한방신경정신과",
+    "zh": "韩医：神经精神科",
+    "ja": "韓方：神経精神科",
+    "vi": "Y học cổ truyền Hàn Quốc: tâm thần kinh",
+    "fr": "Médecine coréenne : neuropsychiatrie"
+  },
+  "Korean medicine: eyes, ENT & skin": {
+    "en": "Korean medicine: eyes, ENT & skin",
+    "ko": "한방안·이비인후·피부과",
+    "zh": "韩医：眼耳鼻喉及皮肤科",
+    "ja": "韓方：眼・耳鼻咽喉・皮膚科",
+    "vi": "Y học cổ truyền Hàn Quốc: mắt, tai mũi họng, da",
+    "fr": "Médecine coréenne : yeux, ORL et peau"
+  },
+  "Korean medicine: rehabilitation": {
+    "en": "Korean medicine: rehabilitation",
+    "ko": "한방재활의학과",
+    "zh": "韩医：康复科",
+    "ja": "韓方：リハビリテーション科",
+    "vi": "Y học cổ truyền Hàn Quốc: phục hồi chức năng",
+    "fr": "Médecine coréenne : réadaptation"
+  },
+  "Sasang constitutional medicine": {
+    "en": "Sasang constitutional medicine",
+    "ko": "사상체질과",
+    "zh": "四象体质医学",
+    "ja": "四象体質医学",
+    "vi": "Y học thể chất Sasang",
+    "fr": "Médecine constitutionnelle Sasang"
+  },
+  "Acupuncture & moxibustion": {
+    "en": "Acupuncture & moxibustion",
+    "ko": "침구과",
+    "zh": "针灸科",
+    "ja": "鍼灸科",
+    "vi": "Châm cứu",
+    "fr": "Acupuncture et moxibustion"
+  },
+  "Translation unavailable": {
+    "en": "Translation unavailable",
+    "ko": "번역 미제공",
+    "zh": "暂无翻译",
+    "ja": "翻訳なし",
+    "vi": "Chưa có bản dịch",
+    "fr": "Traduction indisponible"
+  },
+  "Clinic": {
+    "en": "Clinic",
+    "ko": "의원",
+    "zh": "诊所",
+    "ja": "診療所",
+    "vi": "Phòng khám",
+    "fr": "Cabinet médical"
+  },
+  "Hospital": {
+    "en": "Hospital",
+    "ko": "병원",
+    "zh": "医院",
+    "ja": "病院",
+    "vi": "Bệnh viện",
+    "fr": "Hôpital"
+  },
+  "General hospital": {
+    "en": "General hospital",
+    "ko": "종합병원",
+    "zh": "综合医院",
+    "ja": "総合病院",
+    "vi": "Bệnh viện đa khoa",
+    "fr": "Hôpital général"
+  },
+  "Dental clinic": {
+    "en": "Dental clinic",
+    "ko": "치과의원",
+    "zh": "牙科诊所",
+    "ja": "歯科診療所",
+    "vi": "Phòng khám nha khoa",
+    "fr": "Cabinet dentaire"
+  },
+  "Dental hospital": {
+    "en": "Dental hospital",
+    "ko": "치과병원",
+    "zh": "牙科医院",
+    "ja": "歯科病院",
+    "vi": "Bệnh viện nha khoa",
+    "fr": "Hôpital dentaire"
+  },
+  "Public health center": {
+    "en": "Public health center",
+    "ko": "보건소",
+    "zh": "保健所",
+    "ja": "保健所",
+    "vi": "Trung tâm y tế công cộng",
+    "fr": "Centre de santé publique"
+  },
+  "Public health branch": {
+    "en": "Public health branch",
+    "ko": "보건지소",
+    "zh": "保健分所",
+    "ja": "保健支所",
+    "vi": "Chi nhánh trung tâm y tế",
+    "fr": "Antenne de santé publique"
+  },
+  "Public health post": {
+    "en": "Public health post",
+    "ko": "보건진료소",
+    "zh": "保健诊疗所",
+    "ja": "保健診療所",
+    "vi": "Trạm y tế",
+    "fr": "Poste de santé publique"
+  },
+  "Long-term care hospital": {
+    "en": "Long-term care hospital",
+    "ko": "요양병원",
+    "zh": "疗养医院",
+    "ja": "療養病院",
+    "vi": "Bệnh viện chăm sóc dài hạn",
+    "fr": "Hôpital de soins de longue durée"
+  },
+  "Pharmacy · Western medicines": {
+    "en": "Pharmacy · Western medicines",
+    "ko": "양약국",
+    "zh": "药店 · 西药",
+    "ja": "薬局・西洋薬",
+    "vi": "Nhà thuốc · Thuốc tây",
+    "fr": "Pharmacie · Médicaments occidentaux"
+  },
+  "Herbal pharmacy · Korean medicines": {
+    "en": "Herbal pharmacy · Korean medicines",
+    "ko": "한약국",
+    "zh": "药店 · 韩药",
+    "ja": "薬局・韓方薬",
+    "vi": "Nhà thuốc · Thuốc cổ truyền Hàn Quốc",
+    "fr": "Pharmacie · Médecine coréenne"
+  },
+  "Pharmacy · Western/herbal type unverified": {
+    "en": "Pharmacy · Western/herbal type unverified",
+    "ko": "약국 · 양약국/한약국 유형 미확인",
+    "zh": "药店 · 西药／韩药类型未确认",
+    "ja": "薬局・西洋薬／韓方薬の種別未確認",
+    "vi": "Nhà thuốc · Chưa rõ loại tây/cổ truyền",
+    "fr": "Pharmacie · Type occidental/traditionnel non vérifié"
+  },
+  "Korean medicine clinic · Traditional medicine": {
+    "en": "Korean medicine clinic · Traditional medicine",
+    "ko": "한의원 · 한국 전통의학",
+    "zh": "韩医诊所 · 传统医学",
+    "ja": "韓方診療所・伝統医学",
+    "vi": "Phòng khám y học cổ truyền Hàn Quốc",
+    "fr": "Cabinet de médecine traditionnelle coréenne"
+  },
+  "Korean medicine hospital · Traditional medicine": {
+    "en": "Korean medicine hospital · Traditional medicine",
+    "ko": "한방병원 · 한국 전통의학",
+    "zh": "韩医医院 · 传统医学",
+    "ja": "韓方病院・伝統医学",
+    "vi": "Bệnh viện y học cổ truyền Hàn Quốc",
+    "fr": "Hôpital de médecine traditionnelle coréenne"
+  },
+  "Change the app language using the menu at the top.": {
+    "en": "Change the app language using the menu at the top.",
+    "ko": "상단 언어 메뉴에서 앱 언어를 바꿀 수 있어요.",
+    "zh": "可通过顶部语言菜单切换应用语言。",
+    "ja": "上部メニューでアプリの言語を変更できます。",
+    "vi": "Đổi ngôn ngữ ứng dụng bằng menu phía trên.",
+    "fr": "Changez la langue de l’application dans le menu supérieur."
+  },
+  "English": {
+    "en": "English",
+    "ko": "영어",
+    "zh": "英语",
+    "ja": "英語",
+    "vi": "Tiếng Anh",
+    "fr": "Anglais"
+  },
+  "Korean": {
+    "en": "Korean",
+    "ko": "한국어",
+    "zh": "韩语",
+    "ja": "韓国語",
+    "vi": "Tiếng Hàn",
+    "fr": "Coréen"
+  },
+  "Chinese": {
+    "en": "Chinese",
+    "ko": "중국어",
+    "zh": "中文",
+    "ja": "中国語",
+    "vi": "Tiếng Trung",
+    "fr": "Chinois"
+  },
+  "Japanese": {
+    "en": "Japanese",
+    "ko": "일본어",
+    "zh": "日语",
+    "ja": "日本語",
+    "vi": "Tiếng Nhật",
+    "fr": "Japonais"
+  },
+  "Vietnamese": {
+    "en": "Vietnamese",
+    "ko": "베트남어",
+    "zh": "越南语",
+    "ja": "ベトナム語",
+    "vi": "Tiếng Việt",
+    "fr": "Vietnamien"
+  },
+  "French": {
+    "en": "French",
+    "ko": "프랑스어",
+    "zh": "法语",
+    "ja": "フランス語",
+    "vi": "Tiếng Pháp",
+    "fr": "Français"
+  },
+  "privacy": {
+    "en": "privacy",
+    "ko": "개인정보",
+    "zh": "隐私问题",
+    "ja": "プライバシー",
+    "vi": "Quyền riêng tư",
+    "fr": "Confidentialité"
+  },
+  "misinformation": {
+    "en": "misinformation",
+    "ko": "잘못된 정보",
+    "zh": "错误信息",
+    "ja": "誤情報",
+    "vi": "Thông tin sai lệch",
+    "fr": "Désinformation"
+  },
+  "spam": {
+    "en": "spam",
+    "ko": "스팸",
+    "zh": "垃圾信息",
+    "ja": "スパム",
+    "vi": "Tin rác",
+    "fr": "Spam"
+  },
+  "other": {
+    "en": "other",
+    "ko": "기타",
+    "zh": "其他",
+    "ja": "その他",
+    "vi": "Khác",
+    "fr": "Autre"
+  },
+  "Service returned an unreadable response.": {
+    "en": "Service returned an unreadable response.",
+    "ko": "서버 응답을 읽을 수 없습니다.",
+    "zh": "服务返回了无法读取的响应。",
+    "ja": "サービスから読み取れない応答がありました。",
+    "vi": "Dịch vụ trả về phản hồi không đọc được.",
+    "fr": "Le service a renvoyé une réponse illisible."
+  },
+  "Could not complete the request. Check your connection and entered information.": {
+    "en": "Could not complete the request. Check your connection and entered information.",
+    "ko": "요청을 완료하지 못했습니다. 연결과 입력 내용을 확인해 주세요.",
+    "zh": "无法完成请求，请检查连接和输入信息。",
+    "ja": "処理できませんでした。接続と入力内容を確認してください。",
+    "vi": "Không hoàn tất yêu cầu. Kiểm tra kết nối và thông tin đã nhập.",
+    "fr": "Impossible de terminer la demande. Vérifiez la connexion et les informations saisies."
+  },
+  "Email or password is incorrect.": {
+    "en": "Email or password is incorrect.",
+    "ko": "이메일 또는 비밀번호가 올바르지 않습니다.",
+    "zh": "邮箱或密码错误。",
+    "ja": "メールアドレスまたはパスワードが違います。",
+    "vi": "Email hoặc mật khẩu không đúng.",
+    "fr": "E-mail ou mot de passe incorrect."
+  },
+  "This email is already registered.": {
+    "en": "This email is already registered.",
+    "ko": "이미 등록된 이메일입니다.",
+    "zh": "该邮箱已注册。",
+    "ja": "このメールアドレスは登録済みです。",
+    "vi": "Email này đã được đăng ký.",
+    "fr": "Cette adresse e-mail est déjà inscrite."
+  },
+  "Please shorten your answers to 2000 characters total.": {
+    "en": "Please shorten your answers to 2000 characters total.",
+    "ko": "답변을 합계 2000자 이내로 줄여주세요.",
+    "zh": "请将回答总长度控制在2000字符以内。",
+    "ja": "回答全体を2000文字以内にしてください。",
+    "vi": "Rút ngắn tổng câu trả lời xuống 2000 ký tự.",
+    "fr": "Limitez l’ensemble des réponses à 2000 caractères."
+  },
+  "Purpose: read only the health records you select to show them on this screen.": {
+    "en": "Purpose: read only the health records you select to show them on this screen.",
+    "ko": "사용자가 선택한 건강 기록을 이 화면에서 확인하기 위해 읽습니다.",
+    "zh": "目的：只读取您选择的健康记录并显示在此界面。",
+    "ja": "目的：選択した健康記録だけを読み、この画面に表示します。",
+    "vi": "Mục đích: chỉ đọc dữ liệu sức khỏe bạn chọn để hiển thị tại đây.",
+    "fr": "But : lire uniquement les données de santé choisies pour les afficher ici."
+  },
+  "Data: selected heart rate (bpm), sleep intervals (minutes), start/end times, source app/device and record identifiers. Last 24 hours only.": {
+    "en": "Data: selected heart rate (bpm), sleep intervals (minutes), start/end times, source app/device and record identifiers. Last 24 hours only.",
+    "ko": "선택한 심박수(bpm), 수면 구간(분), 측정 시작·종료 시각, 원본 앱/기기 출처와 기록 식별값. 최근 24시간만 조회합니다.",
+    "zh": "数据：选定的心率(bpm)、睡眠时段(分钟)、起止时间、来源应用／设备和记录标识。仅限最近24小时。",
+    "ja": "項目：選択した心拍数(bpm)、睡眠区間(分)、開始・終了時刻、元のアプリ・機器、記録識別子。直近24時間のみ。",
+    "vi": "Dữ liệu: nhịp tim (bpm), khoảng ngủ (phút), giờ bắt đầu/kết thúc, ứng dụng/thiết bị nguồn và mã bản ghi. Chỉ 24 giờ qua.",
+    "fr": "Données : fréquence cardiaque (bpm), périodes de sommeil (minutes), heures de début/fin, application/appareil source et identifiants. Dernières 24 h seulement."
+  },
+  "Processing: in this screen’s memory only. No transmission to MORI servers, AI, family, school or employer; no advertising, insurance or employment assessment.": {
+    "en": "Processing: in this screen’s memory only. No transmission to MORI servers, AI, family, school or employer; no advertising, insurance or employment assessment.",
+    "ko": "이 화면의 실행 메모리에서만 처리합니다. 워치 데이터는 모리 서버·AI·가족·학교·회사에 전송하지 않습니다. 광고·보험·고용 평가에 사용하지 않습니다.",
+    "zh": "处理：仅在此界面内存中处理。不发送至MORI服务器、AI、家人、学校或雇主；不用于广告、保险或就业评估。",
+    "ja": "処理：この画面のメモリ内のみ。MORIサーバー・AI・家族・学校・雇用主に送信せず、広告・保険・雇用評価に使用しません。",
+    "vi": "Xử lý: chỉ trong bộ nhớ màn hình này. Không gửi đến máy chủ MORI, AI, gia đình, trường hay nơi làm việc; không dùng cho quảng cáo, bảo hiểm hay đánh giá việc làm.",
+    "fr": "Traitement en mémoire de cet écran uniquement. Aucun envoi aux serveurs MORI, IA, famille, école ou employeur ; aucun usage publicitaire, assurantiel ou d’évaluation professionnelle."
+  },
+  "Retention: closing this screen or stopping reading clears its data. Originals in OS health apps remain. OS permissions may remain separately.": {
+    "en": "Retention: closing this screen or stopping reading clears its data. Originals in OS health apps remain. OS permissions may remain separately.",
+    "ko": "화면을 닫거나 연결 중단 시 이 화면의 데이터를 지웁니다. OS 건강 앱의 원본은 삭제하지 않습니다. OS 권한은 별도로 남을 수 있습니다.",
+    "zh": "保留：关闭界面或停止读取后清除此处数据。系统健康应用中的原始数据保留，系统权限可能仍存在。",
+    "ja": "保持：画面を閉じるか読み取り停止で表示データを消去します。OS健康アプリの原本は残り、OS権限も別途残る場合があります。",
+    "vi": "Lưu giữ: đóng màn hình hoặc dừng đọc sẽ xóa dữ liệu ở đây. Dữ liệu gốc trong ứng dụng sức khỏe hệ thống vẫn còn; quyền hệ thống có thể vẫn được giữ.",
+    "fr": "Conservation : fermer l’écran ou arrêter la lecture efface ses données. Les originaux dans l’app santé restent, tout comme les autorisations système éventuelles."
+  },
+  "Choice: declining does not prevent hospital search or manual records. Choose OS read access separately for each data type.": {
+    "en": "Choice: declining does not prevent hospital search or manual records. Choose OS read access separately for each data type.",
+    "ko": "동의하지 않아도 병원 찾기와 수동 건강기록을 이용할 수 있습니다. 선택 항목별 OS 읽기 권한을 직접 설정합니다.",
+    "zh": "选择权：拒绝不影响医院搜索或手动记录。各数据类型的系统读取权限需单独选择。",
+    "ja": "選択権：同意しなくても病院検索・手入力の記録を利用できます。データ別にOSの読み取り権限を選びます。",
+    "vi": "Lựa chọn: từ chối không ảnh hưởng tìm bệnh viện hay ghi thủ công. Chọn quyền đọc hệ thống riêng cho từng loại dữ liệu.",
+    "fr": "Choix : refuser n’empêche ni la recherche d’établissements ni la saisie manuelle. Choisissez l’accès système séparément pour chaque type de données."
+  },
+  "Withdrawal: stop reading and clear this view, then revoke Mori permissions in Health / Health Connect settings.": {
+    "en": "Withdrawal: stop reading and clear this view, then revoke Mori permissions in Health / Health Connect settings.",
+    "ko": "아래 ‘읽기 중단·화면 데이터 지우기’를 누르고, 건강 앱/Health Connect 설정에서 모리 권한을 해제하세요.",
+    "zh": "撤回：停止读取并清除界面数据，再到Health／Health Connect设置中撤销Mori权限。",
+    "ja": "撤回：読み取りを停止して表示を消去し、ヘルスケア／Health ConnectでMoriの権限を解除してください。",
+    "vi": "Rút lại: dừng đọc và xóa hiển thị, sau đó thu hồi quyền Mori trong Health / Health Connect.",
+    "fr": "Retrait : arrêtez la lecture et effacez la vue, puis révoquez les autorisations Mori dans Santé / Health Connect."
+  },
+  "Limits: missing or delayed data does not prove normal health or whether access was granted. No diagnosis, continuous monitoring or automatic emergency report.": {
+    "en": "Limits: missing or delayed data does not prove normal health or whether access was granted. No diagnosis, continuous monitoring or automatic emergency report.",
+    "ko": "동기화가 지연되거나 기록이 없을 수 있습니다. 무자료는 정상 상태 또는 권한 허용/거부를 확정하지 않습니다. 진단·실시간 감시·응급 자동 신고 기능이 아닙니다.",
+    "zh": "限制：数据缺失或延迟不证明健康正常，也不能证明权限状态。不提供诊断、持续监测或自动紧急报警。",
+    "ja": "限界：記録の欠落・遅延は正常な健康状態や許可の有無を示しません。診断・常時監視・自動通報は行いません。",
+    "vi": "Giới hạn: thiếu hoặc chậm dữ liệu không chứng minh sức khỏe bình thường hay quyền đã được cấp. Không chẩn đoán, theo dõi liên tục hoặc tự báo cấp cứu.",
+    "fr": "Limites : données absentes ou retardées ne prouvent ni une santé normale ni l’autorisation d’accès. Aucun diagnostic, suivi continu ou signalement automatique d’urgence."
+  },
+  "Prototype notice: this is not a finalized privacy policy with an operator and contact point. Review and finalize before deployment.": {
+    "en": "Prototype notice: this is not a finalized privacy policy with an operator and contact point. Review and finalize before deployment.",
+    "ko": "운영 주체·문의 창구·배포 환경이 확정된 최종 개인정보처리방침은 아직 아닙니다. 운영 배포 전 확정·검토가 필요합니다.",
+    "zh": "原型说明：尚非确定运营主体和联系方式的最终隐私政策。部署前须审查并完善。",
+    "ja": "試作版の案内：運営主体・問い合わせ先を確定した最終プライバシーポリシーではありません。公開前に確認・確定が必要です。",
+    "vi": "Thông báo bản mẫu: đây chưa phải chính sách quyền riêng tư cuối cùng với đơn vị vận hành và đầu mối liên hệ. Cần rà soát trước khi triển khai.",
+    "fr": "Avis du prototype : politique de confidentialité non définitive, sans opérateur ni contact finalisés. À examiner et finaliser avant déploiement."
+  },
+  "Join MORI": {
+    "en": "Join MORI",
+    "ko": "CareBridge 가입",
+    "zh": "加入MORI",
+    "ja": "MORIに登録",
+    "vi": "Tham gia MORI",
+    "fr": "Rejoindre MORI"
+  },
+  "MORI joins institution, department and facility records and adds multilingual labels, body-area filters and straight-line distances.": {
+    "en": "MORI joins institution, department and facility records and adds multilingual labels, body-area filters and straight-line distances.",
+    "ko": "모리가 기관·진료과·시설 자료를 결합하고 영문 명칭·신체부위 분류·직선거리를 추가했습니다.",
+    "zh": "MORI整合机构、科室和设施资料，并提供多语言标签、身体部位筛选及直线距离。",
+    "ja": "MORIは施設・診療科・設備の情報を統合し、多言語表記・部位別絞り込み・直線距離を提供します。",
+    "vi": "MORI kết hợp dữ liệu cơ sở, chuyên khoa và trang thiết bị, bổ sung nhãn đa ngôn ngữ, bộ lọc bộ phận cơ thể và khoảng cách đường thẳng.",
+    "fr": "MORI réunit les données des établissements, services et équipements avec des libellés multilingues, des filtres par zone du corps et des distances à vol d’oiseau."
+  },
+  "Nav home": {
+    "ko": "홈",
+    "zh": "首页",
+    "ja": "ホーム",
+    "vi": "Trang chủ",
+    "en": "Home",
+    "fr": "Accueil"
+  },
+  "Nav visit": {
+    "ko": "준비표",
+    "zh": "准备表",
+    "ja": "準備表",
+    "vi": "Phiếu khám",
+    "en": "Visit card",
+    "fr": "Fiche"
+  },
+  "Nav health": {
+    "ko": "내 건강",
+    "zh": "健康",
+    "ja": "健康",
+    "vi": "Sức khỏe",
+    "en": "My health",
+    "fr": "Santé"
+  },
+  "Nav community": {
+    "ko": "커뮤니티",
+    "zh": "社区",
+    "ja": "交流",
+    "vi": "Cộng đồng",
+    "en": "Community",
+    "fr": "Entraide"
+  },
+  "Nav hospitals": {
+    "ko": "병원",
+    "zh": "医院",
+    "ja": "病院",
+    "vi": "Cơ sở y tế",
+    "en": "Hospitals",
+    "fr": "Soins"
+  }
+}

@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'api.dart';
@@ -46,7 +47,7 @@ class _MoriHomeState extends State<MoriHome>
   List<dynamic> entries = [];
   bool loading = true, busy = false;
   String? error;
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   @override
   void initState() {
     super.initState();
@@ -239,7 +240,12 @@ class _MoriHomeState extends State<MoriHome>
                   children: [
                     for (final entry in intakeLabels.entries)
                       FilterChip(
-                        label: Text(entry.value),
+                        label: Text(
+                          tr(
+                            entry.value.split(' / ').last,
+                            entry.value.split(' / ').first,
+                          ),
+                        ),
                         selected: selected.contains(entry.key),
                         onSelected: (on) => change(() {
                           if (on) {
@@ -445,7 +451,16 @@ class _MoriHomeState extends State<MoriHome>
               spacing: 6,
               children: [
                 for (final key in todayIntakes)
-                  Chip(label: Text(intakeLabels[key] ?? key.toString())),
+                  Chip(
+                    label: Text(
+                      tr(
+                        (intakeLabels[key] ?? key.toString()).split(' / ').last,
+                        (intakeLabels[key] ?? key.toString())
+                            .split(' / ')
+                            .first,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ],

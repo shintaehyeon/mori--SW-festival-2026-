@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,7 +39,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
   final phones = List.generate(3, (_) => TextEditingController());
   bool loading = true, saving = false;
   String? updatedAt;
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   @override
   void initState() {
     super.initState();
@@ -60,8 +61,10 @@ class _EmergencyPageState extends State<EmergencyPage> {
         updatedAt = data['updatedAt'];
       }
       if (fields['message']!.text.isEmpty) {
-        fields['message']!.text =
-            'I need help. Please call me as soon as possible. / 도움이 필요해요. 바로 전화해 주세요.';
+        fields['message']!.text = tr(
+          'I need help. Please call me as soon as possible.',
+          '도움이 필요해요. 바로 전화해 주세요.',
+        );
       }
     } catch (e) {
       notice(e.toString());
@@ -220,7 +223,12 @@ class _EmergencyPageState extends State<EmergencyPage> {
               child: TextField(
                 controller: fields[spec[0]],
                 maxLines: spec[0] == 'message' || spec[0] == 'symptoms' ? 3 : 1,
-                decoration: InputDecoration(labelText: spec[1]),
+                decoration: InputDecoration(
+                  labelText: tr(
+                    spec[1].split(' / ').first,
+                    spec[1].split(' / ').last,
+                  ),
+                ),
               ),
             ),
           Text(

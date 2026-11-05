@@ -667,3 +667,18 @@ test('pharmacy source remains separate and does not invent western or herbal cla
  assert.equal(r.data.total,237);
  assert.ok(r.data.hospitals.every(h=>h.type==='약국' && h.pharmacyClassification==='unknown' && h.classificationEvidence===null));
 });
+
+test('six community languages preserve Unicode and filter independently', async (t) => {
+  const { request, register } = await fixture(t);
+  const { token } = await register('sixlanguages');
+  for (const language of ['Korean', 'Chinese', 'Japanese', 'Vietnamese', 'English', 'French']) {
+    const body = 'TEST ONLY: 咳嗽 のどが痛い Đau họng fièvre 37.2';
+    const r = await request('/api/posts', 'POST', { title: 'Fictional language QA', place: '가상 테스트 기관', visitDate: '2026-11-06', language, method: 'direct', body, consent: true }, token);
+    assert.equal(r.status, 201, JSON.stringify(r.data));
+    assert.equal(r.data.body, body);
+    const list = await request(`/api/posts?language=${language}`, 'GET', undefined, token);
+    assert.equal(list.status, 200);
+    assert.equal(list.data.length, 1);
+    assert.equal(list.data[0].language, language);
+  }
+});

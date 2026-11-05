@@ -1,3 +1,4 @@
+import 'package:carebridge/localization.dart';
 import 'package:carebridge/api.dart';
 import 'package:carebridge/friends.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,8 @@ class SocialApi extends Api {
 }
 
 void main() {
+  setUp(() => MoriLanguage.current.value = 'ko');
+  tearDown(() => MoriLanguage.current.value = 'en');
   testWidgets(
     'private friend shows no inferred health and quick cheer submits to selected friend',
     (tester) async {

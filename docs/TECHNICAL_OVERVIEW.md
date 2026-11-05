@@ -166,3 +166,7 @@ A4 첫 장에 방문 이유·경과, 시작 시점, 알레르기, 복약, 본인
 
 ## 2026-11-06 시뮬레이터 검증 업데이트
 최신 iOS 빌드에서 병원 선택→로그인→가상 원문/경과/통증 저장→PDF 첫 장 및 별첨→iOS 파일 저장을 확인했다. 재실행 후 로그인과 저장 카드 유지도 확인. 격리된 QA 서버의 AI 미설정 상태이며 실제 번역·지도 인증·실물 휴대폰 검증을 완료로 말하지 않는다. 발견 UX 문제와 상세 증거는 [QA_2026-11-06.md](QA_2026-11-06.md)를 참고. 발표에서는 “시뮬레이터에서 원문 준비표 PDF 저장 확인”까지 주장할 수 있다.
+
+## 2026-11-06 다국어 기술
+
+Flutter localization delegates + ValueNotifier + JSON 카탈로그, flutter_secure_storage 언어 저장. 병원명 Hangul 음절 기반 로마자 참고 표기, 다국어 진료과 클라이언트 검색. PDF Noto Sans/NanumGothic/Noto CJK fallback. 서버 커뮤니티 언어 enum 확대. Flutter 32개 및 서버 23개 테스트 통과; 원어민/실제 AI 품질은 별도. 상세: [LOCALIZATION.md](LOCALIZATION.md).

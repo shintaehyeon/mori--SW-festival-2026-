@@ -1,9 +1,12 @@
+import 'package:carebridge/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gm;
 import 'package:carebridge/maps/google_hospital_map.dart';
 
 void main() {
+  setUp(() => MoriLanguage.current.value = 'ko');
+  tearDown(() => MoriLanguage.current.value = 'en');
   testWidgets(
     'missing key keeps Google Maps link usable without creating a native map',
     (tester) async {

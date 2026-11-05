@@ -1,3 +1,4 @@
+import 'package:carebridge/localization.dart';
 import 'package:carebridge/wearable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,6 +26,8 @@ class TestReader implements WearableReader {
 }
 
 void main() {
+  setUp(() => MoriLanguage.current.value = 'ko');
+  tearDown(() => MoriLanguage.current.value = 'en');
   test(
     'wearable normalization removes duplicates, invalid values and stale records without inventing normal data',
     () {

@@ -1,3 +1,5 @@
+import '../localization.dart';
+import '../hospital_name.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gm;
 import 'loader_stub.dart' if (dart.library.js_interop) 'loader_web.dart';
@@ -38,14 +40,15 @@ class _GoogleHospitalMapState extends State<GoogleHospitalMap> {
         children: [
           const Icon(Icons.map_outlined, size: 36),
           Text(
-            widget.ko
-                ? 'Google 지도는 외부 앱에서 이용할 수 있어요. 앱 안 지도는 연결 준비 중입니다.'
-                : 'Open Google Maps for now. The in-app map connection is being prepared.',
+            tr(
+              'Open Google Maps for now. The in-app map connection is being prepared.',
+              'Google 지도는 외부 앱에서 이용할 수 있어요. 앱 안 지도는 연결 준비 중입니다.',
+            ),
           ),
           TextButton.icon(
             onPressed: widget.onExternal,
             icon: const Icon(Icons.open_in_new),
-            label: Text(widget.ko ? 'Google 지도 열기' : 'Open Google Maps'),
+            label: Text(tr('Open Google Maps', 'Google 지도 열기')),
           ),
         ],
       ),
@@ -82,9 +85,7 @@ class _GoogleHospitalMapState extends State<GoogleHospitalMap> {
                   icon: gm.BitmapDescriptor.defaultMarkerWithHue(
                     gm.BitmapDescriptor.hueAzure,
                   ),
-                  infoWindow: gm.InfoWindow(
-                    title: widget.ko ? '내 위치' : 'My location',
-                  ),
+                  infoWindow: gm.InfoWindow(title: tr('My location', '내 위치')),
                 ),
               for (final h in widget.hospitals)
                 gm.Marker(
@@ -100,7 +101,8 @@ class _GoogleHospitalMapState extends State<GoogleHospitalMap> {
                   ),
                   infoWindow: gm.InfoWindow(
                     title: h['name'] as String,
-                    snippet: h['address'] as String,
+                    snippet:
+                        '${romanizedHospitalName(h['name'] as String)} · ${h['address']}',
                   ),
                   onTap: () => widget.onSelect(h['id'] as String),
                 ),

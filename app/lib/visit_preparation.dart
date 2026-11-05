@@ -1,3 +1,5 @@
+import 'localization.dart';
+
 /// Preserve only patient-entered facts; optional blanks are not negatives.
 String composeVisitConcern(
   String concern,
@@ -17,8 +19,8 @@ String composeVisitConcern(
   }
   final result = sections.join('\n\n');
   if (result.length > 2000) {
-    throw const FormatException(
-      'Please shorten your answers to 2000 characters total. / 답변을 합계 2000자 이내로 줄여주세요.',
+    throw FormatException(
+      tr('Please shorten your answers to 2000 characters total.'),
     );
   }
   return result;

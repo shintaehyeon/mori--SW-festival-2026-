@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _PresencePanelState extends State<PresencePanel>
   bool ready = false, working = false, visible = true, checking = false;
   Map<String, dynamic>? status;
   String? error;
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   @override
   void initState() {
     super.initState();

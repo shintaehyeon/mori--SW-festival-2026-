@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,7 @@ class _FriendsPageState extends State<FriendsPage> {
   bool busy = false, loading = true;
   String? error;
   Timer? timer;
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   @override
   void initState() {
     super.initState();
@@ -310,14 +311,11 @@ class _FriendsPageState extends State<FriendsPage> {
               Wrap(
                 spacing: 4,
                 children: [
-                  for (final phrase
-                      in widget.ko
-                          ? ['오늘 고생했어!', '힘들었지, 늘 응원해', '오늘도 네 편이야']
-                          : [
-                              'You did great today!',
-                              'Here for you!',
-                              'Take your time.',
-                            ])
+                  for (final phrase in [
+                    t('You did great today!', '오늘 고생했어!'),
+                    t('Here for you!', '늘 응원해!'),
+                    t('Take your time.', '천천히 해도 돼.'),
+                  ])
                     ActionChip(
                       label: Text(phrase),
                       onPressed: () => change(() => text.text = phrase),

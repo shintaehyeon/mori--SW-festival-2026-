@@ -1,3 +1,5 @@
+import 'localization.dart';
+
 // Classification relies on source fields and explicit evidence, never names.
 const traditionalFacilityTypes = {'한의원', '한방병원'};
 bool isPharmacy(Map h) => h.containsKey('pharmacyClassification');
@@ -24,24 +26,38 @@ bool facilityMatches(Map h, String category) {
 String facilityLabel(Map h, bool ko) {
   if (isPharmacy(h)) {
     if (facilityMatches(h, 'westernPharmacy')) {
-      return ko ? '양약국' : 'Pharmacy · Western medicines';
+      return tr('Pharmacy · Western medicines', '양약국');
     }
     if (facilityMatches(h, 'herbalPharmacy')) {
-      return ko ? '한약국' : 'Herbal pharmacy · Korean medicines';
+      return tr('Herbal pharmacy · Korean medicines', '한약국');
     }
-    return ko
-        ? '약국 · 양약국/한약국 유형 미확인'
-        : 'Pharmacy · Western/herbal type unverified';
+    return tr(
+      'Pharmacy · Western/herbal type unverified',
+      '약국 · 양약국/한약국 유형 미확인',
+    );
   }
   if (h['type'] == '한의원') {
-    return ko
-        ? '한의원 · 한국 전통의학'
-        : 'Korean medicine clinic · Traditional medicine';
+    return tr('Korean medicine clinic · Traditional medicine', '한의원 · 한국 전통의학');
   }
   if (h['type'] == '한방병원') {
-    return ko
-        ? '한방병원 · 한국 전통의학'
-        : 'Korean medicine hospital · Traditional medicine';
+    return tr(
+      'Korean medicine hospital · Traditional medicine',
+      '한방병원 · 한국 전통의학',
+    );
   }
-  return '${h['type']}';
+  return tr(
+    const {
+          '의원': 'Clinic',
+          '병원': 'Hospital',
+          '종합병원': 'General hospital',
+          '치과의원': 'Dental clinic',
+          '치과병원': 'Dental hospital',
+          '보건소': 'Public health center',
+          '보건지소': 'Public health branch',
+          '보건진료소': 'Public health post',
+          '요양병원': 'Long-term care hospital',
+        }[h['type']] ??
+        '${h['type']}',
+    '${h['type']}',
+  );
 }

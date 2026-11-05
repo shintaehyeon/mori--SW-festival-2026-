@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'package:flutter/material.dart';
 
 const specialtyEnglish = {
@@ -49,7 +50,7 @@ const specialtyEnglish = {
   '침구과': 'Acupuncture & moxibustion',
 };
 String bilingualSpecialty(String name) =>
-    '${specialtyEnglish[name] ?? 'Translation unavailable'} · $name';
+    '${tr(specialtyEnglish[name] ?? 'Translation unavailable', name)} · $name';
 
 class BodyCategory {
   final String id, en, ko;
@@ -100,13 +101,14 @@ class BodyCategoryPicker extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       Text(
-        ko ? '어느 부위를 찾고 있나요?' : 'Explore care by body area',
+        tr('Explore care by body area', '어느 부위를 찾고 있나요?'),
         style: Theme.of(context).textTheme.titleLarge,
       ),
       Text(
-        ko
-            ? '그림으로 관련 진료과를 탐색해요. 진단·응급도 판정이 아닙니다.'
-            : 'Explore departments by picture. Not a diagnosis or urgency assessment.',
+        tr(
+          'Explore departments by picture. Not a diagnosis or urgency assessment.',
+          '그림으로 관련 진료과를 탐색해요. 진단·응급도 판정이 아닙니다.',
+        ),
       ),
       const SizedBox(height: 12),
       LayoutBuilder(
@@ -122,7 +124,7 @@ class BodyCategoryPicker extends StatelessWidget {
                   child: Semantics(
                     button: true,
                     selected: selected == item.id,
-                    label: ko ? item.ko : item.en,
+                    label: tr(item.en, item.ko),
                     child: Material(
                       color: selected == item.id
                           ? const Color(0xFFD9EEE4)
@@ -151,10 +153,10 @@ class BodyCategoryPicker extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 44,
+                                height: 72,
                                 child: Center(
                                   child: Text(
-                                    ko ? '${item.ko}\n${item.en}' : item.en,
+                                    tr(item.en, item.ko),
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: 12,
@@ -178,7 +180,7 @@ class BodyCategoryPicker extends StatelessWidget {
         TextButton.icon(
           onPressed: () => onSelect(null),
           icon: const Icon(Icons.close),
-          label: Text(ko ? '선택 해제 · 전체 병원' : 'Clear filter · all hospitals'),
+          label: Text(tr('Clear filter · all hospitals', '선택 해제 · 전체 병원')),
         ),
     ],
   );

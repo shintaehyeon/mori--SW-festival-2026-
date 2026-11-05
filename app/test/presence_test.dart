@@ -1,3 +1,4 @@
+import 'package:carebridge/localization.dart';
 import 'package:carebridge/api.dart';
 import 'package:carebridge/presence.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,8 @@ class PresenceApi extends Api {
 }
 
 void main() {
+  setUp(() => MoriLanguage.current.value = 'ko');
+  tearDown(() => MoriLanguage.current.value = 'en');
   testWidgets(
     'presence starts opted out, counts real responses and shows unknown on failure',
     (tester) async {

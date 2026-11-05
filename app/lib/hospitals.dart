@@ -1,3 +1,5 @@
+import 'localization.dart';
+import 'hospital_name.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
@@ -67,7 +69,6 @@ class _HospitalsState extends State<Hospitals> {
   Map<String, dynamic>? data;
   String? error;
   bool busy = false;
-  String guideLanguage = 'en';
   BodyCategory? bodyCategory;
   String facilityCategory = 'medical';
   final resultsKey = GlobalKey();
@@ -84,7 +85,8 @@ class _HospitalsState extends State<Hospitals> {
         .where(
           (h) =>
               facilityMatches(h as Map, facilityCategory) &&
-              matchesBodyCategory(h, bodyCategory),
+              matchesBodyCategory(h, bodyCategory) &&
+              hospitalMatchesQuery(h, query.text),
         )
         .toList(),
     location,
@@ -268,7 +270,7 @@ class _HospitalsState extends State<Hospitals> {
     );
   }
 
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   @override
   void initState() {
     super.initState();
@@ -286,7 +288,7 @@ class _HospitalsState extends State<Hospitals> {
     setState(() => busy = true);
     try {
       final r = await widget.api.request(
-        '/api/hospitals?limit=all&kind=${facilityCategory.endsWith('Pharmacy') ? 'pharmacy' : 'hospital'}&q=${Uri.encodeComponent(query.text.trim())}',
+        '/api/hospitals?limit=all&kind=${facilityCategory.endsWith('Pharmacy') ? 'pharmacy' : 'hospital'}',
       );
       if (mounted) {
         setState(() {
@@ -334,7 +336,7 @@ class _HospitalsState extends State<Hospitals> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(hospital),
+                  HospitalName(hospital),
                   Text(
                     t(
                       'Self-reported experiences, not verified visits or nationality. Match uses the exact institution name. Write an experience in Community using this name.',
@@ -358,7 +360,7 @@ class _HospitalsState extends State<Hospitals> {
                             p['title'],
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Text('${p['language']} · ${p['visitDate']}'),
+                          Text('${tr(p['language'])} · ${p['visitDate']}'),
                           Text(p['body']),
                         ],
                       ),
@@ -548,28 +550,13 @@ class _HospitalsState extends State<Hospitals> {
             '진료과 이름을 이해하고 검색하는 안내입니다. 진단·응급도 판정이 아니며, 확실하지 않으면 의료기관에 문의하세요.',
           ),
         ),
-        DropdownButton<String>(
-          value: guideLanguage,
-          items: const [
-            DropdownMenuItem(value: 'en', child: Text('English')),
-            DropdownMenuItem(value: 'ko', child: Text('한국어')),
-            DropdownMenuItem(value: 'ja', child: Text('日本語')),
-            DropdownMenuItem(value: 'zh', child: Text('中文')),
-            DropdownMenuItem(value: 'ru', child: Text('Русский')),
-          ],
-          onChanged: (v) {
-            if (v != null) setState(() => guideLanguage = v);
-          },
-        ),
         Wrap(
           spacing: 8,
           runSpacing: 6,
           children: [
             for (final department in departmentGuide)
               ActionChip(
-                label: Text(
-                  '${department[guideLanguage]} · ${department['ko']}',
-                ),
+                label: Text(bilingualSpecialty(department['ko']!)),
                 onPressed: busy
                     ? null
                     : () {
@@ -582,8 +569,8 @@ class _HospitalsState extends State<Hospitals> {
         ),
         Text(
           t(
-            'Only this department guide supports five languages; other screens remain Korean / English.',
-            '5개 언어는 이 진료과 안내에 적용됩니다. 나머지 화면은 한국어·영어입니다.',
+            'Change the app language using the menu at the top.',
+            '상단 언어 메뉴에서 앱 언어를 바꿀 수 있어요.',
           ),
           style: const TextStyle(fontSize: 12),
         ),
@@ -612,7 +599,7 @@ class _HospitalsState extends State<Hospitals> {
             children: [
               if (bodyCategory != null)
                 Text(
-                  '${widget.ko ? bodyCategory!.ko : bodyCategory!.en} · ${bodyCategory!.departments.map(bilingualSpecialty).join(' / ')}',
+                  '${tr(bodyCategory!.en, bodyCategory!.ko)} · ${bodyCategory!.departments.map(bilingualSpecialty).join(' / ')}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               if (bodyCategory != null)
@@ -644,16 +631,16 @@ class _HospitalsState extends State<Hospitals> {
         for (final h in sorted)
           Card(
             child: ExpansionTile(
-              title: Text(h['name']),
+              title: HospitalName(h['name']),
               subtitle: Text(
-                '${location == null ? '' : '${distanceLabel(h)} · '}${facilityLabel(h, widget.ko)}${isPharmacy(h) ? '' : ' · ${h['doctors']} ${t('doctors', '의사')}'}\n${h['address']}\n${departmentSummary(h)}\n${specialistSummary(h)}',
+                '${location == null ? '' : '${distanceLabel(h)} · '}${facilityLabel(h, widget.ko)}${isPharmacy(h) ? '' : ' · ${t('doctors', '의사')}: ${h['doctors']}'}\n${h['address']}\n${departmentSummary(h)}\n${specialistSummary(h)}',
               ),
               childrenPadding: const EdgeInsets.all(16),
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (!isPharmacy(h))
                   Text(
-                    '${t('Registered departments', '신고 진료과목')}: ${(h['departments'] as List).map((d) => '${bilingualSpecialty(d['name'])}: ${d['specialists']} ${t('reported specialists', '신고 전문의')}').join('\n')}',
+                    '${t('Registered departments', '신고 진료과목')}: ${(h['departments'] as List).map((d) => '${bilingualSpecialty(d['name'])}: ${t('reported specialists', '신고 전문의')}: ${d['specialists']}').join('\n')}',
                   ),
                 if (!isPharmacy(h))
                   Text(
@@ -807,3 +794,28 @@ const departmentGuide = [
     'ru': 'Акушерство и гинекология',
   },
 ];
+
+bool hospitalMatchesQuery(Map h, String query) {
+  final q = query.trim().toLowerCase();
+  if (q.isEmpty) return true;
+  final departmentNames = (h['departments'] as List? ?? []).map(
+    (d) => '${d['name']}',
+  );
+  final candidates = <String>[
+    '${h['name']}',
+    romanizedHospitalName('${h['name']}'),
+    '${h['address']}',
+    '${h['type']}',
+  ];
+  for (final name in departmentNames) {
+    candidates.add(name);
+    final en = specialtyEnglish[name];
+    if (en != null) {
+      candidates.add(en);
+      candidates.addAll(
+        (MoriLanguage.catalog[en] as Map? ?? {}).values.cast<String>(),
+      );
+    }
+  }
+  return candidates.any((value) => value.toLowerCase().contains(q));
+}

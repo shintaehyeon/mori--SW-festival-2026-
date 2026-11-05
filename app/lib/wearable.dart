@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
@@ -125,7 +126,7 @@ class _WearablePageState extends State<WearablePage> {
   List<WearableSample> samples = [];
   String? status;
   DateTime? checked;
-  String t(String en, String ko) => widget.ko ? ko : en;
+  String t(String en, String ko) => tr(en, ko);
   List<HealthDataType> get selected => [
     if (heart) HealthDataType.HEART_RATE,
     if (sleep) HealthDataType.SLEEP_ASLEEP,
@@ -228,7 +229,34 @@ class _WearablePageState extends State<WearablePage> {
           ),
         ),
         const SizedBox(height: 12),
-        SelectableText(wearablePolicy),
+        SelectableText(
+          [
+            tr(
+              "Purpose: read only the health records you select to show them on this screen.",
+            ),
+            tr(
+              "Data: selected heart rate (bpm), sleep intervals (minutes), start/end times, source app/device and record identifiers. Last 24 hours only.",
+            ),
+            tr(
+              "Processing: in this screen’s memory only. No transmission to MORI servers, AI, family, school or employer; no advertising, insurance or employment assessment.",
+            ),
+            tr(
+              "Retention: closing this screen or stopping reading clears its data. Originals in OS health apps remain. OS permissions may remain separately.",
+            ),
+            tr(
+              "Choice: declining does not prevent hospital search or manual records. Choose OS read access separately for each data type.",
+            ),
+            tr(
+              "Withdrawal: stop reading and clear this view, then revoke Mori permissions in Health / Health Connect settings.",
+            ),
+            tr(
+              "Limits: missing or delayed data does not prove normal health or whether access was granted. No diagnosis, continuous monitoring or automatic emergency report.",
+            ),
+            tr(
+              "Prototype notice: this is not a finalized privacy policy with an operator and contact point. Review and finalize before deployment.",
+            ),
+          ].join('\n\n'),
+        ),
         const SizedBox(height: 12),
         if (!reader.supported)
           Text(
