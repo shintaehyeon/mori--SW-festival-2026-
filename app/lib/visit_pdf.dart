@@ -30,16 +30,16 @@ Map<String, String> visitOverview(Map<String, dynamic> card) {
   return {
     '방문 이유·변화 / Concern & changes': visitExcerpt(
       tr?['symptomsKo'] ?? s['symptoms'],
-      340,
+      220,
     ),
-    '시작 시점 / Onset': visitExcerpt(tr?['onsetKo'] ?? s['onset'], 100),
+    '시작 시점 / Onset': visitExcerpt(tr?['onsetKo'] ?? s['onset'], 80),
     '알레르기 / Allergies': visitExcerpt(
       tr?['allergiesKo'] ?? reportedKnowledge(s['profile']['allergies']),
-      150,
+      100,
     ),
     '복용약 / Medications': visitExcerpt(
       tr?['medicationsKo'] ?? reportedKnowledge(s['profile']['medications']),
-      150,
+      100,
     ),
   };
 }
@@ -87,6 +87,8 @@ Future<Uint8List> buildVisitPdf(
       : reviewed
       ? '사용자 대조 확인 / User reviewed'
       : 'AI 초안 · 미확인 / Unreviewed AI draft';
+  const ink = PdfColor.fromInt(0xff243e50);
+  const pale = PdfColor.fromInt(0xffeef3f6);
   pw.Widget text(String s, {double size = 10}) =>
       pw.Text(s, style: pw.TextStyle(fontSize: size, lineSpacing: 3));
   List<pw.Widget> section(String title, String value) => [
@@ -94,10 +96,14 @@ Future<Uint8List> buildVisitPdf(
     pw.Container(
       width: double.infinity,
       padding: const pw.EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-      color: PdfColors.grey200,
+      color: pale,
       child: pw.Text(
         title,
-        style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
+        style: pw.TextStyle(
+          fontSize: 10,
+          fontWeight: pw.FontWeight.bold,
+          color: ink,
+        ),
       ),
     ),
     pw.SizedBox(height: 4),
@@ -107,6 +113,33 @@ Future<Uint8List> buildVisitPdf(
         child: text(chunk),
       ),
   ];
+  pw.Widget table(List<String> headers, List<List<String>> rows) =>
+      pw.TableHelper.fromTextArray(
+        headers: headers,
+        data: rows,
+        headerStyle: pw.TextStyle(
+          fontSize: 8,
+          color: ink,
+          fontWeight: pw.FontWeight.bold,
+        ),
+        cellStyle: const pw.TextStyle(fontSize: 8, lineSpacing: 2),
+        headerDecoration: const pw.BoxDecoration(color: pale),
+        border: pw.TableBorder.all(color: PdfColors.grey400, width: .5),
+        cellAlignment: pw.Alignment.centerLeft,
+        cellPadding: const pw.EdgeInsets.all(6),
+      );
+  pw.Widget footer(pw.Context context) => pw.Column(
+    children: [
+      pw.Divider(color: PdfColors.grey400),
+      pw.Row(
+        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+        children: [
+          text('MORI · 환자 작성 진료 준비자료 / Patient-reported', size: 7),
+          text('${context.pageNumber} / ${context.pagesCount}', size: 8),
+        ],
+      ),
+    ],
+  );
   doc.addPage(
     pw.Page(
       pageFormat: PdfPageFormat.a4,
@@ -120,11 +153,15 @@ Future<Uint8List> buildVisitPdf(
         crossAxisAlignment: pw.CrossAxisAlignment.stretch,
         children: [
           pw.Text(
-            'MORI | 병원에 보여줄 한 장',
-            style: pw.TextStyle(fontSize: 21, fontWeight: pw.FontWeight.bold),
+            'MORI | 진료 준비 요약',
+            style: pw.TextStyle(
+              fontSize: 21,
+              color: ink,
+              fontWeight: pw.FontWeight.bold,
+            ),
           ),
           text(
-            'VISIT OVERVIEW${card['sample'] == true ? ' | 가상 예시 / TEST SAMPLE' : ''}',
+            'PATIENT VISIT BRIEF${card['sample'] == true ? ' | 가상 예시 / TEST SAMPLE' : ''}',
             size: 10,
           ),
           pw.SizedBox(height: 8),
@@ -133,13 +170,21 @@ Future<Uint8List> buildVisitPdf(
             '$status${translation != null && !reviewed ? ' | 첫 장은 원문 / Original shown here' : ''}',
             size: 9,
           ),
-          text(
-            '성명 / Name: ${visitExcerpt(intake['patientName'], 55)}',
-            size: 10,
+          pw.SizedBox(height: 8),
+          table(
+            ['성명 / Name', '저장 일시 / Saved', '자료 상태 / Source'],
+            [
+              [
+                visitExcerpt(intake['patientName'], 55),
+                visitExcerpt(card['createdAt'], 40),
+                '환자 입력 / Patient entered',
+              ],
+            ],
           ),
+          pw.SizedBox(height: 5),
           text(
-            '불편 부위 / Site: ${visitExcerpt(intake['bodySite'], 55)}',
-            size: 10,
+            '불편 부위 상세 / Site detail: ${visitExcerpt(intake['bodySite'], 70)}',
+            size: 9,
           ),
           pw.Row(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -183,9 +228,39 @@ Future<Uint8List> buildVisitPdf(
               ),
             ],
           ),
-          ...section(
-            '직접 입력한 수치 / Patient-entered measurements',
-            '통증 / Pain: ${intake['painScore'] ?? '미기록'} / 10    체온 / Temperature: ${intake['temperatureC'] ?? '미기록'} °C\n측정 시점·방법 / Measurement: ${visitExcerpt(intake['measuredAt'], 80)}',
+          pw.SizedBox(height: 12),
+          table(
+            ['관찰 항목 / Observation', '값 / Value', '근거 / Source'],
+            [
+              [
+                '통증 / Pain',
+                intake['painScore'] == null
+                    ? '미기록 / Not recorded'
+                    : '${intake['painScore']} / 10',
+                '본인 보고 / Self-report',
+              ],
+              [
+                '체온 / Temperature',
+                intake['temperatureC'] == null
+                    ? '미기록 / Not recorded'
+                    : '${intake['temperatureC']} °C',
+                '직접 입력 / Manual entry',
+              ],
+            ],
+          ),
+          pw.SizedBox(height: 4),
+          text(
+            '측정 시점·방법 / Measured: ${visitExcerpt(intake['measuredAt'], 80)}',
+            size: 8,
+          ),
+          pw.SizedBox(height: 10),
+          pw.Container(
+            padding: const pw.EdgeInsets.all(8),
+            color: pale,
+            child: text(
+              '자료 확인 / Data context\n미기록 ≠ 이상 없음. 약·알레르기는 환자 보고이며 의료진 확인 전입니다. 혈압·맥박·검사 결과·워치값은 자동으로 포함되지 않습니다.\nMissing does not mean normal. Medicines/allergies are patient-reported; no automatic device or test results.',
+              size: 8,
+            ),
           ),
           pw.Spacer(),
           text(
@@ -197,7 +272,7 @@ Future<Uint8List> buildVisitPdf(
             '저장 / Saved: ${card['createdAt']} | 내보냄 / Exported: $stamp',
             size: 7,
           ),
-          text('1 | 진단·응급도 판정 없음 / No diagnosis or urgency score', size: 8),
+          footer(context),
         ],
       ),
     ),
@@ -212,19 +287,14 @@ Future<Uint8List> buildVisitPdf(
         bold: latin,
         fontFallback: [font, cjk],
       ),
-      footer: (context) => pw.Padding(
-        padding: const pw.EdgeInsets.only(top: 8),
-        child: pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            text(
-              '환자 작성 자료 / Patient reported - Not a clinical record',
-              size: 8,
-            ),
-            text('${context.pageNumber} / ${context.pagesCount}', size: 8),
-          ],
+      header: (context) => pw.Padding(
+        padding: const pw.EdgeInsets.only(bottom: 8),
+        child: text(
+          'MORI · 전체 원문 및 기록 / SOURCE DETAILS · ${visitExcerpt(intake['patientName'], 40)}',
+          size: 8,
         ),
       ),
+      footer: footer,
       build: (context) => [
         pw.Text(
           '${card['sample'] == true ? '가상 예시 / TEST SAMPLE - ' : ''}상세 기록 / FULL VISIT DETAILS',
@@ -239,7 +309,7 @@ Future<Uint8List> buildVisitPdf(
             border: pw.Border.all(color: PdfColors.grey600),
           ),
           child: text(
-            '이 문서는 환자가 입력한 정보입니다. 의료진의 진찰·문진·공식 기록을 대체하지 않습니다.\nPatient-reported information, not diagnosis, medical certification, or an official intake form.',
+            '이 문서는 저장 당시 환자 입력의 사본입니다. 미기록·모름·없음을 구분합니다. 사용자 번역 확인은 의료진 검수를 뜻하지 않습니다.\nSaved patient-reported snapshot. Not recorded, unknown and reported none are distinct. User translation review is not clinical verification.',
           ),
         ),
         pw.SizedBox(height: 10),
@@ -256,6 +326,10 @@ Future<Uint8List> buildVisitPdf(
             ['카드 작성 / Card saved', '${card['createdAt']}'],
             ['PDF 생성 / Exported', stamp],
             ['원문·번역 / Language status', status],
+            [
+              '사용자 번역 확인 / User review',
+              card['confirmedAt']?.toString() ?? '미확인 / Not reviewed',
+            ],
             [
               '그림 선택 부위 / Diagram area',
               visitBodyRegions[intake['bodyRegion']] ?? '선택 안 함 / Not selected',
@@ -293,7 +367,7 @@ Future<Uint8List> buildVisitPdf(
           headerDecoration: const pw.BoxDecoration(color: PdfColors.grey200),
           cellAlignment: pw.Alignment.centerLeft,
           columnWidths: {0: const pw.FixedColumnWidth(175)},
-          cellPadding: const pw.EdgeInsets.all(7),
+          cellPadding: const pw.EdgeInsets.all(4),
         ),
         ...section('01  방문 이유 / Chief concern - 원문', snapshot['symptoms']),
         ...section('02  시작 시점·경과 / Onset - 원문', snapshot['onset']),
@@ -336,6 +410,80 @@ Future<Uint8List> buildVisitPdf(
           size: 8,
         ),
       ],
+    ),
+  );
+  doc.addPage(
+    pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      margin: const pw.EdgeInsets.all(32),
+      theme: pw.ThemeData.withFont(
+        base: latin,
+        bold: latin,
+        fontFallback: [font, cjk],
+      ),
+      build: (context) => pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+        children: [
+          pw.Text('진료 전 보충 메모', style: pw.TextStyle(fontSize: 21, color: ink)),
+          text(
+            'OPTIONAL PATIENT NOTES · ${card['sample'] == true ? 'TEST SAMPLE' : 'FOR THIS VISIT'}',
+            size: 10,
+          ),
+          pw.SizedBox(height: 10),
+          text(
+            '성명 / Name: ${visitExcerpt(intake['patientName'], 55)}',
+            size: 10,
+          ),
+          pw.SizedBox(height: 8),
+          pw.Container(
+            color: pale,
+            padding: const pw.EdgeInsets.all(9),
+            child: text(
+              '아래는 앱에서 수집하지 않은 보충 항목입니다. 필요한 내용만 출력 후 직접 적거나 진료 중 설명하세요. 빈칸은 “없음”이 아닙니다. 이 페이지에 적은 내용은 앱에 저장되지 않습니다.\nNot collected in the app. Complete on paper if relevant. Blank does not mean none. Handwritten notes are not saved back to MORI.',
+              size: 9,
+            ),
+          ),
+          ...section(
+            '01  이전 건강정보 / Previous health information',
+            '기존 질환·수술·입원·관련 검사와 시기 (해당 시)\nConditions, operations, admissions or relevant tests and dates, if applicable.',
+          ),
+          pw.SizedBox(height: 40),
+          pw.Divider(color: PdfColors.grey400),
+          ...section(
+            '02  약·영양제의 상세 / Medicine & supplement details',
+            '앞장 복약 내용을 보충하세요. 모르는 용량은 추정하지 말고 약 봉투나 사진을 함께 보여주세요.\nAdd details to the reported medicine list; leave uncertain doses unknown.',
+          ),
+          table([
+            '이름 / Name',
+            '용량·단위 / Dose & unit',
+            '빈도 / Frequency',
+            '마지막 복용 / Last taken',
+          ], List.generate(3, (_) => ['', '', '', ''])),
+          ...section(
+            '03  알레르기 반응 상세 / Allergy reaction details',
+            '원인 물질·어떤 반응·발생 시점 (알고 있는 내용만)\nSubstance, reaction and timing, only if known.',
+          ),
+          pw.SizedBox(height: 30),
+          pw.Divider(color: PdfColors.grey400),
+          ...section(
+            '04  오늘 확인하고 싶은 점 / Questions for this visit',
+            '가장 걱정되는 점·전달하지 못한 증상·필요한 언어 지원\nMain concern, other symptoms to discuss, or language assistance needed.',
+          ),
+          pw.SizedBox(height: 35),
+          pw.Divider(color: PdfColors.grey400),
+          pw.Spacer(),
+          text(
+            '작성자 / Completed by: __________________    작성일 / Date: __________________',
+            size: 9,
+          ),
+          pw.SizedBox(height: 8),
+          text(
+            '환자 보충 메모이며 의료진의 평가·진단·처방 기록이 아닙니다.\nPatient notes, not a clinician assessment, diagnosis or prescription.',
+            size: 8,
+          ),
+          footer(context),
+        ],
+      ),
     ),
   );
   return doc.save();
