@@ -1,4 +1,5 @@
 import 'localization.dart';
+import 'campus_support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -193,6 +194,8 @@ class _EmergencyPageState extends State<EmergencyPage> {
             '전화 화면으로 연결돼요. 실제 통화는 휴대전화에서 시작해 주세요.',
           ),
         ),
+        const Divider(height: 32),
+        HandongSupport(onOpen: (uri) => open(uri)),
         const Divider(height: 32),
         if (!widget.signedIn)
           Text(

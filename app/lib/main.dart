@@ -276,8 +276,8 @@ class _WorkspaceState extends State<Workspace> {
                       const SizedBox(height: 6),
                       Text(
                         t(
-                          'Prepare your symptoms in your language, then review a Korean visit sheet to show your clinician.',
-                          '증상·알레르기·복용약을 내 언어로 정리하고, 한국어 진료 준비표로 확인하세요.',
+                          'Handong international students · MVP',
+                          '한동대 외국인 유학생을 위한 MVP',
                         ),
                         textAlign: TextAlign.center,
                       ),

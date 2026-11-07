@@ -4510,5 +4510,85 @@
     "zh": "添加详细信息（可选）",
     "vi": "Thêm chi tiết (không bắt buộc)",
     "en": "Add details for the clinician (optional)"
+  },
+  "Handong international student support": {
+    "en": "Handong international student support",
+    "ko": "한동대 외국인 유학생 도움 연락망",
+    "zh": "韩东大学留学生支持",
+    "ja": "韓東大学 留学生サポート",
+    "vi": "Hỗ trợ sinh viên quốc tế Handong",
+    "fr": "Aide aux étudiants internationaux de Handong"
+  },
+  "For Handong students who need help with university life or finding the right university office.": {
+    "en": "For Handong students who need help with university life or finding the right university office.",
+    "ko": "학교생활에 도움이 필요하거나 어느 부서에 문의할지 모르는 한동대 유학생을 위한 연락처예요.",
+    "zh": "为需要校园生活帮助或不知道联系哪个部门的韩东大学留学生提供联系方式。",
+    "ja": "大学生活の支援や相談先を探す韓東大学の留学生向け連絡先です。",
+    "vi": "Dành cho sinh viên Handong cần hỗ trợ đời sống đại học hoặc tìm phòng ban phù hợp.",
+    "fr": "Pour les étudiants de Handong ayant besoin d’aide dans la vie universitaire ou pour trouver le bon service."
+  },
+  "University support is not an emergency service. Hours and response times are unconfirmed. In an emergency, use 119 or 112 without waiting for a reply.": {
+    "en": "University support is not an emergency service. Hours and response times are unconfirmed. In an emergency, use 119 or 112 without waiting for a reply.",
+    "ko": "학교 지원은 응급 대응 서비스가 아니에요. 운영시간과 응답 시간은 미확인입니다. 긴급 상황에서는 답변을 기다리지 말고 119·112를 이용하세요.",
+    "zh": "学校支持并非紧急救援服务。办公时间和回复时间尚未确认。紧急情况下请拨打119或112，不要等待回复。",
+    "ja": "大学の支援窓口は緊急対応サービスではありません。受付時間・返信時間は未確認です。緊急時は返信を待たず119・112を利用してください。",
+    "vi": "Hỗ trợ của trường không phải dịch vụ khẩn cấp. Chưa xác nhận giờ làm việc và thời gian phản hồi. Khi khẩn cấp, gọi 119 hoặc 112, đừng chờ trả lời.",
+    "fr": "Le service universitaire ne traite pas les urgences. Horaires et délais de réponse non confirmés. En cas d’urgence, appelez le 119 ou le 112 sans attendre de réponse."
+  },
+  "Academic affairs / student life": {
+    "en": "Academic affairs / student life",
+    "ko": "학사 · 학생 생활 지원",
+    "zh": "教务 / 学生生活支持",
+    "ja": "学務・学生生活支援",
+    "vi": "Học vụ / đời sống sinh viên",
+    "fr": "Scolarité / vie étudiante"
+  },
+  "General student enquiries": {
+    "en": "General student enquiries",
+    "ko": "학생 일반 문의",
+    "zh": "学生一般咨询",
+    "ja": "学生の一般相談",
+    "vi": "Thắc mắc chung của sinh viên",
+    "fr": "Questions générales des étudiants"
+  },
+  "Exchange / visiting students": {
+    "en": "Exchange / visiting students",
+    "ko": "교환 · 방문학생 문의",
+    "zh": "交换 / 访问学生咨询",
+    "ja": "交換・訪問学生の相談",
+    "vi": "Sinh viên trao đổi / thỉnh giảng",
+    "fr": "Étudiants en échange / visiteurs"
+  },
+  "Email opens a draft only. No health details are attached. MORI is a student project, not an official university service.": {
+    "en": "Email opens a draft only. No health details are attached. MORI is a student project, not an official university service.",
+    "ko": "이메일 작성 화면만 열며 건강정보는 첨부하지 않아요. 모리는 학생 프로젝트이며 학교 공식 서비스가 아닙니다.",
+    "zh": "仅打开邮件编辑窗口，不附加健康信息。MORI是学生项目，并非大学官方服务。",
+    "ja": "メール作成画面のみ開き、健康情報は添付しません。MORIは学生プロジェクトであり、大学の公式サービスではありません。",
+    "vi": "Chỉ mở cửa sổ soạn email, không đính kèm thông tin sức khỏe. MORI là dự án sinh viên, không phải dịch vụ chính thức của trường.",
+    "fr": "Seul un brouillon s’ouvre, sans données de santé jointes. MORI est un projet étudiant, pas un service officiel de l’université."
+  },
+  "University source · checked 2026-11-08": {
+    "en": "University source · checked 2026-11-08",
+    "ko": "학교 공식 안내 · 확인 2026-11-08",
+    "zh": "学校官方信息 · 核对日期2026-11-08",
+    "ja": "大学公式案内・確認日2026-11-08",
+    "vi": "Nguồn chính thức của trường · kiểm tra 2026-11-08",
+    "fr": "Source universitaire · vérifiée le 08/11/2026"
+  },
+  "Official exchange contacts": {
+    "en": "Official exchange contacts",
+    "ko": "교환학생 공식 연락처 안내",
+    "zh": "交换生官方联系方式",
+    "ja": "交換留学生の公式連絡先",
+    "vi": "Liên hệ trao đổi chính thức",
+    "fr": "Contacts officiels pour les échanges"
+  },
+  "Handong international students · MVP": {
+    "en": "Handong international students · MVP",
+    "ko": "한동대 외국인 유학생을 위한 MVP",
+    "zh": "面向韩东大学留学生的MVP",
+    "ja": "韓東大学の留学生向けMVP",
+    "vi": "MVP dành cho sinh viên quốc tế Handong",
+    "fr": "MVP pour les étudiants internationaux de Handong"
   }
 }
