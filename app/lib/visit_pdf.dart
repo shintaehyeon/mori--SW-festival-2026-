@@ -14,6 +14,13 @@ String intakeMetrics(Map<String, dynamic> card) {
   return '통증 / Pain: ${i['painScore'] == null ? '미기록 / Not recorded' : '${i['painScore']}/10 (본인 보고)'}\n체온 / Temperature: ${i['temperatureC'] == null ? '미기록 / Not recorded' : '${i['temperatureC']} °C (본인 측정)'}\n측정 시점 / Measured: ${(i['measuredAt'] ?? '').toString().trim().isEmpty ? '미기록 / Not recorded' : i['measuredAt']}';
 }
 
+String visitDestination(Map<String, dynamic> card) {
+  final d = card['snapshot']['destination'] as Map?;
+  return d == null
+      ? ''
+      : '${d['name']}\n${d['address']}\n방문 준비용 · 예약 아님 / Planned visit, not a booking';
+}
+
 /// A visible excerpt only. The appendix retains the complete snapshot.
 String visitExcerpt(dynamic value, int limit) {
   final text = (value ?? '').toString().replaceAll(RegExp(r'\s+'), ' ').trim();
@@ -166,6 +173,8 @@ Future<Uint8List> buildVisitPdf(
           ),
           pw.SizedBox(height: 8),
           text('환자 작성 자료 · 의료기관 공식 기록 아님 / Patient reported', size: 9),
+          if (visitDestination(card).isNotEmpty)
+            text(visitDestination(card), size: 9),
           text(
             '$status${translation != null && !reviewed ? ' | 첫 장은 원문 / Original shown here' : ''}',
             size: 9,
@@ -296,6 +305,7 @@ Future<Uint8List> buildVisitPdf(
       ),
       footer: footer,
       build: (context) => [
+        if (visitDestination(card).isNotEmpty) text(visitDestination(card)),
         pw.Text(
           '${card['sample'] == true ? '가상 예시 / TEST SAMPLE - ' : ''}상세 기록 / FULL VISIT DETAILS',
           style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
@@ -560,6 +570,11 @@ class ClinicalVisitView extends StatelessWidget {
                     style: TextStyle(color: Colors.black87),
                   ),
                   const SizedBox(height: 16),
+                  if (visitDestination(card).isNotEmpty)
+                    section(
+                      '방문 예정 병원 / Planned destination',
+                      visitDestination(card),
+                    ),
                   Text('$language · 첫 장 요약 / Overview'),
                   for (final entry in visitOverview(card).entries)
                     section(entry.key, entry.value),

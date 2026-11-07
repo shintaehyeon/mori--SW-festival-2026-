@@ -40,6 +40,7 @@ void main() {
         'confirmedAt': null,
         'translation': null,
         'snapshot': {
+          'destination': {'name': '가상 테스트 병원 / Test clinic', 'address': '가상 주소 / Fictional address'},
           'symptoms':
               '가상 예시: 어제부터 목이 불편합니다. Test example: sore throat since yesterday.',
           'onset': '2026-10-28 저녁 / evening',

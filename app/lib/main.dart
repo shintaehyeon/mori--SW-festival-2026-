@@ -1,7 +1,6 @@
 import 'visit_body_map.dart';
 import 'localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'hospital_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -9,10 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
 import 'emergency.dart';
 import 'mori.dart';
+import 'tutorial.dart';
 import 'hospitals.dart';
-import 'presence.dart';
-import 'wearable.dart';
-import 'friends.dart';
 import 'visit_pdf.dart';
 import 'visit_preparation.dart';
 import 'package:printing/printing.dart';
@@ -143,6 +140,17 @@ class _WorkspaceState extends State<Workspace> {
     }
   }
 
+  Future<void> openTutorial() async {
+    final start = await Navigator.of(
+      context,
+    ).push<bool>(MaterialPageRoute(builder: (_) => const MoriTutorial()));
+    if (!mounted || start != true) return;
+    setState(() {
+      entry = false;
+      tab = 1;
+    });
+  }
+
   Future<void> setupBasicInfo() async {
     try {
       final info = await api.request('/api/emergency-profile');
@@ -229,23 +237,6 @@ class _WorkspaceState extends State<Workspace> {
           ],
         ),
         actions: [
-          if (user != null)
-            IconButton(
-              tooltip: t('Mori friends', '모리 친구'),
-              icon: const Icon(Icons.people_alt_outlined),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => FriendsPage(api: api, ko: ko),
-                ),
-              ),
-            ),
-          IconButton(
-            tooltip: t('Watch & permissions', '워치 연동 · 권한'),
-            icon: const Icon(Icons.watch_outlined),
-            onPressed: () => Navigator.of(
-              context,
-            ).push(MaterialPageRoute(builder: (_) => WearablePage(ko: ko))),
-          ),
           IconButton(
             tooltip: t('Emergency / My info', '긴급 연락 / 내 정보'),
             icon: const Icon(Icons.sos, color: Colors.red),
@@ -270,45 +261,79 @@ class _WorkspaceState extends State<Workspace> {
         ],
       ),
       body: entry
-          ? Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          ? Column(
               children: [
-                Expanded(
-                  child: entryHalf(
-                    color: const Color(0xFFB3261E),
-                    icon: Icons.emergency,
-                    title: t('EMERGENCY', '긴급'),
-                    subtitle: t('Emergency help · 119', '응급 도움 · 119'),
-                    action: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => EmergencyPage(
-                          api: api,
-                          signedIn: user != null,
-                          ko: ko,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+                  child: Column(
+                    children: [
+                      heading(
+                        t(
+                          'Your words. Ready for care in Korea.',
+                          '내 언어로 적고, 한국어로 보여주세요.',
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 6),
+                      Text(
+                        t(
+                          'Prepare your symptoms in your language, then review a Korean visit sheet to show your clinician.',
+                          '증상·알레르기·복용약을 내 언어로 정리하고, 한국어 진료 준비표로 확인하세요.',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton.icon(
+                        onPressed: openTutorial,
+                        icon: const Icon(Icons.play_circle_outline),
+                        label: Text(
+                          t('Watch the 20-second tutorial', '20초 앱 사용법 보기'),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
-                  child: entryHalf(
-                    color: green,
-                    icon: Icons.local_hospital_outlined,
-                    title: t('REGULAR CARE', '일반 진료'),
-                    subtitle: t(
-                      'Find a clinic · prepare a visit',
-                      '병원 찾기 · 진료 준비',
-                    ),
-                    action: () {
-                      if (user == null) {
-                        openGuestHospitals();
-                      } else {
-                        setState(() {
-                          entry = false;
-                          tab = 4;
-                        });
-                      }
-                    },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: entryHalf(
+                          color: const Color(0xFFB3261E),
+                          icon: Icons.emergency,
+                          title: t('EMERGENCY', '긴급'),
+                          subtitle: t('Emergency help · 119', '응급 도움 · 119'),
+                          action: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => EmergencyPage(
+                                api: api,
+                                signedIn: user != null,
+                                ko: ko,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: entryHalf(
+                          color: green,
+                          icon: Icons.local_hospital_outlined,
+                          title: t('REGULAR CARE', '일반 진료'),
+                          subtitle: t(
+                            'Find a clinic · prepare a Korean visit sheet',
+                            '병원 찾기 · 한국어 준비표 만들기',
+                          ),
+                          action: () {
+                            if (user == null) {
+                              openGuestHospitals();
+                            } else {
+                              setState(() {
+                                entry = false;
+                                tab = 4;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -364,7 +389,7 @@ class _WorkspaceState extends State<Workspace> {
                     ko: ko,
                     onLogin: (u) async {
                       if (mounted) setState(() => user = u);
-                      await setupBasicInfo();
+                      if (tab != 1) await setupBasicInfo();
                       try {
                         final h = await api.request('/api/health');
                         if (mounted) {
@@ -401,34 +426,15 @@ class _WorkspaceState extends State<Workspace> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            if (tab != 0)
-                              PresencePanel(
-                                key: ValueKey(user!['id']),
+                            if (tab == 0) home(),
+                            if (tab == 1)
+                              VisitCards(
                                 api: api,
                                 ko: ko,
+                                aiReady: aiReady,
+                                destination: visitHospital,
+                                onChooseHospital: () => selectTab(4),
                               ),
-                            if (tab == 0) home(),
-                            if (tab == 1) ...[
-                              if (visitHospital != null)
-                                panel([
-                                  heading(
-                                    t('Your planned destination', '방문 예정 병원'),
-                                  ),
-                                  HospitalName('${visitHospital!['name']}'),
-                                  Text('${visitHospital!['address']}'),
-                                  Text(
-                                    t(
-                                      'Visit preparation only · no appointment has been booked.',
-                                      '방문 준비용 선택 · 예약된 상태가 아닙니다.',
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => selectTab(4),
-                                    child: Text(t('Change hospital', '병원 바꾸기')),
-                                  ),
-                                ]),
-                              VisitCards(api: api, ko: ko, aiReady: aiReady),
-                            ],
                             if (tab == 2) Health(api: api, ko: ko),
                             if (tab == 3)
                               Community(api: api, ko: ko, user: user!),
@@ -681,18 +687,39 @@ class _WorkspaceState extends State<Workspace> {
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       panel([
-        heading(t('How can we help today?', '어떤 도움이 필요한가요?')),
+        heading(
+          t('Your words. Ready for care in Korea.', '내 언어로 적고, 한국어로 보여주세요.'),
+        ),
         Text(
           t(
-            'Choose the help you need. This is not an emergency assessment.',
-            '필요한 도움을 선택하세요. 앱이 응급 여부를 판정하지 않습니다.',
+            'Symptoms, allergies and medication — together in a Korean visit sheet you can review and show.',
+            '증상·알레르기·복용약을 한 장에. 번역을 확인하고 한국 의료진에게 보여주세요.',
           ),
         ),
+        TextButton.icon(
+          onPressed: openTutorial,
+          icon: const Icon(Icons.play_circle_outline),
+          label: Text(t('Watch the 20-second tutorial', '20초 앱 사용법 보기')),
+        ),
         const SizedBox(height: 12),
-        FilledButton.icon(
-          style: FilledButton.styleFrom(
-            backgroundColor: const Color(0xFFB3261E),
+        button(
+          t('Create my Korean visit sheet', '한국어 진료 준비표 만들기'),
+          () => selectTab(1),
+        ),
+        Text(
+          t(
+            'Write → Translate → Review → Show',
+            '입력 → AI 번역 → 직접 확인 → 의료진에게 보여주기',
           ),
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          icon: const Icon(Icons.local_hospital_outlined),
+          label: Text(t('Find a clinic', '병원 찾기')),
+          onPressed: () => selectTab(4),
+        ),
+        TextButton.icon(
+          style: TextButton.styleFrom(foregroundColor: const Color(0xFFB3261E)),
           icon: const Icon(Icons.emergency),
           label: Text(t('Emergency help · 119', '응급 도움 · 119')),
           onPressed: () => Navigator.of(context).push(
@@ -702,21 +729,8 @@ class _WorkspaceState extends State<Workspace> {
             ),
           ),
         ),
-        const SizedBox(height: 10),
-        button(
-          t('Plan a non-emergency visit', '일반 진료 준비 · 병원 찾기'),
-          () => selectTab(4),
-        ),
-        button(
-          t('Prepare information for the clinician', '의료진에게 보여줄 정보 준비'),
-          () => selectTab(1),
-        ),
       ]),
-      MoriHome(api: api, ko: ko),
-      button(
-        t('Prepare what to tell the clinician', '병원에 보여줄 방문 이유 정리'),
-        () => selectTab(1),
-      ),
+      MoriHome(api: api, ko: ko, onHistory: () => selectTab(2)),
       const SizedBox(height: 18),
       panel([
         const Icon(Icons.people_outline, color: green, size: 28),
@@ -739,6 +753,7 @@ class _WorkspaceState extends State<Workspace> {
         ),
         button(t('My health', '내 건강'), () => selectTab(2)),
       ]),
+      const SizedBox(height: 16),
       if (!aiReady)
         info(
           t(
@@ -902,7 +917,7 @@ class _AuthState extends State<Auth> {
             panel([
               heading(
                 registering
-                    ? t('Join MORI', 'CareBridge 가입')
+                    ? t('Join MORI', 'MORI 가입')
                     : t('Welcome back', '다시 만나 반가워요'),
               ),
               if (registering)
@@ -1196,11 +1211,15 @@ class _HealthState extends ScreenState<Health> {
 class VisitCards extends StatefulWidget {
   final Api api;
   final bool ko, aiReady;
+  final Map<String, dynamic>? destination;
+  final VoidCallback? onChooseHospital;
   const VisitCards({
     super.key,
     required this.api,
     required this.ko,
     required this.aiReady,
+    this.destination,
+    this.onChooseHospital,
   });
   @override
   State<VisitCards> createState() => _VisitCardsState();
@@ -1218,6 +1237,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   int? painScore;
   String? bodyRegion;
   List<dynamic> cards = [], journals = [];
+  Json? careProfile;
   final selected = <String>{};
   bool consent = false, reviewed = false;
   Json? current;
@@ -1254,11 +1274,13 @@ class _VisitCardsState extends ScreenState<VisitCards> {
     final r = await Future.wait([
       widget.api.request('/api/cards'),
       widget.api.request('/api/journals'),
+      widget.api.request('/api/profile'),
     ]);
     if (mounted) {
       setState(() {
         cards = r[0];
         journals = r[1];
+        careProfile = Map<String, dynamic>.from(r[2]);
       });
     }
   });
@@ -1305,8 +1327,78 @@ class _VisitCardsState extends ScreenState<VisitCards> {
     children: [
       heading(t('Prepare what to tell your clinician', '병원에 보여줄 방문 이유 정리')),
       const SizedBox(height: 12),
+      if ((current == null
+              ? widget.destination
+              : current!['snapshot']['destination']) !=
+          null)
+        panel([
+          heading(t('Your planned destination', '방문 예정 병원')),
+          Text(
+            current == null
+                ? widget.destination!['name']
+                : current!['snapshot']['destination']['name'],
+          ),
+          Text(
+            current == null
+                ? widget.destination!['address']
+                : current!['snapshot']['destination']['address'],
+          ),
+          Text(
+            t(
+              'Visit preparation only · no appointment has been booked.',
+              '방문 준비용 선택 · 예약된 상태가 아닙니다.',
+            ),
+          ),
+        ]),
+      if (current == null && widget.onChooseHospital != null)
+        TextButton.icon(
+          onPressed: busy ? null : widget.onChooseHospital,
+          icon: const Icon(Icons.local_hospital_outlined),
+          label: Text(
+            widget.destination == null
+                ? t('Find a clinic', '병원 찾기')
+                : t('Change hospital', '병원 바꾸기'),
+          ),
+        ),
       ...feedback,
       if (current == null) ...[
+        if (careProfile != null)
+          panel([
+            heading(t('Health information for this visit', '이번 방문에 전달할 건강정보')),
+            Text(
+              '${t('Allergies', '알레르기')}: ${knowledge(careProfile!['allergies'])}',
+            ),
+            Text(
+              '${t('Medication', '복용약')}: ${knowledge(careProfile!['medications'])}',
+            ),
+            TextButton.icon(
+              icon: const Icon(Icons.edit_outlined),
+              label: Text(t('Check allergies and medicines', '알레르기·복용약 확인하기')),
+              onPressed: busy
+                  ? null
+                  : () async {
+                      await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => Scaffold(
+                            appBar: AppBar(
+                              title: Text(
+                                t(
+                                  'Health information for this visit',
+                                  '이번 방문에 전달할 건강정보',
+                                ),
+                              ),
+                            ),
+                            body: SingleChildScrollView(
+                              padding: const EdgeInsets.all(20),
+                              child: Health(api: widget.api, ko: widget.ko),
+                            ),
+                          ),
+                        ),
+                      );
+                      if (mounted) await load();
+                    },
+            ),
+          ]),
         panel([
           info(
             t('PRIVATE · Not posted to the community', '비공개 · 커뮤니티에 게시되지 않습니다'),
@@ -1323,110 +1415,124 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             ),
             onset,
           ),
-          field(
-            t('How has it changed? (optional)', '처음과 비교해 어떻게 달라졌나요? (선택)'),
-            course,
-            lines: 2,
-          ),
-          field(
-            t(
-              'What makes it better or worse? (optional)',
-              '언제 심해지거나 나아지나요? (선택)',
+          ExpansionTile(
+            maintainState: true,
+            tilePadding: EdgeInsets.zero,
+            title: Text(
+              t('Add details for the clinician (optional)', '상세 정보 추가 (선택)'),
             ),
-            triggers,
-            lines: 2,
-          ),
-          field(
-            t('What would you like to ask? (optional)', '의료진에게 꼭 묻고 싶은 점 (선택)'),
-            questions,
-            lines: 2,
-          ),
-          info(
-            t(
-              'Write in your own language. Blank answers stay unrecorded. Review your saved original before choosing translation.',
-              '편한 언어로 적으세요. 빈 답변은 미기록으로 남습니다. 저장된 원문을 확인한 후 번역을 선택할 수 있어요.',
-            ),
-          ),
-          heading(t('Structured visit preparation', '한눈에 보는 초진 준비')),
-          field(
-            t('Name (optional, for this document)', '성명 (선택 · 이 문서용)'),
-            patientName,
-          ),
-          field(t('Body site (optional)', '불편한 부위 (선택)'), bodySite),
-          DropdownButtonFormField<String>(
-            initialValue: bodyRegion,
-            isExpanded: true,
-            decoration: InputDecoration(
-              labelText: tr('Body diagram (optional)'),
-            ),
-            items: [
-              DropdownMenuItem(value: '', child: Text(tr('Not recorded'))),
-              for (final entry in visitBodyRegions.entries)
-                DropdownMenuItem(
-                  value: entry.key,
-                  child: Text(tr('Body region: ${entry.key}')),
-                ),
-            ],
-            onChanged: busy
-                ? null
-                : (value) =>
-                      setState(() => bodyRegion = value == '' ? null : value),
-          ),
-          Text(
-            tr(
-              'Diagram shows a broad area only. Describe side and exact location above.',
-            ),
-          ),
-
-          Text(
-            t(
-              'Pain intensity (self-report): 0 no pain, 10 worst imaginable',
-              '통증 정도 (본인 보고): 0 통증 없음, 10 상상할 수 있는 가장 심한 통증',
-            ),
-          ),
-          Wrap(
-            spacing: 4,
             children: [
-              ChoiceChip(
-                label: Text(t('Not recorded', '미기록')),
-                selected: painScore == null,
-                onSelected: busy
-                    ? null
-                    : (_) => setState(() => painScore = null),
+              field(
+                t('How has it changed? (optional)', '처음과 비교해 어떻게 달라졌나요? (선택)'),
+                course,
+                lines: 2,
               ),
-              for (var n = 0; n <= 10; n++)
-                ChoiceChip(
-                  label: Text('$n'),
-                  selected: painScore == n,
-                  onSelected: busy
-                      ? null
-                      : (_) => setState(() => painScore = n),
+              field(
+                t(
+                  'What makes it better or worse? (optional)',
+                  '언제 심해지거나 나아지나요? (선택)',
                 ),
+                triggers,
+                lines: 2,
+              ),
+              field(
+                t(
+                  'What would you like to ask? (optional)',
+                  '의료진에게 꼭 묻고 싶은 점 (선택)',
+                ),
+                questions,
+                lines: 2,
+              ),
+              info(
+                t(
+                  'Write in your own language. Blank answers stay unrecorded. Review your saved original before choosing translation.',
+                  '편한 언어로 적으세요. 빈 답변은 미기록으로 남습니다. 저장된 원문을 확인한 후 번역을 선택할 수 있어요.',
+                ),
+              ),
+              heading(t('Structured visit preparation', '한눈에 보는 초진 준비')),
+              field(
+                t('Name (optional, for this document)', '성명 (선택 · 이 문서용)'),
+                patientName,
+              ),
+              field(t('Body site (optional)', '불편한 부위 (선택)'), bodySite),
+              DropdownButtonFormField<String>(
+                initialValue: bodyRegion,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: tr('Body diagram (optional)'),
+                ),
+                items: [
+                  DropdownMenuItem(value: '', child: Text(tr('Not recorded'))),
+                  for (final entry in visitBodyRegions.entries)
+                    DropdownMenuItem(
+                      value: entry.key,
+                      child: Text(tr('Body region: ${entry.key}')),
+                    ),
+                ],
+                onChanged: busy
+                    ? null
+                    : (value) => setState(
+                        () => bodyRegion = value == '' ? null : value,
+                      ),
+              ),
+              Text(
+                tr(
+                  'Diagram shows a broad area only. Describe side and exact location above.',
+                ),
+              ),
+
+              Text(
+                t(
+                  'Pain intensity (self-report): 0 no pain, 10 worst imaginable',
+                  '통증 정도 (본인 보고): 0 통증 없음, 10 상상할 수 있는 가장 심한 통증',
+                ),
+              ),
+              Wrap(
+                spacing: 4,
+                children: [
+                  ChoiceChip(
+                    label: Text(t('Not recorded', '미기록')),
+                    selected: painScore == null,
+                    onSelected: busy
+                        ? null
+                        : (_) => setState(() => painScore = null),
+                  ),
+                  for (var n = 0; n <= 10; n++)
+                    ChoiceChip(
+                      label: Text('$n'),
+                      selected: painScore == n,
+                      onSelected: busy
+                          ? null
+                          : (_) => setState(() => painScore = n),
+                    ),
+                ],
+              ),
+              TextField(
+                controller: temperature,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: InputDecoration(
+                  labelText: t(
+                    'Measured temperature °C (optional)',
+                    '직접 측정한 체온 °C (선택)',
+                  ),
+                  hintText: '37.2',
+                ),
+              ),
+              field(
+                t('When / how was it measured? (optional)', '측정 시점 · 방법 (선택)'),
+                measuredAt,
+              ),
+              Text(
+                t(
+                  'Values are patient-reported, not verified vital signs or a diagnosis. Unfilled stays “not recorded”.',
+                  '수치는 환자가 입력한 값이며 의료진이 확인한 활력징후나 진단이 아닙니다. 빈 항목은 미기록으로 남아요.',
+                ),
+                style: const TextStyle(fontSize: 12),
+              ),
             ],
           ),
-          TextField(
-            controller: temperature,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              labelText: t(
-                'Measured temperature °C (optional)',
-                '직접 측정한 체온 °C (선택)',
-              ),
-              hintText: '37.2',
-            ),
-          ),
-          field(
-            t('When / how was it measured? (optional)', '측정 시점 · 방법 (선택)'),
-            measuredAt,
-          ),
-          Text(
-            t(
-              'Values are patient-reported, not verified vital signs or a diagnosis. Unfilled stays “not recorded”.',
-              '수치는 환자가 입력한 값이며 의료진이 확인한 활력징후나 진단이 아닙니다. 빈 항목은 미기록으로 남아요.',
-            ),
-            style: const TextStyle(fontSize: 12),
-          ),
-
           Text(
             t('Select check-ins to include (up to 7)', '포함할 일상 기록 선택 (최대 7개)'),
           ),
@@ -1501,6 +1607,8 @@ class _VisitCardsState extends ScreenState<VisitCards> {
                           questions.text,
                         ),
                         'onset': onset.text,
+                        if (widget.destination != null)
+                          'hospitalId': widget.destination!['id'],
                         'intake': {
                           'patientName': patientName.text.trim(),
                           'bodySite': bodySite.text.trim(),
@@ -1635,18 +1743,52 @@ class _VisitCardsState extends ScreenState<VisitCards> {
               'AI 미연결 상태입니다. 원문 카드는 사용할 수 있습니다.',
             ),
           ),
+        if (current!['confirmedAt'] != null)
+          info(
+            t(
+              'Your reviewed translation is saved. Create a new card if your symptoms change.',
+              '확인한 번역이 저장됐습니다. 증상이 달라졌다면 새 카드를 작성하세요.',
+            ),
+          ),
         button(
           t('Translate with AI', 'AI로 번역하기'),
-          busy || !widget.aiReady
+          busy || !widget.aiReady || current!['confirmedAt'] != null
               ? null
-              : () => run(() async {
-                  final c = await widget.api.request(
-                    '/api/cards/${current!['id']}/translate',
-                    method: 'POST',
-                    body: {},
+              : () async {
+                  final accepted = await showDialog<bool>(
+                    context: context,
+                    builder: (dialogContext) => AlertDialog(
+                      title: Text(
+                        t('Send this card for translation?', '이 카드를 번역할까요?'),
+                      ),
+                      content: Text(
+                        t(
+                          'Your symptoms, onset, allergies, medicines and selected diary notes will be sent to the configured AI provider. Your name and email are excluded. Your original stays saved.',
+                          '증상·시작 시점·알레르기·복용약·선택한 일지가 설정된 AI 제공자에게 전송됩니다. 이름·이메일은 제외하며 원문은 보존됩니다.',
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(dialogContext, false),
+                          child: Text(t('Cancel', '취소')),
+                        ),
+                        FilledButton(
+                          onPressed: () => Navigator.pop(dialogContext, true),
+                          child: Text(t('Agree and translate', '동의하고 번역')),
+                        ),
+                      ],
+                    ),
                   );
-                  if (mounted) open(Map<String, dynamic>.from(c));
-                }),
+                  if (accepted != true || !mounted) return;
+                  await run(() async {
+                    final c = await widget.api.request(
+                      '/api/cards/${current!['id']}/translate',
+                      method: 'POST',
+                      body: {'consent': true},
+                    );
+                    if (mounted) open(Map<String, dynamic>.from(c));
+                  });
+                },
         ),
         panel([
           heading(t('Visit preparation chart', '진료 준비 차트')),

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --env-file-if-exists=.env src/index.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "qa:gemini": "node --env-file=.env scripts/verify-gemini.mjs"
   },
   "dependencies": {
     "ai": "^7.0.154",

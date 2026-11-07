@@ -429,7 +429,12 @@ export function createApp({
           const profileRow = db
             .prepare("SELECT data FROM profiles WHERE user_id=?")
             .get(u.id);
+          const hospital = input.hospitalId
+            ? [...hospitalData.hospitals, ...pharmacyData.hospitals].find(h => h.id === input.hospitalId)
+            : null;
+          if (input.hospitalId && !hospital) fail(400, "Choose an institution from the directory.");
           const snapshot = {
+            ...(hospital ? {destination: {id: hospital.id, name: hospital.name, address: hospital.address, source: "HIRA", snapshot: hospitalData.snapshot}} : {}),
             symptoms: input.symptoms,
             onset: input.onset,
             ...(input.intake ? {intake: input.intake} : {}),
@@ -471,6 +476,15 @@ export function createApp({
           return send(200, { ok: true });
         }
         if (match[2] === "translate" && method === "POST") {
+          const input = await body(req);
+          if (input?.consent !== true) fail(400, "Confirm sharing this card with the AI provider before translating.");
+          const saveDraft = () => {
+            const latest = entity(mine("cards", card.id, u.id));
+            if (latest.confirmedAt) fail(409, "Your reviewed translation is protected. Create a new card to translate again.");
+            return db.prepare("UPDATE cards SET data=? WHERE id=? AND user_id=?")
+              .run(JSON.stringify(card), card.id, u.id);
+          };
+          if (card.confirmedAt) fail(409, "Your reviewed translation is protected. Create a new card to translate again.");
           rate(`ai:${u.id}`, 10, 60 * 60 * 1000);
           try {
             card.translation = V.parse(
@@ -483,11 +497,7 @@ export function createApp({
           } catch (e) {
             card.translationError =
               "Translation unavailable. Your original information is preserved.";
-            db.prepare("UPDATE cards SET data=? WHERE id=? AND user_id=?").run(
-              JSON.stringify(card),
-              card.id,
-              u.id,
-            );
+            saveDraft();
             fail(
               e.status || 502,
               e.status
@@ -495,9 +505,7 @@ export function createApp({
                 : "Translation failed. Please use the original card or retry.",
             );
           }
-          const result = db
-            .prepare("UPDATE cards SET data=? WHERE id=? AND user_id=?")
-            .run(JSON.stringify(card), card.id, u.id);
+          const result = saveDraft();
           if (!result.changes) fail(404, "Record was removed.");
           return send(200, card);
         }

@@ -28,7 +28,13 @@ String localDay() {
 class MoriHome extends StatefulWidget {
   final Api api;
   final bool ko;
-  const MoriHome({super.key, required this.api, required this.ko});
+  final VoidCallback? onHistory;
+  const MoriHome({
+    super.key,
+    required this.api,
+    required this.ko,
+    this.onHistory,
+  });
   @override
   State<MoriHome> createState() => _MoriHomeState();
 }
@@ -333,158 +339,86 @@ class _MoriHomeState extends State<MoriHome>
 
   @override
   Widget build(BuildContext context) {
-    if (loading) return const Center(child: CircularProgressIndicator());
-    final days = growthDays(entries), level = growthLevel(growthDays(entries));
     final todayEntries = entries.where((e) => e['date'] == localDay()).toList();
-    final todayIntakes = todayEntries
-        .expand((e) => (e['intakes'] as List? ?? <dynamic>[]))
-        .toSet();
     final condition = todayEntries.isEmpty
         ? 'unknown'
         : todayEntries.first['condition'] as String;
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF2EAFE),
-        borderRadius: BorderRadius.circular(28),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            t('MORI · YOUR LITTLE EVERYDAY FRIEND', 'MORI · 매일 돌보는 작은 친구'),
-            style: const TextStyle(
-              fontSize: 11,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 14),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  avatar['name'],
-                  style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
-              IconButton(
-                tooltip: t('Customize avatar', '아바타 설정'),
-                onPressed: busy ? null : customize,
-                icon: const Icon(Icons.tune_rounded),
-              ),
-            ],
-          ),
-          Text(
-            t(
-              'A little version of you. Let’s check in together.',
-              '포근포근 나의 작은 친구, 오늘도 안녕!',
-            ),
-          ),
-          Semantics(
-            label: t(
-              'Your self-reported condition: $condition',
-              '직접 기록한 오늘의 컨디션: $condition',
-            ),
-            child: SizedBox(
-              height: 240,
-              child: AnimatedBuilder(
-                animation: motion,
-                builder: (context, _) => CustomPaint(
-                  painter: MoriPainter(
-                    style: avatar['style'],
-                    color: avatar['color'],
-                    condition: condition,
-                    phase: motion.value,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Text(
-            todayEntries.isEmpty
-                ? t('Tell me how you feel today 🌿', '똑똑, 오늘의 너는 어때? 🌷')
-                : condition == 'low'
-                ? t(
-                    'A hard day is welcome here, too.',
-                    '힘든 날의 너도 소중해. 천천히 쉬어가자.',
-                  )
-                : t(
-                    'Thank you for checking in with me!',
-                    '오늘도 내 이야기를 들려줘서 고마워!',
-                  ),
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Lv. $level · ${t('Growing together', '함께 자라는 중')}'),
-              Text('$days ${t('days recorded', '일의 안부')}'),
-            ],
-          ),
-          const SizedBox(height: 8),
-          LinearProgressIndicator(
-            value: (days % 3) / 3,
-            minHeight: 8,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            t(
-              'One growth day per date. A level every 3 days, whatever your mood.',
-              '날짜당 한 번, 안부 3일마다 한 단계 자라요. 아픈 날에도 똑같이 성장해요.',
-            ),
-            style: const TextStyle(fontSize: 12),
-          ),
-          const SizedBox(height: 16),
-          if (todayIntakes.isNotEmpty) ...[
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
             Text(
-              t('Recorded today', '오늘 남긴 섭취 기록'),
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              t('Mori reflects your daily check-in', '오늘의 나를 기록하는 모리'),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            Wrap(
-              spacing: 6,
+            Row(
               children: [
-                for (final key in todayIntakes)
-                  Chip(
-                    label: Text(
-                      tr(
-                        (intakeLabels[key] ?? key.toString()).split(' / ').last,
-                        (intakeLabels[key] ?? key.toString())
-                            .split(' / ')
-                            .first,
+                Semantics(
+                  label: t(
+                    'Your self-reported condition: $condition',
+                    '직접 기록한 오늘의 컨디션: $condition',
+                  ),
+                  child: SizedBox(
+                    width: 100,
+                    height: 110,
+                    child: AnimatedBuilder(
+                      animation: motion,
+                      builder: (context, _) => CustomPaint(
+                        painter: MoriPainter(
+                          style: avatar['style'],
+                          color: avatar['color'],
+                          condition: condition,
+                          phase: motion.value,
+                        ),
                       ),
                     ),
                   ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    t(
+                      'Record how you feel. Look back at changes and choose notes for your next visit.',
+                      '매일 컨디션을 기록하고 변화를 돌아보세요. 필요한 기록은 진료 준비표에 담을 수 있어요.',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  tooltip: t('Customize avatar', '아바타 설정'),
+                  onPressed: customize,
+                  icon: const Icon(Icons.edit_outlined),
+                ),
               ],
             ),
-          ],
-          FilledButton.icon(
-            onPressed: busy ? null : checkIn,
-            icon: const Icon(Icons.favorite_outline),
-            label: Text(
+            if (loading) const LinearProgressIndicator(),
+            Text(
               todayEntries.isEmpty
-                  ? t('Care for myself today', '오늘의 나 돌보기')
-                  : t('Add to today’s story', '오늘 이야기 더 남기기'),
+                  ? t('No check-in today', '오늘은 아직 기록이 없어요')
+                  : '${t('Today', '오늘')}: ${MoriLanguage.conditionLabel(condition)}',
             ),
-          ),
-          Text(
-            t(
-              'The expression reflects your entries, not a diagnosis. Missing a day never hurts your friend.',
-              '표정은 직접 입력한 컨디션을 반영하며 진단이 아니에요. 하루를 건너뛰어도 친구가 아프거나 사라지지 않아요.',
+            const SizedBox(height: 8),
+            FilledButton.tonal(
+              onPressed: busy || loading ? null : checkIn,
+              child: Text(t('Record how I feel today', '오늘의 컨디션 기록하기')),
             ),
-            style: const TextStyle(fontSize: 12, color: Colors.black54),
-          ),
-          if (error != null) ...[
-            Text(error!, style: const TextStyle(color: Colors.red)),
-            TextButton(onPressed: load, child: Text(t('Retry', '다시 불러오기'))),
+            if (widget.onHistory != null)
+              TextButton(
+                onPressed: widget.onHistory,
+                child: Text(t('Look back at my records', '지난 기록 돌아보기')),
+              ),
+            Text(
+              t(
+                'Mori reflects what you enter. It does not automatically detect illness or monitor emergencies.',
+                '모리는 직접 입력한 상태를 반영합니다. 질병이나 이상을 자동 감지하거나 응급상황을 감시하지 않습니다.',
+              ),
+              style: const TextStyle(fontSize: 12),
+            ),
+            if (error != null)
+              TextButton(onPressed: load, child: Text(t('Retry', '다시 불러오기'))),
           ],
-        ],
+        ),
       ),
     );
   }

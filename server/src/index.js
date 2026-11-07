@@ -11,7 +11,7 @@ const app = createApp({
   staticDir: fileURLToPath(new URL("../../app/build/web", import.meta.url)),
 });
 app.server.listen(port, process.env.HOST || "127.0.0.1", () =>
-  console.log(`CareBridge API: http://${process.env.HOST || "127.0.0.1"}:${port}`),
+  console.log(`MORI API: http://${process.env.HOST || "127.0.0.1"}:${port}`),
 );
 for (const sig of ["SIGINT", "SIGTERM"])
   process.on(sig, () => app.close().then(() => process.exit(0)));

@@ -210,7 +210,7 @@ test("AI unavailable: original survives and cannot be confirmed as a translation
     )
   ).data;
   assert.equal(
-    (await request(`/api/cards/${card.id}/translate`, "POST", {}, a.token))
+    (await request(`/api/cards/${card.id}/translate`, "POST", { consent: true }, a.token))
       .status,
     503,
   );
@@ -269,7 +269,7 @@ test("translation draft requires explicit review and preserves original snapshot
   const translated = await request(
     `/api/cards/${card.id}/translate`,
     "POST",
-    {},
+    { consent: true },
     a.token,
   );
   assert.equal(translated.status, 200);
@@ -293,6 +293,10 @@ test("translation draft requires explicit review and preserves original snapshot
   );
   assert.ok(confirmed.data.confirmedAt);
   assert.equal(confirmed.data.snapshot.symptoms, "Sore throat");
+  assert.equal((await request(`/api/cards/${card.id}/translate`, "POST", {consent:true}, a.token)).status, 409);
+  const preserved = (await request(`/api/cards/${card.id}`, "GET", undefined, a.token)).data;
+  assert.deepEqual(preserved.translation, confirmed.data.translation);
+  assert.equal(preserved.confirmedAt, confirmed.data.confirmedAt);
 });
 
 test("community: other users can comment, cannot edit; report and cascade delete", async (t) => {
@@ -682,4 +686,66 @@ test('six community languages preserve Unicode and filter independently', async 
     assert.equal(list.data.length, 1);
     assert.equal(list.data[0].language, language);
   }
+});
+
+
+test("AI sharing needs explicit per-request consent without invoking the provider", async t => {
+  let calls = 0;
+  const {request,register} = await fixture(t, {configured:()=>true, translate:async()=>{ calls++; throw new Error("must not call"); }});
+  const a=await register("Consent");
+  const card=(await request("/api/cards","POST",{symptoms:"Pain",onset:"Unknown",journalIds:[],consent:true},a.token)).data;
+  for (const payload of [null, {}, {consent:false}]) {
+    assert.equal((await request(`/api/cards/${card.id}/translate`,"POST",payload,a.token)).status,400);
+  }
+  assert.equal(calls,0);
+  const saved=(await request(`/api/cards/${card.id}`,"GET",undefined,a.token)).data;
+  assert.equal(saved.snapshot.symptoms,"Pain");
+  assert.equal(saved.translation,null);
+});
+
+test("delayed translation preserves a concurrently confirmed card", async t => {
+  for (const providerFails of [false, true]) {
+    await t.test(providerFails ? "provider failure" : "provider success", async t => {
+      const draft={symptomsKo:"가상 증상",onsetKo:"어제",allergiesKo:"모름",medicationsKo:"모름",journalKo:[]};
+      let release, started;
+      const pending=new Promise(resolve=>{release=resolve;});
+      const hasStarted=new Promise(resolve=>{started=resolve;});
+      let calls=0;
+      const {request,register}=await fixture(t,{configured:()=>true,translate:async()=>{
+        if (++calls===1) return draft;
+        started(); await pending;
+        if (providerFails) throw new Error("Fictional delayed failure");
+        return draft;
+      }});
+      const a=await register("Delayed");
+      const card=(await request("/api/cards","POST",{symptoms:"Fictional pain",onset:"Yesterday",journalIds:[],consent:true},a.token)).data;
+      await request(`/api/cards/${card.id}/translate`,"POST",{consent:true},a.token);
+      const second=request(`/api/cards/${card.id}/translate`,"POST",{consent:true},a.token);
+      await hasStarted;
+      const confirmed=(await request(`/api/cards/${card.id}/confirm`,"PUT",{...draft,symptomsKo:"사용자 수정",reviewed:true},a.token)).data;
+      release(); assert.equal((await second).status,409);
+      const saved=(await request(`/api/cards/${card.id}`,"GET",undefined,a.token)).data;
+      assert.equal(saved.translation.symptomsKo,"사용자 수정");
+      assert.equal(saved.confirmedAt,confirmed.confirmedAt);
+      assert.equal(saved.translationError,null);
+    });
+  }
+});
+
+test('planned hospital is stored from the official directory and survives reopening', async t => {
+  const {request, register} = await fixture(t);
+  const a = await register('DestinationQA');
+  const directory = await request('/api/hospitals?limit=all');
+  const h = directory.data.hospitals.find(h => h.name.includes('이비인후과'));
+  const input = {symptoms:'Fictional sore throat',onset:'2 days',journalIds:[],consent:true,hospitalId:h.id,destination:{name:'Forged name'}};
+  const created = await request('/api/cards','POST',input,a.token);
+  assert.equal(created.status,201);
+  assert.equal(created.data.snapshot.destination.name,h.name);
+  assert.equal(created.data.snapshot.destination.address,h.address);
+  const reopened = await request('/api/cards','GET',undefined,a.token);
+  assert.deepEqual(reopened.data[0].snapshot.destination,created.data.snapshot.destination);
+  assert.equal((await request('/api/cards','POST',{...input,hospitalId:'missing'},a.token)).status,400);
+  const legacy = await request('/api/cards','POST',{...input,hospitalId:undefined},a.token);
+  assert.equal(legacy.status,201);
+  assert.equal(legacy.data.snapshot.destination,undefined);
 });

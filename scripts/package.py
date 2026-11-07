@@ -1,8 +1,8 @@
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 root=Path(__file__).resolve().parents[1]
-out=root.parent/'CareBridge_Flutter_MVP_소스.zip'
-blocked={'node_modules','data','.dart_tool','build','Pods','.symlinks','.git','.idea','ephemeral','FlutterGeneratedPluginSwiftPackage','.swiftpm','__pycache__'}
+out=root.parent/'[3]MORI_MVP_source.zip'
+blocked={'output','node_modules','data','.dart_tool','build','Pods','.symlinks','.git','.idea','ephemeral','FlutterGeneratedPluginSwiftPackage','.swiftpm','__pycache__'}
 with ZipFile(out,'w',ZIP_DEFLATED) as z:
  for p in sorted(root.rglob('*')):
   rel=p.relative_to(root)
@@ -11,7 +11,7 @@ with ZipFile(out,'w',ZIP_DEFLATED) as z:
   if p.name.startswith('.env') and p.name!='.env.example': continue
   if rel.parts[:2] == ('app','config') and p.name != 'maps.example.json': continue
   if p.suffix in {'.pem','.key','.p12','.jks','.keystore','.db'} or p.name == 'key.properties': continue
-  if p.suffix in {'.sqlite','.log','.pyc','.iml'}: continue
+  if p.suffix in {'.sqlite','.log','.pyc','.iml'} or '.sqlite-' in p.name or '.db-' in p.name: continue
   z.write(p,Path('carebridge')/rel)
 with ZipFile(out) as z:
  assert z.testzip() is None

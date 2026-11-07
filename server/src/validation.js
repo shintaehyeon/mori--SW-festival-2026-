@@ -20,6 +20,7 @@ export const journalSchema = z.object({
 });
 export const symptomSchema = z.object({
   symptoms: text(2000).min(2),
+  hospitalId: text(80).min(1).optional(),
   onset: text(200).min(1),
   journalIds: z.array(z.string().uuid()).max(7),
   consent: z.literal(true),

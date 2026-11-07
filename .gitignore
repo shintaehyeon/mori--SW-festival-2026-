@@ -23,3 +23,8 @@ app/android/key.properties
 __pycache__/
 *.pyc
 reference-data/*.zip
+
+# Local QA outputs and credentials
+output/
+app/config/*.json
+!app/config/maps.example.json

@@ -4017,7 +4017,7 @@
   },
   "Join MORI": {
     "en": "Join MORI",
-    "ko": "CareBridge 가입",
+    "ko": "MORI 가입",
     "zh": "加入MORI",
     "ja": "MORIに登録",
     "vi": "Tham gia MORI",
@@ -4150,5 +4150,365 @@
     "vi": "Chân",
     "en": "Legs",
     "fr": "Jambes"
+  },
+  "Health information for this visit": {
+    "en": "Health information for this visit",
+    "ko": "이번 방문에 전달할 건강정보",
+    "zh": "本次就诊的健康信息",
+    "ja": "今回の受診で伝える健康情報",
+    "vi": "Thông tin sức khỏe cho lần khám này",
+    "fr": "Informations de santé pour cette consultation"
+  },
+  "Check allergies and medicines": {
+    "en": "Check allergies and medicines",
+    "ko": "알레르기·복용약 확인하기",
+    "zh": "检查过敏和用药信息",
+    "ja": "アレルギー・服用薬を確認",
+    "vi": "Kiểm tra dị ứng và thuốc",
+    "fr": "Vérifier allergies et médicaments"
+  },
+  "Send this card for translation?": {
+    "en": "Send this card for translation?",
+    "ko": "이 카드를 번역할까요?",
+    "zh": "发送此卡进行翻译？",
+    "ja": "このカードを翻訳に送信しますか？",
+    "vi": "Gửi phiếu này để dịch?",
+    "fr": "Envoyer cette fiche pour traduction ?"
+  },
+  "Your symptoms, onset, allergies, medicines and selected diary notes will be sent to the configured AI provider. Your name and email are excluded. Your original stays saved.": {
+    "en": "Your symptoms, onset, allergies, medicines and selected diary notes will be sent to the configured AI provider. Your name and email are excluded. Your original stays saved.",
+    "ko": "증상·시작 시점·알레르기·복용약·선택한 일지가 설정된 AI 제공자에게 전송됩니다. 이름·이메일은 제외하며 원문은 보존됩니다.",
+    "zh": "您的症状、开始时间、过敏、用药和所选日记将发送给已配置的AI服务商。不含姓名和电子邮箱，原文将保留。",
+    "ja": "症状・発症時期・アレルギー・服用薬・選択した日記を設定済みのAI提供者に送信します。氏名とメールアドレスは含まず、原文は保存されます。",
+    "vi": "Triệu chứng, thời điểm bắt đầu, dị ứng, thuốc và nhật ký đã chọn sẽ được gửi đến nhà cung cấp AI đã cấu hình. Không gửi tên và email. Bản gốc vẫn được lưu.",
+    "fr": "Vos symptômes, leur début, allergies, médicaments et notes sélectionnées seront envoyés au fournisseur IA configuré. Votre nom et adresse e-mail sont exclus. L’original reste enregistré."
+  },
+  "Agree and translate": {
+    "en": "Agree and translate",
+    "ko": "동의하고 번역",
+    "zh": "同意并翻译",
+    "ja": "同意して翻訳",
+    "vi": "Đồng ý và dịch",
+    "fr": "Accepter et traduire"
+  },
+  "Your reviewed translation is saved. Create a new card if your symptoms change.": {
+    "en": "Your reviewed translation is saved. Create a new card if your symptoms change.",
+    "ko": "확인한 번역이 저장됐습니다. 증상이 달라졌다면 새 카드를 작성하세요.",
+    "zh": "已保存您确认的译文。如症状变化，请创建新卡。",
+    "ja": "確認済みの翻訳を保存しました。症状が変わった場合は新しいカードを作成してください。",
+    "vi": "Bản dịch đã xác nhận được lưu. Hãy tạo phiếu mới nếu triệu chứng thay đổi.",
+    "fr": "Votre traduction vérifiée est enregistrée. Créez une nouvelle fiche si vos symptômes changent."
+  },
+  "Your words. Ready for care in Korea.": {
+    "zh": "用自己的语言写，用韩语展示。",
+    "ja": "母語で書いて、韓国語で伝える。",
+    "vi": "Viết bằng ngôn ngữ của bạn, trình bày bằng tiếng Hàn.",
+    "fr": "Écrivez dans votre langue. Présentez en coréen.",
+    "ko": "내 언어로 적고, 한국어로 보여주세요.",
+    "en": "Your words. Ready for care in Korea."
+  },
+  "Prepare your symptoms in your language, then review a Korean visit sheet to show your clinician.": {
+    "zh": "用自己的语言整理症状，核对韩语就诊准备表后向医护人员展示。",
+    "ja": "母語で症状をまとめ、韓国語の受診準備シートを確認して医療者に見せましょう。",
+    "vi": "Ghi triệu chứng bằng ngôn ngữ của bạn, kiểm tra phiếu tiếng Hàn rồi đưa cho nhân viên y tế.",
+    "fr": "Décrivez vos symptômes dans votre langue, puis vérifiez la fiche en coréen à présenter au soignant.",
+    "ko": "증상·알레르기·복용약을 내 언어로 정리하고, 한국어 진료 준비표로 확인하세요.",
+    "en": "Prepare your symptoms in your language, then review a Korean visit sheet to show your clinician."
+  },
+  "Find a clinic · prepare a Korean visit sheet": {
+    "zh": "查找医院 · 制作韩语就诊准备表",
+    "ja": "病院を探す · 韓国語の受診シートを準備",
+    "vi": "Tìm phòng khám · Chuẩn bị phiếu tiếng Hàn",
+    "fr": "Trouver une clinique · Préparer une fiche en coréen",
+    "ko": "병원 찾기 · 한국어 준비표 만들기",
+    "en": "Find a clinic · prepare a Korean visit sheet"
+  },
+  "Symptoms, allergies and medication — together in a Korean visit sheet you can review and show.": {
+    "zh": "症状、过敏及用药整理在一张韩语准备表中，核对后展示。",
+    "ja": "症状・アレルギー・服薬を1枚に。訳を確認して医療者に見せましょう。",
+    "vi": "Triệu chứng, dị ứng và thuốc trong một phiếu tiếng Hàn để kiểm tra và trình bày.",
+    "fr": "Symptômes, allergies et traitements réunis sur une fiche en coréen, à vérifier puis à présenter.",
+    "ko": "증상·알레르기·복용약을 한 장에. 번역을 확인하고 한국 의료진에게 보여주세요.",
+    "en": "Symptoms, allergies and medication — together in a Korean visit sheet you can review and show."
+  },
+  "Create my Korean visit sheet": {
+    "zh": "制作韩语就诊准备表",
+    "ja": "韓国語の受診シートを作る",
+    "vi": "Tạo phiếu khám bằng tiếng Hàn",
+    "fr": "Créer ma fiche en coréen",
+    "ko": "한국어 진료 준비표 만들기",
+    "en": "Create my Korean visit sheet"
+  },
+  "Write → Translate → Review → Show": {
+    "zh": "填写 → AI翻译 → 自己核对 → 展示",
+    "ja": "入力 → AI翻訳 → 自分で確認 → 見せる",
+    "vi": "Viết → Dịch bằng AI → Kiểm tra → Trình bày",
+    "fr": "Écrire → Traduire avec l’IA → Vérifier → Présenter",
+    "ko": "입력 → AI 번역 → 직접 확인 → 의료진에게 보여주기",
+    "en": "Write → Translate → Review → Show"
+  },
+  "Find a clinic": {
+    "ko": "병원 찾기",
+    "zh": "查找医院",
+    "ja": "病院を探す",
+    "vi": "Tìm phòng khám",
+    "fr": "Trouver une clinique",
+    "en": "Find a clinic"
+  },
+  "Watch the 20-second tutorial": {
+    "fr": "Voir le tutoriel de 20 secondes",
+    "ko": "20초 앱 사용법 보기",
+    "zh": "观看20秒教程",
+    "ja": "20秒の使い方を見る",
+    "vi": "Xem hướng dẫn 20 giây",
+    "en": "Watch the 20-second tutorial"
+  },
+  "MORI in 20 seconds": {
+    "fr": "MORI en 20 secondes",
+    "ko": "20초로 보는 MORI",
+    "zh": "20秒了解MORI",
+    "ja": "20秒でわかるMORI",
+    "vi": "MORI trong 20 giây",
+    "en": "MORI in 20 seconds"
+  },
+  "Fictional demo · No data saved or sent": {
+    "fr": "Démonstration fictive · Aucune donnée enregistrée ou envoyée",
+    "ko": "가상 시연 · 저장·외부 전송 없음",
+    "zh": "虚构演示 · 不保存或发送数据",
+    "ja": "架空のデモ · 保存・送信なし",
+    "vi": "Ví dụ giả định · Không lưu hay gửi dữ liệu",
+    "en": "Fictional demo · No data saved or sent"
+  },
+  "Explore care for your concern": {
+    "fr": "Explorer les services de soins",
+    "ko": "불편한 부위로 진료과 찾기",
+    "zh": "了解相关诊疗服务",
+    "ja": "診療科を探す",
+    "vi": "Tìm hiểu các chuyên khoa",
+    "en": "Explore care for your concern"
+  },
+  "Describe it in your language": {
+    "fr": "Décrire dans votre langue",
+    "ko": "내 언어로 증상 적기",
+    "zh": "用自己的语言描述",
+    "ja": "母語で症状を書く",
+    "vi": "Mô tả bằng ngôn ngữ của bạn",
+    "en": "Describe it in your language"
+  },
+  "Review the Korean translation": {
+    "fr": "Vérifier la traduction en coréen",
+    "ko": "한국어 번역 확인하기",
+    "zh": "核对韩语翻译",
+    "ja": "韓国語訳を確認する",
+    "vi": "Kiểm tra bản dịch tiếng Hàn",
+    "en": "Review the Korean translation"
+  },
+  "Show your visit sheet": {
+    "fr": "Présenter votre fiche au soignant",
+    "ko": "의료진에게 준비표 보여주기",
+    "zh": "展示就诊准备表",
+    "ja": "受診シートを見せる",
+    "vi": "Trình bày phiếu khám",
+    "en": "Show your visit sheet"
+  },
+  "Explore body areas and departments, then check a clinic. This example does not select care for you.": {
+    "fr": "Explorez les zones du corps et les services, puis consultez une clinique. Cet exemple ne choisit pas les soins à votre place.",
+    "ko": "신체 그림과 진료과를 살펴보고 병원을 확인하세요. 이 예시는 진료과를 대신 판단하지 않습니다.",
+    "zh": "查看身体部位和科室，再查看医院。本示例不会替您选择诊疗。",
+    "ja": "身体の部位と診療科を調べて病院を確認します。この例は受診先を判定しません。",
+    "vi": "Xem vùng cơ thể và chuyên khoa, rồi tìm phòng khám. Ví dụ này không quyết định nơi điều trị thay bạn.",
+    "en": "Explore body areas and departments, then check a clinic. This example does not select care for you."
+  },
+  "Add when it started, allergies and medication. Include only the daily records you choose.": {
+    "fr": "Indiquez le début des symptômes, vos allergies et traitements. Ajoutez uniquement les suivis que vous choisissez.",
+    "ko": "시작 시점·알레르기·복용약을 적고 필요한 일상 기록만 선택하세요.",
+    "zh": "填写开始时间、过敏和用药。仅加入您选择的日常记录。",
+    "ja": "開始時期・アレルギー・服薬を記入。自分で選んだ日々の記録だけを含めます。",
+    "vi": "Thêm thời điểm bắt đầu, dị ứng và thuốc. Chỉ đưa vào những ghi chép bạn chọn.",
+    "en": "Add when it started, allergies and medication. Include only the daily records you choose."
+  },
+  "Translate after consent. Compare with your original and correct anything that is wrong.": {
+    "fr": "Traduisez après avoir donné votre accord. Comparez avec votre texte original et corrigez les erreurs.",
+    "ko": "전송 동의 후 번역합니다. 원문과 비교하고 잘못된 표현을 수정하세요.",
+    "zh": "同意后进行翻译。与原文对照并纠正错误。",
+    "ja": "同意後に翻訳します。原文と比べて誤りを修正してください。",
+    "vi": "Dịch sau khi đồng ý. Đối chiếu bản gốc và sửa các sai sót.",
+    "en": "Translate after consent. Compare with your original and correct anything that is wrong."
+  },
+  "Show the reviewed sheet to the clinician. Daily notes can help you explain what changed.": {
+    "fr": "Présentez la fiche vérifiée au soignant. Vos notes quotidiennes peuvent aider à expliquer les changements.",
+    "ko": "확인한 준비표를 의료진에게 보여주세요. 일상 기록은 변화를 설명하는 데 도움이 됩니다.",
+    "zh": "向医护人员展示核对后的准备表。日常记录有助于说明变化。",
+    "ja": "確認したシートを医療者に見せます。日々の記録が変化の説明に役立ちます。",
+    "vi": "Đưa phiếu đã kiểm tra cho nhân viên y tế. Ghi chép hằng ngày giúp giải thích các thay đổi.",
+    "en": "Show the reviewed sheet to the clinician. Daily notes can help you explain what changed."
+  },
+  "Example only": {
+    "fr": "Exemple fictif",
+    "ko": "가상 예시",
+    "zh": "虚构示例",
+    "ja": "架空の例",
+    "vi": "Ví dụ giả định",
+    "en": "Example only"
+  },
+  "Ear · Nose · Throat": {
+    "fr": "Oreilles · Nez · Gorge",
+    "ko": "귀 · 코 · 목",
+    "zh": "耳 · 鼻 · 喉",
+    "ja": "耳 · 鼻 · のど",
+    "vi": "Tai · Mũi · Họng",
+    "en": "Ear · Nose · Throat"
+  },
+  "Clinic details → Prepare for this visit": {
+    "fr": "Détails de la clinique → Préparer la consultation",
+    "ko": "병원 상세 → 방문 준비",
+    "zh": "医院详情 → 就诊准备",
+    "ja": "病院の詳細 → 受診準備",
+    "vi": "Chi tiết phòng khám → Chuẩn bị khám",
+    "en": "Clinic details → Prepare for this visit"
+  },
+  "My throat has hurt for two days.": {
+    "fr": "J’ai mal à la gorge depuis deux jours.",
+    "ko": "이틀 전부터 목이 아파요.",
+    "zh": "我的喉咙痛了两天。",
+    "ja": "2日前からのどが痛いです。",
+    "vi": "Tôi bị đau họng hai ngày nay.",
+    "en": "My throat has hurt for two days."
+  },
+  "Original + Korean + selected health information": {
+    "fr": "Original + Coréen + Informations de santé choisies",
+    "ko": "원문 + 한국어 + 선택한 건강정보",
+    "zh": "原文 + 韩语 + 所选健康信息",
+    "ja": "原文 + 韓国語 + 選んだ健康情報",
+    "vi": "Bản gốc + Tiếng Hàn + Thông tin sức khỏe đã chọn",
+    "en": "Original + Korean + selected health information"
+  },
+  "Patient-prepared, not a diagnosis": {
+    "fr": "Document préparé par le patient, sans diagnostic",
+    "ko": "환자 작성 자료 · 진단 아님",
+    "zh": "患者自填资料，非诊断",
+    "ja": "患者作成の資料・診断ではありません",
+    "vi": "Do người bệnh chuẩn bị, không phải chẩn đoán",
+    "en": "Patient-prepared, not a diagnosis"
+  },
+  "Previous": {
+    "fr": "Précédent",
+    "ko": "이전",
+    "zh": "上一步",
+    "ja": "前へ",
+    "vi": "Trước",
+    "en": "Previous"
+  },
+  "Next": {
+    "fr": "Suivant",
+    "ko": "다음",
+    "zh": "下一步",
+    "ja": "次へ",
+    "vi": "Tiếp",
+    "en": "Next"
+  },
+  "Replay": {
+    "fr": "Revoir",
+    "ko": "다시 보기",
+    "zh": "重播",
+    "ja": "もう一度",
+    "vi": "Xem lại",
+    "en": "Replay"
+  },
+  "Pause": {
+    "fr": "Pause",
+    "ko": "일시 정지",
+    "zh": "暂停",
+    "ja": "一時停止",
+    "vi": "Tạm dừng",
+    "en": "Pause"
+  },
+  "Play": {
+    "fr": "Lecture",
+    "ko": "재생",
+    "zh": "播放",
+    "ja": "再生",
+    "vi": "Phát",
+    "en": "Play"
+  },
+  "Start my visit preparation": {
+    "fr": "Préparer ma consultation",
+    "ko": "내 진료 준비 시작하기",
+    "zh": "开始就诊准备",
+    "ja": "受診準備を始める",
+    "vi": "Bắt đầu chuẩn bị khám",
+    "en": "Start my visit preparation"
+  },
+  "Close tutorial": {
+    "fr": "Fermer le tutoriel",
+    "ko": "튜토리얼 닫기",
+    "zh": "关闭教程",
+    "ja": "チュートリアルを閉じる",
+    "vi": "Đóng hướng dẫn",
+    "en": "Close tutorial"
+  },
+  "Mori reflects your daily check-in": {
+    "fr": "Mori reflète votre suivi quotidien",
+    "ko": "오늘의 나를 기록하는 모리",
+    "zh": "Mori记录您每天的状态",
+    "ja": "今日の自分を記録するMori",
+    "vi": "Mori phản ánh ghi chép hằng ngày",
+    "en": "Mori reflects your daily check-in"
+  },
+  "Record how you feel. Look back at changes and choose notes for your next visit.": {
+    "fr": "Notez comment vous vous sentez. Relisez les changements et choisissez des notes pour votre prochaine consultation.",
+    "ko": "매일 컨디션을 기록하고 변화를 돌아보세요. 필요한 기록은 진료 준비표에 담을 수 있어요.",
+    "zh": "记录身体感受，回顾变化，选择下次就诊所需的记录。",
+    "ja": "体調を記録して変化を振り返り、次の受診に必要な記録を選びましょう。",
+    "vi": "Ghi lại cảm nhận, xem lại thay đổi và chọn ghi chép cho lần khám tiếp theo.",
+    "en": "Record how you feel. Look back at changes and choose notes for your next visit."
+  },
+  "No check-in today": {
+    "fr": "Aucun suivi enregistré aujourd’hui",
+    "ko": "오늘은 아직 기록이 없어요",
+    "zh": "今天还没有记录",
+    "ja": "今日はまだ記録がありません",
+    "vi": "Hôm nay chưa có ghi chép",
+    "en": "No check-in today"
+  },
+  "Today": {
+    "fr": "Aujourd’hui",
+    "ko": "오늘",
+    "zh": "今天",
+    "ja": "今日",
+    "vi": "Hôm nay",
+    "en": "Today"
+  },
+  "Record how I feel today": {
+    "fr": "Noter mon état du jour",
+    "ko": "오늘의 컨디션 기록하기",
+    "zh": "记录今天的状态",
+    "ja": "今日の体調を記録",
+    "vi": "Ghi lại tình trạng hôm nay",
+    "en": "Record how I feel today"
+  },
+  "Look back at my records": {
+    "fr": "Relire mes suivis",
+    "ko": "지난 기록 돌아보기",
+    "zh": "回顾我的记录",
+    "ja": "過去の記録を見る",
+    "vi": "Xem lại ghi chép",
+    "en": "Look back at my records"
+  },
+  "Mori reflects what you enter. It does not automatically detect illness or monitor emergencies.": {
+    "fr": "Mori reflète vos saisies. Il ne détecte pas automatiquement les maladies et ne surveille pas les urgences.",
+    "ko": "모리는 직접 입력한 상태를 반영합니다. 질병이나 이상을 자동 감지하거나 응급상황을 감시하지 않습니다.",
+    "zh": "Mori反映您输入的状态，不会自动检测疾病或监测紧急情况。",
+    "ja": "Moriは入力した状態を反映します。病気の自動検知や緊急事態の監視はしません。",
+    "vi": "Mori phản ánh thông tin bạn nhập, không tự động phát hiện bệnh hay giám sát tình huống khẩn cấp.",
+    "en": "Mori reflects what you enter. It does not automatically detect illness or monitor emergencies."
+  },
+  "Add details for the clinician (optional)": {
+    "ko": "상세 정보 추가 (선택)",
+    "fr": "Ajouter des précisions (facultatif)",
+    "ja": "詳細を追加（任意）",
+    "zh": "添加详细信息（可选）",
+    "vi": "Thêm chi tiết (không bắt buộc)",
+    "en": "Add details for the clinician (optional)"
   }
 }
