@@ -1,9 +1,16 @@
+import 'package:carebridge/visit_body_map.dart';
 import 'dart:io';
 import 'package:carebridge/visit_pdf.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test('body diagram marks only explicit supported selections', () {
+    expect(visitBodySvg(null), isNot(contains('#f7c1ad')));
+    expect(visitBodySvg('unknown'), isNot(contains('#f7c1ad')));
+    expect(visitBodySvg('neck'), contains('cx="50" cy="40"'));
+    expect(visitBodySvg('back'), contains('cx="150" cy="82"'));
+  });
   test('overview preserves unknown and uses translation only after review', () {
     final card = <String, dynamic>{
       'confirmedAt': null,
@@ -39,6 +46,7 @@ void main() {
           'intake': {
             'patientName': '가상 환자 / Test Patient',
             'bodySite': '목 / Throat',
+            'bodyRegion': 'neck',
             'painScore': 4,
             'temperatureC': 37.2,
             'measuredAt': '2026-10-29 09:00 KST, 귀 체온계 / ear thermometer',

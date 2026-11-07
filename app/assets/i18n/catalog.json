@@ -4070,5 +4070,85 @@
     "vi": "Cơ sở y tế",
     "en": "Hospitals",
     "fr": "Soins"
+  },
+  "Body diagram (optional)": {
+    "ko": "인체 그림 표시 (선택)",
+    "zh": "人体图（可选）",
+    "ja": "人体図（任意）",
+    "vi": "Sơ đồ cơ thể (tùy chọn)",
+    "en": "Body diagram (optional)",
+    "fr": "Schéma corporel (facultatif)"
+  },
+  "Diagram shows a broad area only. Describe side and exact location above.": {
+    "ko": "그림은 대략적인 부위입니다. 좌우와 정확한 위치는 위에 적어 주세요.",
+    "zh": "图示仅表示大致部位。请在上方注明左右及具体位置。",
+    "ja": "図は大まかな部位です。左右と詳しい位置は上に記入してください。",
+    "vi": "Sơ đồ chỉ vùng chung. Ghi bên trái/phải và vị trí cụ thể ở trên.",
+    "en": "Diagram shows a broad area only. Describe side and exact location above.",
+    "fr": "Le schéma indique une zone générale. Précisez le côté et le lieu exact ci-dessus."
+  },
+  "Body region: head": {
+    "ko": "머리",
+    "zh": "头部",
+    "ja": "頭",
+    "vi": "Đầu",
+    "en": "Head",
+    "fr": "Tête"
+  },
+  "Body region: neck": {
+    "ko": "목",
+    "zh": "颈部",
+    "ja": "首",
+    "vi": "Cổ",
+    "en": "Neck",
+    "fr": "Cou"
+  },
+  "Body region: chest": {
+    "ko": "가슴",
+    "zh": "胸部",
+    "ja": "胸",
+    "vi": "Ngực",
+    "en": "Chest",
+    "fr": "Poitrine"
+  },
+  "Body region: abdomen": {
+    "ko": "배",
+    "zh": "腹部",
+    "ja": "腹部",
+    "vi": "Bụng",
+    "en": "Abdomen",
+    "fr": "Abdomen"
+  },
+  "Body region: pelvis": {
+    "ko": "골반",
+    "zh": "骨盆",
+    "ja": "骨盤",
+    "vi": "Vùng chậu",
+    "en": "Pelvis",
+    "fr": "Bassin"
+  },
+  "Body region: back": {
+    "ko": "등·허리",
+    "zh": "背部及腰部",
+    "ja": "背中・腰",
+    "vi": "Lưng",
+    "en": "Back",
+    "fr": "Dos"
+  },
+  "Body region: arms": {
+    "ko": "팔",
+    "zh": "手臂",
+    "ja": "腕",
+    "vi": "Cánh tay",
+    "en": "Arms",
+    "fr": "Bras"
+  },
+  "Body region: legs": {
+    "ko": "다리",
+    "zh": "腿",
+    "ja": "脚",
+    "vi": "Chân",
+    "en": "Legs",
+    "fr": "Jambes"
   }
 }

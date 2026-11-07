@@ -1,3 +1,4 @@
+import 'visit_body_map.dart';
 import 'localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'hospital_name.dart';
@@ -1215,6 +1216,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
       temperature = TextEditingController(),
       measuredAt = TextEditingController();
   int? painScore;
+  String? bodyRegion;
   List<dynamic> cards = [], journals = [];
   final selected = <String>{};
   bool consent = false, reviewed = false;
@@ -1351,6 +1353,31 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             patientName,
           ),
           field(t('Body site (optional)', '불편한 부위 (선택)'), bodySite),
+          DropdownButtonFormField<String>(
+            initialValue: bodyRegion,
+            isExpanded: true,
+            decoration: InputDecoration(
+              labelText: tr('Body diagram (optional)'),
+            ),
+            items: [
+              DropdownMenuItem(value: '', child: Text(tr('Not recorded'))),
+              for (final entry in visitBodyRegions.entries)
+                DropdownMenuItem(
+                  value: entry.key,
+                  child: Text(tr('Body region: ${entry.key}')),
+                ),
+            ],
+            onChanged: busy
+                ? null
+                : (value) =>
+                      setState(() => bodyRegion = value == '' ? null : value),
+          ),
+          Text(
+            tr(
+              'Diagram shows a broad area only. Describe side and exact location above.',
+            ),
+          ),
+
           Text(
             t(
               'Pain intensity (self-report): 0 no pain, 10 worst imaginable',
@@ -1477,6 +1504,7 @@ class _VisitCardsState extends ScreenState<VisitCards> {
                         'intake': {
                           'patientName': patientName.text.trim(),
                           'bodySite': bodySite.text.trim(),
+                          'bodyRegion': bodyRegion,
                           'painScore': painScore,
                           'temperatureC': temp,
                           'measuredAt': measuredAt.text.trim(),

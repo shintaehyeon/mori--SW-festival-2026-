@@ -1,3 +1,4 @@
+import 'visit_body_map.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
@@ -89,7 +90,7 @@ Future<Uint8List> buildVisitPdf(
   pw.Widget text(String s, {double size = 10}) =>
       pw.Text(s, style: pw.TextStyle(fontSize: size, lineSpacing: 3));
   List<pw.Widget> section(String title, String value) => [
-    pw.SizedBox(height: 12),
+    pw.SizedBox(height: 8),
     pw.Container(
       width: double.infinity,
       padding: const pw.EdgeInsets.symmetric(vertical: 6, horizontal: 8),
@@ -99,7 +100,7 @@ Future<Uint8List> buildVisitPdf(
         style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
       ),
     ),
-    pw.SizedBox(height: 6),
+    pw.SizedBox(height: 4),
     for (final chunk in reportChunks(value))
       pw.Padding(
         padding: const pw.EdgeInsets.only(bottom: 4, left: 4, right: 4),
@@ -140,8 +141,48 @@ Future<Uint8List> buildVisitPdf(
             '불편 부위 / Site: ${visitExcerpt(intake['bodySite'], 55)}',
             size: 10,
           ),
-          for (final entry in visitOverview(card).entries)
-            ...section(entry.key, entry.value),
+          pw.Row(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.SizedBox(
+                width: 118,
+                child: pw.Column(
+                  children: [
+                    pw.SizedBox(height: 14),
+                    text('불편 부위 / Body area', size: 9),
+                    pw.SizedBox(height: 8),
+                    pw.SvgImage(
+                      svg: visitBodySvg(intake['bodyRegion'] as String?),
+                      width: 114,
+                      height: 114,
+                    ),
+                    text('앞 / Front     뒤 / Back', size: 8),
+                    pw.SizedBox(height: 8),
+                    text(
+                      visitBodyRegions[intake['bodyRegion']] ??
+                          '선택 안 함 / Not selected',
+                      size: 9,
+                    ),
+                    pw.SizedBox(height: 4),
+                    text(
+                      '환자 선택 · 대략적 위치\nPatient-selected area\n좌우 구분 없음 / No side specified',
+                      size: 7,
+                    ),
+                  ],
+                ),
+              ),
+              pw.SizedBox(width: 12),
+              pw.Expanded(
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                  children: [
+                    for (final entry in visitOverview(card).entries)
+                      ...section(entry.key, entry.value),
+                  ],
+                ),
+              ),
+            ],
+          ),
           ...section(
             '직접 입력한 수치 / Patient-entered measurements',
             '통증 / Pain: ${intake['painScore'] ?? '미기록'} / 10    체온 / Temperature: ${intake['temperatureC'] ?? '미기록'} °C\n측정 시점·방법 / Measurement: ${visitExcerpt(intake['measuredAt'], 80)}',
@@ -216,6 +257,10 @@ Future<Uint8List> buildVisitPdf(
             ['PDF 생성 / Exported', stamp],
             ['원문·번역 / Language status', status],
             [
+              '그림 선택 부위 / Diagram area',
+              visitBodyRegions[intake['bodyRegion']] ?? '선택 안 함 / Not selected',
+            ],
+            [
               '불편한 부위 / Body site',
               intake['bodySite']?.toString().isNotEmpty == true
                   ? intake['bodySite']
@@ -273,7 +318,7 @@ Future<Uint8List> buildVisitPdf(
               : '환자가 선택한 기록 / Patient-selected records',
         ),
         for (final j in snapshot['journals']) ...[
-          pw.SizedBox(height: 6),
+          pw.SizedBox(height: 4),
           text(
             '${j['date']} | 컨디션 / Condition: ${j['condition']} | 수면 / Sleep: ${j['sleep']} h',
           ),
