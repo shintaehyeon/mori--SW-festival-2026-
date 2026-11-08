@@ -1532,28 +1532,37 @@ class _VisitCardsState extends ScreenState<VisitCards> {
               ),
             ],
           ),
-          Text(
-            t('Select check-ins to include (up to 7)', '포함할 일상 기록 선택 (최대 7개)'),
-          ),
-          ...journals.map(
-            (j) => CheckboxListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                '${j['date']} · ${MoriLanguage.conditionLabel(j['condition'])}',
+          if (journals.isNotEmpty)
+            ExpansionTile(
+              title: Text(t('Attach past records (optional)', '과거 기록 첨부 (선택)')),
+              subtitle: Text(
+                t(
+                  'Skip this to prepare your visit now.',
+                  '첨부하지 않아도 바로 준비표를 만들 수 있어요.',
+                ),
               ),
-              subtitle: Text(j['note']),
-              value: selected.contains(j['id']),
-              onChanged: busy
-                  ? null
-                  : (v) => setState(() {
-                      if (v == true && selected.length < 7) {
-                        selected.add(j['id']);
-                      } else {
-                        selected.remove(j['id']);
-                      }
-                    }),
+              children: [
+                ...journals.map(
+                  (j) => CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      '${j['date']} · ${MoriLanguage.conditionLabel(j['condition'])}',
+                    ),
+                    subtitle: Text(j['note']),
+                    value: selected.contains(j['id']),
+                    onChanged: busy
+                        ? null
+                        : (v) => setState(() {
+                            if (v == true && selected.length < 7) {
+                              selected.add(j['id']);
+                            } else {
+                              selected.remove(j['id']);
+                            }
+                          }),
+                  ),
+                ),
+              ],
             ),
-          ),
           CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             value: consent,

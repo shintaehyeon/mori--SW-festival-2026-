@@ -4622,5 +4622,21 @@
     "zh": "连接已断开。请检查网络后重试。",
     "ja": "接続が切れました。インターネット接続を確認して再試行してください。",
     "vi": "Mất kết nối. Kiểm tra kết nối Internet và thử lại."
+  },
+  "Attach past records (optional)": {
+    "en": "Attach past records (optional)",
+    "ko": "과거 기록 첨부 (선택)",
+    "fr": "Joindre des notes passées (facultatif)",
+    "zh": "附加以前的记录（可选）",
+    "ja": "過去の記録を添付（任意）",
+    "vi": "Đính kèm ghi chép trước đây (tùy chọn)"
+  },
+  "Skip this to prepare your visit now.": {
+    "en": "Skip this to prepare your visit now.",
+    "ko": "첨부하지 않아도 바로 준비표를 만들 수 있어요.",
+    "fr": "Vous pouvez préparer votre fiche sans joindre de notes.",
+    "zh": "无需附加记录即可准备就诊卡。",
+    "ja": "添付しなくても準備表を作れます。",
+    "vi": "Bạn có thể tạo phiếu mà không cần đính kèm ghi chép."
   }
 }

@@ -51,6 +51,28 @@ class VisitApi extends Api {
   }
 }
 
+class HistoryVisitApi extends VisitApi {
+  @override
+  Future<dynamic> request(
+    String path, {
+    String method = 'GET',
+    Object? body,
+  }) async {
+    if (path == '/api/journals') {
+      return [
+        {
+          'id': 'old',
+          'date': '2026-11-07',
+          'condition': 'okay',
+          'sleep': 7,
+          'note': 'OPTIONAL HISTORY FIXTURE',
+        },
+      ];
+    }
+    return super.request(path, method: method, body: body);
+  }
+}
+
 Widget screen(VisitApi api) => MaterialApp(
   home: Scaffold(
     body: SingleChildScrollView(
@@ -62,6 +84,22 @@ void main() {
   setUp(() {
     MoriLanguage.current.value = 'en';
     MoriLanguage.catalog = {};
+  });
+  testWidgets('past records stay collapsed and empty history adds no step', (
+    tester,
+  ) async {
+    await tester.pumpWidget(screen(HistoryVisitApi()));
+    await tester.pumpAndSettle();
+    expect(find.text('OPTIONAL HISTORY FIXTURE'), findsNothing);
+    final attach = find.text('Attach past records (optional)');
+    await tester.ensureVisible(attach);
+    await tester.tap(attach);
+    await tester.pumpAndSettle();
+    expect(find.text('OPTIONAL HISTORY FIXTURE'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpWidget(screen(VisitApi()));
+    await tester.pumpAndSettle();
+    expect(find.text('Attach past records (optional)'), findsNothing);
   });
   testWidgets(
     'profile before saving, cancellation sends nothing, failure preserves original',

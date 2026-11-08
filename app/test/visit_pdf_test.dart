@@ -5,6 +5,57 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test(
+    'compact French card preserves both languages and omits empty extras',
+    () async {
+      final card = <String, dynamic>{
+        'sample': true,
+        'createdAt': '2026-11-08',
+        'confirmedAt': '2026-11-08',
+        'translation': {
+          'symptomsKo': '이틀 전부터 목이 아픕니다.',
+          'onsetKo': '이틀 전',
+          'allergiesKo': '모름',
+          'medicationsKo': '없음',
+          'journalKo': [],
+        },
+        'snapshot': {
+          'symptoms': 'EXEMPLE FICTIF : J’ai mal à la gorge depuis deux jours.',
+          'onset': 'Depuis deux jours.',
+          'destination': {'name': '가상 테스트 병원', 'address': '가상 주소'},
+          'profile': {
+            'allergies': {'status': 'unknown'},
+            'medications': {'status': 'none'},
+          },
+          'journals': [],
+        },
+      };
+      final sections = visitSections(card);
+      expect(sections.first.body, '이틀 전부터 목이 아픕니다.');
+      expect(sections.any((s) => s.body.contains('EXEMPLE FICTIF')), isTrue);
+      expect(
+        sections.any((s) => s.title.contains('Optional details')),
+        isFalse,
+      );
+      expect(visitAttachments(card), isEmpty);
+      await File(
+        '/tmp/mori-compact-fr.pdf',
+      ).writeAsBytes(await buildVisitPdf(card));
+      card['confirmedAt'] = null;
+      expect(visitSections(card).first.body, contains('EXEMPLE FICTIF'));
+      expect(
+        visitSections(card).any((s) => s.body.contains('Unreviewed AI draft')),
+        isTrue,
+      );
+      await File(
+        '/tmp/mori-compact-unreviewed.pdf',
+      ).writeAsBytes(await buildVisitPdf(card));
+      card['translation'] = null;
+      await File(
+        '/tmp/mori-compact-original.pdf',
+      ).writeAsBytes(await buildVisitPdf(card));
+    },
+  );
   test('body diagram marks only explicit supported selections', () {
     expect(visitBodySvg(null), isNot(contains('#f7c1ad')));
     expect(visitBodySvg('unknown'), isNot(contains('#f7c1ad')));
@@ -40,7 +91,10 @@ void main() {
         'confirmedAt': null,
         'translation': null,
         'snapshot': {
-          'destination': {'name': '가상 테스트 병원 / Test clinic', 'address': '가상 주소 / Fictional address'},
+          'destination': {
+            'name': '가상 테스트 병원 / Test clinic',
+            'address': '가상 주소 / Fictional address',
+          },
           'symptoms':
               '가상 예시: 어제부터 목이 불편합니다. Test example: sore throat since yesterday.',
           'onset': '2026-10-28 저녁 / evening',
