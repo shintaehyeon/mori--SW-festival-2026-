@@ -2,7 +2,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 root=Path(__file__).resolve().parents[1]
 out=root.parent/'[3]MORI_MVP_source.zip'
-blocked={'output','node_modules','data','.dart_tool','build','Pods','.symlinks','.git','.idea','ephemeral','FlutterGeneratedPluginSwiftPackage','.swiftpm','__pycache__'}
+blocked={'.gradle','output','node_modules','data','.dart_tool','build','Pods','.symlinks','.git','.idea','ephemeral','FlutterGeneratedPluginSwiftPackage','.swiftpm','__pycache__'}
 with ZipFile(out,'w',ZIP_DEFLATED) as z:
  for p in sorted(root.rglob('*')):
   rel=p.relative_to(root)

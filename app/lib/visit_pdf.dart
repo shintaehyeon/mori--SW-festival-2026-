@@ -665,7 +665,7 @@ class ClinicalVisitView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    '통증은 0-10 본인 보고입니다. 이 수치만으로 진단·응급도를 판단하지 않습니다.\n오른쪽 위 공유 버튼으로 PDF를 저장할 수 있습니다.',
+                    '통증은 0-10 본인 보고입니다. 이 수치만으로 진단·응급도를 판단하지 않습니다.\n상단 PDF 저장 · 공유 버튼을 사용하세요. / Use Save / share PDF above.',
                     style: TextStyle(fontSize: 12, color: Colors.black54),
                   ),
                 ],

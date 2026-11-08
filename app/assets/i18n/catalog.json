@@ -4590,5 +4590,37 @@
     "ja": "韓東大学の留学生向けMVP",
     "vi": "MVP dành cho sinh viên quốc tế Handong",
     "fr": "MVP pour les étudiants internationaux de Handong"
+  },
+  "PDF export requested. Check your downloads or complete the share dialog.": {
+    "en": "PDF export requested. Check your downloads or complete the share dialog.",
+    "ko": "PDF 내보내기를 요청했습니다. 다운로드 목록을 확인하거나 공유 창에서 저장을 완료하세요.",
+    "fr": "Export PDF demandé. Vérifiez vos téléchargements ou terminez le partage.",
+    "zh": "已请求导出 PDF。请检查下载列表或完成分享。",
+    "ja": "PDFの書き出しを開始しました。ダウンロード一覧を確認するか、共有画面で保存を完了してください。",
+    "vi": "Đã yêu cầu xuất PDF. Kiểm tra mục tải xuống hoặc hoàn tất chia sẻ."
+  },
+  "PDF export was not completed. Try again; you can still show this screen.": {
+    "en": "PDF export was not completed. Try again; you can still show this screen.",
+    "ko": "PDF 내보내기를 완료하지 못했습니다. 다시 시도하거나 이 화면을 의료진에게 보여주세요.",
+    "fr": "L’export PDF n’a pas abouti. Réessayez ou montrez cet écran au personnel médical.",
+    "zh": "PDF 未能导出。请重试，或向医护人员出示此页面。",
+    "ja": "PDFを書き出せませんでした。再試行するか、この画面を医療者に見せてください。",
+    "vi": "Chưa xuất được PDF. Hãy thử lại hoặc cho nhân viên y tế xem màn hình này."
+  },
+  "The service took too long. Check your saved cards before retrying.": {
+    "en": "The service took too long. Check your saved cards before retrying.",
+    "ko": "응답이 지연되고 있습니다. 재시도 전 저장된 준비표를 확인하세요.",
+    "fr": "Le service met trop de temps. Vérifiez vos fiches enregistrées avant de réessayer.",
+    "zh": "服务响应超时。重试前请检查已保存的就诊卡。",
+    "ja": "応答に時間がかかっています。再試行の前に保存済みの準備表を確認してください。",
+    "vi": "Dịch vụ phản hồi quá lâu. Kiểm tra phiếu đã lưu trước khi thử lại."
+  },
+  "Connection lost. Check your internet connection and try again.": {
+    "en": "Connection lost. Check your internet connection and try again.",
+    "ko": "연결이 끊겼습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+    "fr": "Connexion perdue. Vérifiez votre connexion Internet et réessayez.",
+    "zh": "连接已断开。请检查网络后重试。",
+    "ja": "接続が切れました。インターネット接続を確認して再試行してください。",
+    "vi": "Mất kết nối. Kiểm tra kết nối Internet và thử lại."
   }
 }

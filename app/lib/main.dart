@@ -2,7 +2,6 @@ import 'visit_body_map.dart';
 import 'localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
@@ -12,7 +11,7 @@ import 'tutorial.dart';
 import 'hospitals.dart';
 import 'visit_pdf.dart';
 import 'visit_preparation.dart';
-import 'package:printing/printing.dart';
+import 'visit_sheet_page.dart';
 
 const ink = Color(0xFF193B32);
 const green = Color(0xFF28654F);
@@ -1810,33 +1809,8 @@ class _VisitCardsState extends ScreenState<VisitCards> {
                     if (!context.mounted) return;
                     await Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => Scaffold(
-                          appBar: AppBar(
-                            title: Text(
-                              t('Patient-reported visit sheet', '환자 작성 진료 준비표'),
-                            ),
-                            actions: [
-                              IconButton(
-                                tooltip: t('Save / share PDF', 'PDF 저장 · 공유'),
-                                icon: const Icon(Icons.ios_share),
-                                onPressed: () => Printing.sharePdf(
-                                  bytes: bytes,
-                                  filename: 'MORI_visit_preparation.pdf',
-                                ),
-                              ),
-                            ],
-                          ),
-                          body: kIsWeb
-                              ? ClinicalVisitView(card: card)
-                              : PdfPreview(
-                                  build: (_) => bytes,
-                                  canChangeOrientation: false,
-                                  canChangePageFormat: false,
-                                  allowPrinting: true,
-                                  allowSharing: true,
-                                  pdfFileName: 'MORI_visit_preparation.pdf',
-                                ),
-                        ),
+                        builder: (context) =>
+                            VisitSheetPage(card: card, bytes: bytes),
                       ),
                     );
                   }),
