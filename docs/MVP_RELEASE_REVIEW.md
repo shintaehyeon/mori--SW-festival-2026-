@@ -53,3 +53,17 @@ Caroline은 프랑스인 한동대 유학생이자 문제를 실제 겪은 팀�
 ## 2026-11-08 병원 카드·게스트 여정 개선
 병원명/주소/의사 수/핵심 방문 준비 CTA를 분리하고 상세 진료과는 접었다. Google 외부 길찾기와 전화만 보조 행동으로 남겼다. 게스트로 원문 저장·실제 Gemini 번역·확인 저장·PDF까지 연결했다. 게스트 세션 24시간, 만료 데이터는 다음 요청 시 삭제. 계정 전환 전 PDF 저장 안내. 후기 열람·작성은 계정 로그인 필요; 작성 형식 예시는 실제 후기가 아니다. Google 공식 로그인 플러그인과 서버 토큰 검증을 준비했으나 OAuth 클라이언트 미설정으로 버튼은 숨김. Firebase 미사용, Node.js/SQLite 유지.
 검증: 서버31개 통과, 기존 앱45개+새 여정2개 통과, 정적 검사 및 웹/iOS 빌드 성공. 실제 프랑스어 게스트 흐름과 한 장 PDF 수령/병원·원문·번역·확인 상태 보존 확인. 실물GPS와 실제 Google OAuth는 미검증. Figma·적용 패키지 목록은 docs/UI_JOURNEY_2026-11-08.md, 설정은 docs/GOOGLE_SIGN_IN_SETUP.md.
+
+
+## 2026-11-08 원문 확인 UX 수정
+핵심 범위: 한국어 요약·번역 및 의료기관 이용 지원. 한국어를 모르는 사용자에게 번역 검증을 요구하지 않는다. 사용자는 자신의 원문 증상·시작 시점·수치·알레르기·약을 확인한다. 서버는 confirmationKind=source_input을 별도로 보존하며 이전 확인 카드를 소급해서 원문 확인으로 표시하지 않는다. 한국어 수정은 선택 펼침으로 이동했다. AI 번역은 의료진 미검증임을 화면/PDF에 표시한다. 최종 버튼은 ‘의료진에게 보여주기’, 모든 플랫폼은 읽기 화면부터 열고 PDF 저장·공유는 별도다. 자동 진료과 판단은 추가하지 않았다. 앱48개·서버31개 검사와 Flutter analyze 통과. 실사용자·의료진 효과 평가는 별도다. 이전 제출용 보고서/PPT/대본 PDF·ZIP에는 과거 확인 문구가 남을 수 있으므로 이번 소스 변경과 구분해야 한다.
+
+
+## 2026-11-08 모리 안내·출처 기반 준비 질문
+핵심 범위인 AI 증상 정리/한국어 번역을 위한 입력 개선. 별도 홈/일기 단계를 추가하지 않았다. 기존 증상 화면에 상태 판단 없는 고정 모리 그림을 추가했다. 기본 질문은 증상, 시작 시점, 알레르기·약, 악화/완화, 의료진 질문의 다섯 묶음. 마지막 두 묶음은 선택 입력. NHS·NLM MedlinePlus·FDA 본문을 확인하여 항목과 원문 URL을 화면/문서에 연결했다. 공인 병원 문진표·진단 검증 설문이 아니라 MORI의 재구성임을 명시. 자세한 항목별 근거는 VISIT_QUESTION_SOURCES.md. 기존 저장·번역·준비표/PDF 경로를 재사용한다.
+
+### Guided voice / tap input verification
+Full Flutter suite passed 50 tests after adding quick-answer tests. Two additional draft apply/cancel widget cases passed in the four-case voice widget suite. Analyze passed; web build passed. No physical microphone recognition or clinical speech accuracy claim follows from these tests. Six UI languages have voice controls; available recognition/TTS locales depend on the device. In the demo, tap a quick symptom/onset answer or open “Answer with MORI”, optionally read the question, explicitly start microphone, stop, edit and apply. Original text then follows the existing translation and clinician sheet workflow. Voice is optional and is never started on page entry.
+
+### Simulator recovery after user-reported failure
+2026-11-08: corrected native API fallback 8790 → 8791. Live simulator showed hospital list again (ear/nose/throat department filter: 98 results), selected a displayed clinic, entered guest preparation, displayed MORI and selected clinic, then successfully skipped to the hospital tab. First-screen MORI is visible. Tutorial was observed auto-advancing to 20/20 seconds before text refresh and reopened after reinstall. Full Flutter suite 53 passed; analyze clean; native and web builds succeeded. No microphone accuracy/real health data test was performed. Evidence: /private/tmp/mori-hospital-recovered.png and /private/tmp/mori-preparation-recovered.png (local QA captures).

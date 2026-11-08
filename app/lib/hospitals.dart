@@ -1,3 +1,4 @@
+import 'clinic_reviews.dart';
 import 'localization.dart';
 import 'hospital_name.dart';
 import 'package:flutter/material.dart';
@@ -307,6 +308,25 @@ class _HospitalsState extends State<Hospitals> {
     }
   }
 
+  Future<void> showResults() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted || resultsKey.currentContext == null) return;
+    await Scrollable.ensureVisible(
+      resultsKey.currentContext!,
+      duration: MediaQuery.disableAnimationsOf(context)
+          ? Duration.zero
+          : const Duration(milliseconds: 250),
+      alignment: 0.05,
+    );
+  }
+
+  Future<void> searchAndShowResults() async {
+    await load();
+    if (!mounted || error != null) return;
+    await showResults();
+  }
+
   Future<void> open(Uri uri) async {
     try {
       if (await launchUrl(uri, mode: LaunchMode.externalApplication)) return;
@@ -469,6 +489,36 @@ class _HospitalsState extends State<Hospitals> {
         ),
       ),
       const SizedBox(height: 12),
+      TextField(
+        controller: query,
+        onChanged: (_) => setState(() {}),
+        onSubmitted: (_) => searchAndShowResults(),
+        decoration: InputDecoration(
+          labelText: t('Hospital / department / area', '병원명 · 진료과 · 동네 검색'),
+          hintText: '양덕이비인후과 / 양덕 / dentist',
+          suffixIcon: IconButton(
+            onPressed: busy ? null : searchAndShowResults,
+            tooltip: t('Search', '검색'),
+            icon: const Icon(Icons.search),
+          ),
+        ),
+      ),
+      if (busy) const LinearProgressIndicator(),
+      if (error != null) ...[
+        Text(error!, style: const TextStyle(color: Colors.red)),
+        OutlinedButton.icon(
+          onPressed: busy ? null : load,
+          icon: const Icon(Icons.refresh),
+          label: Text(tr('Retry')),
+        ),
+      ],
+      const SizedBox(height: 12),
+      FilledButton.icon(
+        onPressed: busy || data == null || error != null ? null : showResults,
+        icon: const Icon(Icons.format_list_bulleted),
+        label: Text(t('View clinic list', '병원 목록 보기')),
+      ),
+      const SizedBox(height: 20),
       Wrap(
         spacing: 8,
         runSpacing: 6,
@@ -523,16 +573,9 @@ class _HospitalsState extends State<Hospitals> {
               selectedHospital = null;
               query.clear();
             });
-            await load();
+            if (data == null) await load();
             if (!mounted || category == null) return;
-            await WidgetsBinding.instance.endOfFrame;
-            if (mounted && resultsKey.currentContext != null) {
-              await Scrollable.ensureVisible(
-                resultsKey.currentContext!,
-                duration: const Duration(milliseconds: 250),
-                alignment: 0.05,
-              );
-            }
+            await showResults();
           },
         ),
       if (bodyCategory != null)
@@ -598,7 +641,15 @@ class _HospitalsState extends State<Hospitals> {
           '지도: Google Maps · 열면 표시 지역·IP가 Google에 전달됩니다.',
         ),
       ),
-      TextButton.icon(
+      FilledButton.tonalIcon(
+        style: FilledButton.styleFrom(
+          backgroundColor: const Color(0xFFDBEAFE),
+          foregroundColor: const Color(0xFF173B65),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
         onPressed: () => setState(() => showMap = !showMap),
         icon: const Icon(Icons.map_outlined),
         label: Text(
@@ -627,10 +678,22 @@ class _HospitalsState extends State<Hospitals> {
                 label: Text(bilingualSpecialty(department['ko']!)),
                 onPressed: busy
                     ? null
-                    : () {
-                        bodyCategory = null;
-                        query.text = department['ko']!;
-                        load();
+                    : () async {
+                        setState(() {
+                          query.clear();
+                          bodyCategory = department['ko'] == '치과'
+                              ? bodyCategories.firstWhere(
+                                  (c) => c.id == 'teeth',
+                                )
+                              : BodyCategory(
+                                  'department',
+                                  department['en']!,
+                                  department['ko']!,
+                                  [department['ko']!],
+                                );
+                        });
+                        if (data == null) await load();
+                        if (mounted) await showResults();
                       },
               ),
           ],
@@ -644,21 +707,6 @@ class _HospitalsState extends State<Hospitals> {
         ),
         const SizedBox(height: 12),
       ],
-      TextField(
-        controller: query,
-        onSubmitted: (_) => load(),
-        decoration: InputDecoration(
-          labelText: t('Hospital / department / area', '병원명 · 진료과 · 동네 검색'),
-          hintText: 'dentist / 内科 / 피부과 / 흥해',
-          suffixIcon: IconButton(
-            onPressed: busy ? null : load,
-            icon: const Icon(Icons.search),
-          ),
-        ),
-      ),
-      if (busy) const LinearProgressIndicator(),
-      if (error != null)
-        Text(error!, style: const TextStyle(color: Colors.red)),
       if (data != null) ...[
         Container(
           key: resultsKey,
@@ -669,6 +717,12 @@ class _HospitalsState extends State<Hospitals> {
                 Text(
                   '${tr(bodyCategory!.en, bodyCategory!.ko)} · ${bodyCategory!.departments.map(bilingualSpecialty).join(' / ')}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              if (bodyCategory != null)
+                Text(
+                  tr(
+                    'Only institutions with registered specialists in the selected departments are shown. Confirm availability before visiting.',
+                  ),
                 ),
               if (bodyCategory != null)
                 TextButton(
@@ -775,10 +829,25 @@ class _HospitalsState extends State<Hospitals> {
                       icon: const Icon(Icons.description_outlined),
                       label: Text(t('Prepare for this visit', '이 병원 방문 준비하기')),
                     ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 4,
+                  if (isDemoClinic(h))
+                    TextButton.icon(
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => ClinicReviewsPage(
+                            api: widget.api,
+                            hospital: Map<String, dynamic>.from(h),
+                            canReview: widget.canReadExperiences,
+                          ),
+                        ),
+                      ),
+                      icon: const Icon(Icons.rate_review_outlined),
+                      label: Text(
+                        tr('Visit experiences · demo examples included'),
+                      ),
+                    ),
+                  const SizedBox(height: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       OutlinedButton.icon(
                         onPressed: () => open(
@@ -829,21 +898,6 @@ class _HospitalsState extends State<Hospitals> {
                         ),
                       ),
                     ],
-                  ),
-                  TextButton.icon(
-                    onPressed: () => reviews(h['name']),
-                    icon: const Icon(Icons.forum_outlined, size: 18),
-                    label: Text(t('Mori visit experiences', '모리 방문 경험 보기')),
-                  ),
-                  Text(
-                    t(
-                      'After your visit, share what helped the next student.',
-                      '진료를 다녀온 뒤, 다음 유학생에게 도움이 될 경험을 남겨주세요.',
-                    ),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Color(0xFF68796D),
-                    ),
                   ),
                 ],
               ),
@@ -916,14 +970,33 @@ const departmentGuide = [
 ];
 
 bool hospitalMatchesQuery(Map h, String query) {
-  final q = query.trim().toLowerCase();
+  String normalize(String value) =>
+      value.toLowerCase().replaceAll(RegExp(r'[\s-]+'), '');
+  final q = normalize(query);
   if (q.isEmpty) return true;
+  for (final entry in specialtyEnglish.entries) {
+    final labels = <String>[
+      entry.key,
+      entry.value,
+      ...(MoriLanguage.catalog[entry.value] as Map? ?? {}).values
+          .cast<String>(),
+      ...departmentGuide
+          .where((d) => d['ko'] == entry.key)
+          .expand((d) => d.values),
+    ];
+    if (labels.any((label) => normalize(label) == q)) {
+      final category = entry.key == '치과'
+          ? bodyCategories.firstWhere((c) => c.id == 'teeth')
+          : BodyCategory('query', entry.value, entry.key, [entry.key]);
+      return matchesBodyCategory(h, category);
+    }
+  }
   final departmentNames = (h['departments'] as List? ?? []).map(
     (d) => '${d['name']}',
   );
   final candidates = <String>[
     '${h['name']}',
-    romanizedHospitalName('${h['name']}'),
+    ...hospitalSearchReadings('${h['name']}'),
     '${h['address']}',
     '${h['type']}',
   ];
@@ -937,5 +1010,5 @@ bool hospitalMatchesQuery(Map h, String query) {
       );
     }
   }
-  return candidates.any((value) => value.toLowerCase().contains(q));
+  return candidates.any((value) => normalize(value).contains(q));
 }

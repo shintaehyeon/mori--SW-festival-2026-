@@ -88,7 +88,9 @@ const bodyCategories = [
 bool matchesBodyCategory(Map h, BodyCategory? category) =>
     category == null ||
     (h['departments'] as List? ?? []).any(
-      (d) => category.departments.contains(d['name']),
+      (d) =>
+          category.departments.contains(d['name']) &&
+          (d['specialists'] as num? ?? 0) > 0,
     );
 
 class BodyCategoryPicker extends StatelessWidget {
@@ -132,8 +134,13 @@ class BodyCategoryPicker extends StatelessWidget {
                     label: tr(item.en, item.ko),
                     child: Material(
                       color: selected == item.id
-                          ? const Color(0xFFD9EEE4)
-                          : Colors.white,
+                          ? const Color(0xFF21664F)
+                          : const [
+                              Color(0xFFFFE7D7),
+                              Color(0xFFDCEBFF),
+                              Color(0xFFE8DFF5),
+                              Color(0xFFFFF1CD),
+                            ][bodyCategories.indexOf(item) % 4],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                         side: BorderSide(
@@ -150,20 +157,35 @@ class BodyCategoryPicker extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: Column(
                             children: [
+                              Icon(
+                                selected == item.id
+                                    ? Icons.check_circle
+                                    : Icons.arrow_forward,
+                                size: 18,
+                                color: selected == item.id
+                                    ? Colors.white
+                                    : const Color(0xFF21664F),
+                              ),
                               SizedBox(
-                                height: 78,
-                                width: 64,
+                                height: 100,
+                                width: 84,
                                 child: CustomPaint(
-                                  painter: BodyAreaPainter(item.id),
+                                  painter: BodyAreaPainter(
+                                    item.id,
+                                    selected: selected == item.id,
+                                  ),
                                 ),
                               ),
                               SizedBox(
-                                height: 72,
+                                height: 54,
                                 child: Center(
                                   child: Text(
                                     tr(item.en, item.ko),
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
+                                    style: TextStyle(
+                                      color: selected == item.id
+                                          ? Colors.white
+                                          : const Color(0xFF193B32),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -194,13 +216,20 @@ class BodyCategoryPicker extends StatelessWidget {
 // Original vector illustration; no medical triage logic.
 class BodyAreaPainter extends CustomPainter {
   final String area;
-  const BodyAreaPainter(this.area);
+  final bool selected;
+  const BodyAreaPainter(this.area, {this.selected = false});
   @override
   void paint(Canvas canvas, Size size) {
     canvas.save();
     canvas.scale(size.width / 100, size.height / 120);
-    final base = Paint()..color = const Color(0xFFD8E6E0),
-        h = Paint()..color = const Color(0xFFDE795B);
+    final base = Paint()
+          ..color = selected
+              ? const Color(0xFFF0F7F3)
+              : const Color(0xFFB8D1C5),
+        h = Paint()
+          ..color = selected
+              ? const Color(0xFFFFA47E)
+              : const Color(0xFFB94029);
     void line(Offset a, Offset b, Paint p, double width) {
       canvas.drawLine(
         a,
@@ -212,18 +241,52 @@ class BodyAreaPainter extends CustomPainter {
       );
     }
 
-    canvas.drawCircle(const Offset(50, 17), 13, base);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        const Rect.fromLTWH(33, 33, 34, 43),
-        const Radius.circular(12),
+    var silhouette = Path()..addOval(const Rect.fromLTWH(37, 4, 26, 26));
+    void addShape(Path part) {
+      silhouette = Path.combine(PathOperation.union, silhouette, part);
+    }
+
+    addShape(
+      Path()..addRRect(
+        RRect.fromRectAndRadius(
+          const Rect.fromLTWH(33, 33, 34, 43),
+          const Radius.circular(12),
+        ),
       ),
-      base,
     );
-    line(const Offset(36, 39), const Offset(24, 70), base, 11);
-    line(const Offset(64, 39), const Offset(76, 70), base, 11);
-    line(const Offset(41, 74), const Offset(38, 109), base, 13);
-    line(const Offset(59, 74), const Offset(62, 109), base, 13);
+    void limb(Offset a, Offset b, double width) {
+      final direction = b - a;
+      final normal =
+          Offset(-direction.dy, direction.dx) /
+          direction.distance *
+          (width / 2);
+      addShape(
+        Path()
+          ..moveTo((a + normal).dx, (a + normal).dy)
+          ..lineTo((b + normal).dx, (b + normal).dy)
+          ..lineTo((b - normal).dx, (b - normal).dy)
+          ..lineTo((a - normal).dx, (a - normal).dy)
+          ..close(),
+      );
+      for (final point in [a, b]) {
+        addShape(
+          Path()..addOval(Rect.fromCircle(center: point, radius: width / 2)),
+        );
+      }
+    }
+
+    limb(const Offset(36, 39), const Offset(24, 70), 11);
+    limb(const Offset(64, 39), const Offset(76, 70), 11);
+    limb(const Offset(41, 74), const Offset(38, 109), 13);
+    limb(const Offset(59, 74), const Offset(62, 109), 13);
+    canvas.drawPath(silhouette, base);
+    canvas.drawPath(
+      silhouette,
+      Paint()
+        ..color = selected ? const Color(0xFFCCE5D8) : const Color(0xFF426D5C)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.8,
+    );
     if (area == 'head') {
       canvas.drawOval(const Rect.fromLTWH(40, 7, 20, 18), h);
       line(const Offset(50, 8), const Offset(50, 23), base, 2);
@@ -292,5 +355,6 @@ class BodyAreaPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant BodyAreaPainter old) => area != old.area;
+  bool shouldRepaint(covariant BodyAreaPainter old) =>
+      area != old.area || selected != old.selected;
 }

@@ -531,11 +531,11 @@ export function createApp({
           if (input?.consent !== true) fail(400, "Confirm sharing this card with the AI provider before translating.");
           const saveDraft = () => {
             const latest = entity(mine("cards", card.id, u.id));
-            if (latest.confirmedAt) fail(409, "Your reviewed translation is protected. Create a new card to translate again.");
+            if (latest.confirmedAt) fail(409, "Your saved sheet is protected. Create a new card to translate again.");
             return db.prepare("UPDATE cards SET data=? WHERE id=? AND user_id=?")
               .run(JSON.stringify(card), card.id, u.id);
           };
-          if (card.confirmedAt) fail(409, "Your reviewed translation is protected. Create a new card to translate again.");
+          if (card.confirmedAt) fail(409, "Your saved sheet is protected. Create a new card to translate again.");
           rate(`ai:${u.id}`, 10, 60 * 60 * 1000);
           try {
             card.translation = V.parse(
@@ -575,6 +575,8 @@ export function createApp({
             fail(400, "Selected records do not match.");
           card.translation = { ...input };
           delete card.translation.reviewed;
+          delete card.translation.confirmationKind;
+          card.confirmationKind = input.confirmationKind || "legacy_translation_review";
           card.confirmedAt = now();
           db.prepare("UPDATE cards SET data=? WHERE id=? AND user_id=?").run(
             JSON.stringify(card),

@@ -5,11 +5,30 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test('emergency contacts require explicit individual export selection', () {
+    final profile = {
+      'name': 'Fictional student',
+      'contacts': [
+        {'name': 'Fictional contact', 'phone': '000-0000-0000'},
+        {'name': 'Not selected', 'phone': '000-0000-0001'},
+        {'name': '', 'phone': ''},
+      ],
+    };
+    expect(selectedVisitPersonalInfo(profile, {'name'}).keys, ['name']);
+    final selected = selectedVisitPersonalInfo(profile, {
+      'contact1',
+      'contact3',
+    });
+    expect(selected, {'contact1': 'Fictional contact · 000-0000-0000'});
+    expect(selectedVisitPersonalInfo(selected, {'contact1'}), selected);
+    expect(visitPersonalValue({}, 'contact1'), '');
+  });
   test(
     'compact French card preserves both languages and omits empty extras',
     () async {
       final card = <String, dynamic>{
         'sample': true,
+        'confirmationKind': 'source_input',
         'createdAt': '2026-11-08',
         'confirmedAt': '2026-11-08',
         'translation': {
@@ -30,6 +49,8 @@ void main() {
           'journals': [],
         },
       };
+      expect(visitStatus(card), contains('Source input checked'));
+      expect(visitStatus(card), contains('Not clinically verified'));
       final sections = visitSections(card);
       expect(sections.first.body, '이틀 전부터 목이 아픕니다.');
       expect(sections.any((s) => s.body.contains('EXEMPLE FICTIF')), isTrue);
@@ -41,6 +62,34 @@ void main() {
       await File(
         '/tmp/mori-compact-fr.pdf',
       ).writeAsBytes(await buildVisitPdf(card));
+      final profile = <String, dynamic>{
+        'name': 'DEMO Camille',
+        'nationality': 'France',
+        'organization': 'Handong University',
+        'address': 'DEMO Pohang address',
+        'location': 'DEMO campus',
+        'activity': 'Studying',
+        'symptoms': 'Saved example only',
+        'message': 'Please help me.',
+        'contacts': 'MUST NOT EXPORT',
+      };
+      expect(selectedVisitPersonalInfo(profile, {}), isEmpty);
+      expect(selectedVisitPersonalInfo({'name': '  '}, {'name'}), isEmpty);
+      card['personalInfo'] = selectedVisitPersonalInfo(profile, {
+        'name',
+        'nationality',
+      });
+      expect(visitSections(card).last.body, contains('DEMO Camille'));
+      expect(visitSections(card).last.body, isNot(contains('Pohang')));
+      card['personalInfo'] = selectedVisitPersonalInfo(
+        profile,
+        profile.keys.toSet(),
+      );
+      expect(visitSections(card).last.body, isNot(contains('MUST NOT EXPORT')));
+      await File(
+        '/tmp/mori-personal-info.pdf',
+      ).writeAsBytes(await buildVisitPdf(card));
+      card.remove('personalInfo');
       card['confirmedAt'] = null;
       expect(visitSections(card).first.body, contains('EXEMPLE FICTIF'));
       expect(

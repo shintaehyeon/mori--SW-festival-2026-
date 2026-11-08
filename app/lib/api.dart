@@ -18,10 +18,10 @@ class Api {
     if (configured.isNotEmpty) return configured;
     if (kIsWeb) {
       return Uri.base.port == 8090
-          ? '${Uri.base.scheme}://${Uri.base.host}:8790'
+          ? '${Uri.base.scheme}://${Uri.base.host}:8791'
           : Uri.base.origin;
     }
-    return 'http://localhost:8790';
+    return 'http://localhost:8791';
   }
 
   Future<void> restore() async {

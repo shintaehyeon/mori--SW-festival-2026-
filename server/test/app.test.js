@@ -288,10 +288,12 @@ test("translation draft requires explicit review and preserves original snapshot
   const confirmed = await request(
     `/api/cards/${card.id}/confirm`,
     "PUT",
-    { ...draft, symptomsKo: "목이 아픕니다.", reviewed: true },
+    { ...draft, symptomsKo: "목이 아픕니다.", reviewed: true, confirmationKind: "source_input" },
     a.token,
   );
   assert.ok(confirmed.data.confirmedAt);
+  assert.equal(confirmed.data.confirmationKind, "source_input");
+  assert.equal(confirmed.data.translation.confirmationKind, undefined);
   assert.equal(confirmed.data.snapshot.symptoms, "Sore throat");
   assert.equal((await request(`/api/cards/${card.id}/translate`, "POST", {consent:true}, a.token)).status, 409);
   const preserved = (await request(`/api/cards/${card.id}`, "GET", undefined, a.token)).data;

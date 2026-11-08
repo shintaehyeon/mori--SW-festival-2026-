@@ -49,6 +49,9 @@ dependencies:
   web: ^1.1.1
   google_sign_in: ^7.2.0
   google_sign_in_web: ^1.1.3
+  speech_to_text: ^7.4.0
+  flutter_tts: ^4.2.5
+  audioplayers: ^6.7.1
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +82,8 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSansCJK-Regular.ttf
   assets:
+    - assets/audio/
+    - assets/images/mori_doctor_rabbit.png
     - assets/i18n/catalog.json
     - assets/fonts/NotoSansCJK-Regular.ttf
     - assets/fonts/NotoSans-Regular.ttf

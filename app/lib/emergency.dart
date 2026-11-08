@@ -12,11 +12,13 @@ Uri emergencySmsUri(String phone, String message) => Uri.parse(
 class EmergencyPage extends StatefulWidget {
   final Api api;
   final bool signedIn, ko;
+  final Future<void> Function()? onEnsureSession;
   const EmergencyPage({
     super.key,
     required this.api,
     required this.signedIn,
     required this.ko,
+    this.onEnsureSession,
   });
   @override
   State<EmergencyPage> createState() => _EmergencyPageState();
@@ -100,6 +102,12 @@ class _EmergencyPageState extends State<EmergencyPage> {
           'phone': phones[i].text.trim(),
         });
       }
+      if (!widget.signedIn) {
+        if (widget.onEnsureSession == null) {
+          throw Exception("Session unavailable");
+        }
+        await widget.onEnsureSession!();
+      }
       final now = DateTime.now().toUtc().toIso8601String();
       await widget.api.request(
         '/api/emergency-profile',
@@ -112,7 +120,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
         },
       );
       if (mounted) setState(() => updatedAt = now);
-      notice(t('Saved privately to your account.', '내 계정에 비공개로 저장했어요.'));
+      notice(t('Information saved privately.', '정보를 비공개로 저장했어요.'));
     } catch (e) {
       notice(e.toString());
     } finally {
@@ -183,11 +191,13 @@ class _EmergencyPageState extends State<EmergencyPage> {
           icon: const Icon(Icons.local_hospital),
           label: Text(t('119 · Ambulance / Fire', '119 · 구급 / 소방')),
         ),
+        const SizedBox(height: 12),
         FilledButton.icon(
           onPressed: () => open(Uri(scheme: 'tel', path: '112')),
           icon: const Icon(Icons.local_police),
           label: Text(t('112 · Police', '112 · 경찰')),
         ),
+        const SizedBox(height: 16),
         Text(
           t(
             'Opens your phone dialer. Calls are not placed automatically.',
@@ -200,11 +210,11 @@ class _EmergencyPageState extends State<EmergencyPage> {
         if (!widget.signedIn)
           Text(
             t(
-              'Sign in to save your information and family contacts. Emergency calls are available without signing in.',
-              '기본정보와 가족 연락처는 로그인 후 저장할 수 있어요. 긴급전화는 로그인 없이 이용할 수 있어요.',
+              'You can enter your information without an account. Saving uses a guest session on this device.',
+              '계정 없이 정보를 입력할 수 있어요. 저장하면 이 기기의 게스트 세션을 사용해요.',
             ),
-          )
-        else if (loading)
+          ),
+        if (loading)
           const Center(child: CircularProgressIndicator())
         else ...[
           Text(

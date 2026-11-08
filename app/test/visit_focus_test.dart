@@ -6,8 +6,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 class VisitApi extends Api {
   int translations = 0;
+  final bool draft;
+  Object? saved;
   final bool confirmed;
-  VisitApi({this.confirmed = false});
+  VisitApi({this.confirmed = false, this.draft = false});
   Map<String, dynamic> get profile => {
     'allergies': {'status': 'known', 'detail': 'Penicillin'},
     'medications': {'status': 'unknown', 'detail': ''},
@@ -15,7 +17,7 @@ class VisitApi extends Api {
   Map<String, dynamic> get card => {
     'id': 'fictional',
     'createdAt': '2026-11-07T10:00:00Z',
-    'mode': confirmed ? 'ai' : 'original',
+    'mode': confirmed || draft ? 'ai' : 'original',
     'confirmedAt': confirmed ? '2026-11-07T11:00:00Z' : null,
     'snapshot': {
       'symptoms': 'Fictional pain',
@@ -23,7 +25,7 @@ class VisitApi extends Api {
       'profile': profile,
       'journals': [],
     },
-    'translation': confirmed
+    'translation': confirmed || draft
         ? {
             'symptomsKo': '가상 통증',
             'onsetKo': '어제',
@@ -39,6 +41,14 @@ class VisitApi extends Api {
     String method = 'GET',
     Object? body,
   }) async {
+    if (path.endsWith('/confirm')) {
+      saved = body;
+      return {
+        ...card,
+        'confirmedAt': '2026-11-08',
+        'confirmationKind': 'source_input',
+      };
+    }
     if (path == '/api/profile') return profile;
     if (path == '/api/journals') return [];
     if (path == '/api/cards') return [card];
@@ -128,6 +138,37 @@ void main() {
       expect(find.textContaining('Fictional provider failure'), findsOneWidget);
     },
   );
+  testWidgets(
+    'source confirmation needs no Korean editing and preserves provenance',
+    (tester) async {
+      final api = VisitApi(draft: true);
+      await tester.pumpWidget(screen(api));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Open card'));
+      await tester.tap(find.text('Open card'));
+      await tester.pumpAndSettle();
+      expect(find.text('가상 통증'), findsNothing);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Save my visit sheet'),
+            )
+            .onPressed,
+        isNull,
+      );
+      final check = find.byType(CheckboxListTile);
+      await tester.ensureVisible(check);
+      await tester.tap(check);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Save my visit sheet'));
+      await tester.tap(find.text('Save my visit sheet'));
+      await tester.pumpAndSettle();
+      expect((api.saved as Map)['confirmationKind'], 'source_input');
+      expect((api.saved as Map)['symptomsKo'], '가상 통증');
+      expect(find.byType(CheckboxListTile), findsNothing);
+      expect(find.text('Show to clinician'), findsOneWidget);
+    },
+  );
   testWidgets('reviewed card disables retranslation', (tester) async {
     final api = VisitApi(confirmed: true);
     await tester.pumpWidget(screen(api));
@@ -135,14 +176,9 @@ void main() {
     await tester.ensureVisible(find.text('Open card'));
     await tester.tap(find.text('Open card'));
     await tester.pumpAndSettle();
-    expect(
-      tester
-          .widget<FilledButton>(
-            find.widgetWithText(FilledButton, 'Translate with AI'),
-          )
-          .onPressed,
-      isNull,
-    );
+    expect(find.text('Translate with AI'), findsNothing);
+    expect(find.text('Show large card'), findsNothing);
+    expect(find.text('Show to clinician'), findsOneWidget);
     expect(api.translations, 0);
   });
 }

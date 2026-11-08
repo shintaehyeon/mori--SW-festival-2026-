@@ -36,9 +36,9 @@ Target 4:30. Choose ONE narration language; do not read both. French app demonst
 
 ### 01:55–02:30 · 번역과 확인 / Translate and review
 
-원문을 먼저 저장하고, AI 전송 안내에 동의한 뒤 Gemini 번역을 요청합니다. 원문과 한국어 결과를 함께 확인하고 필요한 표현을 수정합니다. 사용자 확인은 의료진의 검수를 뜻하지 않습니다. AI는 진단이나 진료과 판정을 하지 않으며, 자신의 말을 전달하는 준비를 돕습니다.
+원문을 먼저 저장하고, AI 전송 안내에 동의한 뒤 Gemini 번역을 요청합니다. 사용자는 원문의 증상·시작 시점·수치·알레르기·복용약을 확인합니다. 한국어를 읽거나 번역의 정확성을 검증할 필요는 없습니다. AI 번역은 의료진 미검증임을 표시합니다. AI는 진단이나 진료과 판정을 하지 않으며, 자신의 말을 전달하는 준비를 돕습니다.
 
-화면 / Screen: 원문 저장 → 동의 → 실제 번역 → 대조 확인 / Save, consent, translate, review
+화면 / Screen: 원문 저장 → 동의 → 실제 번역 → 원문 입력 확인 / Save, consent, translate, check original input
 
 
 ### 02:30–03:00 · 핵심 결과 / The result
@@ -102,9 +102,9 @@ Let us demonstrate a fictional case: a sore throat for two days. We select a cli
 
 ### 01:55–02:30 · 번역과 확인 / Translate and review
 
-We save the original first, read the AI-sharing notice and consent before requesting a Gemini translation. We compare the original and Korean result, edit if necessary and confirm it. User confirmation is not clinical validation. AI does not diagnose or choose a department here; it helps prepare the words the patient wants to communicate.
+We save the original first, read the AI-sharing notice and consent before requesting a Gemini translation. We check our original symptoms, onset, numbers, allergies and medicines. Reading Korean or verifying the translation is not required. The AI translation is labelled as not clinically verified. AI does not diagnose or choose a department here; it helps prepare the words the patient wants to communicate.
 
-화면 / Screen: 원문 저장 → 동의 → 실제 번역 → 대조 확인 / Save, consent, translate, review
+화면 / Screen: 원문 저장 → 동의 → 실제 번역 → 원문 입력 확인 / Save, consent, translate, check original input
 
 
 ### 02:30–03:00 · 핵심 결과 / The result
@@ -138,3 +138,6 @@ For this submission, we focused on one complete visit-preparation journey rather
 ## Recording checklist
 
 720p+ MP4, under 5 minutes, YouTube public or unlisted. Do not call emergency numbers. Do not record credentials or real health data. Google OAuth is not configured; do not demonstrate it as working. If the AI wait is edited, label the cut. Open the actual downloaded PDF. Verify final duration after recording.
+
+## 2026-11-08 원문 확인 UX 수정
+핵심 범위: 한국어 요약·번역 및 의료기관 이용 지원. 한국어를 모르는 사용자에게 번역 검증을 요구하지 않는다. 사용자는 자신의 원문 증상·시작 시점·수치·알레르기·약을 확인한다. 서버는 confirmationKind=source_input을 별도로 보존하며 이전 확인 카드를 소급해서 원문 확인으로 표시하지 않는다. 한국어 수정은 선택 펼침으로 이동했다. AI 번역은 의료진 미검증임을 화면/PDF에 표시한다. 최종 버튼은 ‘의료진에게 보여주기’, 모든 플랫폼은 읽기 화면부터 열고 PDF 저장·공유는 별도다. 자동 진료과 판단은 추가하지 않았다. 앱48개·서버31개 검사와 Flutter analyze 통과. 실사용자·의료진 효과 평가는 별도다. 이전 제출용 보고서/PPT/대본 PDF·ZIP에는 과거 확인 문구가 남을 수 있으므로 이번 소스 변경과 구분해야 한다.

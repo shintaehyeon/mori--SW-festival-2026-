@@ -69,6 +69,7 @@ export const cardConfirmSchema = z.object({
   medicationsKo: text(1000),
   journalKo: z.array(z.object({ id: z.string(), textKo: text(2000) })).max(7),
   reviewed: z.literal(true),
+  confirmationKind: z.literal("source_input").optional(),
 });
 export function parse(schema, data) {
   const result = schema.safeParse(data);

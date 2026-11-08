@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:printing/printing.dart';
 import 'localization.dart';
 import 'visit_pdf.dart';
 import 'pdf_export.dart';
@@ -10,12 +9,15 @@ import 'pdf_export.dart';
 class VisitSheetPage extends StatefulWidget {
   final Map<String, dynamic> card;
   final Uint8List bytes;
+  final VoidCallback? onHome, onReview;
   final Future<bool> Function(Uint8List)? exportPdf;
   const VisitSheetPage({
     super.key,
     required this.card,
     required this.bytes,
     this.exportPdf,
+    this.onHome,
+    this.onReview,
   });
   @override
   State<VisitSheetPage> createState() => _VisitSheetPageState();
@@ -57,7 +59,19 @@ class _VisitSheetPageState extends State<VisitSheetPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(tr('Patient-reported visit sheet'))),
+    appBar: AppBar(
+      title: Text(tr('Patient-reported visit sheet')),
+      actions: [
+        IconButton(
+          tooltip: tr('Back to home'),
+          icon: const Icon(Icons.home_outlined),
+          onPressed: () {
+            Navigator.of(context).pop();
+            widget.onHome?.call();
+          },
+        ),
+      ],
+    ),
     body: Column(
       children: [
         Padding(
@@ -83,18 +97,19 @@ class _VisitSheetPageState extends State<VisitSheetPage> {
             ],
           ),
         ),
-        Expanded(
-          child: kIsWeb || widget.exportPdf != null
-              ? ClinicalVisitView(card: widget.card)
-              : PdfPreview(
-                  build: (_) => widget.bytes,
-                  canChangeOrientation: false,
-                  canChangePageFormat: false,
-                  allowPrinting: true,
-                  allowSharing: false,
-                  pdfFileName: 'MORI_visit_preparation.pdf',
-                ),
-        ),
+        Expanded(child: ClinicalVisitView(card: widget.card)),
+        if (widget.onReview != null)
+          SafeArea(
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+              child: OutlinedButton.icon(
+                onPressed: widget.onReview,
+                icon: const Icon(Icons.rate_review_outlined),
+                label: Text(tr('Finished your visit? Leave an experience')),
+              ),
+            ),
+          ),
       ],
     ),
   );

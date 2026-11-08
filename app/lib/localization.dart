@@ -24,11 +24,8 @@ class MoriLanguage {
     try {
       saved = await storage.read(key: 'mori_ui_language');
     } catch (_) {}
-    final device =
-        WidgetsBinding.instance.platformDispatcher.locale.languageCode;
-    current.value = names.containsKey(saved)
-        ? saved!
-        : (names.containsKey(device) ? device : 'en');
+    // English on first launch; preserve the user's explicit language choice.
+    current.value = names.containsKey(saved) ? saved! : 'en';
   }
 
   static Future<void> select(String code) async {

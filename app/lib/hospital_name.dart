@@ -163,3 +163,11 @@ class HospitalName extends StatelessWidget {
     );
   }
 }
+
+/// Search-only alternate spellings. Never replace the official Korean label.
+Iterable<String> hospitalSearchReadings(String name) sync* {
+  final reading = romanizedHospitalName(name).toLowerCase();
+  yield reading;
+  // User-supplied pronunciation of 양덕; scoped to names containing that place.
+  if (name.contains('양덕')) yield reading.replaceAll('yangdeok', 'yangduk');
+}

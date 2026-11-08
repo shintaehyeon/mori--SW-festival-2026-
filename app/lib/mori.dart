@@ -3,6 +3,18 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'api.dart';
 
+/// Decorative guide only; it does not diagnose or assess the user's condition.
+class DoctorMori extends StatelessWidget {
+  const DoctorMori({super.key});
+  @override
+  Widget build(BuildContext context) => Image.asset(
+    'assets/images/mori_doctor_rabbit.png',
+    fit: BoxFit.contain,
+    excludeFromSemantics: true,
+    filterQuality: FilterQuality.medium,
+  );
+}
+
 const intakeLabels = <String, String>{
   'alcohol': '🍺 술 / Alcohol',
   'vitamin_c': '🍊 비타민 C / Vitamin C',
@@ -47,7 +59,7 @@ class _MoriHomeState extends State<MoriHome>
   )..repeat(reverse: true);
   Map<String, dynamic> avatar = {
     'name': 'Mori',
-    'style': 'sprout',
+    'style': 'bunny',
     'color': 'mint',
   };
   List<dynamic> entries = [];
@@ -68,7 +80,7 @@ class _MoriHomeState extends State<MoriHome>
       ]);
       if (mounted) {
         setState(() {
-          avatar = Map<String, dynamic>.from(data[0]);
+          avatar = {...Map<String, dynamic>.from(data[0]), 'style': 'bunny'};
           entries = List<dynamic>.from(data[1]);
           loading = false;
           error = null;
@@ -92,7 +104,7 @@ class _MoriHomeState extends State<MoriHome>
 
   Future<void> customize() async {
     final name = TextEditingController(text: avatar['name']);
-    var style = avatar['style'] as String, color = avatar['color'] as String;
+    final style = avatar['style'] as String, color = avatar['color'] as String;
     final selected = await showDialog<Map<String, dynamic>>(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -102,58 +114,13 @@ class _MoriHomeState extends State<MoriHome>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 150,
-                  width: 220,
-                  child: CustomPaint(
-                    painter: MoriPainter(
-                      style: style,
-                      color: color,
-                      condition: 'good',
-                      phase: 0,
-                    ),
-                  ),
-                ),
+                SizedBox(height: 150, width: 220, child: const DoctorMori()),
                 TextField(
                   controller: name,
                   maxLength: 20,
                   decoration: InputDecoration(
                     labelText: t('My Mori nickname', '내 모리 아바타 닉네임'),
                   ),
-                ),
-                Wrap(
-                  spacing: 6,
-                  children: [
-                    for (final s in ['sprout', 'cat', 'bunny'])
-                      ChoiceChip(
-                        label: Text(
-                          {
-                            'sprout': t('Sprout', '새싹'),
-                            'cat': t('Cat', '고양이'),
-                            'bunny': t('Bunny', '토끼'),
-                          }[s]!,
-                        ),
-                        selected: style == s,
-                        onSelected: (_) => change(() => style = s),
-                      ),
-                  ],
-                ),
-                Wrap(
-                  spacing: 6,
-                  children: [
-                    for (final c in ['mint', 'peach', 'lavender'])
-                      ChoiceChip(
-                        label: Text(
-                          {
-                            'mint': t('Mint', '민트'),
-                            'peach': t('Peach', '복숭아'),
-                            'lavender': t('Lavender', '라벤더'),
-                          }[c]!,
-                        ),
-                        selected: color == c,
-                        onSelected: (_) => change(() => color = c),
-                      ),
-                  ],
                 ),
               ],
             ),
@@ -363,17 +330,7 @@ class _MoriHomeState extends State<MoriHome>
                   child: SizedBox(
                     width: 100,
                     height: 110,
-                    child: AnimatedBuilder(
-                      animation: motion,
-                      builder: (context, _) => CustomPaint(
-                        painter: MoriPainter(
-                          style: avatar['style'],
-                          color: avatar['color'],
-                          condition: condition,
-                          phase: motion.value,
-                        ),
-                      ),
-                    ),
+                    child: const DoctorMori(),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -501,6 +458,17 @@ class MoriPainter extends CustomPainter {
             Radius.circular(r),
           ),
           body,
+        );
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromCenter(
+              center: center + Offset(sign * r * .42, -r * 1.08),
+              width: r * .17,
+              height: r * .75,
+            ),
+            Radius.circular(r),
+          ),
+          Paint()..color = const Color(0xFFF3BCC8),
         );
       }
     }

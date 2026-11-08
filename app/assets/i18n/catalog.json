@@ -682,10 +682,10 @@
   "Unknown": {
     "en": "Unknown",
     "ko": "모름",
+    "fr": "Je ne sais pas",
     "zh": "不清楚",
-    "ja": "不明",
-    "vi": "Không rõ",
-    "fr": "Inconnu"
+    "ja": "わかりません",
+    "vi": "Không rõ"
   },
   "PRIVATE · Not posted to the community": {
     "en": "PRIVATE · Not posted to the community",
@@ -4472,12 +4472,12 @@
     "en": "No check-in today"
   },
   "Today": {
-    "fr": "Aujourd’hui",
+    "en": "Today",
     "ko": "오늘",
+    "fr": "Aujourd’hui",
     "zh": "今天",
     "ja": "今日",
-    "vi": "Hôm nay",
-    "en": "Today"
+    "vi": "Hôm nay"
   },
   "Record how I feel today": {
     "fr": "Noter mon état du jour",
@@ -4582,14 +4582,6 @@
     "ja": "交換留学生の公式連絡先",
     "vi": "Liên hệ trao đổi chính thức",
     "fr": "Contacts officiels pour les échanges"
-  },
-  "Handong international students · MVP": {
-    "en": "Handong international students · MVP",
-    "ko": "한동대 외국인 유학생을 위한 MVP",
-    "zh": "面向韩东大学留学生的MVP",
-    "ja": "韓東大学の留学生向けMVP",
-    "vi": "MVP dành cho sinh viên quốc tế Handong",
-    "fr": "MVP pour les étudiants internationaux de Handong"
   },
   "PDF export requested. Check your downloads or complete the share dialog.": {
     "en": "PDF export requested. Check your downloads or complete the share dialog.",
@@ -4806,5 +4798,581 @@
     "ja": "まだ体験がありません。受診後に共有してください。",
     "zh": "暂无经验。就诊后欢迎分享。",
     "vi": "Chưa có trải nghiệm. Hãy chia sẻ sau khi khám."
+  },
+  "Check your original information": {
+    "en": "Check your original information",
+    "ko": "입력한 원문을 확인하세요",
+    "fr": "Vérifiez vos informations originales",
+    "zh": "请核对您的原始信息",
+    "ja": "入力した原文を確認してください",
+    "vi": "Kiểm tra thông tin gốc của bạn"
+  },
+  "Edit Korean text (optional)": {
+    "en": "Edit Korean text (optional)",
+    "ko": "한국어 수정 (선택)",
+    "fr": "Modifier le coréen (facultatif)",
+    "zh": "修改韩语（可选）",
+    "ja": "韓国語を編集（任意）",
+    "vi": "Sửa tiếng Hàn (tùy chọn)"
+  },
+  "I checked my original symptoms, onset, numbers, allergies and medicines. I am not verifying the Korean translation.": {
+    "en": "I checked my original symptoms, onset, numbers, allergies and medicines. I am not verifying the Korean translation.",
+    "ko": "원문의 증상·시작 시점·수치·알레르기·복용약을 확인했습니다. 한국어 번역의 정확성을 검증하는 것은 아닙니다.",
+    "fr": "J’ai vérifié mes symptômes, leur début, les chiffres, allergies et médicaments dans mon texte original. Je ne valide pas la traduction coréenne.",
+    "zh": "我已核对原文中的症状、开始时间、数值、过敏和用药信息，并非验证韩语翻译的准确性。",
+    "ja": "原文の症状・開始時期・数値・アレルギー・薬を確認しました。韓国語訳の正確性を検証するものではありません。",
+    "vi": "Tôi đã kiểm tra triệu chứng, thời điểm bắt đầu, số liệu, dị ứng và thuốc trong bản gốc. Tôi không xác minh bản dịch tiếng Hàn."
+  },
+  "Save my visit sheet": {
+    "en": "Save my visit sheet",
+    "ko": "방문 준비표 저장",
+    "fr": "Enregistrer ma fiche de consultation",
+    "zh": "保存就诊准备表",
+    "ja": "受診準備シートを保存",
+    "vi": "Lưu phiếu chuẩn bị khám"
+  },
+  "AI translation · not clinically verified. You do not need to read Korean to continue.": {
+    "en": "AI translation · not clinically verified. You do not need to read Korean to continue.",
+    "ko": "AI 번역 · 의료진 미검증. 한국어를 읽지 못해도 계속할 수 있습니다.",
+    "fr": "Traduction IA non vérifiée par un professionnel de santé. Vous pouvez continuer sans lire le coréen.",
+    "zh": "AI翻译，未经医务人员验证。不会韩语也可以继续。",
+    "ja": "AI翻訳・医療者未確認。韓国語が読めなくても続けられます。",
+    "vi": "Bản dịch AI chưa được nhân viên y tế xác minh. Bạn có thể tiếp tục dù không đọc được tiếng Hàn."
+  },
+  "Source input checked · AI translation not clinically verified": {
+    "en": "Source input checked · AI translation not clinically verified",
+    "ko": "원문 입력 확인 · AI 번역 의료진 미검증",
+    "fr": "Texte original vérifié · traduction IA non validée médicalement",
+    "zh": "原文已核对 · AI翻译未经医务人员验证",
+    "ja": "原文入力確認済み・AI翻訳は医療者未確認",
+    "vi": "Đã kiểm tra bản gốc · bản dịch AI chưa được y tế xác minh"
+  },
+  "Sheet saved · AI translation not clinically verified": {
+    "en": "Sheet saved · AI translation not clinically verified",
+    "ko": "준비표 저장됨 · AI 번역 의료진 미검증",
+    "fr": "Fiche enregistrée · traduction IA non validée médicalement",
+    "zh": "准备表已保存 · AI翻译未经医务人员验证",
+    "ja": "シート保存済み・AI翻訳は医療者未確認",
+    "vi": "Đã lưu phiếu · bản dịch AI chưa được y tế xác minh"
+  },
+  "Your sheet is saved. Show it to your clinician. Create a new card if your original information needs correcting.": {
+    "en": "Your sheet is saved. Show it to your clinician. Create a new card if your original information needs correcting.",
+    "ko": "준비표가 저장됐습니다. 의료진에게 보여주세요. 원문을 수정하려면 새 카드를 작성하세요.",
+    "fr": "Votre fiche est enregistrée. Montrez-la au professionnel de santé. Créez une nouvelle fiche pour corriger le texte original.",
+    "zh": "准备表已保存，请向医务人员出示。如需修改原文，请新建卡片。",
+    "ja": "シートを保存しました。医療者に見せてください。原文を修正する場合は新しいカードを作成してください。",
+    "vi": "Đã lưu phiếu. Hãy đưa cho nhân viên y tế xem. Tạo phiếu mới nếu cần sửa bản gốc."
+  },
+  "Show to clinician": {
+    "en": "Show to clinician",
+    "ko": "의료진에게 보여주기",
+    "fr": "Montrer au professionnel de santé",
+    "zh": "向医务人员出示",
+    "ja": "医療者に見せる",
+    "vi": "Đưa cho nhân viên y tế xem"
+  },
+  "AI draft · check your original input": {
+    "en": "AI draft · check your original input",
+    "ko": "AI 초안 · 원문 입력을 확인하세요",
+    "fr": "Brouillon IA · vérifiez votre texte original",
+    "zh": "AI草稿 · 请核对原文",
+    "ja": "AI下書き・原文入力を確認",
+    "vi": "Bản nháp AI · kiểm tra bản gốc"
+  },
+  "Write in your language. Check your original information, then show or save your sheet.": {
+    "en": "Write in your language. Check your original information, then show or save your sheet.",
+    "ko": "내 언어로 적고, 원문 정보를 확인한 뒤 준비표를 보여주세요.",
+    "fr": "Écrivez dans votre langue. Vérifiez vos informations originales, puis montrez ou enregistrez votre fiche.",
+    "zh": "用您的语言填写，核对原始信息，然后出示或保存准备表。",
+    "ja": "自分の言語で入力し、原文情報を確認してからシートを見せるか保存してください。",
+    "vi": "Viết bằng ngôn ngữ của bạn. Kiểm tra thông tin gốc, rồi đưa phiếu hoặc lưu lại."
+  },
+  "MORI helps you prepare your words. Answer only what you know.": {
+    "en": "MORI helps you prepare your words. Answer only what you know.",
+    "ko": "모리와 함께 전할 말을 준비해요. 아는 내용만 적어주세요.",
+    "fr": "MORI vous aide à préparer vos mots. Répondez seulement à ce que vous savez.",
+    "zh": "和MORI一起准备要说的话，只填写您知道的信息。",
+    "ja": "モリと伝える言葉を準備しましょう。分かることだけ入力してください。",
+    "vi": "MORI giúp bạn chuẩn bị lời muốn nói. Chỉ trả lời những gì bạn biết."
+  },
+  "1. What is bothering you most?": {
+    "en": "1. What is bothering you most?",
+    "ko": "1. 가장 불편한 증상은 무엇인가요?",
+    "fr": "1. Quel symptôme vous gêne le plus ?",
+    "zh": "1. 最困扰您的症状是什么？",
+    "ja": "1. 一番困っている症状は何ですか？",
+    "vi": "1. Triệu chứng nào làm bạn khó chịu nhất?"
+  },
+  "Describe what you feel and where. Use your own words, not a diagnosis.": {
+    "en": "Describe what you feel and where. Use your own words, not a diagnosis.",
+    "ko": "어디가 어떻게 불편한지 본인의 말로 적어주세요. 병명을 알 필요는 없어요.",
+    "fr": "Décrivez ce que vous ressentez et où, avec vos mots. Aucun diagnostic nécessaire.",
+    "zh": "用自己的话描述哪里、怎样不舒服，无需知道病名。",
+    "ja": "どこがどのようにつらいか、自分の言葉で。病名は不要です。",
+    "vi": "Mô tả cảm giác và vị trí bằng lời của bạn. Không cần biết tên bệnh."
+  },
+  "2. When did it begin?": {
+    "en": "2. When did it begin?",
+    "ko": "2. 언제부터 시작됐나요?",
+    "fr": "2. Quand cela a-t-il commencé ?",
+    "zh": "2. 什么时候开始的？",
+    "ja": "2. いつから始まりましたか？",
+    "vi": "2. Bắt đầu từ khi nào?"
+  },
+  "A date or approximate time is enough. If unsure, write “unknown”.": {
+    "en": "A date or approximate time is enough. If unsure, write “unknown”.",
+    "ko": "날짜나 대략적인 시점이면 충분해요. 기억나지 않으면 ‘모름’으로 적어주세요.",
+    "fr": "Une date ou un moment approximatif suffit. Sinon, écrivez « inconnu ».",
+    "zh": "日期或大概时间即可。不确定请填写“不知道”。",
+    "ja": "日付やおおよその時期で十分です。不明なら「不明」と入力してください。",
+    "vi": "Ngày hoặc thời điểm gần đúng là đủ. Không rõ thì ghi “không biết”."
+  },
+  "3. Allergies and medicines": {
+    "en": "3. Allergies and medicines",
+    "ko": "3. 알레르기와 복용약",
+    "fr": "3. Allergies et médicaments",
+    "zh": "3. 过敏和用药",
+    "ja": "3. アレルギーと薬",
+    "vi": "3. Dị ứng và thuốc"
+  },
+  "Allergies: what caused a reaction, and what happened? Medicines: include prescriptions, nonprescription medicines, vitamins and supplements. Choose none or unknown accurately.": {
+    "en": "Allergies: what caused a reaction, and what happened? Medicines: include prescriptions, nonprescription medicines, vitamins and supplements. Choose none or unknown accurately.",
+    "ko": "알레르기: 무엇에 어떤 반응이 있었나요? 복용약: 처방약·일반약·비타민·영양제를 포함해요. ‘없음’과 ‘모름’을 구분해주세요.",
+    "fr": "Allergies : à quoi et quelle réaction ? Médicaments : incluez ordonnances, automédication, vitamines et compléments. Distinguez « aucun » et « inconnu ».",
+    "zh": "过敏：对什么、有什么反应？用药包括处方药、非处方药、维生素和补充剂。请区分“无”和“不知道”。",
+    "ja": "アレルギー：何に、どのような反応がありましたか？薬には処方薬・市販薬・ビタミン・サプリを含め、「なし」と「不明」を区別してください。",
+    "vi": "Dị ứng: với thứ gì và phản ứng ra sao? Thuốc gồm thuốc kê đơn, không kê đơn, vitamin và thực phẩm bổ sung. Phân biệt “không có” và “không biết”."
+  },
+  "4. What makes it better or worse? (optional)": {
+    "en": "4. What makes it better or worse? (optional)",
+    "ko": "4. 무엇을 하면 나아지거나 심해지나요? (선택)",
+    "fr": "4. Qu’est-ce qui améliore ou aggrave le symptôme ? (facultatif)",
+    "zh": "4. 什么使症状减轻或加重？（可选）",
+    "ja": "4. 何をすると楽になったり悪化しますか？（任意）",
+    "vi": "4. Điều gì làm đỡ hoặc nặng hơn? (tùy chọn)"
+  },
+  "Describe only what you noticed. If you cannot tell, leave this blank.": {
+    "en": "Describe only what you noticed. If you cannot tell, leave this blank.",
+    "ko": "직접 느낀 상황만 적어주세요. 모르겠으면 비워두어도 돼요.",
+    "fr": "Décrivez seulement ce que vous avez remarqué. Sinon, laissez vide.",
+    "zh": "只描述您观察到的情况，不清楚可以留空。",
+    "ja": "実際に気づいたことだけ入力。不明なら空欄で構いません。",
+    "vi": "Chỉ mô tả điều bạn nhận thấy. Không rõ thì để trống."
+  },
+  "5. What do you want to ask the clinician? (optional)": {
+    "en": "5. What do you want to ask the clinician? (optional)",
+    "ko": "5. 의료진에게 꼭 묻고 싶은 것은 무엇인가요? (선택)",
+    "fr": "5. Que souhaitez-vous demander au soignant ? (facultatif)",
+    "zh": "5. 您想问医务人员什么？（可选）",
+    "ja": "5. 医療者に聞きたいことは何ですか？（任意）",
+    "vi": "5. Bạn muốn hỏi nhân viên y tế điều gì? (tùy chọn)"
+  },
+  "Write your most important questions about tests, treatment or what happens next.": {
+    "en": "Write your most important questions about tests, treatment or what happens next.",
+    "ko": "검사·치료·다음 단계에 대해 가장 궁금한 점을 적어주세요.",
+    "fr": "Notez vos questions prioritaires sur les examens, le traitement ou la suite.",
+    "zh": "写下关于检查、治疗或后续安排最想了解的问题。",
+    "ja": "検査・治療・今後について特に聞きたいことを書いてください。",
+    "vi": "Ghi câu hỏi quan trọng nhất về xét nghiệm, điều trị hoặc bước tiếp theo."
+  },
+  "Question sources": {
+    "en": "Question sources",
+    "ko": "질문 항목의 출처",
+    "fr": "Sources des questions",
+    "zh": "问题来源",
+    "ja": "質問項目の出典",
+    "vi": "Nguồn câu hỏi"
+  },
+  "Adapted by MORI from public health guidance. Not an official hospital form or a validated diagnostic questionnaire.": {
+    "en": "Adapted by MORI from public health guidance. Not an official hospital form or a validated diagnostic questionnaire.",
+    "ko": "공공기관의 진료 준비 안내를 참고해 모리가 재구성했습니다. 병원의 공식 문진표나 검증된 진단 설문이 아닙니다.",
+    "fr": "Adapté par MORI à partir de conseils publics de santé. Ce n’est ni un formulaire hospitalier officiel ni un questionnaire diagnostique validé.",
+    "zh": "MORI参考公共卫生机构的就诊准备建议编写，并非医院官方问诊表或经过验证的诊断问卷。",
+    "ja": "公的機関の受診準備案内をもとにMORIが再構成。病院公式問診票や検証済み診断質問票ではありません。",
+    "vi": "MORI biên soạn từ hướng dẫn y tế công cộng. Đây không phải mẫu chính thức của bệnh viện hay bảng chẩn đoán đã được xác thực."
+  },
+  "Answer with MORI": {
+    "en": "Answer with MORI",
+    "ko": "모리에게 말로 답하기",
+    "fr": "Répondre avec MORI",
+    "zh": "向 MORI 口述",
+    "ja": "MORIに話して答える",
+    "vi": "Trả lời bằng giọng nói"
+  },
+  "Read question": {
+    "en": "Read question",
+    "ko": "질문 듣기",
+    "fr": "Écouter la question",
+    "zh": "朗读问题",
+    "ja": "質問を聞く",
+    "vi": "Nghe câu hỏi"
+  },
+  "Start microphone": {
+    "en": "Start microphone",
+    "ko": "마이크 시작",
+    "fr": "Activer le micro",
+    "zh": "开启麦克风",
+    "ja": "マイクを開始",
+    "vi": "Bật micro"
+  },
+  "Stop listening": {
+    "en": "Stop listening",
+    "ko": "받아쓰기 중지",
+    "fr": "Arrêter le micro",
+    "zh": "停止听写",
+    "ja": "音声入力を停止",
+    "vi": "Dừng nghe"
+  },
+  "Check and edit your answer": {
+    "en": "Check and edit your answer",
+    "ko": "답변 확인·수정",
+    "fr": "Vérifier et modifier la réponse",
+    "zh": "检查并修改回答",
+    "ja": "回答を確認・編集",
+    "vi": "Kiểm tra và sửa câu trả lời"
+  },
+  "Use this answer": {
+    "en": "Use this answer",
+    "ko": "이 답변 사용하기",
+    "fr": "Utiliser cette réponse",
+    "zh": "使用此回答",
+    "ja": "この回答を使う",
+    "vi": "Dùng câu trả lời này"
+  },
+  "Voice unavailable. You can type or use the answer buttons.": {
+    "en": "Voice unavailable. You can type or use the answer buttons.",
+    "ko": "음성을 사용할 수 없습니다. 직접 입력하거나 답변 버튼을 이용하세요.",
+    "fr": "Voix indisponible. Écrivez ou utilisez les boutons de réponse.",
+    "zh": "语音不可用。请打字或使用回答按钮。",
+    "ja": "音声を利用できません。入力または回答ボタンをご利用ください。",
+    "vi": "Không dùng được giọng nói. Hãy nhập hoặc dùng nút trả lời."
+  },
+  "Voice is optional. Your device or browser provider may process audio online. Use fictional symptoms for this demo. Check the text before applying.": {
+    "en": "Voice is optional. Your device or browser provider may process audio online. Use fictional symptoms for this demo. Check the text before applying.",
+    "ko": "음성은 선택 사항입니다. 기기·브라우저 제공업체가 음성을 온라인으로 처리할 수 있습니다. 시연에는 가상 증상을 사용하세요. 적용 전 글을 확인하세요.",
+    "fr": "La voix est facultative. Le fournisseur de votre appareil ou navigateur peut traiter l’audio en ligne. Utilisez des symptômes fictifs pour cette démonstration. Vérifiez le texte avant de l’appliquer.",
+    "zh": "语音为可选功能。设备或浏览器提供商可能在线处理音频。演示请使用虚构症状，应用前请检查文字。",
+    "ja": "音声は任意です。端末・ブラウザ提供元が音声をオンライン処理する場合があります。デモには架空の症状を使い、適用前に文章を確認してください。",
+    "vi": "Giọng nói là tùy chọn. Nhà cung cấp thiết bị hoặc trình duyệt có thể xử lý âm thanh trực tuyến. Hãy dùng triệu chứng giả lập và kiểm tra văn bản trước khi áp dụng."
+  },
+  "Sore throat": {
+    "en": "Sore throat",
+    "ko": "목이 아파요",
+    "fr": "J’ai mal à la gorge",
+    "zh": "我喉咙痛",
+    "ja": "喉が痛いです",
+    "vi": "Tôi đau họng"
+  },
+  "Stomach pain": {
+    "en": "Stomach pain",
+    "ko": "배가 아파요",
+    "fr": "J’ai mal au ventre",
+    "zh": "我肚子痛",
+    "ja": "お腹が痛いです",
+    "vi": "Tôi đau bụng"
+  },
+  "Headache": {
+    "en": "Headache",
+    "ko": "머리가 아파요",
+    "fr": "J’ai mal à la tête",
+    "zh": "我头痛",
+    "ja": "頭が痛いです",
+    "vi": "Tôi đau đầu"
+  },
+  "Cough": {
+    "en": "Cough",
+    "ko": "기침이 나요",
+    "fr": "Je tousse",
+    "zh": "我咳嗽",
+    "ja": "咳が出ます",
+    "vi": "Tôi bị ho"
+  },
+  "Yesterday": {
+    "en": "Yesterday",
+    "ko": "어제",
+    "fr": "Hier",
+    "zh": "昨天",
+    "ja": "昨日",
+    "vi": "Hôm qua"
+  },
+  "A few days ago": {
+    "en": "A few days ago",
+    "ko": "며칠 전",
+    "fr": "Il y a quelques jours",
+    "zh": "几天前",
+    "ja": "数日前",
+    "vi": "Vài ngày trước"
+  },
+  "Skip to find care": {
+    "en": "Skip to find care",
+    "ko": "건너뛰고 병원 찾기",
+    "fr": "Passer et trouver un établissement",
+    "ja": "スキップして病院を探す",
+    "zh": "跳过，查找医院",
+    "vi": "Bỏ qua, tìm cơ sở y tế"
+  },
+  "Listening stops after about 5 seconds without speech. Your device may stop sooner. Check the text before applying.": {
+    "en": "Listening stops after about 5 seconds without speech. Your device may stop sooner. Check the text before applying.",
+    "ko": "말이 없으면 약 5초 후 자동으로 멈춥니다. 기기에 따라 더 일찍 멈출 수 있어요. 적용 전 글을 확인하세요.",
+    "fr": "L’écoute s’arrête après environ 5 secondes sans parole. Votre appareil peut l’arrêter plus tôt. Vérifiez le texte avant de l’appliquer.",
+    "zh": "约5秒没有说话会自动停止。设备可能会更早停止。应用前请检查文字。",
+    "ja": "約5秒間発話がないと自動停止します。端末によっては早く停止します。適用前に文章を確認してください。",
+    "vi": "Tự dừng sau khoảng 5 giây không nói. Thiết bị có thể dừng sớm hơn. Hãy kiểm tra văn bản trước khi áp dụng."
+  },
+  "Find a clinic. Explain your symptoms in Korean.": {
+    "en": "Find a clinic.\nExplain your symptoms in Korean.",
+    "ko": "병원을 찾고,\n내 증상을 한국어로 전하세요.",
+    "zh": "查找诊所，\n用韩语表达您的症状。",
+    "ja": "病院を探し、\n症状を韓国語で伝えましょう。",
+    "vi": "Tìm phòng khám.\nTrình bày triệu chứng bằng tiếng Hàn.",
+    "fr": "Trouvez une clinique.\nExpliquez vos symptômes en coréen."
+  },
+  "Check your original information, then show your Korean visit sheet to the clinician.": {
+    "en": "Check your original information, then show your Korean visit sheet to the clinician.",
+    "ko": "내가 입력한 정보를 확인하고, 한국어 준비표를 의료진에게 보여주세요.",
+    "zh": "确认您输入的信息，然后向医护人员出示韩语就诊准备表。",
+    "ja": "入力した情報を確認し、韓国語の受診準備表を医療スタッフに見せましょう。",
+    "vi": "Kiểm tra thông tin đã nhập, rồi đưa phiếu tiếng Hàn cho nhân viên y tế.",
+    "fr": "Vérifiez vos informations saisies, puis montrez votre fiche en coréen au personnel soignant."
+  },
+  "View clinic list": {
+    "en": "View clinic list",
+    "ko": "병원 목록 보기",
+    "zh": "查看诊所列表",
+    "ja": "病院一覧を見る",
+    "vi": "Xem danh sách phòng khám",
+    "fr": "Voir les cliniques"
+  },
+  "Clinic visit help for Handong international students": {
+    "en": "Clinic visit help for Handong international students",
+    "ko": "한동대 유학생을 위한 병원 이용 도우미",
+    "zh": "为韩东大学留学生提供就医帮助",
+    "ja": "韓東大学の留学生のための受診サポート",
+    "vi": "Hỗ trợ đi khám cho du học sinh Đại học Handong",
+    "fr": "Aide aux consultations pour les étudiants internationaux de Handong"
+  },
+  "Finish and prepare my visit sheet": {
+    "en": "Finish and prepare my visit sheet",
+    "ko": "입력 완료 · 준비표 만들기",
+    "zh": "完成并生成准备表",
+    "ja": "入力完了・準備表を作成",
+    "vi": "Hoàn tất và tạo phiếu khám",
+    "fr": "Terminer et préparer ma fiche"
+  },
+  "Back to home": {
+    "en": "Back to home",
+    "ko": "홈으로 돌아가기",
+    "zh": "返回首页",
+    "ja": "ホームに戻る",
+    "vi": "Về trang chủ",
+    "fr": "Retour à l’accueil"
+  },
+  "Finished your visit? Leave an experience": {
+    "en": "Finished your visit? Leave an experience",
+    "ko": "진료를 다 보셨나요? 방문 경험 남기기",
+    "zh": "就诊结束？分享经历",
+    "ja": "受診後の体験を共有",
+    "vi": "Khám xong? Chia sẻ trải nghiệm",
+    "fr": "Consultation terminée ? Partagez votre expérience"
+  },
+  "DEMO ONLY · Fictional reviews, not patient feedback": {
+    "en": "DEMO ONLY · Fictional reviews, not patient feedback",
+    "ko": "시연용 가상 후기 · 실제 환자 후기가 아닙니다",
+    "zh": "仅供演示 · 虚构评价",
+    "ja": "デモ用架空レビュー・実際の患者の評価ではありません",
+    "vi": "Chỉ minh họa · Đánh giá hư cấu",
+    "fr": "DÉMO · Avis fictifs, pas de témoignages de patients"
+  },
+  "Example: The doctor was kind.": {
+    "en": "Example: The doctor was kind.",
+    "ko": "가상 예시: 의사가 친절했어요.",
+    "zh": "虚构示例：医生很友善。",
+    "ja": "架空例：先生が親切でした。",
+    "vi": "Ví dụ hư cấu: Bác sĩ thân thiện.",
+    "fr": "Exemple fictif : le médecin était aimable."
+  },
+  "Example: The clinic was very clean.": {
+    "en": "Example: The clinic was very clean.",
+    "ko": "가상 예시: 병원이 매우 깨끗했어요.",
+    "zh": "虚构示例：诊所很干净。",
+    "ja": "架空例：院内が清潔でした。",
+    "vi": "Ví dụ hư cấu: Phòng khám sạch sẽ.",
+    "fr": "Exemple fictif : la clinique était très propre."
+  },
+  "Visit experiences · demo examples included": {
+    "en": "Visit experiences · demo examples included",
+    "ko": "방문 경험 · 시연용 예시 포함",
+    "zh": "就诊经历 · 含演示示例",
+    "ja": "受診体験・デモ例あり",
+    "vi": "Trải nghiệm · Có ví dụ minh họa",
+    "fr": "Expériences · Exemples de démonstration"
+  },
+  "Sign in from the main screen to read or publish real experiences. The visit sheet works as a guest.": {
+    "en": "Sign in from the main screen to read or publish real experiences. The visit sheet works as a guest.",
+    "ko": "실제 후기 열람·게시는 메인 화면에서 로그인해 주세요. 준비표는 게스트도 이용할 수 있어요.",
+    "zh": "请从主屏幕登录以阅读或发布经历。游客可使用准备表。",
+    "ja": "体験の閲覧・投稿はメイン画面からログインしてください。準備表はゲストでも使えます。",
+    "vi": "Đăng nhập ở màn hình chính để đọc hoặc đăng trải nghiệm. Khách vẫn dùng được phiếu khám.",
+    "fr": "Connectez-vous depuis l’écran principal pour lire ou publier des expériences. La fiche reste accessible aux invités."
+  },
+  "Real experiences · self-reported, visits not verified": {
+    "en": "Real experiences · self-reported, visits not verified",
+    "ko": "이용자 작성 후기 · 방문 사실 미검증",
+    "zh": "用户分享 · 就诊事实未经核实",
+    "ja": "利用者の自己申告・受診の事実は未確認",
+    "vi": "Tự báo cáo · Chưa xác minh lượt khám",
+    "fr": "Témoignages déclaratifs · Visites non vérifiées"
+  },
+  "After your visit, help the next student.": {
+    "en": "After your visit, help the next student.",
+    "ko": "진료 후, 다음 유학생에게 경험을 나눠주세요.",
+    "zh": "就诊后，帮助下一位留学生。",
+    "ja": "受診後、次の留学生に体験を共有しましょう。",
+    "vi": "Sau khi khám, hãy giúp du học sinh tiếp theo.",
+    "fr": "Après votre consultation, aidez le prochain étudiant."
+  },
+  "Unable to load experiences. Try again.": {
+    "en": "Unable to load experiences. Try again.",
+    "ko": "후기를 불러오지 못했습니다. 다시 시도해 주세요.",
+    "zh": "无法加载，请重试。",
+    "ja": "読み込めません。再試行してください。",
+    "vi": "Không tải được. Hãy thử lại.",
+    "fr": "Chargement impossible. Réessayez."
+  },
+  "Please write at least 10 characters.": {
+    "en": "Please write at least 10 characters.",
+    "ko": "10자 이상 작성해 주세요.",
+    "zh": "请至少输入10个字符。",
+    "ja": "10文字以上入力してください。",
+    "vi": "Viết ít nhất 10 ký tự.",
+    "fr": "Écrivez au moins 10 caractères."
+  },
+  "Experience published.": {
+    "en": "Experience published.",
+    "ko": "방문 경험을 게시했습니다.",
+    "zh": "经历已发布。",
+    "ja": "体験を投稿しました。",
+    "vi": "Đã đăng trải nghiệm.",
+    "fr": "Expérience publiée."
+  },
+  "Could not publish. Check the date and try again.": {
+    "en": "Could not publish. Check the date and try again.",
+    "ko": "게시하지 못했습니다. 날짜를 확인하고 다시 시도해 주세요.",
+    "zh": "无法发布，请检查日期后重试。",
+    "ja": "投稿できません。日付を確認してください。",
+    "vi": "Không đăng được. Kiểm tra ngày rồi thử lại.",
+    "fr": "Publication impossible. Vérifiez la date et réessayez."
+  },
+  "Showing institutions with ophthalmology specialists in the source data. Confirm availability before visiting.": {
+    "en": "Showing institutions with ophthalmology specialists in the source data. Confirm availability before visiting.",
+    "ko": "자료에 안과 전문의가 등록된 의료기관입니다. 방문 전 진료 가능 여부를 확인하세요.",
+    "zh": "显示资料中登记有眼科专科医生的机构。就诊前请确认。",
+    "ja": "資料上、眼科専門医が登録された医療機関です。受診前に診療状況をご確認ください。",
+    "vi": "Hiển thị cơ sở có bác sĩ chuyên khoa mắt trong dữ liệu. Hãy xác nhận trước khi đến.",
+    "fr": "Établissements avec un ophtalmologue déclaré dans les données. Confirmez leur disponibilité avant la visite."
+  },
+  "Only institutions with registered specialists in the selected departments are shown. Confirm availability before visiting.": {
+    "en": "Only institutions with registered specialists in the selected departments are shown. Confirm availability before visiting.",
+    "ko": "선택한 진료과의 전문의가 자료에 등록된 의료기관만 표시합니다. 방문 전 진료 가능 여부를 확인하세요.",
+    "zh": "仅显示资料中登记有所选科室专科医生的机构。就诊前请确认。",
+    "ja": "選択した診療科の専門医が資料に登録された医療機関のみ表示します。受診前にご確認ください。",
+    "vi": "Chỉ hiển thị cơ sở có bác sĩ chuyên khoa đã chọn trong dữ liệu. Hãy xác nhận trước khi đến.",
+    "fr": "Seuls les établissements avec des spécialistes déclarés dans les disciplines choisies sont affichés. Confirmez leur disponibilité avant la visite."
+  },
+  "Where does it hurt?": {
+    "en": "Where does it hurt?",
+    "ko": "어디가 아프세요?",
+    "zh": "哪里不舒服？",
+    "ja": "どこがつらいですか？",
+    "vi": "Bạn đau ở đâu?",
+    "fr": "Où avez-vous mal ?"
+  },
+  "Include my information (optional)": {
+    "en": "Include my information (optional)",
+    "ko": "내 정보 포함 (선택)",
+    "fr": "Inclure mes informations (facultatif)",
+    "zh": "包含我的信息（可选）",
+    "ja": "自分の情報を含める（任意）",
+    "vi": "Thêm thông tin của tôi (tùy chọn)"
+  },
+  "Only selected saved fields appear on the screen and PDF. Check that they are current.": {
+    "en": "Only selected saved fields appear on the screen and PDF. Check that they are current.",
+    "ko": "선택한 저장 정보만 화면과 PDF에 표시됩니다. 현재 내용인지 확인하세요.",
+    "fr": "Seules les informations enregistrées sélectionnées figurent à l’écran et dans le PDF. Vérifiez qu’elles sont à jour.",
+    "zh": "仅在屏幕和 PDF 中显示选中的已保存信息。请确认信息是最新的。",
+    "ja": "選択した保存情報のみ画面とPDFに表示します。最新の内容か確認してください。",
+    "vi": "Chỉ thông tin đã lưu được chọn xuất hiện trên màn hình và PDF. Hãy kiểm tra thông tin còn đúng."
+  },
+  "You can enter your information without an account. Saving uses a guest session on this device.": {
+    "en": "You can enter your information without an account. Saving uses a guest session on this device.",
+    "ko": "계정 없이 정보를 입력할 수 있어요. 저장하면 이 기기의 게스트 세션을 사용해요.",
+    "fr": "Vous pouvez saisir vos informations sans compte. L’enregistrement utilise une session invité sur cet appareil.",
+    "ja": "アカウントなしで入力できます。保存にはこの端末のゲストセッションを使用します。",
+    "zh": "无需账户即可填写信息。保存时使用此设备的访客会话。",
+    "vi": "Bạn có thể nhập thông tin không cần tài khoản. Khi lưu, ứng dụng dùng phiên khách trên thiết bị này."
+  },
+  "Information saved privately.": {
+    "en": "Information saved privately.",
+    "ko": "정보를 비공개로 저장했어요.",
+    "fr": "Informations enregistrées en privé.",
+    "ja": "情報を非公開で保存しました。",
+    "zh": "信息已私密保存。",
+    "vi": "Thông tin đã được lưu riêng tư."
+  },
+  "Starting microphone…": {
+    "en": "Starting microphone…",
+    "ko": "마이크 준비 중…",
+    "fr": "Démarrage du micro…",
+    "ja": "マイクを準備中…",
+    "zh": "正在启动麦克风…",
+    "vi": "Đang bật mic…"
+  },
+  "Listening now": {
+    "en": "Listening now",
+    "ko": "지금 듣고 있어요",
+    "fr": "Écoute en cours",
+    "ja": "音声を聞いています",
+    "zh": "正在聆听",
+    "vi": "Đang nghe"
+  },
+  "Listening finished. Check your text.": {
+    "en": "Listening finished. Check your text.",
+    "ko": "음성 입력이 끝났어요. 글을 확인해 주세요.",
+    "fr": "Écoute terminée. Vérifiez le texte.",
+    "ja": "音声入力が終了しました。文字を確認してください。",
+    "zh": "语音输入结束，请检查文字。",
+    "vi": "Đã nghe xong. Hãy kiểm tra văn bản."
+  },
+  "No speech detected. Check your microphone and try again.": {
+    "en": "No speech detected. Check your microphone and try again.",
+    "ko": "음성이 감지되지 않았어요. 마이크를 확인하고 다시 말해 주세요.",
+    "fr": "Aucune parole détectée. Vérifiez le micro et réessayez.",
+    "ja": "音声を検出できません。マイクを確認して再試行してください。",
+    "zh": "未检测到语音，请检查麦克风后重试。",
+    "vi": "Không phát hiện giọng nói. Kiểm tra mic rồi thử lại."
+  },
+  "Allow microphone and speech recognition in Settings, then try again.": {
+    "en": "Allow microphone and speech recognition in Settings, then try again.",
+    "ko": "설정에서 마이크·음성 인식 권한을 허용하고 다시 시도해 주세요.",
+    "fr": "Autorisez le micro et la reconnaissance vocale dans les réglages, puis réessayez.",
+    "ja": "設定でマイクと音声認識を許可して再試行してください。",
+    "zh": "请在设置中允许麦克风和语音识别后重试。",
+    "vi": "Hãy cho phép mic và nhận dạng giọng nói trong cài đặt rồi thử lại."
+  },
+  "Speech service connection failed. Check your connection and try again.": {
+    "en": "Speech service connection failed. Check your connection and try again.",
+    "ko": "음성 인식 연결에 실패했어요. 네트워크를 확인해 주세요.",
+    "fr": "Connexion au service vocal impossible. Vérifiez votre connexion.",
+    "ja": "音声サービスに接続できません。通信を確認してください。",
+    "zh": "语音服务连接失败，请检查网络。",
+    "vi": "Không kết nối được dịch vụ giọng nói. Kiểm tra mạng."
+  },
+  "Microphone could not start. Check microphone access and the device audio input, then retry.": {
+    "en": "Microphone could not start. Check microphone access and the device audio input, then retry.",
+    "ko": "마이크를 시작하지 못했어요. 마이크 권한과 기기의 입력 장치를 확인한 뒤 다시 눌러 주세요.",
+    "fr": "Impossible de démarrer le micro. Vérifiez les autorisations et l’entrée audio de l’appareil, puis réessayez.",
+    "ja": "マイクを開始できません。権限と入力機器を確認して再試行してください。",
+    "zh": "麦克风无法启动，请检查权限和音频输入设备后重试。",
+    "vi": "Không bật được mic. Kiểm tra quyền và thiết bị đầu vào âm thanh rồi thử lại."
   }
 }

@@ -71,7 +71,7 @@ void main() {
         'address': '전북 군산시',
         'type': '병원',
         'departments': [
-          {'name': '내과'},
+          {'name': '내과', 'specialists': 1},
         ],
       };
       expect(romanizedHospitalName('군산병원'), 'Gunsan Byeongwon');
@@ -129,12 +129,12 @@ void main() {
         await tester.pumpWidget(app());
         await tester.pumpAndSettle();
         expect(
-          find.text(tr('What would you like to tell the clinician?')),
+          find.text(tr('1. What is bothering you most?')),
           findsOneWidget,
         );
         final input = find.widgetWithText(
           TextField,
-          tr('What would you like to tell the clinician?'),
+          tr('1. What is bothering you most?'),
         );
         const original = '가상 TEST 咳嗽 のどが痛い Đau họng fièvre 37.2';
         await tester.enterText(input, original);

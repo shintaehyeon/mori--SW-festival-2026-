@@ -52,7 +52,7 @@ class _MoriTutorialState extends State<MoriTutorial>
     final titles = [
       tr('Explore care for your concern', '불편한 부위로 진료과 찾기'),
       tr('Describe it in your language', '내 언어로 증상 적기'),
-      tr('Review the Korean translation', '한국어 번역 확인하기'),
+      tr('Check your original information'),
       tr('Show your visit sheet', '의료진에게 준비표 보여주기'),
     ];
     final descriptions = [
@@ -61,17 +61,12 @@ class _MoriTutorialState extends State<MoriTutorial>
         '신체 그림과 진료과를 살펴보고 병원을 확인하세요. 이 예시는 진료과를 대신 판단하지 않습니다.',
       ),
       tr(
-        'Add when it started, allergies and medication. Include only the daily records you choose.',
-        '시작 시점·알레르기·복용약을 적고 필요한 일상 기록만 선택하세요.',
+        'Write in your language. Check your original information, then show or save your sheet.',
       ),
       tr(
-        'Translate after consent. Compare with your original and correct anything that is wrong.',
-        '전송 동의 후 번역합니다. 원문과 비교하고 잘못된 표현을 수정하세요.',
+        'AI translation · not clinically verified. You do not need to read Korean to continue.',
       ),
-      tr(
-        'Show the reviewed sheet to the clinician. Daily notes can help you explain what changed.',
-        '확인한 준비표를 의료진에게 보여주세요. 일상 기록은 변화를 설명하는 데 도움이 됩니다.',
-      ),
+      tr('Source input checked · AI translation not clinically verified'),
     ];
     final icons = [
       Icons.location_on_outlined,

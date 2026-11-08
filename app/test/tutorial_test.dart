@@ -15,7 +15,7 @@ void main() {
     await tester.pump(const Duration(seconds: 5));
     expect(find.text('Describe it in your language'), findsOneWidget);
     await tester.pump(const Duration(seconds: 5));
-    expect(find.text('Review the Korean translation'), findsOneWidget);
+    expect(find.text('Check your original information'), findsOneWidget);
     await tester.pump(const Duration(seconds: 10));
     expect(find.text('Start my visit preparation'), findsOneWidget);
     expect(find.text('4/4 · 20s / 20s'), findsOneWidget);

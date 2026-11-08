@@ -13,10 +13,11 @@
 
 Gemini API와 Google Maps API는 오픈소스 모델/무료 공개 데이터로 분류하지 않는다. 무료 등급에도 별도 사용 조건이 있다.
 
-## 이후 후보
-- speech_to_text: 버튼을 눌러 짧은 문장을 입력하는 음성인식. 인식된 원문을 먼저 수정하도록 설계.
-- flutter_tts: 확인된 번역을 사용자가 눌러 읽어주는 기능.
-둘 다 이번에 설치/실기기 검증하지 않았다. 실시간 통역 완성으로 발표하지 않는다.
+## 음성 입력·읽기 (최종 시연판에 구현)
+- speech_to_text 7.4.0: 기기·브라우저 음성 인식으로 짧은 증상 입력.
+- flutter_tts 4.2.5: 선택 언어 질문 읽기, 기기 언어 지원에 의존.
+- audioplayers 6.7.1: 직접 합성한 시작·종료 효과음 재생.
+- 시뮬레이터 동작 확인은 기기별·언어별 인식 품질 검증과 다르다.
 
 참고: https://github.com/colinhacks/zod · https://github.com/vercel/ai · https://github.com/DavBfr/dart_pdf
 

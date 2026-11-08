@@ -28,3 +28,7 @@ reference-data/*.zip
 output/
 app/config/*.json
 !app/config/maps.example.json
+
+# Report rendering scratch data / local publication artifacts
+.chart-data-*/
+releases/
