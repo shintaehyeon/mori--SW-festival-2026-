@@ -53,12 +53,16 @@ List<Map<String, dynamic>> nearbyHospitals(List hospitals, LatLng? origin) {
 class Hospitals extends StatefulWidget {
   final Api api;
   final bool ko;
+  final bool canReadExperiences;
+  final VoidCallback? onSignIn;
   final ValueChanged<Map<String, dynamic>>? onPrepare;
   const Hospitals({
     super.key,
     required this.api,
     required this.ko,
     this.onPrepare,
+    this.canReadExperiences = true,
+    this.onSignIn,
   });
   @override
   State<Hospitals> createState() => _HospitalsState();
@@ -316,7 +320,70 @@ class _HospitalsState extends State<Hospitals> {
     }
   }
 
+  Widget experienceExample() => Container(
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: const Color(0xFFF3F5ED),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          t('FORMAT EXAMPLE · Not an actual review', '작성 형식 예시 · 실제 후기가 아닙니다'),
+          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          t(
+            'Reception: What did you need to bring?\nCommunication: How did you explain your symptoms?\nNext student: What would you prepare differently?',
+            '접수: 무엇을 준비해 갔나요?\n의사소통: 증상을 어떻게 설명했나요?\n다음 유학생에게: 미리 알았으면 좋았을 점은?',
+          ),
+        ),
+      ],
+    ),
+  );
+
   Future<void> reviews(String hospital) async {
+    if (!widget.canReadExperiences) {
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(t('Visit experiences', '병원 방문 경험')),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t(
+                    'Sign in to read and share community experiences. Prepare your visit as a guest without signing in.',
+                    '방문 경험 열람·작성은 로그인 후 이용합니다. 방문 준비표는 게스트로도 만들 수 있어요.',
+                  ),
+                ),
+                const SizedBox(height: 16),
+                experienceExample(),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: Text(t('Close', '닫기')),
+            ),
+            if (widget.onSignIn != null)
+              FilledButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  widget.onSignIn!();
+                },
+                child: Text(t('Sign in', '로그인')),
+              ),
+          ],
+        ),
+      );
+      return;
+    }
     try {
       final results = await widget.api.request(
         '/api/posts?q=${Uri.encodeComponent(hospital)}',
@@ -346,10 +413,11 @@ class _HospitalsState extends State<Hospitals> {
                   if (posts.isEmpty)
                     Text(
                       t(
-                        'No experiences yet. We do not generate sample reviews.',
-                        '아직 등록된 경험이 없어요. 가상 후기는 표시하지 않습니다.',
+                        'No experiences yet. Share your experience after visiting.',
+                        '아직 등록된 경험이 없어요. 진료를 다녀온 뒤 경험을 남겨주세요.',
                       ),
                     ),
+                  if (posts.isEmpty) experienceExample(),
                   for (final p in posts)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12),
@@ -630,103 +698,155 @@ class _HospitalsState extends State<Hospitals> {
           ),
         for (final h in sorted)
           Card(
-            child: ExpansionTile(
-              title: HospitalName(h['name']),
-              subtitle: Text(
-                '${location == null ? '' : '${distanceLabel(h)} · '}${facilityLabel(h, widget.ko)}${isPharmacy(h) ? '' : ' · ${t('doctors', '의사')}: ${h['doctors']}'}\n${h['address']}\n${departmentSummary(h)}\n${specialistSummary(h)}',
-              ),
-              childrenPadding: const EdgeInsets.all(16),
-              expandedCrossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!isPharmacy(h))
-                  Text(
-                    '${t('Registered departments', '신고 진료과목')}: ${(h['departments'] as List).map((d) => '${bilingualSpecialty(d['name'])}: ${t('reported specialists', '신고 전문의')}: ${d['specialists']}').join('\n')}',
-                  ),
-                if (!isPharmacy(h))
-                  Text(
-                    t(
-                      'Parentheses: specialist count. A listed department with 0 specialists is not a specialist qualification.',
-                      '괄호는 과목별 전문의 수입니다. 진료과목 표기가 해당 과 전문의 보유를 뜻하지는 않아요.',
-                    ),
-                  ),
-                if (h['beds'] != null)
-                  Text(
-                    '${t('General inpatient beds', '일반입원실 병상')}: ${(h['beds']['일반입원실상급병상수'] as int) + (h['beds']['일반입원실일반병상수'] as int)} · ${t('Reported ER beds', '신고 응급실 병상')}: ${h['beds']['응급실병상수']}',
-                  ),
-                Text(
-                  t(
-                    'Language support: unverified. Bed counts do not indicate available beds or emergency acceptance.',
-                    '외국어 지원: 미확인. 병상 수는 빈 병상이나 현재 응급환자 수용 여부가 아닙니다.',
-                  ),
-                ),
-                if (!isPharmacy(h) && widget.onPrepare != null)
-                  FilledButton.icon(
-                    onPressed: () => widget.onPrepare!(h),
-                    icon: const Icon(Icons.description_outlined),
-                    label: Text(t('Prepare for this visit', '이 병원 방문 준비하기')),
-                  ),
-                Wrap(
-                  spacing: 8,
-                  children: [
-                    if ((h['phone'] as String).isNotEmpty)
-                      TextButton.icon(
-                        onPressed: () =>
-                            open(Uri(scheme: 'tel', path: h['phone'])),
-                        icon: const Icon(Icons.call),
-                        label: Text(h['phone']),
+            margin: const EdgeInsets.only(bottom: 18),
+            color: Colors.white,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+              side: const BorderSide(color: Color(0xFFDCE6DF)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: [
+                      Chip(
+                        label: Text(facilityLabel(h, widget.ko)),
+                        backgroundColor: const Color(0xFFEDF3EC),
+                        side: BorderSide.none,
                       ),
-                    if (hospitalPoint(h) != null)
-                      TextButton.icon(
+                      if (location != null)
+                        Chip(
+                          label: Text(distanceLabel(h)),
+                          backgroundColor: const Color(0xFFEDF3EC),
+                          side: BorderSide.none,
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  HospitalName(h['name']),
+                  const SizedBox(height: 16),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on_outlined,
+                        size: 19,
+                        color: Color(0xFF68796D),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          '${t('Address', '주소')} · ${h['address']}',
+                          style: const TextStyle(
+                            height: 1.6,
+                            color: Color(0xFF526158),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (!isPharmacy(h)) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      specialistSummary(h),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      '${t('Registered doctors', '등록 의사 수')} · ${h['doctors']} ${t('people', '명')}',
+                      style: const TextStyle(
+                        color: Color(0xFF68796D),
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 20),
+                  if (!isPharmacy(h) && widget.onPrepare != null)
+                    FilledButton.icon(
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size.fromHeight(56),
+                      ),
+                      onPressed: () => widget.onPrepare!(h),
+                      icon: const Icon(Icons.description_outlined),
+                      label: Text(t('Prepare for this visit', '이 병원 방문 준비하기')),
+                    ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      OutlinedButton.icon(
                         onPressed: () => open(
                           Uri.https('www.google.com', '/maps/dir/', {
                             'api': '1',
-                            'destination':
-                                '${hospitalPoint(h)!.latitude},${hospitalPoint(h)!.longitude}',
+                            'destination': '${h['name']} ${h['address']}',
                           }),
                         ),
-                        icon: const Icon(Icons.directions),
+                        icon: const Icon(Icons.directions_outlined, size: 18),
                         label: Text(t('Google directions', 'Google 길찾기')),
                       ),
-                    TextButton(
-                      onPressed: () => open(
-                        Uri.https('www.google.com', '/maps/search/', {
-                          'api': '1',
-                          'query': '${h['name']} ${h['address']}',
-                        }),
-                      ),
-                      child: Text(t('Google Maps / reviews', '구글지도 · 후기')),
+                      if ((h['phone'] as String).isNotEmpty)
+                        TextButton.icon(
+                          onPressed: () =>
+                              open(Uri(scheme: 'tel', path: h['phone'])),
+                          icon: const Icon(Icons.call_outlined, size: 18),
+                          label: Text(h['phone']),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  ExpansionTile(
+                    tilePadding: EdgeInsets.zero,
+                    title: Text(
+                      t('Clinic details', '진료과·기관 상세'),
+                      style: const TextStyle(fontSize: 14),
                     ),
-                    TextButton(
-                      onPressed: () => open(
-                        Uri.https(
-                          'map.naver.com',
-                          '/p/search/${h['name']} ${h['address']}',
+                    childrenPadding: const EdgeInsets.only(bottom: 12),
+                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (!isPharmacy(h))
+                        for (final d in h['departments'] as List)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Text(
+                              '${bilingualSpecialty(d['name'])} · ${t('Reported specialists', '신고 전문의')} ${d['specialists']}',
+                            ),
+                          ),
+                      const SizedBox(height: 10),
+                      Text(
+                        t(
+                          'A listed department does not guarantee a specialist. Language support and opening hours must be checked with the clinic.',
+                          '진료과목 표기가 전문의 보유를 뜻하지 않습니다. 외국어 지원과 진료 시간은 병원에 확인하세요.',
+                        ),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFF68796D),
                         ),
                       ),
-                      child: Text(t('Naver Map', '네이버지도')),
-                    ),
-                    TextButton(
-                      onPressed: () => open(
-                        Uri.https('map.kakao.com', '/', {
-                          'q': '${h['name']} ${h['address']}',
-                        }),
-                      ),
-                      child: Text(t('Kakao Map', '카카오지도')),
-                    ),
-                  ],
-                ),
-                TextButton.icon(
-                  onPressed: () => reviews(h['name']),
-                  icon: const Icon(Icons.forum_outlined),
-                  label: Text(t('Mori visit experiences', '모리 방문 경험 보기')),
-                ),
-                Text(
-                  t(
-                    'External map reviews open on the provider’s site. We have not imported reviews or verified reviewer nationality.',
-                    '외부 지도에서 후기를 확인합니다. 후기 원문을 수집하지 않았으며 작성자 국적은 확인할 수 없어요.',
+                    ],
                   ),
-                ),
-              ],
+                  TextButton.icon(
+                    onPressed: () => reviews(h['name']),
+                    icon: const Icon(Icons.forum_outlined, size: 18),
+                    label: Text(t('Mori visit experiences', '모리 방문 경험 보기')),
+                  ),
+                  Text(
+                    t(
+                      'After your visit, share what helped the next student.',
+                      '진료를 다녀온 뒤, 다음 유학생에게 도움이 될 경험을 남겨주세요.',
+                    ),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF68796D),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         Text('${data!['source']} · ${data!['license']}'),

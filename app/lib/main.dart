@@ -1,3 +1,4 @@
+import 'google_auth_button.dart';
 import 'visit_body_map.dart';
 import 'localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,8 +16,8 @@ import 'visit_sheet_page.dart';
 
 const ink = Color(0xFF193B32);
 const green = Color(0xFF28654F);
-const cream = Color(0xFFFFF8F4);
-const pale = Color(0xFFF1ECFF);
+const cream = Color(0xFFF6F8F2);
+const pale = Color(0xFFEDF3E8);
 const lime = Color(0xFFFFDEBD);
 typedef Json = Map<String, dynamic>;
 Future<void> main() async {
@@ -49,11 +50,24 @@ class CareBridgeApp extends StatelessWidget {
         ),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
-            shape: const StadiumBorder(),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           ),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: green),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: green,
+          primary: const Color(0xFF21664F),
+          surface: Colors.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: cream,
+          foregroundColor: ink,
+          surfaceTintColor: Colors.transparent,
+        ),
+        dividerTheme: const DividerThemeData(color: Color(0xFFE0E8DE)),
+        chipTheme: const ChipThemeData(side: BorderSide.none),
         scaffoldBackgroundColor: cream,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color: ink, height: 1.5),
@@ -90,6 +104,14 @@ class _WorkspaceState extends State<Workspace> {
             child: Hospitals(
               api: api,
               ko: ko,
+              canReadExperiences: user != null && user!['isGuest'] != true,
+              onSignIn: () {
+                Navigator.of(routeContext).pop();
+                setState(() {
+                  entry = false;
+                  tab = 3;
+                });
+              },
               onPrepare: (hospital) {
                 Navigator.of(routeContext).pop();
                 setState(() {
@@ -122,6 +144,22 @@ class _WorkspaceState extends State<Workspace> {
     scroll.dispose();
     super.dispose();
   }
+
+  Future<void> startGuest() => task(() async {
+    final r = await api.request(
+      '/api/auth/guest',
+      method: 'POST',
+      body: {'consent': true},
+    );
+    if (r['token'] != null) await api.setToken(r['token']);
+    if (mounted) {
+      setState(() {
+        user = Map<String, dynamic>.from(r['user']);
+        entry = false;
+        tab = 1;
+      });
+    }
+  });
 
   Future<void> boot() async {
     try {
@@ -350,8 +388,8 @@ class _WorkspaceState extends State<Workspace> {
                         visitHospital == null
                             ? t('How can we help today?', '어떤 도움이 필요한가요?')
                             : t(
-                                'Save your private visit preparation',
-                                '비공개 진료 준비표 저장',
+                                'Prepare what to say next',
+                                '이제 병원에 전할 말을 준비해요',
                               ),
                       ),
                       if (visitHospital != null) ...[
@@ -360,42 +398,57 @@ class _WorkspaceState extends State<Workspace> {
                         ),
                         Text(
                           t(
-                            'Sign in below to prepare and save your symptoms and translated visit sheet.',
-                            '아래에서 로그인하면 증상을 정리하고 번역·진료 준비표를 저장할 수 있어요.',
+                            'Continue as a guest. No account is needed for your visit sheet.',
+                            '가입 없이 게스트로 방문 준비표를 만들 수 있어요.',
                           ),
                         ),
                       ],
                       button(
-                        t('Emergency help · 119', '응급 도움 · 119'),
-                        () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => EmergencyPage(
-                              api: api,
-                              signedIn: false,
-                              ko: ko,
-                            ),
-                          ),
+                        t('Continue as guest', '게스트로 방문 준비하기'),
+                        busy ? null : startGuest,
+                      ),
+                      Text(
+                        t(
+                          'Guest sheets are stored privately on this server for up to 24 hours. Download your PDF before signing out or switching accounts. You can delete your data at any time.',
+                          '게스트 준비표는 서버에 최대 24시간 비공개 보관됩니다. 로그아웃·계정 전환 전에 PDF를 내려받으세요. 언제든 데이터를 삭제할 수 있습니다.',
+                        ),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.black54,
                         ),
                       ),
-                      button(
-                        t('Plan a non-emergency visit', '일반 진료 준비 · 병원 찾기'),
-                        openGuestHospitals,
+                      TextButton(
+                        onPressed: openGuestHospitals,
+                        child: Text(t('Find a clinic', '병원 찾기')),
                       ),
                     ]),
                   ),
-                  Auth(
-                    api: api,
-                    ko: ko,
-                    onLogin: (u) async {
-                      if (mounted) setState(() => user = u);
-                      if (tab != 1) await setupBasicInfo();
-                      try {
-                        final h = await api.request('/api/health');
-                        if (mounted) {
-                          setState(() => aiReady = h['aiConfigured'] == true);
-                        }
-                      } catch (_) {}
-                    },
+                  ExpansionTile(
+                    title: Text(
+                      t(
+                        'Sign in to keep records and share visit experiences.',
+                        '기록 보관·방문 경험 공유를 위한 로그인',
+                      ),
+                    ),
+                    initiallyExpanded: tab == 3,
+                    children: [
+                      Auth(
+                        api: api,
+                        ko: ko,
+                        onLogin: (u) async {
+                          if (mounted) setState(() => user = u);
+                          if (tab != 1) await setupBasicInfo();
+                          try {
+                            final h = await api.request('/api/health');
+                            if (mounted) {
+                              setState(
+                                () => aiReady = h['aiConfigured'] == true,
+                              );
+                            }
+                          } catch (_) {}
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -436,11 +489,34 @@ class _WorkspaceState extends State<Workspace> {
                               ),
                             if (tab == 2) Health(api: api, ko: ko),
                             if (tab == 3)
-                              Community(api: api, ko: ko, user: user!),
+                              if (user!['isGuest'] == true)
+                                panel([
+                                  heading(
+                                    t(
+                                      'Sign in to share experiences',
+                                      '방문 경험은 로그인 후 이용해요',
+                                    ),
+                                  ),
+                                  Text(
+                                    t(
+                                      'Download your guest PDF before switching accounts. Guest records are not transferred.',
+                                      '계정을 바꾸기 전에 게스트 PDF를 저장하세요. 게스트 기록은 이전되지 않습니다.',
+                                    ),
+                                  ),
+                                  Auth(
+                                    api: api,
+                                    ko: ko,
+                                    onLogin: (u) => setState(() => user = u),
+                                  ),
+                                ])
+                              else
+                                Community(api: api, ko: ko, user: user!),
                             if (tab == 4) ...[
                               Hospitals(
                                 api: api,
                                 ko: ko,
+                                canReadExperiences: user!['isGuest'] != true,
+                                onSignIn: () => selectTab(3),
                                 onPrepare: (hospital) {
                                   setState(() {
                                     visitHospital = hospital;
@@ -900,19 +976,21 @@ class _AuthState extends State<Auth> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 12),
             const Text(
               'CARE WITHOUT BORDERS',
               style: TextStyle(letterSpacing: 2, color: green),
             ),
             const SizedBox(height: 20),
-            heading(
+            Text(
               t(
-                'A familiar hand\nin an unfamiliar place.',
-                '낯선 곳에서도\n든든한 의료 길잡이.',
+                'Sign in to keep records and share visit experiences.',
+                '기록을 보관하고 방문 경험을 공유할 때 로그인하세요.',
               ),
+              style: const TextStyle(color: Colors.black54),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+            GoogleAuthButton(api: widget.api, onLogin: widget.onLogin),
             panel([
               heading(
                 registering
@@ -1324,7 +1402,41 @@ class _VisitCardsState extends ScreenState<VisitCards> {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      heading(t('Prepare what to tell your clinician', '병원에 보여줄 방문 이유 정리')),
+      Container(
+        padding: const EdgeInsets.all(22),
+        margin: const EdgeInsets.only(bottom: 18),
+        decoration: BoxDecoration(
+          color: green,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              t('CLINIC → SYMPTOMS → KOREAN SHEET', '병원 선택 → 증상 입력 → 한국어 준비표'),
+              style: const TextStyle(color: Color(0xFFD5E8CC), fontSize: 12),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              t('Prepare what to tell your clinician', '어디가 어떻게 아프세요?'),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+                height: 1.35,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              t(
+                'Write in your language. Review the Korean translation, then show or save your sheet.',
+                '내 언어로 적고, 한국어 번역을 확인한 뒤 준비표를 보여주세요.',
+              ),
+              style: const TextStyle(color: Colors.white, height: 1.5),
+            ),
+          ],
+        ),
+      ),
       const SizedBox(height: 12),
       if ((current == null
               ? widget.destination
@@ -1361,43 +1473,6 @@ class _VisitCardsState extends ScreenState<VisitCards> {
         ),
       ...feedback,
       if (current == null) ...[
-        if (careProfile != null)
-          panel([
-            heading(t('Health information for this visit', '이번 방문에 전달할 건강정보')),
-            Text(
-              '${t('Allergies', '알레르기')}: ${knowledge(careProfile!['allergies'])}',
-            ),
-            Text(
-              '${t('Medication', '복용약')}: ${knowledge(careProfile!['medications'])}',
-            ),
-            TextButton.icon(
-              icon: const Icon(Icons.edit_outlined),
-              label: Text(t('Check allergies and medicines', '알레르기·복용약 확인하기')),
-              onPressed: busy
-                  ? null
-                  : () async {
-                      await Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => Scaffold(
-                            appBar: AppBar(
-                              title: Text(
-                                t(
-                                  'Health information for this visit',
-                                  '이번 방문에 전달할 건강정보',
-                                ),
-                              ),
-                            ),
-                            body: SingleChildScrollView(
-                              padding: const EdgeInsets.all(20),
-                              child: Health(api: widget.api, ko: widget.ko),
-                            ),
-                          ),
-                        ),
-                      );
-                      if (mounted) await load();
-                    },
-            ),
-          ]),
         panel([
           info(
             t('PRIVATE · Not posted to the community', '비공개 · 커뮤니티에 게시되지 않습니다'),
@@ -1414,6 +1489,47 @@ class _VisitCardsState extends ScreenState<VisitCards> {
             ),
             onset,
           ),
+          if (careProfile != null)
+            panel([
+              heading(
+                t('Health information for this visit', '이번 방문에 전달할 건강정보'),
+              ),
+              Text(
+                '${t('Allergies', '알레르기')}: ${knowledge(careProfile!['allergies'])}',
+              ),
+              Text(
+                '${t('Medication', '복용약')}: ${knowledge(careProfile!['medications'])}',
+              ),
+              TextButton.icon(
+                icon: const Icon(Icons.edit_outlined),
+                label: Text(
+                  t('Check allergies and medicines', '알레르기·복용약 확인하기'),
+                ),
+                onPressed: busy
+                    ? null
+                    : () async {
+                        await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => Scaffold(
+                              appBar: AppBar(
+                                title: Text(
+                                  t(
+                                    'Health information for this visit',
+                                    '이번 방문에 전달할 건강정보',
+                                  ),
+                                ),
+                              ),
+                              body: SingleChildScrollView(
+                                padding: const EdgeInsets.all(20),
+                                child: Health(api: widget.api, ko: widget.ko),
+                              ),
+                            ),
+                          ),
+                        );
+                        if (mounted) await load();
+                      },
+              ),
+            ]),
           ExpansionTile(
             maintainState: true,
             tilePadding: EdgeInsets.zero,

@@ -133,7 +133,15 @@ class HospitalName extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(name),
+        Text(
+          name,
+          style: const TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            height: 1.35,
+            color: Color(0xFF193B32),
+          ),
+        ),
         if (MoriLanguage.current.value != 'ko') ...[
           const SizedBox(height: 3),
           Text(

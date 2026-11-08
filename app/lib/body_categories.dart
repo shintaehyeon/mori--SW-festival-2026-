@@ -49,8 +49,13 @@ const specialtyEnglish = {
   '사상체질과': 'Sasang constitutional medicine',
   '침구과': 'Acupuncture & moxibustion',
 };
-String bilingualSpecialty(String name) =>
-    '${tr(specialtyEnglish[name] ?? 'Translation unavailable', name)} · $name';
+String bilingualSpecialty(String name) {
+  final translated = tr(
+    specialtyEnglish[name] ?? 'Translation unavailable',
+    name,
+  );
+  return translated == name ? name : '$translated · $name';
+}
 
 class BodyCategory {
   final String id, en, ko;

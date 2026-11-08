@@ -749,3 +749,45 @@ test('planned hospital is stored from the official directory and survives reopen
   assert.equal(legacy.status,201);
   assert.equal(legacy.data.snapshot.destination,undefined);
 });
+
+test('guest preparation is private, expires, and cannot access community', async t => {
+  const {app,request} = await fixture(t);
+  assert.equal((await request('/api/auth/guest','POST',{})).status,400);
+  const guest = await request('/api/auth/guest','POST',{consent:true},null,{'X-Client-Platform':'native'});
+  assert.equal(guest.status,201);
+  assert.equal(guest.data.user.isGuest,true);
+  const token=guest.data.token;
+  assert.equal((await request('/api/profile','GET',undefined,token)).status,200);
+  const card=await request('/api/cards','POST',{symptoms:'Fictional throat pain',onset:'Two days',journalIds:[],consent:true},token);
+  assert.equal(card.status,201);
+  const other=await request('/api/auth/guest','POST',{consent:true},null,{'X-Client-Platform':'native'});
+  assert.equal((await request(`/api/cards/${card.data.id}`,'GET',undefined,other.data.token)).status,404);
+  assert.equal((await request('/api/posts','GET',undefined,token)).status,403);
+  assert.equal((await request('/api/posts','POST',post,token)).status,403);
+  app.db.prepare('UPDATE guest_users SET expires_at=0 WHERE user_id=?').run(guest.data.user.id);
+  assert.equal((await request('/api/auth/me','GET',undefined,token)).status,401);
+  assert.equal(app.db.prepare('SELECT count(*) AS n FROM cards WHERE user_id=?').get(guest.data.user.id).n,0);
+});
+
+test('Google authentication is disabled without config and rejects invalid tokens', async t => {
+  const disabled=await fixture(t,{googleClientIds:[]});
+  assert.equal((await disabled.request('/api/auth/config')).data.googleEnabled,false);
+  assert.equal((await disabled.request('/api/auth/google','POST',{idToken:'fake'})).status,503);
+  const enabled=await fixture(t,{googleClientIds:['test-client'],googleVerify:async()=>{throw new Error('invalid')}});
+  assert.equal((await enabled.request('/api/auth/google','POST',{idToken:'fake'})).status,401);
+});
+
+test('verified Google subject has a stable session; email collisions never auto-link', async t => {
+  let identity={sub:'google-test-sub',email:'synthetic@example.com',email_verified:true,name:'Synthetic Google'};
+  const {request,register}=await fixture(t,{googleClientIds:['test-client'],googleVerify:async(token,audience)=>{assert.deepEqual(audience,['test-client']);return identity;}});
+  const login=()=>request('/api/auth/google','POST',{idToken:'verified-fixture'},null,{'X-Client-Platform':'native'});
+  const first=await login(); assert.equal(first.status,201);
+  assert.equal((await request('/api/auth/me','GET',undefined,first.data.token)).status,200);
+  assert.equal((await login()).data.user.id,first.data.user.id);
+  assert.equal((await request('/api/auth/login','POST',{email:identity.email,password:'incorrect-password'})).status,401);
+  await register('collision');
+  identity={...identity,sub:'other-sub',email:'collision@example.com'};
+  assert.equal((await login()).status,409);
+  identity={...identity,email:'unverified@example.com',email_verified:false};
+  assert.equal((await login()).status,401);
+});

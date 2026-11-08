@@ -1,3 +1,4 @@
+import { OAuth2Client } from "google-auth-library";
 import { createServer } from "node:http";
 import {
   randomUUID,
@@ -31,6 +32,7 @@ async function passwordHash(password, salt = randomBytes(16).toString("hex")) {
   return `${salt}:${(await scrypt(password, salt, 64)).toString("hex")}`;
 }
 async function verify(password, encoded) {
+  if (!encoded.includes(":")) return false;
   const salt = encoded.split(":")[0];
   return timingSafeEqual(
     Buffer.from(encoded),
@@ -62,6 +64,8 @@ export function createApp({
   secureCookies = false,
   staticDir = null,
   presenceClock = Date.now,
+  googleClientIds = (process.env.GOOGLE_CLIENT_IDS || "").split(",").map(x=>x.trim()).filter(Boolean),
+  googleVerify = async (idToken, audience) => (await new OAuth2Client().verifyIdToken({idToken, audience})).getPayload(),
 } = {}) {
   const db = openDb(dbPath);
   const rates = new Map();
@@ -103,7 +107,8 @@ export function createApp({
       )
       .get(hash(token), Date.now());
     if (!u) fail(401, "Your session has expired. Please sign in.");
-    return u;
+    const guest = db.prepare("SELECT expires_at FROM guest_users WHERE user_id=?").get(u.id);
+    return {...u, isGuest: !!guest, ...(guest ? {guestExpiresAt: guest.expires_at} : {})};
   }
   function mine(table, id, uid) {
     const row = db
@@ -157,6 +162,7 @@ export function createApp({
         res.end();
         return;
       }
+      db.prepare("DELETE FROM users WHERE id IN (SELECT user_id FROM guest_users WHERE expires_at<=?)").run(Date.now());
       const url = new URL(req.url, "http://localhost");
       const p = url.pathname;
       const method = req.method;
@@ -198,6 +204,49 @@ export function createApp({
           aiConfigured: configured(),
           version: "0.1.0",
         });
+      if (method === "GET" && p === "/api/auth/config")
+        return send(200, {googleEnabled: googleClientIds.length > 0});
+      if (method === "POST" && ["/api/auth/guest", "/api/auth/google"].includes(p)) {
+        rate(`auth:${req.socket.remoteAddress}`, 20, 15 * 60 * 1000);
+        const input = await body(req);
+        let u;
+        let maxAge = 604800;
+        if (p.endsWith("guest")) {
+          if (input.consent !== true) fail(400, "Accept temporary storage before continuing.");
+          const id = randomUUID();
+          maxAge = 86400;
+          const expires = Date.now() + maxAge * 1000;
+          db.prepare("INSERT INTO users VALUES(?,?,?,?,?)").run(id, `${id}@guest.invalid`, "Guest", "disabled", now());
+          db.prepare("INSERT INTO guest_users VALUES(?,?)").run(id, expires);
+          u = {id, nickname:"Guest", isGuest:true, guestExpiresAt:expires};
+        } else {
+          if (!googleClientIds.length) fail(503, "Google sign-in is not configured yet.");
+          if (typeof input.idToken !== "string" || input.idToken.length > 16000) fail(400, "Invalid Google credential.");
+          let payload;
+          try { payload = await googleVerify(input.idToken, googleClientIds); }
+          catch { fail(401, "Google credential could not be verified."); }
+          if (!payload?.sub || payload.email_verified !== true || !payload.email) fail(401, "A verified Google email is required.");
+          const identity = db.prepare("SELECT u.id,u.email,u.nickname FROM users u JOIN google_identities g ON g.user_id=u.id WHERE g.subject=?").get(payload.sub);
+          if (identity) u = identity;
+          else {
+            // Never silently link an existing password account by email alone.
+            if (db.prepare("SELECT id FROM users WHERE email=?").get(payload.email.toLowerCase())) fail(409, "This email is already registered. Use your existing sign-in method.");
+            const id = randomUUID();
+            u = {id, email:payload.email.toLowerCase(), nickname:String(payload.name || "MORI user").slice(0,60)};
+            db.exec("BEGIN");
+            try {
+              db.prepare("INSERT INTO users VALUES(?,?,?,?,?)").run(id,u.email,u.nickname,"disabled",now());
+              db.prepare("INSERT INTO google_identities VALUES(?,?)").run(payload.sub,id);
+              db.exec("COMMIT");
+            } catch (e) { db.exec("ROLLBACK"); throw e; }
+          }
+          u.isGuest = false;
+        }
+        const token = randomBytes(32).toString("hex");
+        db.prepare("INSERT INTO sessions VALUES(?,?,?)").run(hash(token),u.id,Date.now()+maxAge*1000);
+        res.setHeader("Set-Cookie", `puchipa_session=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${secureCookies ? "; Secure" : ""}`);
+        return send(201, {user:u, ...(req.headers["x-client-platform"] === "native" ? {token} : {})});
+      }
       if (
         method === "POST" &&
         ["/api/auth/register", "/api/auth/login"].includes(p)
@@ -283,6 +332,8 @@ export function createApp({
         return send(200, {...directory, hospitals:hospitals.slice(0,new URL(req.url, "http://localhost").searchParams.get("limit") === "all" ? 1000 : 100),total:hospitals.length});
       }
       const u = user(req);
+      if (u.isGuest && (p.startsWith("/api/posts") || p.startsWith("/api/comments") || p.startsWith("/api/social") || p.startsWith("/api/reports") || p.startsWith("/api/presence")))
+        fail(403, "Sign in with an account to use community experiences.");
       if (p.startsWith("/api/social")) {
         const online = uid => [...presence.values()].some(v => v.uid === uid && presenceClock()-v.seen < 90000 && db.prepare("SELECT 1 FROM sessions WHERE token_hash=? AND expires_at>?").get(v.tokenHash,Date.now()));
         await socialRoutes({p,method,u,db,send,body:()=>body(req),fail,rate,online});

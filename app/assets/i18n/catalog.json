@@ -2834,10 +2834,10 @@
   "people": {
     "en": "people",
     "ko": "명",
+    "fr": "personne(s)",
+    "ja": "名",
     "zh": "人",
-    "ja": "人",
-    "vi": "người",
-    "fr": "personnes"
+    "vi": "người"
   },
   "Refresh": {
     "en": "Refresh",
@@ -4638,5 +4638,173 @@
     "zh": "无需附加记录即可准备就诊卡。",
     "ja": "添付しなくても準備表を作れます。",
     "vi": "Bạn có thể tạo phiếu mà không cần đính kèm ghi chép."
+  },
+  "Address": {
+    "en": "Address",
+    "ko": "주소",
+    "fr": "Adresse",
+    "ja": "住所",
+    "zh": "地址",
+    "vi": "Địa chỉ"
+  },
+  "Registered doctors": {
+    "en": "Registered doctors",
+    "ko": "등록 의사 수",
+    "fr": "Médecins déclarés",
+    "ja": "登録医師数",
+    "zh": "登记医生人数",
+    "vi": "Số bác sĩ đăng ký"
+  },
+  "Clinic details": {
+    "en": "Clinic details",
+    "ko": "진료과·기관 상세",
+    "fr": "Détails de l’établissement",
+    "ja": "医療機関の詳細",
+    "zh": "医疗机构详情",
+    "vi": "Chi tiết cơ sở"
+  },
+  "A listed department does not guarantee a specialist. Language support and opening hours must be checked with the clinic.": {
+    "en": "A listed department does not guarantee a specialist. Language support and opening hours must be checked with the clinic.",
+    "ko": "진료과목 표기가 전문의 보유를 뜻하지 않습니다. 외국어 지원과 진료 시간은 병원에 확인하세요.",
+    "fr": "Une spécialité indiquée ne garantit pas un spécialiste. Vérifiez les langues et les horaires auprès du cabinet.",
+    "ja": "診療科の表示は専門医の在籍を保証しません。対応言語と診療時間は医院に確認してください。",
+    "zh": "列出的科室不保证有专科医生。请向医院确认语言服务和营业时间。",
+    "vi": "Khoa được liệt kê không đảm bảo có bác sĩ chuyên khoa. Hãy hỏi cơ sở về ngôn ngữ và giờ khám."
+  },
+  "After your visit, share what helped the next student.": {
+    "en": "After your visit, share what helped the next student.",
+    "ko": "진료를 다녀온 뒤, 다음 유학생에게 도움이 될 경험을 남겨주세요.",
+    "fr": "Après la visite, partagez ce qui pourrait aider le prochain étudiant.",
+    "ja": "受診後、次の留学生に役立つ経験を共有してください。",
+    "zh": "就诊后，请分享能帮助下一位留学生的经验。",
+    "vi": "Sau khi khám, chia sẻ kinh nghiệm hữu ích cho sinh viên tiếp theo."
+  },
+  "Prepare what to say next": {
+    "en": "Prepare what to say next",
+    "ko": "이제 병원에 전할 말을 준비해요",
+    "fr": "Préparez ce que vous allez dire",
+    "ja": "病院で伝えることを準備",
+    "zh": "准备要向医生说明的内容",
+    "vi": "Chuẩn bị điều muốn nói"
+  },
+  "Continue as a guest. No account is needed for your visit sheet.": {
+    "en": "Continue as a guest. No account is needed for your visit sheet.",
+    "ko": "가입 없이 게스트로 방문 준비표를 만들 수 있어요.",
+    "fr": "Continuez sans compte pour préparer votre fiche.",
+    "ja": "アカウントなしで受診準備票を作れます。",
+    "zh": "无需注册即可制作就诊准备单。",
+    "vi": "Không cần tài khoản để chuẩn bị phiếu khám."
+  },
+  "Continue as guest": {
+    "en": "Continue as guest",
+    "ko": "게스트로 방문 준비하기",
+    "fr": "Continuer sans compte",
+    "ja": "ゲストとして続ける",
+    "zh": "以访客身份继续",
+    "vi": "Tiếp tục với tư cách khách"
+  },
+  "Guest sheets are stored privately on this server for up to 24 hours. Download your PDF before signing out or switching accounts. You can delete your data at any time.": {
+    "en": "Guest sheets are stored privately on this server for up to 24 hours. Download your PDF before signing out or switching accounts. You can delete your data at any time.",
+    "ko": "게스트 준비표는 서버에 최대 24시간 비공개 보관됩니다. 로그아웃·계정 전환 전에 PDF를 내려받으세요. 언제든 데이터를 삭제할 수 있습니다.",
+    "fr": "Les fiches invité sont privées et conservées au maximum 24 h sur ce serveur. Téléchargez le PDF avant de vous déconnecter ou de changer de compte. Suppression possible à tout moment.",
+    "ja": "ゲストの準備票はサーバーに最大24時間非公開で保存されます。ログアウト・アカウント切替前にPDFを保存してください。いつでも削除できます。",
+    "zh": "访客准备单在服务器上私密保存最多24小时。退出或切换账号前请下载PDF。可随时删除数据。",
+    "vi": "Phiếu khách được lưu riêng tư trên máy chủ tối đa 24 giờ. Tải PDF trước khi đăng xuất hoặc đổi tài khoản. Có thể xóa bất cứ lúc nào."
+  },
+  "Sign in to share experiences": {
+    "en": "Sign in to share experiences",
+    "ko": "방문 경험은 로그인 후 이용해요",
+    "fr": "Connectez-vous pour les expériences",
+    "ja": "体験共有にはログイン",
+    "zh": "登录后分享经验",
+    "vi": "Đăng nhập để chia sẻ trải nghiệm"
+  },
+  "Download your guest PDF before switching accounts. Guest records are not transferred.": {
+    "en": "Download your guest PDF before switching accounts. Guest records are not transferred.",
+    "ko": "계정을 바꾸기 전에 게스트 PDF를 저장하세요. 게스트 기록은 이전되지 않습니다.",
+    "fr": "Téléchargez votre PDF invité avant de changer de compte. Les données invité ne sont pas transférées.",
+    "ja": "切替前にゲストPDFを保存してください。記録は引き継がれません。",
+    "zh": "切换账号前请下载访客PDF。访客记录不会转移。",
+    "vi": "Tải PDF khách trước khi đổi tài khoản. Hồ sơ khách không được chuyển."
+  },
+  "Sign in to keep records and share visit experiences.": {
+    "en": "Sign in to keep records and share visit experiences.",
+    "ko": "기록을 보관하고 방문 경험을 공유할 때 로그인하세요.",
+    "fr": "Connectez-vous pour conserver vos fiches et partager vos expériences.",
+    "ja": "記録の保管や体験共有にはログインしてください。",
+    "zh": "登录以保存记录和分享就诊经验。",
+    "vi": "Đăng nhập để lưu hồ sơ và chia sẻ trải nghiệm."
+  },
+  "CLINIC → SYMPTOMS → KOREAN SHEET": {
+    "en": "CLINIC → SYMPTOMS → KOREAN SHEET",
+    "ko": "병원 선택 → 증상 입력 → 한국어 준비표",
+    "fr": "CLINIQUE → SYMPTÔMES → FICHE EN CORÉEN",
+    "ja": "病院 → 症状 → 韓国語の準備票",
+    "zh": "医院 → 症状 → 韩语准备单",
+    "vi": "CƠ SỞ → TRIỆU CHỨNG → PHIẾU TIẾNG HÀN"
+  },
+  "Write in your language. Review the Korean translation, then show or save your sheet.": {
+    "en": "Write in your language. Review the Korean translation, then show or save your sheet.",
+    "ko": "내 언어로 적고, 한국어 번역을 확인한 뒤 준비표를 보여주세요.",
+    "fr": "Écrivez dans votre langue. Vérifiez la traduction, puis présentez ou enregistrez la fiche.",
+    "ja": "自分の言語で記入し、韓国語訳を確認して準備票を提示・保存します。",
+    "zh": "用自己的语言填写，核对韩语翻译后展示或保存准备单。",
+    "vi": "Viết bằng ngôn ngữ của bạn, kiểm tra bản dịch rồi hiển thị hoặc lưu phiếu."
+  },
+  "Continue with Google": {
+    "en": "Continue with Google",
+    "ko": "Google로 로그인",
+    "fr": "Continuer avec Google",
+    "ja": "Googleで続ける",
+    "zh": "使用Google继续",
+    "vi": "Tiếp tục với Google"
+  },
+  "Google sign-in could not be completed. Please try again.": {
+    "en": "Google sign-in could not be completed. Please try again.",
+    "ko": "Google 로그인을 완료하지 못했습니다. 다시 시도하세요.",
+    "fr": "Connexion Google impossible. Réessayez.",
+    "ja": "Googleログインに失敗しました。再試行してください。",
+    "zh": "Google登录失败。请重试。",
+    "vi": "Không thể đăng nhập Google. Vui lòng thử lại."
+  },
+  "Visit experiences": {
+    "en": "Visit experiences",
+    "ko": "병원 방문 경험",
+    "fr": "Expériences de consultation",
+    "ja": "受診体験",
+    "zh": "就诊经验",
+    "vi": "Trải nghiệm khám bệnh"
+  },
+  "Sign in to read and share community experiences. Prepare your visit as a guest without signing in.": {
+    "en": "Sign in to read and share community experiences. Prepare your visit as a guest without signing in.",
+    "ko": "방문 경험 열람·작성은 로그인 후 이용합니다. 방문 준비표는 게스트로도 만들 수 있어요.",
+    "fr": "Connectez-vous pour lire et partager des expériences. La fiche de visite reste accessible sans compte.",
+    "ja": "体験の閲覧・共有にはログインが必要です。準備票はゲストでも作れます。",
+    "zh": "登录后可阅读和分享经验。访客也可制作准备单。",
+    "vi": "Đăng nhập để đọc và chia sẻ trải nghiệm. Khách vẫn có thể tạo phiếu khám."
+  },
+  "FORMAT EXAMPLE · Not an actual review": {
+    "en": "FORMAT EXAMPLE · Not an actual review",
+    "ko": "작성 형식 예시 · 실제 후기가 아닙니다",
+    "fr": "EXEMPLE DE FORMAT · Pas un avis réel",
+    "ja": "記入例・実際の口コミではありません",
+    "zh": "填写格式示例 · 非真实评价",
+    "vi": "VÍ DỤ ĐỊNH DẠNG · Không phải đánh giá thật"
+  },
+  "Reception: What did you need to bring?\nCommunication: How did you explain your symptoms?\nNext student: What would you prepare differently?": {
+    "en": "Reception: What did you need to bring?\nCommunication: How did you explain your symptoms?\nNext student: What would you prepare differently?",
+    "ko": "접수: 무엇을 준비해 갔나요?\n의사소통: 증상을 어떻게 설명했나요?\n다음 유학생에게: 미리 알았으면 좋았을 점은?",
+    "fr": "Accueil : Que fallait-il apporter ?\nCommunication : Comment avez-vous expliqué vos symptômes ?\nProchain étudiant : Que prépareriez-vous autrement ?",
+    "ja": "受付：何を持参しましたか？\n会話：症状をどう伝えましたか？\n次の留学生へ：事前に知りたかったことは？",
+    "zh": "接待：需要带什么？\n沟通：如何描述症状？\n下一位留学生：希望提前知道什么？",
+    "vi": "Tiếp nhận: Cần mang gì?\nGiao tiếp: Bạn mô tả triệu chứng ra sao?\nSinh viên tiếp theo: Nên chuẩn bị gì khác?"
+  },
+  "No experiences yet. Share your experience after visiting.": {
+    "en": "No experiences yet. Share your experience after visiting.",
+    "ko": "아직 등록된 경험이 없어요. 진료를 다녀온 뒤 경험을 남겨주세요.",
+    "fr": "Aucune expérience publiée. Partagez la vôtre après la visite.",
+    "ja": "まだ体験がありません。受診後に共有してください。",
+    "zh": "暂无经验。就诊后欢迎分享。",
+    "vi": "Chưa có trải nghiệm. Hãy chia sẻ sau khi khám."
   }
 }

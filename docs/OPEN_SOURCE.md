@@ -19,3 +19,13 @@ Gemini API와 Google Maps API는 오픈소스 모델/무료 공개 데이터로 
 둘 다 이번에 설치/실기기 검증하지 않았다. 실시간 통역 완성으로 발표하지 않는다.
 
 참고: https://github.com/colinhacks/zod · https://github.com/vercel/ai · https://github.com/DavBfr/dart_pdf
+
+## 2026-11-08 UI / authentication update
+- Flutter Material 3: existing Card, FilledButton, ExpansionTile and ThemeData refined. No additional UI kit installed.
+- google_sign_in 7.2.0 and google_sign_in_web 1.1.3: official Flutter plugins (BSD-3-Clause), prepared client login; OAuth setup pending.
+- google-auth-library 11.3.3: Apache-2.0, official Google Node ID-token verification.
+- Existing geolocator, url_launcher, google_maps_flutter, pdf and printing retained. Internal Google Maps key and Google Sign-In OAuth IDs are separate.
+- Editable Figma specification and usage rationale: UI_JOURNEY_2026-11-08.md.
+- https://pub.dev/packages/google_sign_in
+- https://github.com/googleapis/google-auth-library-nodejs
+- https://docs.flutter.dev/cookbook/design/themes
