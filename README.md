@@ -65,32 +65,120 @@ flowchart LR
 
 **자동 진단·진료과 판정·예약·실시간 통역은 제공하지 않습니다.** 부위 탐색은 진단을 대신하지 않으며 준비표는 의료기관의 공식 문진표가 아닙니다.
 
-## 기술 구조
+## 한눈에 보는 구조 · Architecture at a glance
+
+**한국어:** 앱은 입력·표시·PDF 생성을 맡고, 자체 서버는 계정/게스트 접근 제어·저장·AI 호출을 맡습니다. 공개 병원 목록과 개인 방문 준비 데이터는 서로 다른 경로로 처리합니다.
+
+**English:** The app handles input, presentation and PDF creation. Our backend handles account/guest access, persistence and AI requests. The public clinic directory and private visit records follow separate data paths.
 
 ```mermaid
-flowchart TD
-    UI[Flutter 앱 · 웹] --> API[Node.js HTTP API]
-    API --> DB[(SQLite)]
-    API --> HIRA[HIRA 공개자료 기반 포항 JSON]
-    API --> VALID[Zod 검증 · 원문 보존]
-    VALID --> AI[Gemini generateContent API]
-    UI --> VOICE[기기·브라우저 STT / TTS]
-    UI --> PDF[PDF 생성 · 공유]
-    UI --> MAP[외부 Google Maps 길찾기]
+flowchart TB
+    subgraph CLIENT["사용자 기기 · User device"]
+        APP["Flutter 앱 / 웹 · App / Web"]
+        SPEECH["OS·브라우저 음성 서비스 · Speech services"]
+        PDF["의료진 화면 / PDF · Visit sheet / PDF"]
+        GPS["위치 권한 · Location permission"]
+    end
+    subgraph SERVER["자체 백엔드 · Own backend"]
+        API["Node.js HTTP API · 접근 제어 / Access checks"]
+        DB[("SQLite · 개인 기록 / Private records")]
+        JSON["HIRA JSON · 공개 기관 목록 / Public directory"]
+        CHECK["Zod · 응답 구조 / 숫자 검증"]
+    end
+    GEMINI["외부 Gemini API · Translation provider"]
+    MAP["외부 Google Maps · Directions link"]
+    APP <-->|"텍스트 · Text"| SPEECH
+    GPS -->|"기기 내 거리 정렬 · Local distance sorting"| APP
+    APP <-->|"HTTP JSON"| API
+    API <--> DB
+    JSON --> API
+    API -->|"동의한 필드 · Consented fields"| GEMINI
+    GEMINI --> CHECK
+    CHECK --> API
+    APP --> PDF
+    APP --> MAP
 ```
 
-| 구성 | 사용 기술 |
+### 1. 병원 데이터 파이프라인 · Clinic data pipeline
+
+```mermaid
+flowchart LR
+    A["HIRA 공개 ZIP / CSV"] --> B["import_hira.py · CP949 읽기"]
+    B --> C["기관 키로 병합 · Join by institution key"]
+    C --> D["포항 추출 · Filter Pohang"]
+    D --> E["hospitals.json / pharmacies.json"]
+    E --> F["GET /api/hospitals"]
+    F --> G["Flutter 목록·필터 · Directory UI"]
+    G --> H["선택 병원 · Selected clinic"]
+```
+
+**한국어:** 원본 파일의 기본·시설·진료과 정보를 암호화요양기호로 결합하고 포항 기관만 추출합니다. 가공한 JSON을 서버가 읽어 앱에 제공합니다. 앱은 진료과 필터·이름 검색을 제공하며 위치 허용 시 기기에서 직선거리순으로 정렬합니다. **배치 가공한 스냅샷**이므로 병원 영업 상태나 현재 진료 가능 여부를 실시간으로 수집하지 않습니다.
+
+**English:** The importer joins basic, facility and department records using the source institution key, then extracts Pohang institutions. The backend serves the processed JSON directory. The app provides department filters and name search, with on-device straight-line distance sorting when location is granted. This is a **batch-processed snapshot**, not a live feed of opening hours or appointment availability.
+
+> **업데이트 / Updates:** 원본 갱신 후 import 스크립트를 다시 실행해야 합니다. 자동 갱신 스케줄러는 없습니다. / A new source snapshot requires rerunning the importer; no scheduled refresh is configured.
+
+### 2. 증상이 준비표가 되는 과정 · From symptoms to a visit sheet
+
+```mermaid
+sequenceDiagram
+    actor U as 사용자 / User
+    participant A as Flutter
+    participant S as Node API
+    participant D as SQLite
+    participant G as Gemini
+    U->>A: 병원 선택·모국어 입력 / Select clinic and enter symptoms
+    A->>S: 원문 저장 / Save original
+    S->>S: 기관 ID·입력·소유권 검사 / Validate institution and ownership
+    S->>D: 병원·원문 스냅샷 저장 / Store snapshot
+    S-->>A: 원문 카드 / Original card
+    U->>A: AI 전송 동의 / Consent to AI processing
+    A->>S: POST /api/cards/:id/translate
+    S->>G: 증상·시점·건강 프로필·선택 기록 / Selected fields
+    G-->>S: 한국어 구조화 JSON / Structured Korean output
+    S->>S: 스키마·숫자 보존 검사 / Validate structure and numbers
+    S->>D: 번역 저장·원문 유지 / Store translation, retain original
+    S-->>A: 원문 + 번역 / Original + translation
+    U->>A: 내 입력 확인 / Confirm own input
+    A->>S: POST /api/cards/:id/confirm
+    S->>D: 입력 확인 상태 / Input confirmation state
+    A->>A: 의료진 화면·PDF 생성 / Render sheet and PDF
+```
+
+**한국어:** 번역보다 원문 저장이 먼저입니다. API는 선택한 병원 ID를 공개 목록과 대조해 병원명·주소를 보존합니다. 동의 후 Gemini가 번역하고 서버가 응답 구조와 숫자를 검사합니다. 실패하면 원문을 유지하며, 사용자 확인 이후 재번역으로 덮어쓰지 못하게 보호합니다. 사용자는 자신이 입력한 내용을 확인하며 한국어 번역의 임상적 정확성을 인증하는 것은 아닙니다.
+
+**English:** The original is saved before translation. The API validates the selected clinic ID against the public directory and preserves its name and address. After consent, Gemini translates selected fields and the server checks the response structure and numerical fidelity. Failures preserve the original; confirmed records are protected against retranslation. Users confirm their own input, not the clinical accuracy of Korean translations.
+
+### 3. 데이터가 어디로 가나요? · Data boundaries
+
+| 데이터 / Data | 처리 위치 / Processing | 설명 / Boundary |
+|---|---|---|
+| 병원 목록 / Clinic directory | 공개 JSON → 서버 → 앱 / Public JSON → API → app | HIRA 스냅샷, 실시간 진료 정보 아님 / Snapshot, not live availability |
+| 증상·시점·건강 프로필·선택 기록 / Symptoms, onset, health profile, selected records | SQLite; 동의 후 Gemini / SQLite; Gemini after consent | 원문 보존 / Original retained |
+| 병원명·주소 / Selected clinic name and address | 준비표 스냅샷 / Visit snapshot | Gemini 번역 요청에서 제외 / Excluded from translation payload |
+| 선택한 이름·연락처 등 / Optional identity and contact details | 앱의 준비표·PDF / App sheet and PDF | 별도 내보내기 선택; AI 요청에 추가하지 않음 / Explicit export selection; not added to AI payload |
+| 음성 / Audio | 기기·브라우저 음성 서비스 / Platform speech service | 제공업체가 온라인 처리할 수 있음; MORI 서버에는 음성 파일 저장 안 함 / Provider may process online; MORI does not store audio files |
+| 현재 위치 / Current position | 앱 거리 계산 / App distance calculation | 직선거리이며 이동시간 아님 / Straight-line distance, not travel time |
+| API 키 / API key | 서버 환경변수 / Server environment | 클라이언트·Git·ZIP에서 제외 / Excluded from client, Git and ZIP |
+| PDF | Flutter에서 생성 / Generated in Flutter | 브라우저 다운로드 또는 OS 공유 / Browser download or OS share |
+
+### 코드에서 찾아보기 · Code map
+
+| 책임 / Responsibility | 구현 위치 / Source |
 |---|---|
-| 앱 | Flutter / Material 3, 6개 언어 UI |
-| 음성 | speech_to_text, flutter_tts, audioplayers |
-| 문서 | pdf, printing, 로컬 다국어 글꼴 |
-| 서버 | Node.js 내장 HTTP, SQLite, Zod |
-| 번역 | 서버에서 Gemini REST API 직접 호출 |
-| 위치·지도 | geolocator, latlong2, url_launcher; 외부 Google 길찾기 |
+| 공공자료 가공 / Public data import | [scripts/import_hira.py](scripts/import_hira.py) |
+| 병원·약국 스냅샷 / Directory snapshots | [server/resources](server/resources) |
+| API·권한·카드 저장 / API, ownership, cards | [server/src/app.js](server/src/app.js) · [db.js](server/src/db.js) |
+| 번역·숫자 및 구조 검증 / Translation and validation | [ai.js](server/src/ai.js) · [validation.js](server/src/validation.js) |
+| 병원 목록·거리 정렬 / Clinic UI and distance sorting | [app/lib/hospitals.dart](app/lib/hospitals.dart) |
+| 음성 질문과 답변 / Voice questions and answers | [app/lib/voice_answer.dart](app/lib/voice_answer.dart) |
+| 준비표·PDF / Visit sheet and PDF | [visit_sheet_page.dart](app/lib/visit_sheet_page.dart) · [visit_pdf.dart](app/lib/visit_pdf.dart) |
 
-Firebase는 사용하지 않습니다. Gemini 키는 서버 환경변수로 관리합니다. Google OAuth와 내부 지도 SDK 준비 코드는 있으나 실제 인증 설정을 마친 기능으로 소개하지 않습니다.
+**현재 외부 연결 / Current integrations:** Gemini REST API, 기기 음성 서비스, Google Maps 외부 길찾기 링크. / Gemini REST API, platform speech services and external Google Maps directions links.
 
-[오픈소스·API·언어 선정 상세](docs/deliverables/TECHNOLOGY_AND_LANGUAGES.md) · [질문 항목의 근거](docs/VISIT_QUESTION_SOURCES.md)
+**준비 단계 / Prepared, not fully configured:** Google OAuth 로그인·내부 Google 지도. Firebase는 사용하지 않습니다. / Google OAuth sign-in and embedded Google Maps require configuration. Firebase is not used.
+
+[오픈소스·API·언어 선정 / Technology and language choices](docs/deliverables/TECHNOLOGY_AND_LANGUAGES.md) · [질문 항목의 근거 / Question sources](docs/VISIT_QUESTION_SOURCES.md)
 
 ## 데이터와 연구 근거
 
